@@ -48,7 +48,7 @@
 % this with the following command.
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
-\title{Scalable Online Optimization algorithms\\ \& \\ Modern Approaches to Structured
+\title{Scalable Optimization algorithms\\ \& \\ Modern Approaches to Structured
 Prediction}
 \date{}
 
@@ -85,22 +85,30 @@ variables. Intuitively the success of this approach can be explained by the fact
 that we only expect a small number of constraints to be active or nearly active
 at a certain point. \\
 
+
+
+
 The Frank-Wolfe algorithm (\cite{f-w}) is a popular method for constrained
 convex optimization consisting in taking a first-order approximation of the
 objective function and doing a linear search over the set of constraints to
 update the current point; leveraging sparsity . Over the years, many
 improvements and alternatives were developed to address the particularities of
-various frameworks. Jaggi (\cite{Jaggi:229246}) presents a variety of stronger
-convergence results for Frank-Wolfe-type algorithms found in the literature
-(e.g. F-W with approximate linear subproblems, away steps, etc.). Lacoste-Julien
-et al. (\cite{dualextraSimon}) propose a randomized block-coordinate variant of
-the F-W algorithm. The paper goes on to demonstrate its use in the case of SVM's
-and the advantages it yields over stochastic subgradient methods and other
-available SVM solvers. S. Lacoste-Julien and M.Jaggi
-(\cite{2015arXiv151105932L}) also go on to show that the "Away-steps", "Pairwise
+various frameworks. For example Jaggi \cite{Jaggi:229246} presents a variety of
+stronger convergence results and duality gaps for a number of variants of the
+Frank-Wolfe algorithm
+(e.g. F-W with approximate linear subproblems, away steps, etc.).\\
+
+A primary limitation of Frank-Wolfe is that it requires a pass through the
+entire dataset per iteration, which makes the stochastic subgradient method more
+practical. Adressing this problem, Lacoste-Julien et al.
+\cite{DBLP:journals/corr/abs-1207-4747} propose a randomized block-coordinate
+variant of the F-W algorithm inspired from coordinate descent methods. The paper
+goes on to demonstrate its use in the case of the structured SVM and the
+advantages it yields over its competitors.\\ More recently, S. Lacoste-Julien
+and M.Jaggi \cite{2015arXiv151105932L} showed that the "Away-steps", "Pairwise
 FW", "fully-corrective FW", and "Minimum norm point" variants of the F-W
 algorithm all achieve linear convergence under a weaker condition than strong
-convexity.\\
+convexity.
 
 Another approach developed in (\cite{dualextraSimon}) is to to leverage the
 min-max structure of the loss-augmented decoding problem. The latter arises
