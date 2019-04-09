@@ -64,6 +64,7 @@ William St-Arnaud, Elyes Lamouchi, Fr\'ed\'eric Boileau
 
 
 \section*{Introduction}
+
 Structured prediction is concerned with predicting labels from a given
 set of features where the labels have some inherent structure which should
 be considered when training the model. The structures considered are usually
@@ -72,32 +73,42 @@ can be a challenge with respect to tractability. We review some of the ways
 this is tackled with a large margin approach in the modern literature.
 We thus focus on the structural SVM framework which has the computational
 advantage over MLE approaches by dispensing with the need to compute the
-partition function which is \#P-complete in general (\cite{dualextraSimon}).
+partition function which is \#P-complete in general; e.g. for
+matchings and mincuts.(\cite{dualextraSimon}).\\
 
 Using convex analysis it is not hard to see that since the primal optimization
-has an exponential number of constraints in the length of the input the dual
-will have an exponential number of variables. One approach is thus to solve
-the dual while imposing some notion of sparsity on the dual variables.
-Intuitively the success of this approach can be explained by the fact that we
-only expect a small number of constraints to be active or nearly active at a
-certain point. In a large margin 
+problem of struct SVM has an exponential number of constraints in the length of
+the input the dual will have an exponential number of variables. One approach is
+thus to solve the dual while imposing some notion of sparsity on the dual
+variables. Intuitively the success of this approach can be explained by the fact
+that we only expect a small number of constraints to be active or nearly active
+at a certain point. \\
 
-The Frank-Wolfe algorithm (\cite{f-w}) is a popular method for
-constrained convex optimization consisting in taking a first-order approximation
-of the objective function and doing a linear search over the set of constraints
-to update the current point; leveraging sparsity . Over the years, many improvements and alternatives
-were developed to address the particularities of various frameworks. Jaggi
-(\cite{Jaggi:229246}) presents a variety of stronger convergence results for
-Frank-Wolfe-type algorithms found in the literature (e.g. F-W with approximate
-linear subproblems, away steps, etc.). Lacoste-Julien et al.
-(\cite{dualextraSimon}) propose a randomized block-coordinate
-variant of the F-W algorithm. The paper goes on to demonstrate its use in the
-case of SVM's and the advantages it yields over stochastic subgradient methods
-and other available SVM solvers. S. Lacoste-Julien and M.Jaggi
+The Frank-Wolfe algorithm (\cite{f-w}) is a popular method for constrained
+convex optimization consisting in taking a first-order approximation of the
+objective function and doing a linear search over the set of constraints to
+update the current point; leveraging sparsity . Over the years, many
+improvements and alternatives were developed to address the particularities of
+various frameworks. Jaggi (\cite{Jaggi:229246}) presents a variety of stronger
+convergence results for Frank-Wolfe-type algorithms found in the literature
+(e.g. F-W with approximate linear subproblems, away steps, etc.). Lacoste-Julien
+et al. (\cite{dualextraSimon}) propose a randomized block-coordinate variant of
+the F-W algorithm. The paper goes on to demonstrate its use in the case of SVM's
+and the advantages it yields over stochastic subgradient methods and other
+available SVM solvers. S. Lacoste-Julien and M.Jaggi
 (\cite{2015arXiv151105932L}) also go on to show that the "Away-steps", "Pairwise
 FW", "fully-corrective FW", and "Minimum norm point" variants of the F-W
 algorithm all achieve linear convergence under a weaker condition than strong
-convexity.
+convexity.\\
+
+Another approach developed in (\cite{dualextraSimon}) is to to leverage the
+min-max structure of the loss-augmented decoding problem. The latter arises
+naturally in struct SVM as we are minimizing the loss over the labels which
+maximize the score. In many cases of interest the saddle-point problem has a
+linear objective function which allows us to use efficient convex relaxation
+techniques. Moreover we can exploit the structure of the problem in conjuction
+with ideas from combinatorial optimization to guarantee tractability in some
+well known cases.
 
 \section*{Project}
 The type of project we wish to present is at the crossing of two lines of work:
