@@ -1,0 +1,106 @@
+\documentclass{article}
+
+%----------------------------------------
+% Packages
+%----------------------------------------
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amsbsy,amssymb,amsfonts,amsthm}
+\usepackage{nicefrac}
+\usepackage{mathtools}
+\usepackage{color}
+\usepackage{xspace} % Correct macro spacing
+\usepackage[numbers]{natbib} % For citations
+\usepackage{times}
+\usepackage{graphicx,subfigure}
+%\usepackage[small,bf]{caption}
+\usepackage{algorithm,algorithmic} 
+\usepackage{hyperref}
+
+\usepackage{xcolor}
+\usepackage{shadethm}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\rhead{\thepage}
+
+
+\newshadetheorem{thm}{Theorem}
+\newshadetheorem{defn}[thm]{Definition}
+\newshadetheorem{assm}[thm]{Assumption}
+\newshadetheorem{prop}[thm]{Property}
+\newshadetheorem{eg}[thm]{Example}
+
+
+\definecolor{shadethmcolor}{HTML}{F0F0F0}
+%\definecolor{shadethmcolor}{HTML}{EDEDED}
+%\definecolor{shadethmcolor}{HTML}{EDF8FF}
+%\definecolor{shaderulecolor}{HTML}{EDF8FF}
+%\definecolor{shaderulecolor}{HTML}{45CFFF}
+\setlength{\shadeboxrule}{.4pt}
+
+
+\setlength\parindent{0pt}
+
+% Packages hyperref and algorithmic misbehave sometimes.  We can fix
+% this with the following command.
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+%----------------------------------------
+% Standard macros
+%----------------------------------------
+
+
+%----------------------------------------
+% Project-specific macros
+%----------------------------------------
+
+%----------------------------------------
+% Header
+%----------------------------------------
+\title{Review of FW and its variants}
+\date{}
+
+%----------------------------------------
+% Document
+%----------------------------------------
+\begin{document} 
+
+%----------------------------------------
+% Abstract
+%----------------------------------------
+\maketitle
+
+
+\vspace{-0.5in}
+\begin{center}
+William St-Arnaud, Elyes Lamouchi, Fr\'ed\'eric Boileau
+\end{center}
+\vspace{0.2in}
+
+
+%----------------------------------------
+% Body
+%----------------------------------------
+
+\section*{Introduction}
+Certain structured SVM's with multilabel outputs have an exponentially large number of constraints, which makes the problem inefficient or intractable in practice. There has been a lot of research focused on providing a solution to that issue. The Frank-Wolfe algorithm \cite{f-w} is a popular method for constrained convex optimization consisting in taking a first-order approximation of the objective function and doing a linear search over the set of constraints to update the current point. Over the years, many improvements and alternatives were developed to address the particularities of various frameworks. Jaggi \cite{Jaggi:229246} presents a variety of stronger convergence results for Frank-Wolfe-type algorithms found in the literature (e.g. F-W with approximate linear subproblems, away steps, etc.). Lacoste-Julien et al. \cite{DBLP:journals/corr/abs-1207-4747} propose a randomized block-coordinate variant of the F-W algorithm. The paper goes on to demonstrate its use in the case of SVM's and the advantages it yields over stochastic subgradient methods and other available SVM solvers. S. Lacoste-Julien and M.Jaggi \cite{2015arXiv151105932L} also go on to show that the "Away-steps", "Pairwise FW", "fully-corrective FW", and "Minimum norm point" variants of the F-W algorithm all achieve linear convergence under a weaker condition than strong convexity. 
+
+\section*{Project}
+The type of project we wish to present is at the crossing of two lines of work: analysis and practical evaluation. Our project will, therefore, be composed of two main parts:
+\begin{itemize}
+    \item The first part is a literature review on the subject. We intend to go deeper into some of the papers cited above, studying the assumptions they make  and identifying the critical points in the proofs that forbid using softer assumptions. We will also compare the papers, showing how they relate to each other and how they overcome previous difficulties related to structured predictions. Finally, this part would serve as an overview of all previous results that will allow us to identify the insights and limitations of this class of results and potentially some holes in the results which could be used as a starting point for future research.
+    \item The second part consists of a practical evaluation of the method proposed in  and of other methods depending on the time constraints. The idea is to see first-handedly the effect of the various variants of FW on real data. This way, we can better compare/justify the usage of these methods in real-world scenarios. We intend to run some evaluation of the model on both toy/synthetic datasets and real datasets with a few numbers of network configurations. %On toy datasets, we aim to construct a practical example in which this method helps the model to converge to an interesting global minimum. On real datasets, the objective would be to determine if the gain from using this method is significant or not in real case uses when compared to more conventional methods.
+\end{itemize}
+
+
+Our project will take the form of an article detailing the analysis of the papers and our experiments on real data, as well as a repository including the code used for the experiments. 
+
+\bibliographystyle{abbrvnat}
+\bibliography{proposal}
+%----------------------------------------
+\end{document}
