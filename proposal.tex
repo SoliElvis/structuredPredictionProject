@@ -72,16 +72,16 @@ be considered when training the model. The structures considered are usually
 combinatorial in nature which means comparing the scores of two assignments
 can be a challenge with respect to tractability. We review some of the ways
 this is tackled with a large margin approach in the modern literature.
-We thus focus on the structural SVM framework which has the computational
-advantage over MLE approaches by dispensing with the need to compute the
+We thus focus on the structural SVM framework, which has computational
+advantage over MLE approaches by dispensing with the need to find the
 partition function which is \#P-complete in general; e.g. for
 matchings and mincuts.(\cite{dualextraSimon}).\\
 
-Using convex analysis it is not hard to see that since the primal optimization
+Using convex analysis, it is not hard to see that since the primal optimization
 problem of struct SVM has an exponential number of constraints in the length of
-the input the dual will have an exponential number of variables. One approach is
+the input, the dual will have an exponential number of variables. One approach is
 thus to solve the dual while imposing some notion of sparsity on the dual
-variables. Intuitively the success of this approach can be explained by the fact
+variables. Intuitively, the success of this approach can be explained by the fact
 that we only expect a small number of constraints to be active or nearly active
 at a certain point. \\
 
@@ -89,9 +89,9 @@ at a certain point. \\
 
 
 The Frank-Wolfe algorithm (\cite{f-w}) is a popular method for constrained
-convex optimization consisting in taking a first-order approximation of the
+convex optimization, consisting in taking a first-order approximation of the
 objective function and doing a linear search over the set of constraints to
-update the current point; leveraging sparsity . Over the years, many
+update the current point, leveraging sparsity . Over the years, many
 improvements and alternatives were developed to address the particularities of
 various frameworks. For example Jaggi \cite{Jaggi:229246} presents a variety of
 stronger convergence results and duality gaps for a number of variants of the
@@ -113,9 +113,9 @@ convexity.
 Another approach developed in (\cite{dualextraSimon}) is to to leverage the
 min-max structure of the loss-augmented decoding problem. The latter arises
 naturally in struct SVM as we are minimizing the loss over the labels which
-maximize the score. In many cases of interest the saddle-point problem has a
-linear objective function which allows us to use efficient convex relaxation
-techniques. Moreover we can exploit the structure of the problem in conjuction
+maximize the score. In many cases of interest, the saddle-point problem has a
+linear objective function allowing us to use efficient convex relaxation
+techniques. Moreover, we can exploit the structure of the problem in conjuction
 with ideas from combinatorial optimization to guarantee tractability in some
 well known cases.
 
@@ -131,18 +131,14 @@ assumptions. We will also compare the papers, showing how they relate to each
 other and how they overcome previous difficulties related to structured
 predictions. Finally, this part would serve as an overview of all previous
 results that will allow us to identify the insights and limitations of this
-class of results and potentially some holes in the results which could be used
+line of work and potentially some gaps which could be used
 as a starting point for future research.
     \item The second part consists of a practical evaluation of the method
 proposed in and of other methods depending on the time constraints. The idea is
 to see first-handedly the effect of the various variants of FW on real data.
 This way, we can better compare/justify the usage of these methods in real-world
 scenarios. We intend to run some evaluation of the model on both toy/synthetic
-datasets and real datasets with a few numbers of network configurations. %On toy
-datasets, we aim to construct a practical example in which this method helps the
-model to converge to an interesting global minimum. On real datasets, the
-objective would be to determine if the gain from using this method is
-significant or not in real case uses when compared to more conventional methods.
+datasets and real datasets with a few numbers of network configurations.
 \end{itemize}
 
 
