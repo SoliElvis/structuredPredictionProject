@@ -1,0 +1,366 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% ICML 2016 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Use the following line _only_ if you're still using LaTeX 2.09.
+%\documentstyle[icml2016,epsf,natbib]{article}
+% If you rely on Latex2e packages, like most moden people use this:
+\documentclass{article}
+
+% use Times
+\usepackage{times}
+% For figures
+\usepackage{graphicx} % more modern
+%\usepackage{epsfig} % less modern
+\usepackage{subfigure} 
+
+% For citations
+\usepackage{natbib}
+
+% For algorithms
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% For equations
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+% As of 2011, we use the hyperref package to produce hyperlinks in the
+% resulting PDF.  If this breaks your system, please commend out the
+% following usepackage line and replace \usepackage{icml2016} with
+% \usepackage[nohyperref]{icml2016} above.
+\usepackage{hyperref}
+
+% Packages hyperref and algorithmic misbehave sometimes.  We can fix
+% this with the following command.
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Employ the following version of the ``usepackage'' statement for
+% submitting the draft version of the paper for review.  This will set
+% the note in the first column to ``Under review.  Do not distribute.''
+\usepackage[accepted]{icml2016} 
+
+\usepackage{csvsimple}
+
+% Employ this version of the ``usepackage'' statement after the paper has
+% been accepted, when creating the final version.  This will set the
+% note in the first column to ``Proceedings of the...''
+%\usepackage[accepted]{icml2016}
+
+
+% The \icmltitle you define below is probably too long as a header.
+% Therefore, a short form for the running title is supplied here:
+\icmltitlerunning{Review of Frank Wolfe and its variants}
+
+\begin{document} 
+
+\twocolumn[
+\icmltitle{Review of Frank Wolfe and its variants}
+
+% It is OKAY to include author information, even for blind
+% submissions: the style file will automatically remove it for you
+% unless you've provided the [accepted] option to the icml2016
+% package.
+\icmlauthor{William Saint-Arnaud}{william.st-arnaud@umontreal.ca}
+\icmlauthor{Elyes Lamouchi}{elyeslamouchi@gmail.com}
+\icmlauthor{Frederic Boileau}{frederic.boileau@umontreal.ca}
+
+
+% You may provide any keywords that you 
+% find helpful for describing your paper; these are used to populate 
+% the "keywords" metadata in the PDF but will not be shown in the document
+% \icmlkeywords{boring formatting information, machine learning, ICML}
+
+\vskip 0.3in
+]
+\begin{abstract} 
+Due to the combinatorial nature of multilabel outputs, predicting structured data typically comes with an exponentially large number of constraints, which makes the problem inefficient or intractable in practice. There has been a lot of research focused on providing a solution to that issue. In the structured SVM setting, conditional gradient methods a.k.a  Frank-Wolfe type algorithms have become a method of choice.\\
+\\
+This paper's aim is to synthesize the recent advances, starting from the classical F-W to the more sophisticated variants, while motivating this with the problems each variant addresses. Finally, we will discuss the pitfalls of some variants and their intrinsic trade-offs. 
+We will then evaluate the performance of the methods proposed to see how reasonable are the assumptions (providing theoretical guarantees) on synthetic data, and to get an idea whether each variant's trade-off is worth it.
+\end{abstract} 
+
+\section{Structured SVM context}
+Given a training set $\mathcal{D}=\{(x_i,y_i)\}_{i=1}^n$ where $y \in \mathcal{Y}$ is a multi-label output, and a feature map $\phi:\mathcal{X}\times\mathcal{Y}\longrightarrow \mathbb{R}$, which encodes a similarity measure between $\mathcal{X}$ and $\mathcal{Y}$, such that if $y_{i}$ is the ground truth (target) for an input $x_{i}$, then
+\begin{equation*}
+\begin{aligned}
+    &\forall y\in\mathcal{Y}\texttt{\symbol{92}}\{y_{i}\}\quad\textit{we have}\quad \psi_{i}(y) = \phi(x_{i},y_{i})- \phi(x_{i},y) > 0
+\end{aligned}
+\end{equation*}
+The aim is to construct an accurate linear classifyer, $h_{w}(x)= \underset{y\in\mathcal{Y}(x)}{\textit{argmax}}\langle w, \phi(x,y)\rangle$.\\
+To learn $w$, consider the task loss $L:\mathcal{Y}\times\mathcal{Y}\longrightarrow\mathbb{R}_{+}$, where $L(y,y\prime)= 0 \Longleftrightarrow y= y\prime$.
+\begin{equation*}
+\begin{aligned}
+    &\underset{w,\xi}{\textit{max}}\quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\varepsilon_{i}\\
+    &\textit{s.t.}\quad \langle w, \psi_{i}(y)\rangle \geq L(y_{i},y)- \varepsilon_{i},\quad\forall i ,\forall y\in\mathcal{Y}(x)=\mathcal{Y}_{i}
+\end{aligned}
+\end{equation*}
+\textit{Problems:} (1) The zero-one loss is not differentiable and (2) we have an exponential number of constraints.\\
+\textit{Solutions:} (1) Minimizing an upper bound to the task loss gives us a worst case guarantee.
+\\
+\\
+Consider the \textbf{max oracle}, $\Tilde{H}= \underset{y\in\mathcal{Y}_{i}}{\textit{max}}$ $\underbrace{L_{i}(y)- \langle w, \psi_{i}(y)\rangle}_{= H_{i}(y,w)\quad\textit{the hinge loss}}$.\\
+(2) The exponential number of constraints are replaced by $n$ piecewise linear ones.
+\\
+\\
+\textbf{Proposition.} The max oracle is a convex upper bound to the task loss.\\
+\textit{Proof.} The maximum of two convex (linear) functions is convex, and
+\begin{equation*}
+\begin{aligned}
+    &L(y_{i},h_{w}(x_{i})) \leq L(y_{i},h_{w}(x_{i})) + \underbrace{\langle w, \psi_{i}(y)\rangle}_{\geq 0 \textit{ by definition}} \\
+    &\quad\quad\leq \underset{y\in\mathcal{Y}_{i}}{\textit{max}} L_{i}(y)- \langle w, \psi_{i}(y)\rangle
+\end{aligned}
+\end{equation*}
+Thus learning $w$ amounts to the unconstrained problem,
+\begin{equation*}
+\begin{aligned}
+    &\underset{w}{\textit{max}}\quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\Tilde{H}_{i}(w)
+\end{aligned}
+\end{equation*}
+\section{From classical Frank-Wolfe to more sophisticated variants}
+Consider the problem of minimizing a convex continuously differentiable objective function $f$ over a compact set $\mathcal{M}$. Due to the exponential number of dual variables in the structured SVM setting, classical algorithms, like projected gradient are intractable.
+\\
+Stochastic subgradient methods, on the other hand, achieve a linear convergence rate while only requiring a single call to the maximization oracle every step. They are nonetheless very sensitive to the sequence of stepsizes and it is unclear when to terminate the iterations.
+\\
+\\
+Conditional gradient a.k.a \textbf{Frank Wolfe}, addresses this problem by giving an  adaptive stepsize $\gamma= \frac{2}{k+2}$ and a duality gap while still retaining a linear rate of convergence.
+\\
+The Frank Wolfe algorithm goes as follows:
+\begin{algorithm}[tb]
+   \caption{Frank-Wolfe}
+   \label{alg:example}
+\begin{algorithmic}
+   \STATE Let $\alpha\in\mathcal{M}$
+   \FOR{$k=0$ {\bfseries to} $K$}
+   \STATE {Compute $s={\textit{argmin}}_{s\in\mathcal{M}}\langle s, \nabla f(\alpha^{k})\rangle$}
+   \STATE Let $\gamma = \frac{2}{k+2}$, or optimize $\gamma$ by line search
+   \STATE Update $\alpha^{k+1}= (1-\gamma)\alpha^{k}+ \gamma s$
+   \ENDFOR
+\end{algorithmic}
+\end{algorithm}
+We definie the duality gap\quad $g(\alpha^{k})= \underset{s\in\mathcal{M}}{\textit{max}}\langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle$.\\
+By first order convexity of the objective, we have
+\begin{equation*}
+\begin{aligned}
+    &f(s)\geq f(\alpha^{k})+ \langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle\\
+    &\Longrightarrow g(\alpha^{k})= -\underset{s\in\mathcal{M}}{\textit{min}}\langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle \geq f(\alpha^{k})- f^{*}
+\end{aligned}
+\end{equation*}
+We can thus see that the duality gap gives us an optimality guarantee. 
+\\
+\textbf{Note.} The main idea here, is that the linear subproblem in Frank-Wolfe and the loss augmented decoding of the structured SVM are equivalent.
+\\
+\textit{Proof of the equivalence.} The objective function being differentiable and convex, if we are at a point $\alpha$ 
+such that $f(\alpha)$ is minimized along each coordinate axis, then $\alpha$ is a global minimizer. Therefore,
+\begin{equation*}
+\begin{aligned}
+    &\underset{s\in\mathcal{M}}{\textit{min}}\langle s, \nabla f(\alpha)\rangle = \sum_{i}\underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle s_{i}, \nabla_{i} f(\alpha)\rangle
+\end{aligned}
+\end{equation*}
+Moreover, with 
+\begin{equation*}
+\begin{aligned}
+   &w=A\alpha, A=\Big[\frac{1}{n\lambda}\psi_{1}(y)...\frac{1}{n\lambda}\psi_{\sum_{i}|\mathcal{Y}_{i}|}(y)\Big]\\
+   &\textit{and}\quad b=\Big(\frac{1}{n}L_{i}(y)\Big)_{i\in\big[n\big],y\in\mathcal{Y}_{i}}
+\end{aligned}
+\end{equation*} 
+The gradient of the dual would be, 
+\begin{equation*}
+\begin{aligned}
+    &\nabla f(\alpha)= \nabla\Big[\frac{\lambda}{2}||A\alpha||^{2}- b^{T}\alpha\Big] = \lambda A^{T}A\alpha- b\\
+    &= \lambda A^{T}w- b= \frac{1}{n}H_{i}(y,w)\\
+    &\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad\tilde{H}_{i}= -\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad\tilde{H}_{i} = \underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad L_{i}- \langle w, \psi_{i}\rangle\\
+    &= \underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle s_{i}, \nabla_{i} f(\alpha)\rangle\\
+\end{aligned}
+\end{equation*}
+Thus we can see that, if $n=$ size of the training data, one Frank-Wolfe step is equivalent to $n$ calls to the maximization oracle.
+\begin{algorithm}[tb]
+   \caption{Batch Primal-Dual Frank-Wolfe}
+   \label{alg:example}
+\begin{algorithmic}
+   \STATE Let $\alpha\in\mathcal{M}$
+    \STATE {Let $w^{0}= 0$, $l^{0}= 0$}\\
+    \FOR{$k=0, \dots, K$}
+        \FOR{$i=1, \dots, n$}
+            \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\max} H_{i}(y,w^{k})$//
+        \STATE {Let $w_{s}= \sum_{i=1}^{n}\frac{1}{n\lambda}\psi_{i}(y_{i}^{*})$, and $l_{s}= \frac{1}{n}\sum_{i=1}^{n}L_{i}(y_{i}^{*})$}\\
+        \STATE {Let $\gamma= \frac{\lambda(w^{k}-w_{s})^{T}w^{k}- l^{k}+ l_{s}}{\lambda||w^{k}-w_{s}||^{2}}$, and clip to $[0,1]$}\\
+        \STATE {Update $w^{k+1}= (1-\gamma)w^{k}+ \gamma w_{s}$, and $l^{k+1}= (1-\gamma)l^{k}+ \gamma l_{s}$}
+    }
+   \ENDFOR
+   \ENDFOR
+\end{algorithmic}
+\end{algorithm}
+Unlike stochastic subgradient and stochastic methods in general, classical Frank-Wolfe requires one call for each training example at each iteration. For large datasets, this can get unpractical.\\
+Hence the stochastic variant of Frank Wolfe, \textbf{Block Coordinate Frank Wolfe (BCFW)}.
+\\
+\\
+\textbf{Theorem.} Given a convex, differentiable objective $f:\mathcal{M}^{1}\times...\times\mathcal{M}^{n}\to\mathbb{R}$, where $\forall i\in\{1..n\}$, each factor\quad $\mathcal{M}^{i}\subseteq\mathbb{R}^{n}$ is convex and compact, if we are at a point $x$
+such that $f(x)$ is minimized along each coordinate axis, then $x$ is a global minimum.
+\\
+\\
+As in coordinate descent, we minimize the objective function one coordinate (block) at a time. At each iteration, BCFW picks the $i^{th}$ block (from $n$) uniformly at random and updates the $i^{th}$ coordinate of the corresponding weight, by calling the maximization oracle on the chosen block.
+\begin{algorithm}[tb]
+   \caption{Block-Coordinate Frank-Wolfe}
+   \label{alg:example}
+\begin{algorithmic}
+    \STATE {Let $w^{0}= w_{i}^{0}= \overline{w}^{0}= 0$, $l^{0}= l_{i}^{0}= 0$}\\
+    \FOR {$k=0...K$}{
+        \STATE{Pick $i$ at random in $\{1,...,n\}$}\\
+        \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad H_{i}(y,w^{k})$}\\
+        \STATE {Let $w_{s}= \frac{1}{n\lambda}\psi_{i}(y_{i}^{*})$, and $l_{s}= \frac{1}{n}L_{i}(y_{i}^{*})$}\\
+        \STATE {Let $\gamma= \frac{\lambda(w_{i}^{k}-w_{s})^{T}w^{k}- l_{i}^{k}+ l_{s}}{\lambda||w_{i}^{k}-w_{s}||^{2}}$, and clip to $[0,1]$}\\
+        \STATE {Update $w_{i}^{k+1}= (1-\gamma)w_{i}^{k}+ \gamma w_{s}$, and $l_{i}^{k+1}= (1-\gamma)l_{i}^{k}+ \gamma l_{s}$}\\
+        \STATE {Update $w^{k+1}= w^{k}+ w_{i}^{k+1}- w_{i}^{k}$, and $l_{i}^{k+1}= (1-\gamma)l_{i}^{k}+ \gamma l_{s}$}\\
+    }
+    \ENDFOR
+\end{algorithmic}
+\end{algorithm}
+\subsection*{Convergence Results}
+\textbf{Definition.} The curvature constant $C_{f}$ is given by the maximum relative deviation of the objective function f from its linear aaporximations, over the domain $\mathcal{M}$,
+\begin{equation*}
+\begin{aligned}
+    &C_{f}= \underset{\underset{ \gamma\in[0,1], y=x+\gamma(s-x)}{x,s\in\mathcal{M}}}{sup}\frac{2}{\gamma^{2}}\Big(f(y)- f(x)- \langle y-x, \nabla f(x)\rangle\Big)
+\end{aligned}
+\end{equation*}
+\\
+Intuitively, the curvature constant can be seen as a measure of how flat the objective function is. For example, if the objective is linear, say $f(x)= ax+ b$ and $x\in[e,f]$ then $\nabla f(x)= a$ and $C_{f}= \frac{2}{\gamma^{2}}\Big(ay+ b- ax- b +(-ay +ax)\Big)= 0$.\\
+Moreover $s=\underset{s\in[e,f]}{argmin}\langle s, a\rangle= \frac{e}{a}$. Thus we reach the minimum in one F-W step.\\
+Thus, we can observe that for flatter functions, that is with smaller curvature constants, Frank-Wolfe should converge faster.
+\\
+\\
+\textbf{Definition.} Over each coordinate block $\mathcal{M}^{i}$, let the curvature be given by,
+\begin{equation*}
+\begin{aligned}
+    &C^{(i)}_{f}= \underset{\underset{\underset{\gamma\in[0,1]}{y=x+\gamma(s_{[i]}-x_{[i]})}}{x\in\mathcal{M},s_{i}\in\mathcal{M}^{i}}}{sup}\frac{2}{\gamma^{2}}\Big(f(y)- f(x)- \langle y_{i}-x_{i}, \nabla_{i} f(x)\rangle\Big)
+\end{aligned}
+\end{equation*}
+Where $x_{[i]}$ refers to the zero-padding of $i^{th}$ coordinate of $x$. And let the global \emph{product curvature constant} be,
+\begin{equation*}
+\begin{aligned}
+    &C^{\otimes}_{f}= \sum_{i=1}^{n}C^{(i)}_{f}
+\end{aligned}
+\end{equation*}
+\\
+\textbf{Theorem.} For the dual structural SVM objective function over the domain $\mathcal{M}= \Delta_{|\mathcal{Y}_{1}|}\times... \times\Delta_{|\mathcal{Y}_{n}|}$, the total curvature constant $C^{\otimes}_{f}$, on the product domain $\mathcal{M}$, is upper bounded by,
+\begin{equation*}
+\begin{aligned}
+    &C^{\otimes}_{f} \geq \frac{4R^{2}}{\lambda n}
+    \quad\textit{where} \quad R= \underset{i\in[n], y\in\mathcal{Y}_{i}}{max}||\psi_{i}(y)||_{2}
+\end{aligned}
+\end{equation*}
+\\
+\textbf{\textit{Proof.}} By second order convexity on $f$ at $y$, we have
+\begin{align*}
+    f(y)\leq f(x)+ \langle y_{i}-x_{i}, \nabla_{i} f(x)\rangle\\
+    + (y- x)^{T}\nabla^{2}f(x)(y- x)\\
+    f(y)- f(x)- \langle y_{i}-x_{i}, \nabla_{i} f(x)\rangle\\
+    \leq (y- x)^{T}\nabla^{2}f(x)(y- x)
+\end{align*}
+\begin{equation*}
+\begin{aligned}
+    &C^{(i)}_{f}\leq\underset{\underset{\underset{\gamma\in[0,1]}{y=x+\gamma(s_{[i]}-x_{[i]})}}{x\in\mathcal{M},s_{i}\in\mathcal{M}^{i}}}{sup}\Big(f(y)- f(x)- \langle y_{i}-x_{i}, \nabla_{i} f(x)\rangle\Big)\\
+    &\leq \underset{\underset{z\in[x,y]\subseteq\mathcal{M}}{x,y\in\mathcal{M},(y-x)\in\mathcal{M}^{[i]}}}{sup}(y- x)^{T}\nabla^{2}f(z)(y- x)\\
+    &\textit{Moreover } \underset{\underset{z\in[x,y]\subseteq\mathcal{M}}{x,y\in\mathcal{M},(y-x)\in\mathcal{M}^{[i]}}}{sup}(y- x)^{T}\nabla^{2}f(z)(y- x)\\
+    &= \lambda \underset{{x,y\in\mathcal{M},(y-x)\in\mathcal{M}^{[i]}}}{sup}(A(y- x))^{T}\nabla^{2}f(z)(A(y- x))
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+    &C^{(i)}_{f}\leq \lambda \underset{v,w\in A\mathcal{M}^{(i)}}{sup}||v- w||^{2}_{2}\leq \lambda \underset{v\in A\mathcal{M}^{(i)}}{sup}||2v||^{2}_{2}
+\end{aligned}
+\end{equation*}
+Where $\forall v\in A\mathcal{M}^{(i)}$, $v$ is a convex combination of the feature vectors corresponding to the possible labelings for the $i^{th}$ example of the training data, such that $||v||_{2}\leq\textit{ the longest column of A}= \frac{1}{n\lambda}R$. Therefore,
+\begin{equation*}
+\begin{aligned}
+    &C^{\otimes}_{f}= \sum_{i=1}^{n}C^{(i)}_{f}\leq 4\lambda\sum_{i=1}^{n}\Big(\frac{1}{n\lambda}R\Big)^{2}= \frac{4}{n\lambda}R^{2}
+\end{aligned}
+\end{equation*}
+Which completes the proof.\quad$\Box$
+\\
+\\
+First, we observe that the curvature constant for BCFW is $n$ times smaller than that of batch Frank Wolfe which is $\leq \frac{4}{\lambda}R^{2}$. Hence the $n$ times faster convergence rate of BCFW.
+\\
+\\
+\textbf{Definition.} Let $||.||$ be a norm on $\mathbb{R}^{n}$. The associated dual norm, denoted $||.||_{*}$ is defined as,
+\begin{equation*}
+\begin{aligned}
+    ||z||_{*}= \underset{z}{\textit{sup}} \{z^{T}x|\quad||x||\leq1\}
+\end{aligned}
+\end{equation*}
+We denote the dual norm of $l_{p}$ by $l_{q}$. For $p=2$ we have $q=2$ and for $p=1$, $q=\infty$.
+\\
+\\
+\\
+\textbf{Definition.} A function $f$ has Lipschitz continuous gradient if: 
+\begin{equation*}
+\begin{aligned}
+    &\forall x,y \in dom(f), \exists L >0 \quad\textit{such that}\quad ||\nabla f(x) -\nabla f(y)||^2 \leq L||x - y||^2
+\end{aligned}
+\end{equation*}
+We say that a function is $L$-smooth if its gradient is Lipschitz continuous for some $L >0$.\\
+\\
+\\
+\textbf{The Fundamental Descent Lemma.} If $f$ is $L$-smooth then
+\begin{equation*}
+\begin{aligned}
+    &f(y) \leq f(x) + \langle \nabla f(x), y-x\rangle + \frac{L}{2}||y - x||^2
+\end{aligned}
+\end{equation*}
+\textit{Proof. } Let $g$ be such that: 
+\begin{lalign}
+    &g(\alpha) \overset{\Delta}{=} f(x + \alpha(y-x) \implies f(y)- f(x)= g(1)- g(0)\\
+    &= \int_{0}^{1}\frac{dg}{d\alpha}(\alpha)d\alpha = \int_{0}^{1}\frac{df}{d\alpha}(x+ \alpha(y-x))d\alpha\\
+    &=\int_{0}^{1} (y-x)\nabla f(x+ \alpha(y-x))d\alpha\\
+    &=\int_{0}^{1} (y-x)\Big[\nabla f(x+ \alpha(y-x))- \nabla f(x)\Big]d\alpha + \int_{0}^{1} (y-x)\nabla f(x)d\alpha \\
+    &\leq \Big|\Big|\int_{0}^{1} (y-x)\nabla f(x+ \alpha(y-x))d\alpha\Big|\Big| + \int_{0}^{1} (y-x)\nabla f(x)d\alpha\\
+    &\underset{\text{$\Delta$ inequality}}{\leq} \int_{0}^{1} \Big|\Big|(y-x)\nabla f(x+ \alpha(y-x))\Big|\Big| d\alpha+ \int_{0}^{1} (y-x)\nabla f(x)d\alpha \\ 
+    &\underset{\text{Cauchy-Schwartz}}{\leq} \int_{0}^{1} ||y-x||.||\nabla f(x+ \alpha(y-x))||d\alpha+ (y-x)\Delta f(x)\\ 
+    &\underset{\text{Lipschitz continuity of $f$}}{\leq} ||y-x||\int_{0}^{1} L\alpha||y-x||d\alpha + (y-x)\Delta f(x) \\
+    &= \langle \nabla f(x), y-x\rangle+ \frac{L}{2}||y-x||^2 \quad\Box.
+\end{lalign}
+\\
+\\
+\textbf{Theorem.} If a convex function $f$ on $C$ has Lipschitz gradient, i.e $||\nabla f(x)- \nabla f(y)||_{p}\leq L_{q}||x- y||_{p},\quad\forall x,y\in C$, then
+\begin{equation*}
+\begin{aligned}
+      &C_{f}\leq L_{q}.\text{diam}_{p}^{2}(C)
+\end{aligned}
+\end{equation*}
+\\
+\textbf{\textit{Proof.}} $f$ has Lipschitz gradient therefore by the fundamental descent lemma we have,
+\begin{equation*}
+\begin{aligned}
+      &f(y)- f(x)- \langle y- x, \nabla f(x)\rangle \leq \frac{L_{q}}{2}||y- x||_{p}^{2}\\
+      &C_{f} \leq \underset{\underset{x,s,y\in C}{y=(1-\gamma)x+\gamma s}}{max}\frac{2}{\gamma^{2}}\frac{L_{q}}{2}\underbrace{||y- x||_{p}^{2}}_{=\gamma^{2}||x- s||_{p}^{2}}\\
+      &C_{f} \leq L_{q}\quad\underbrace{\underset{x,s\in C}{max}||x- s||_{p}^{2}}_{\overset{\Delta}{=}\textit{diam}_{p}^{2}(C)}\quad\quad\Box.
+\end{aligned}    
+\end{equation*}
+\\
+\\
+\textit{Problem.}\quad For $p= q= 2$ we get $\textit{diam}_{2}^{2}(C)= 2n$, and the Lipschitz constant $L_{q}$ is the largest eigenvalue of the hessian.
+\begin{equation*}
+\begin{aligned}
+    &\lambda A^{T}A= \frac{1}{n^{2}\lambda}\Big(\langle \psi_{i}(y)- \psi_{j}(y\prime) \rangle\Big)_{(i,y),(j,y\prime)}\\
+    &\textit{And say}\quad \langle \psi_{i}(y)- \psi_{j}(y\prime) \rangle \approx  1\quad\textit{for a lot of outputs, we get:}\\
+    &\mathbb{1}^{T}\mathbb{1}\approx \mathbb{1}\underbrace{diam_{2}(C)}_{=\sqrt{2n}}
+\end{aligned} 
+\end{equation*}
+\\
+\\
+Hence the largest eigenvalue the hessian, and therefore the Lipschitz constant, can scale with the dimension of $A^{T}A$, i.e exponentially with the size of the training data, rendering the bound above very loose, and thus of little practical use.
+\\
+\\
+\textit{Solution.}\quad Taking $p=1$ and therefore $q=\infty$, we get $L\textit{diam}^{2}(C)\approx \frac{4}{\lambda}R^{2}$.
+\\
+
+\newpage
+\section{Extra-Gradient}
+\subsection{Overview}
+In a typical setting 
+
+
+
+
+\end{document} 
