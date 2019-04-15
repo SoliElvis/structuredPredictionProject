@@ -15,15 +15,19 @@
 \usepackage{pdfpages} %\includepdf[pages={1}]{myfile.pdf}
 
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{mdsymbol}%for perp with two bars
-
 \usepackage{mathtools,xparse}
 \newtheorem{theorem}{Theorem}
 
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclareMathOperator*{\argmin}{\arg\min}
+\DeclareMathOperator*{\argmax}{\arg\max}
+\renewcommand{\vec}{\mathbf}
+
 
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\Var}{\mathrm{Var}}
