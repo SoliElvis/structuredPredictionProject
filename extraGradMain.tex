@@ -1,4 +1,4 @@
-\section{Preliminaries}
+\subsection{Preliminaries}
 
 In the typical setting for SVM's, we aim to optimize a linear objective over a
 set of constraints. There are many alernatives to solve that problem, the most
@@ -151,7 +151,7 @@ D_{\vec z} \right] - \left [ \min_{\vec w' \in \mathcal{W}} \mathcal{L}(\vec w',
 The motivation for using this restricted gap function is that if we start ``close'' to an optimal point, of course we will converge more rapidly to it. This can be seen in the convergence analysis of the method. 
 
 
-\section{Dual Extragradient algorithm}
+\subsection{Dual Extragradient algorithm}
 
 The dual extragradient algorithm from Nesterov gives a convergence guarantee for the objective $\mathcal{L}$. The algorithm can be given by:
 
@@ -181,7 +181,7 @@ distance in non-Euclidean setting). The rojection operator $\Pi_{\mathcal{U}}$
 in the algorithm simply projects a point back to the set $\mathcal{U}$ by
 finding the nearest point with respect to the distance metric used.
 
-\subsection{Convergence analysis} The restricted gap function
+\subsubsection{Convergence analysis} The restricted gap function
 $\mathcal{G}_{D_{\vec v}, D_{\vec z}}$ is upper bounded by:
 \begin{equation} \mathcal{G}_{D_{\vec w}, D_{\vec z}}(\overline{\vec w^{\tau}},
 \overline{\vec z^{\tau}}) \leq \frac{\left( D_{\vec w} + D_{\vec z} \right)
@@ -201,7 +201,7 @@ operator. We can already see a link between the function $f_D$ and the gap
 $\mathcal{G}_{D_{\vec w}, D_{\vec z}}$.
 
 
-\subsection{Non-Euclidean setting}
+\subsubsection{Non-Euclidean setting}
 The main problem with the Euclidean projection operator is that for many
 problems, it is hard to compute the projection. Indeed for min-cut, we need to
 compute the partition function first, which is \#P-complete. Thus, the authors
@@ -213,7 +213,7 @@ negative entropy, we get that the Bregman divergence is the KL divergence. This
 implies that we can differentiate the divergence to get the parameter that
 minimizes it.
 
-\subsection{Memory-efficient tweak}
+\subsubsection{Memory-efficient tweak}
 In the dual extragradient algorithm, both a vector $s^t$ and a vector
 $\bar{u^t}$ are maintained. However, we can observe that the $s_t$'s can be
 found using the running average $\bar{u^t}$ since $s^t = -(t + 1 ) \sum_{i=0}^t
