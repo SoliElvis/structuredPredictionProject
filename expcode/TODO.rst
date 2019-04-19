@@ -1,6 +1,5 @@
-- S'entendre sur un dataset pour implement le feature extractor
-- Remplir les prototypes dans extra_grad.py
-- Test le script extra_grad.py
+Optionnel:
+
 - Implement les version CUDA dans un nouveau script extra_grad.cu
 - Ajouter python decorators pour call numba.jit normalement ou avec la version dans le .cu file
 - Test that shit out
