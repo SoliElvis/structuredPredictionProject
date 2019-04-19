@@ -1,3 +1,5 @@
+- Plot loss after each epoch
+
 Optionnel:
 
 - Implement les version CUDA dans un nouveau script extra_grad.cu
