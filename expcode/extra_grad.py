@@ -26,10 +26,9 @@ def data_iter(dataset, label_type="hard"):
     np.random.shuffle(dataset)
     for row in dataset:
         obj, rating = row[:args.obj_size], row[args.obj_size + 1:] # for now we ignore the class tuple type
-        rating = row[args.obj_size:]
 
         # obtain the counts for each label
-        _, counts = np.unique(rating, return_counts=True)
+        counts, _ = np.histogram(rating, range=(1, 3), bins=3)
 
         if label_type == "hard":
             label = np.zeros(3, dtype=np.float32)
@@ -141,7 +140,14 @@ def hinge_loss(w, data_iter):
     hinge = 0.
     m = 0
     for i, (obj, label) in enumerate(data_iter):
-        hinge += np.matmul(w, feat_vec(obj, label))
+        true_hinge = np.matmul(w, feat_vec(obj, label))
+        pred_hinge = []
+        for index in range(3):
+            label_ = np.zeros(3, dtype=np.float32)
+            label_[index] = 1.
+            pred_hinge.append(np.matmul(w, feat_vec(obj, label_)) + np.abs(label_ - label).sum())
+        pred_hinge = np.stack(pred_hinge).max()
+        hinge += pred_hinge - true_hinge
         m += 1
     return hinge / m
 
