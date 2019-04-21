@@ -28,17 +28,19 @@ args, unkown = parser.parse_known_args()
 def download_data():
     # download the training set and test set
     ssl._create_default_https_context = ssl._create_unverified_context
-    with open(args.data_path) as csv_file:
+
+    # make the save directory if not created already
+    if not os.path.isdir(args.save_dir):
+        os.mkdir(args.save_dir)
+        os.mkdir(os.path.join(args.save_dir, "train"))
+        os.mkdir(os.path.join(args.save_dir, "test"))
+
+    with open(args.data_path, 'w+') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
-        # make the save directory if not created already
-        if not os.path.isdir(args.save_dir):
-            os.mkdir(args.save_dir)
-            os.mkdir(os.path.join(args.save_dir, "train"))
-            os.mkdir(os.path.join(args.save_dir, "test"))
 
         for dataset in ["train", "test"]:
-            with open(os.path.join("testing", dataset + ".npy"), "ab") as f:
+            with open(os.path.join(args.save_dir, dataset + ".npy"), 'w+') as f:
                 to_save = np.empty([0, (3 * args.dim) ** 2 + 7])
                 for id, row in enumerate(csv_reader):
                     im_tup = []
@@ -58,7 +60,8 @@ def download_data():
                         crop = im.crop(area)
 
                         # resize the image to the right proportion
-                        crop = np.asarray(ImageOps.fit(crop, (args.dim, args.dim), Image.ANTIALIAS), dtype=np.float32)
+                        Crop = np.asarray(ImageOps.fit(crop,
+                                                      (args.dim, args.dim), Image.ANTIALIAS), dtype=np.float32)
 
                         # append the image to image tuple
                         im_tup.append(crop)
