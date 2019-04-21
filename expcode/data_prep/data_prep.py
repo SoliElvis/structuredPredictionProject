@@ -1,5 +1,5 @@
 import numpy as np
-import numba as nb
+#import numba as nb
 import csv
 import os
 import argparse
@@ -15,13 +15,18 @@ import requests
 import time
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--data_path", type=str,
-                    default="FEC_dataset/faceexp-comparison-data-train-public.csv",
-                    help="Path to  the data file")
-parser.add_argument("--save_dir", type=str, default="FEC_dataset")
-parser.add_argument("--dim", type=int, default=32, help="The desired dimension for the images")
-args = parser.parse_args()
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data_path", type=str,
+                        default="FEC_dataset/faceexp-comparison-data-train-public.csv",
+                        help="Path to  the data file")
+    parser.add_argument("--save_dir", type=str, default="FEC_dataset")
+    parser.add_argument("--dim", type=int, default=32, help="The desired dimension for the images")
+    args = parser.parse_args()
+
+    start = time.time()
+    download_data()
+    print("Elapsed time", time.time() - start)
 
 
 def download_data():
@@ -57,7 +62,8 @@ def download_data():
                         crop = im.crop(area)
 
                         # resize the image to the right proportion
-                        crop = np.asarray(ImageOps.fit(crop, (args.dim, args.dim), Image.ANTIALIAS), dtype=np.float32)
+                        crop = np.asarray(ImageOps.fit(crop, (args.dim,
+                                          args.dim), Image.ANTIALIAS), dtype=np.float32)
 
                         # append the image to image tuple
                         im_tup.append(crop)
@@ -94,6 +100,6 @@ def download_data():
         csv_file.close()
 
 
-start = time.time()
-download_data()
-print("Elapsed time", time.time() - start)
+
+if __name__ == "__main__":
+    main()
