@@ -1,7 +1,7 @@
 import numpy as np
 import numba as nb
 import argparse
-import  os
+import os
 import time
 import matplotlib
 
@@ -13,7 +13,7 @@ parser.add_argument("--nb_epochs", type=int, default=20, help="The number of tim
                                                               "the parametes of the model")
 parser.add_argument("--save_path", type=str, default=None, help="Where we save the optimal w vector")
 parser.add_argument("--seed", type=int, default=None, help="The random seed for sampling. Use for reproducibility")
-args = parser.parse_args()
+args, unkown = parser.parse_known_args()
 
 
 def data_iter(dataset, label_type="hard"):
@@ -40,7 +40,7 @@ def data_iter(dataset, label_type="hard"):
             raise ValueError("This is not a valid label type")
 
 
-def init(size, norm="l1"):
+def init(size : int, norm="l1"):
     """
     Function that returns the intial \hat{u} of the algorithm
     :param size: The dimension of the \hat{u} vector
@@ -53,7 +53,7 @@ def init(size, norm="l1"):
         raise NotImplementedError("This norm has not been implemented yet")
 
 
-def constraints(obj, y, fp_cost=1., fn_cost=1.):
+def constraints(obj, y : float, fp_cost=1., fn_cost=1.):
     """
     Function that returns the constraint operators for the structured problem
     :param obj: The structured object of size [obj_size,]
@@ -71,7 +71,7 @@ def constraints(obj, y, fp_cost=1., fn_cost=1.):
     return F_i, c_i
 
 
-def lip_const(m, norm="l1"):
+def lip_const(m : int, norm="l1"):
     """
     Function that computes the Lipschitz constant for F
     :param m: The number of examples in the dataset
@@ -112,7 +112,7 @@ def feat_vec(obj, label):
         raise ValueError("Wrong number of dimensions for the label vector")
 
 
-def breg_proj(u, s, eta, norm="l1"):
+def breg_proj(u : float, s : float, eta : float, norm="l1"):
     """
     Function that computes the Bregman projection of a structured object on a set
     :param u: Structured objection on which we apply the projection
