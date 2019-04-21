@@ -14,15 +14,17 @@ from io import BytesIO
 import requests
 import time
 
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data_path", type=str,
+                        default="./FEC_dataset/faceexp-comparison-data-train-public.csv",
+                        help="Path to  the data file")
+    parser.add_argument("--save_dir", type=str, default="./FEC_dataset")
+    parser.add_argument("--dim", type=int, default=32,
+                        help="The desired dimension for the images")
+    args, unkown = parser.parse_known_args()
+    return args
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--data_path", type=str,
-                    default="FEC_dataset/faceexp-comparison-data-train-public.csv",
-                    help="Path to  the data file")
-parser.add_argument("--save_dir", type=str, default="FEC_dataset")
-parser.add_argument("--dim", type=int, default=32,
-                    help="The desired dimension for the images")
-args, unkown = parser.parse_known_args()
 
 
 def download_data():
@@ -97,7 +99,13 @@ def download_data():
                 f.close()
         csv_file.close()
 
+def main(args):
+    start = time.time()
+    download_data()
+    print("Elapsed time", time.time() - start)
 
-start = time.time()
-download_data()
-print("Elapsed time", time.time() - start)
+if __name__ == "__main__":
+
+    args = parse_arguments()
+    main(args)
+
