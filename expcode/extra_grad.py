@@ -8,12 +8,22 @@ import matplotlib
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--obj_size", type=int, default=32*32*3*3, help="Size of a structured object")
-    parser.add_argument("--data_dir", type=str, help="The directory where the data for the training and test sets is")
-    parser.add_argument("--nb_epochs", type=int, default=20, help="The number of times we update"
-                                                                "the parametes of the model")
-    parser.add_argument("--save_path", type=str, default=None, help="Where we save the optimal w vector")
-    parser.add_argument("--seed", type=int, default=None, help="The random seed for sampling. Use for reproducibility")
+    parser.add_argument("--obj_size",
+                        type=int, default=32*32*3*3,
+                        help="Size of a structured object")
+    parser.add_argument("--data_dir",
+                        type=str,
+                        help="The directory where the data for the training and test sets is")
+    parser.add_argument("--nb_epochs",
+                        type=int, default=20,
+                        help="The number of times we update"
+                        "the parametes of the model")
+    parser.add_argument("--save_path",
+                        type=str,
+                        default=None, help="Where we save the optimal w vector")
+    parser.add_argument("--seed",
+                        type=int,
+                        default=None, help="The random seed for sampling. Use for reproducibility")
     args, unkown = parser.parse_known_args()
 
     return args
