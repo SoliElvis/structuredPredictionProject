@@ -37,12 +37,12 @@ def download_data():
         os.mkdir(os.path.join(args.save_dir, "train"))
         os.mkdir(os.path.join(args.save_dir, "test"))
 
-    with open(args.data_path, 'w+') as csv_file:
+    with open(args.data_path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
 
         for dataset in ["train", "test"]:
-            with open(os.path.join(args.save_dir, dataset + ".npy"), 'w+') as f:
+            with open(os.path.join(args.save_dir, dataset + ".npy"), 'ab') as f:
                 to_save = np.empty([0, (3 * args.dim) ** 2 + 7])
                 for id, row in enumerate(csv_reader):
                     im_tup = []
