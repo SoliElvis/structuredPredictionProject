@@ -14,6 +14,8 @@ from io import BytesIO
 import requests
 import time
 
+from typing import List
+
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_path", type=str,
@@ -22,24 +24,38 @@ def parse_arguments():
     parser.add_argument("--save_dir", type=str, default="./FEC_dataset")
     parser.add_argument("--dim", type=int, default=32,
                         help="The desired dimension for the images")
+    parser.add_argument("--images_path", type=str,
+                        default="./face_images",
+                        help="Path to directory to store images")
     args, unkown = parser.parse_known_args()
     return args
 
 
+def createFolder(directory_list : List[str]):
+    for directory in directory_list:
+        try:
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            return directory
+        except OSError:
+            print ('Error: Creating directory. ' +  directory)
+
+def prep_file_system(args):
+    foldersToCreate = [args.save_dir, args.data_path, args.images_path,
+                       os.path.join(args.save_dir, "train"),
+                       os.path.join(args.save_dir, "test")]
+
+    createFolder(foldersToCreate)
+
+def batch_download_images():
+    ssl._create_default_https_context = ssl._create_unverified_context
 
 def download_data():
     # download the training set and test set
     ssl._create_default_https_context = ssl._create_unverified_context
 
-    # make the save directory if not created already
-    if not os.path.isdir(args.save_dir):
-        os.mkdir(args.save_dir)
-        os.mkdir(os.path.join(args.save_dir, "train"))
-        os.mkdir(os.path.join(args.save_dir, "test"))
-
     with open(args.data_path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-
 
         for dataset in ["train", "test"]:
             with open(os.path.join(args.save_dir, dataset + ".npy"), 'ab') as f:
@@ -99,7 +115,9 @@ def download_data():
                 f.close()
         csv_file.close()
 
+
 def main(args):
+    prep_file_system(args)
     start = time.time()
     download_data()
     print("Elapsed time", time.time() - start)
