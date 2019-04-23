@@ -16,36 +16,23 @@ import time
 
 from typing import List
 
-def parse_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--data_path", type=str,
-                        default="./FEC_dataset/faceexp-comparison-data-train-public.csv",
-                        help="Path to  the data file")
-    parser.add_argument("--save_dir", type=str, default="./FEC_dataset")
-    parser.add_argument("--dim", type=int, default=32,
-                        help="The desired dimension for the images")
-    parser.add_argument("--images_path", type=str,
-                        default="./face_images",
-                        help="Path to directory to store images")
-    args, unkown = parser.parse_known_args()
-    return args
+tt= ("train", "test")
+def tt_join_paths(prefixes):
+    r = [os.path.join(p,t) for p in prefixes for t in tt]
+    return r
 
+dataSets = [os.path.join("FEC_dataset", f) for f in
+                        ["faceexp-comparison-data-test-public.csv",
+                         "faceexp-comparison-data-train-public.csv"]]
 
-def createFolder(directory_list : List[str]):
-    for directory in directory_list:
-        try:
-            if not os.path.exists(directory):
-                os.makedirs(directory)
-            return directory
-        except OSError:
-            print ('Error: Creating directory. ' +  directory)
+def prep_file_system(save_dir):
+    imagesDir = os.path.join(save_dir, "images")
+    dataDir = os.path.join(save_dir, "data")
+    dirsToCreate = tt_join_paths([imagesDir,dataDir])
+    print(dirsToCreate)
+    createFolder(dirsToCreate)
+    return dirsToCreate
 
-def prep_file_system(args):
-    foldersToCreate = [args.save_dir, args.data_path, args.images_path,
-                       os.path.join(args.save_dir, "train"),
-                       os.path.join(args.save_dir, "test")]
-
-    createFolder(foldersToCreate)
 
 def batch_download_images():
     ssl._create_default_https_context = ssl._create_unverified_context
@@ -116,14 +103,38 @@ def download_data():
         csv_file.close()
 
 
-def main(args):
-    prep_file_system(args)
+def main():
+    prep_file_system(save_dir)
     start = time.time()
     download_data()
     print("Elapsed time", time.time() - start)
 
 if __name__ == "__main__":
-
-    args = parse_arguments()
     main(args)
 
+#utilities
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--save_dir", type=str, default="./FEC_dataset")
+    parser.add_argument("--data_path", type=str,
+                        default="./FEC_dataset/faceexp-comparison-data-train-public.csv",
+                        help="Path to  the data file")
+    parser.add_argument("--dim", type=int, default=32,
+                        help="The desired dimension for the images")
+    parser.add_argument("--images_path", type=str,
+                        default="./face_images",
+                        help="Path to directory to store images")
+    args, unkown = parser.parse_known_args()
+    return args
+
+
+def createFolder(directory_list : List[str]):
+    print(directory_list)
+    for directory in directory_list:
+        try:
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+        except OSError:
+            print ('Error: Creating directory. ' +  directory)
+
+    return directory_list
