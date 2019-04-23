@@ -12,56 +12,72 @@ import urllib
 import timeit
 from io import BytesIO
 import requests
+import wget
 import time
 
 from typing import List
+from IPython.core import debugger
+debug = debugger.Pdb().set_trace
 
 save_dir = "./FEC_dataset"
+process_dir = "./process_fec"
 train_csv = "faceexp-comparison-data-train-public.csv"
 test_csv = "faceexp-comparison-data-test-public.csv"
 tt= ("train", "test")
 
 class ImageDataPrep:
-  def __init__(self,save_dir):
+  def __init__(self,save_dir,process_dir):
     self.save_dir = save_dir
-    self.imagesDir = os.path.join(save_dir, "images")
+    self.imagesDir = os.path.join(process_dir, "images")
     self.dataDir = os.path.join(save_dir, "data")
 
     self.dataSets = [os.path.join(self.save_dir, f) for f in [train_csv,test_csv]]
     self.dataPathDict = {"train" : self.dataSets[0],
-                          "test"  : self.dataSets[1]}
+                         "test"  : self.dataSets[1]}
+    self._prep_file_system()
 
 
-  def prep_file_system(self):
+  def _prep_file_system(self):
     dirsToCreate = tt_join_paths([self.imagesDir,self.dataDir])
     createFolder(dirsToCreate)
     return dirsToCreate
 
 
 class ImageDataPrepFEC(ImageDataPrep):
-	def __init__(self,save_dir):
-		ImageDataPrep.__init__(self,save_dir)
+  def __init__(self,save_dir,process_dir):
+    ImageDataPrep.__init__(self,save_dir,process_dir)
 
-	def batch_download_images(self):
-		urlSlots = [0,5,10]
-		ssl._create_default_https_context = ssl._create_unverified_context
-		for testOrTrain, path in self.dataPathDict.items():
-			with open(path) as csv_file:
-				csv_reader = csv.reader(csv_file, delimiter=',')
-				for id, row in enumerate(csv_reader):
-					for slot in urlSlots:
-						response = requests.get(row[slot])
-						if (response.status_code == 200): break
-						if testOrTrain == "train":
-							path = os.path.join(self.imagesDir,"train", str(id) + "-" + str(slot))
-							print(path)
-							break
-							with open(os.path.join(path ,'wb+'))as im:
-								im.write(response.content)
-						else :
-							with open(os.path.join(self.imagesDir,"test", str(id) + "-" + str(slot)), 'wb+') as im:
-								im.write(response.content)
+  def batch_download_images(self):
+    urlSlots = [0,5,10]
+    ssl._create_default_https_context = ssl._create_unverified_context
+    for testOrTrain, path in self.dataPathDict.items():
+      with open(path) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for id, row in enumerate(csv_reader):
+          for slot in urlSlots:
 
+            url = row[slot]
+            response = requests.get(url)
+
+            if (response.status_code != 200):
+              print(" not 200")
+              break
+
+            if testOrTrain == "train":
+              path = os.path.join(self.imagesDir,"train", str(id) + "-" + str(slot) + ".jpg")
+              print(path)
+
+            else :
+              path = os.path.join(self.imagesDir,"train", str(id) + "-" + str(slot) + ".jpg")
+              wget.download(url, out=path)
+              print(path)
+
+
+def main():
+  start = time.time()
+  test = ImageDataPrepFEC(save_dir,process_dir)
+  test.batch_download_images()
+  print("Elapsed time", time.time() - start)
 
 
  # def download_data():
@@ -129,12 +145,6 @@ class ImageDataPrepFEC(ImageDataPrep):
  #            f.close()
  #            csv_file.close()
 
-
-def main():
-  prep_file_system(save_dir)
-  start = time.time()
-  download_data()
-  print("Elapsed time", time.time() - start)
 
 if __name__ == "__main__":
   main(args)
