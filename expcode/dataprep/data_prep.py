@@ -50,10 +50,10 @@ class ImageDataPrepFEC(ImageDataPrep):
 						response = requests.get(row[slot])
 						if (reponse.status_code == 200): break
 						if testOrTrain == "train":
-							with open(os.path.join(dataPathDict["train"], "id" + "-" + "slot"), 'wb') as im:
+							with open(os.path.join(dataPathDict["train"], str(id) + "-" + str(slot)), 'wb') as im:
 								im.write(reponse.content)
 						else :
-							with open(os.path.join(dataPathDict["test"], "id" + "-" + "slot"), 'wb') as im:
+							with open(os.path.join(dataPathDict["test"], str(id) + "-" + str(slot)), 'wb') as im:
 								im.write(reponse.content)
 
 
