@@ -19,13 +19,15 @@ from typing import List
 from IPython.core import debugger
 debug = debugger.Pdb().set_trace
 import pathlib
+from itertools import islice
 
 save_dir = "./FEC_dataset"
 process_dir = "./process_fec"
 train_csv = "faceexp-comparison-data-train-public.csv"
 test_csv = "faceexp-comparison-data-test-public.csv"
 tt= ("train", "test")
-
+lineskip=18
+csvRange=(0,4000,lineskip)
 #utilities
 def tt_join_paths(prefixes):
   r = [os.path.join(p,t) for p in prefixes for t in tt]
@@ -75,15 +77,43 @@ class ImageDataPrep:
 
 
 class ImageDataPrepFEC(ImageDataPrep):
-  def __init__(self,save_dir,process_dir):
-    ImageDataPrep.__init__(self,save_dir,process_dir)
-  def batch_download_images(self):
+  def __init__(self,save_dir="./FEC_dataset",process_dir="./process_fec/"):
+    self.save_dir = save_dir
+    self.process_dir = process_dir
+    ImageDataPrep.__init__(self,self.save_dir,self.process_dir)
+
+  def troubleshoot(self,spamreader=False):
     urlSlots = [0,5,10]
     ssl._create_default_https_context = ssl._create_unverified_context
-    for testOrTrain, path in self.dataPathDict.items():
+    csv_file = open(self.dataSets[0])
+    if spamreader:
+      spamreader = csv.reader(csv_file, delimiter=',')
+      for row in spamreader:
+        print(', '.join(row))
+
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    return csv_reader
+
+
+  def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
+    urlSlots = [0,5,10]
+    ssl._create_default_https_context = ssl._create_unverified_context
+    for testOrTrainStr, path in self.dataPathDict.items():
       with open(path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        for id, row in enumerate(csv_reader):
+        it = enumerate(csv_reader)
+
+        if (spamreader):
+          spamreader = csv.reader(csv_file, delimiter=',')
+          for id, row in enumerate(spamreader):
+            next(it)
+            if id ==  skip:
+              break
+
+        for id, row in it:
+          print(id)
+          if id >= stopLine:
+            break
           for slot in urlSlots:
             url = row[slot]
             response = requests.get(url)
@@ -92,7 +122,7 @@ class ImageDataPrepFEC(ImageDataPrep):
               print(" not 200")
               break
 
-            path = os.path.join(self.imagesDir,testOrTrain, str(id) + "-" + str(slot) + ".jpg")
+            path = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
             if not pathlib.Path(path).is_file():
               wget.download(url, out=path)
             print(path)
@@ -101,19 +131,17 @@ class ImageDataPrepFEC(ImageDataPrep):
 
     urlSlots = [0,5,10]
     ssl._create_default_https_context = ssl._create_unverified_context
-    for testOrTrain, path in self.dataPathDict.items():
+    for testOrTrainStr, path in self.dataPathDict.items():
       with open(path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         with open(os.path.join(args.save_dir, dataset + ".npy"), 'ab+') as f:
-          for id, row in enumerate(csv_reader):
-            if testOrTrain == "train":
-              path = os.path.join(self.imagesDir,"train", str(id) + "-" + str(slot) + ".jpg")
-            else :
-              path = os.path.join(self.imagesDir,"test", str(id) + "-" + str(slot) + ".jpg")
+          for id, row in islice(enumerate(csv_reader),skipcsvline):
+            print(id,row)
+            path = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
             try:
               im = Image.open(BytesIO(path))
             except e:
-              print("error")
+              print(e)
 
           try:
             to_save = self.image_processing(im,id,row)
@@ -160,8 +188,8 @@ class ImageDataPrepFEC(ImageDataPrep):
 
 def main():
   start = time.time()
-  test = ImageDataPrepFEC(save_dir,process_dir)
-  test.batch_download_images()
+  test = ImageDataPrepFEC()
+  return test
   print("Elapsed time", time.time() - start)
 
 if __name__ == "__main__":
