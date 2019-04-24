@@ -54,7 +54,6 @@ class ImageDataPrepFEC(ImageDataPrep):
         csv_reader = csv.reader(csv_file, delimiter=',')
         for id, row in enumerate(csv_reader):
           for slot in urlSlots:
-
             url = row[slot]
             response = requests.get(url)
 
@@ -68,7 +67,7 @@ class ImageDataPrepFEC(ImageDataPrep):
               print(path)
 
             else :
-              path = os.path.join(self.imagesDir,"train", str(id) + "-" + str(slot) + ".jpg")
+              path = os.path.join(self.imagesDir,"test", str(id) + "-" + str(slot) + ".jpg")
               wget.download(url, out=path)
               print(path)
 
@@ -99,8 +98,10 @@ class ImageDataPrepFEC(ImageDataPrep):
           except e:
             print("=".join("Image not a thruple : ", str(id), str(row)))
 
+
   def image_processing(self,im,id,row):
-    w, h = im.size
+
+		w, h = im.size
     left, up = np.rint(float(row[id + 1]) * w), np.rint(float(row[id + 3]) * h)
     right, down = np.rint(float(row[id + 2]) * w), np.rint(float(row[id + 4]) * h)
     area = (int(left), int(up), int(right), int(down))
