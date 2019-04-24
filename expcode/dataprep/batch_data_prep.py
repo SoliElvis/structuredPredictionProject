@@ -134,10 +134,8 @@ def main():
   test.batch_download_images()
   print("Elapsed time", time.time() - start)
 
-
-
 if __name__ == "__main__":
-  main(args)
+  main()
 
 #utilities
 def tt_join_paths(prefixes):
