@@ -6,28 +6,6 @@ import time
 import matplotlib
 
 
-def parse_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--obj_size",
-                        type=int, default=32*32*3*3,
-                        help="Size of a structured object")
-    parser.add_argument("--data_dir",
-                        type=str,
-                        help="The directory where the data for the training and test sets is")
-    parser.add_argument("--nb_epochs",
-                        type=int, default=20,
-                        help="The number of times we update"
-                        "the parametes of the model")
-    parser.add_argument("--save_path",
-                        type=str,
-                        default=None, help="Where we save the optimal w vector")
-    parser.add_argument("--seed",
-                        type=int,
-                        default=None, help="The random seed for sampling. Use for reproducibility")
-    args, unkown = parser.parse_known_args()
-
-    return args
-
 
 def data_iter(dataset, label_type="hard"):
     """
@@ -148,9 +126,10 @@ def hinge_loss(w, data_iter):
     Function that returns the average hinge loss over a dataset
     :param w: The parameter of the model to compute the hinge loss of size [obj_size / 3 * 2,]
     :param data_iter: Iterator over the dataset to compute the hinge loss
-    :return: The hinge loss
+    :return: The hinge loss, accuracy over dataset
     """
     hinge = 0.
+    acc = 0.
     m = 0
     for i, (obj, label) in enumerate(data_iter):
         true_hinge = np.matmul(w, feat_vec(obj, label))
@@ -159,10 +138,13 @@ def hinge_loss(w, data_iter):
             label_ = np.zeros(3, dtype=np.float32)
             label_[index] = 1.
             pred_hinge.append(np.matmul(w, feat_vec(obj, label_)) + np.abs(label_ - label).sum())
-        pred_hinge = np.stack(pred_hinge).max()
+        pred_hinge = np.stack(pred_hinge)
+        if pred_hinge.argmax() == label.argmax():
+            acc += 1.
+        pred_hinge = pred_hinge.max()
         hinge += pred_hinge - true_hinge
         m += 1
-    return hinge / m
+    return hinge / m, acc / m
 
 
 def train(train_iter, nb_epochs, dim_w, dim_z, L):
@@ -204,7 +186,24 @@ def train(train_iter, nb_epochs, dim_w, dim_z, L):
 
 
 if __name__ == "__main__":
-    parse_arguments()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--obj_size",
+                        type=int, default=32 * 32 * 3 * 3,
+                        help="Size of a structured object")
+    parser.add_argument("--data_dir",
+                        type=str,
+                        help="The directory where the data for the training and test sets is")
+    parser.add_argument("--nb_epochs",
+                        type=int, default=20,
+                        help="The number of times we update"
+                             "the parametes of the model")
+    parser.add_argument("--save_path",
+                        type=str,
+                        default=None, help="Where we save the optimal w vector")
+    parser.add_argument("--seed",
+                        type=int,
+                        default=None, help="The random seed for sampling. Use for reproducibility")
+    args, unkown = parser.parse_known_args()
 
     # load the datasets
     train_data = np.load(os.path.join(args.data_dir, "train.npy"))
@@ -225,9 +224,10 @@ if __name__ == "__main__":
     print("Time spent training: ", time.time() - start_time)
 
     # compute the hinge loss over the test set
-    loss = hinge_loss(w, test_iter)
+    loss, acc = hinge_loss(w, test_iter)
 
     print("The test error is: ", loss)
+    print("The test accuracy is: ", acc)
 
     # save the w vector
     if args.save_path is not None:
