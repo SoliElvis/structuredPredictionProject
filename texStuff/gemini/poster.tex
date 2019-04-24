@@ -17,6 +17,8 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 
+\DeclareMathOperator*{\argmax}{\arg\max}
+
 % ====================
 % Lengths
 % ====================
@@ -74,30 +76,54 @@
 
   \end{block}
 
-  \begin{block}{A block containing a list}
 
-    Nam vulputate nunc felis, non condimentum lacus porta ultrices. Nullam sed
-    sagittis metus. Etiam consectetur gravida urna quis suscipit.
-
+  \begin{block}{Dual extragradiant alogrithm}
+    The dual extragradiant takes advantage of the min-max formulation of the problem. Instead of dualizing the max oracle and peforming FW or projected gradient descent, we could try alternating between updates for the max and min (can see them as opponents).
+    However this can lead to oscillation. 
+    A better way would be to combine the two vectors we update alternatively into one and then perform two gradient udpates. The
+    first one is called a ``look-ahead'' step. This step consists in starting from a point inside the constraint set and moving away
+    from it  by a little amount and then projecting back to the constraint set. The second step consists in performing the gradient
+    udpate using the look-ahed point. Then, we update the trajectory completed so far so that the next iteration can perform a  look-ahead
+    step using that starting point.
     \begin{itemize}
-      \item \textbf{Mauris tempor} risus nulla, sed ornare
-      \item \textbf{Libero tincidunt} a duis congue vitae
-      \item \textbf{Dui ac pretium} morbi justo neque, ullamcorper
+      \item The dual extragradient algorithm takes advantage of the min-max (saddle-point) formulation. No need to find the dual of
+	one of the objectives.
+      \item We can use this formulation on many more problems for which we do not have a parameter space defined
+	by linear and convex quadratic constraints which are necessary for using commercial solvers.
     \end{itemize}
 
-    Eget augue porta, bibendum venenatis tortor.
-
+    The most intuitive type of projection that can be used is the Euclidean projection.
+    However, for some problems these are expensive to compute (e.g. think cuts or matching problems)
+    The method that we present introduces the concept of Bregman projections.
+    The Bregman projection comes from the Bregman divergence. The Bregman divergene between $u$ and $u'$ for a strongly convex function 
+    $h$ is simply an upper bound to the squared  norm of $u' - u$ :
+    \begin{equation*}
+      d(u', u) = h(u') - h(u) - \nabla h(u)^T (u' - u) \geq \lVert u' - u \rVert^2
+    \end{equation*}
+    The Bregman projection is then the following operator:
+    \begin{equation*}
+      T_{\eta}(u,s) = \argmax_{u' \in \mathcal{U}} \left[ s^T (u' - u) - \frac{1}{\eta} d(u', u)\right]
+      \end{equation*}
+    \begin{itemize}
+      \item Bregman projections are easier to derive a projection for some problems where Euclidean projections are hard (e.g. matchings)
+      \item We only need a strongly convex function for the norm on the combined parameters (i.e. $u = (w,z)$).
+    \end{itemize}
   \end{block}
+\end{column}
 
-  \begin{alertblock}{A highlighted block}
+\separatorcolumn
 
-    This block catches your eye, so \textbf{important stuff} should probably go
-    here.
+\begin{column}{\colwidth}
 
-    Curabitur eu libero vehicula, cursus est fringilla, luctus est. Morbi
-    consectetur mauris quam, at finibus elit auctor ac. Aliquam erat volutpat.
-    Aenean at nisl ut ex ullamcorper eleifend et eu augue. Aenean quis velit
-    tristique odio convallis ultrices a ac odio.
+  \begin{alertblock}{Face Expression Comparison dataset (FEC)}
+    In our experiments, we used the FEC dataset. It consists of 3-tuples of face images. In each tuple, a person has labeled the 
+    the two images that likely depict the same emotion. The emotion labels of each image were picked from another dataset. The 3-tuples
+    are labeled as ONE-CLASS, TWO-CLASS, or THREE-CLASS. This simply tells us how many emotions are shown in the three images. The data
+    was split into a training set and a test set.
+
+    We extracted all images and resized them to $32 \times 32$ images to have a fixed dimension for the features. The feature vectors
+    were then simply a concatenation of two flattened images. As there were three labels possible (e.g. 1-2, 1-3, and 2-3), we had three
+    possible features per 3-tuple. The size of the feature vectors was thus $32 \times 32 \times 2 = 2048$
 
     \begin{itemize}
       \item \textbf{Fusce dapibus tellus} vel tellus semper finibus. In
@@ -113,98 +139,6 @@
     ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
 
   \end{alertblock}
-
-\end{column}
-
-\separatorcolumn
-
-\begin{column}{\colwidth}
-
-  \begin{block}{A block containing an enumerated list}
-
-    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
-    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
-    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
-    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
-    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
-    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
-    commodo in metus.
-
-    \begin{enumerate}
-      \item \textbf{Morbi mauris purus}, egestas at vehicula et, convallis
-        accumsan orci. Orci varius natoque penatibus et magnis dis parturient
-        montes, nascetur ridiculus mus.
-      \item \textbf{Cras vehicula blandit urna ut maximus}. Aliquam blandit nec
-        massa ac sollicitudin. Curabitur cursus, metus nec imperdiet bibendum,
-        velit lectus faucibus dolor, quis gravida metus mauris gravida turpis.
-      \item \textbf{Vestibulum et massa diam}. Phasellus fermentum augue non
-        nulla accumsan, non rhoncus lectus condimentum.
-    \end{enumerate}
-
-  \end{block}
-
-  \begin{block}{Fusce aliquam magna velit}
-
-    Et rutrum ex euismod vel. Pellentesque ultricies, velit in fermentum
-    vestibulum, lectus nisi pretium nibh, sit amet aliquam lectus augue vel
-    velit. Suspendisse rhoncus massa porttitor augue feugiat molestie. Sed
-    molestie ut orci nec malesuada. Sed ultricies feugiat est fringilla
-    posuere.
-
-    \begin{figure}
-      \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-            scale only axis,
-            no markers,
-            domain=0:2*pi,
-            samples=100,
-            axis lines=center,
-            axis line style={-},
-            ticks=none]
-          \addplot[red] {sin(deg(x))};
-          \addplot[blue] {cos(deg(x))};
-        \end{axis}
-      \end{tikzpicture}
-      \caption{Another figure caption.}
-    \end{figure}
-
-  \end{block}
-
-  \begin{block}{Nam cursus consequat egestas}
-
-    Nulla eget sem quam. Ut aliquam volutpat nisi vestibulum convallis. Nunc a
-    lectus et eros facilisis hendrerit eu non urna. Interdum et malesuada fames
-    ac ante \textit{ipsum primis} in faucibus. Etiam sit amet velit eget sem
-    euismod tristique. Praesent enim erat, porta vel mattis sed, pharetra sed
-    ipsum. Morbi commodo condimentum massa, \textit{tempus venenatis} massa
-    hendrerit quis. Maecenas sed porta est. Praesent mollis interdum lectus,
-    sit amet sollicitudin risus tincidunt non.
-
-    Etiam sit amet tempus lorem, aliquet condimentum velit. Donec et nibh
-    consequat, sagittis ex eget, dictum orci. Etiam quis semper ante. Ut eu
-    mauris purus. Proin nec consectetur ligula. Mauris pretium molestie
-    ullamcorper. Integer nisi neque, aliquet et odio non, sagittis porta justo.
-
-    \begin{itemize}
-      \item \textbf{Sed consequat} id ante vel efficitur. Praesent congue massa
-        sed est scelerisque, elementum mollis augue iaculis.
-        \begin{itemize}
-          \item In sed est finibus, vulputate
-            nunc gravida, pulvinar lorem. In maximus nunc dolor, sed auctor eros
-            porttitor quis.
-          \item Fusce ornare dignissim nisi. Nam sit amet risus vel lacus
-            tempor tincidunt eu a arcu.
-          \item Donec rhoncus vestibulum erat, quis aliquam leo
-            gravida egestas.
-        \end{itemize}
-      \item \textbf{Sed luctus, elit sit amet} dictum maximus, diam dolor
-        faucibus purus, sed lobortis justo erat id turpis.
-      \item \textbf{Pellentesque facilisis dolor in leo} bibendum congue.
-        Maecenas congue finibus justo, vitae eleifend urna facilisis at.
-    \end{itemize}
-
-  \end{block}
 
 \end{column}
 
