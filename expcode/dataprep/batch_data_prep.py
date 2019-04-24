@@ -131,10 +131,8 @@ class ImageDataPrepFEC(ImageDataPrep):
             print(path)
 
   def process_data(self,spamreader=True,skip=4000,stopLine=5000):
-
     urlSlots = [0,5,10]
     tt = ("train", "test")
-
     for testOrTrainStr in tt:
       dataPath = self.dataPathDict[testOrTrainStr]
       with open(os.path.join(self.save_dir,testOrTrainStr, ".npy"), 'ab+') as f:

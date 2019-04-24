@@ -1,0 +1,76 @@
+
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > cs > arXiv:1804.04529
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    Other formats
+
+( license )
+Current browse context:
+cs.LG
+< prev  |  next >
+new  | recent  | 1804
+Change to browse by:
+cs
+cs.IT
+math
+math.IT
+math.OC
+stat
+stat.ML
+References & Citations
+
+    NASA ADS
+
+DBLP - CS Bibliography
+listing | bibtex
+Elena Veronica Belmega
+Panayotis Mertikopoulos
+Romain Negrel
+Luca Sanguinetti
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Computer Science > Machine Learning
+Title: Online convex optimization and no-regret learning: Algorithms, guarantees and applications
+Authors: E. Veronica Belmega , Panayotis Mertikopoulos , Romain Negrel , Luca Sanguinetti
+(Submitted on 12 Apr 2018)
+
+    Abstract: Spurred by the enthusiasm surrounding the "Big Data" paradigm, the mathematical and algorithmic tools of online optimization have found widespread use in problems where the trade-off between data exploration and exploitation plays a predominant role. This trade-off is of particular importance to several branches and applications of signal processing, such as data mining, statistical inference, multimedia indexing and wireless communications (to name but a few). With this in mind, the aim of this tutorial paper is to provide a gentle introduction to online optimization and learning algorithms that are asymptotically optimal in hindsight - i.e., they approach the performance of a virtual algorithm with unlimited computational power and full knowledge of the future, a property known as no-regret. Particular attention is devoted to identifying the algorithms' theoretical performance guarantees and to establish links with classic optimization paradigms (both static and stochastic). To allow a better understanding of this toolbox, we provide several examples throughout the tutorial ranging from metric learning to wireless resource allocation problems. 
+
+Comments: 	34 pages, 15 figures
+Subjects: 	Machine Learning (cs.LG) ; Information Theory (cs.IT); Optimization and Control (math.OC); Machine Learning (stat.ML)
+MSC classes: 	Primary 68Q32, 90C90, secondary 68T05, 91A26, 94A12
+Cite as: 	arXiv:1804.04529 [cs.LG]
+  	(or arXiv:1804.04529v1 [cs.LG] for this version)
+Try the Bibliographic Explorer
+(can be disabled at any time)
+Enable Don't show again
+Bibliographic data
+[ Enable Bibex ( What is Bibex? )]
+Submission history
+From: Panayotis Mertikopoulos [ view email ]
+[v1] Thu, 12 Apr 2018 14:22:35 UTC (980 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.1 released 2018-10-22    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.

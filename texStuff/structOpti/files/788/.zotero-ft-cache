@@ -1,0 +1,60 @@
+
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > math > arXiv:1803.01401
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    Other formats
+
+( license )
+Current browse context:
+math.OC
+< prev  |  next >
+new  | recent  | 1803
+Change to browse by:
+math
+References & Citations
+
+    NASA ADS
+
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Mathematics > Optimization and Control
+Title: A Primal-Dual Algorithm for General Convex-Concave Saddle Point Problems
+Authors: Erfan Yazdandoost Hamedani , Necdet Serhat Aybat
+(Submitted on 4 Mar 2018 ( v1 ), last revised 23 Jul 2018 (this version, v3))
+
+    Abstract: In this paper we propose a primal-dual algorithm with a novel momentum term using the partial gradients of the coupling function that can be viewed as a generalization of the method proposed by Chambolle and Pock in 2016 to solve saddle point problems defined by a convex-concave function L ( x , y ) = f ( x ) + Φ ( x , y ) − h ( y ) with a general coupling term Φ ( x , y ) that is \emph{not} assumed to be bilinear. Given a saddle point ( x ∗ , y ∗ ) , assuming ∇ x Φ ( ⋅ , y ) is Lipschitz in x for any fixed y , and ∇ y Φ ( ⋅ , ⋅ ) is Lipschitz, we derive error bounds in terms of L ( x ¯ k , y ∗ ) − L ( x ∗ , y ¯ k ) for the ergodic sequence { x ¯ k , y ¯ k } ; in particular, we show O ( 1 / k ) rate when the problem is merely convex in x . Furthermore, assuming Φ ( x , ⋅ ) is linear in y for each fixed x and f is strongly convex, we obtain the ergodic convergence rate of O ( 1 / k 2 ) -- we are not aware of another single-loop method in the related literature achieving the same rate when Φ is not bilinear. We tested our method for solving kernel matrix learning problem, and compare it against the Mirror-prox algorithm and interior point methods. 
+
+Comments: 	Typos are corrected; new references, results and important remarks are added in this version
+Subjects: 	Optimization and Control (math.OC)
+Cite as: 	arXiv:1803.01401 [math.OC]
+  	(or arXiv:1803.01401v3 [math.OC] for this version)
+Submission history
+From: Necdet Serhat Aybat [ view email ]
+[v1] Sun, 4 Mar 2018 18:43:13 UTC (1,020 KB)
+[v2] Mon, 11 Jun 2018 14:30:03 UTC (1,022 KB)
+[v3] Mon, 23 Jul 2018 10:27:52 UTC (1,025 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.1 released 2018-10-22    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.

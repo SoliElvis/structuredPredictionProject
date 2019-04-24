@@ -1,0 +1,65 @@
+
+Donate to arXiv
+
+Please join the Simons Foundation and our generous member organizations in supporting arXiv during our giving campaign. 100% of your contribution will fund improvements and new initiatives to benefit arXiv's global scientific community.
+DONATE
+
+[secure site, no need to create account]
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > math > arXiv:1801.00561
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    PostScript
+    Other formats
+
+( license )
+Current browse context:
+math.OC
+< prev  |  next >
+new  | recent  | 1801
+Change to browse by:
+math
+References & Citations
+
+    NASA ADS
+
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Mathematics > Optimization and Control
+Title: A modified subgradient extragradient method for solving the variational inequality problem
+Authors: Qiao-Li Dong , Dan Jiang , Aviv Gibali
+(Submitted on 2 Jan 2018)
+
+    Abstract: The subgradient extragradient method for solving the variational inequality (VI) problem, which is introduced by Censor et al. \cite{CGR}, replaces the second projection onto the feasible set of the VI, in the extragradient method, with a subgradient projection onto some constructible half-space. Since the method has been introduced, many authors proposed extensions and modifications with applications to various problems.
+    In this paper, we introduce a modified subgradient extragradient method by improving the stepsize of its second step. Convergence of the proposed method is proved under standard and mild conditions and primary numerical experiments illustrate the performance and advantage of this new subgradient extragradient variant. 
+
+Subjects: 	Optimization and Control (math.OC)
+Cite as: 	arXiv:1801.00561 [math.OC]
+  	(or arXiv:1801.00561v1 [math.OC] for this version)
+Submission history
+From: Aviv Gibali [ view email ]
+[v1] Tue, 2 Jan 2018 07:02:45 UTC (130 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.2.1 released 2019-04-18    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.

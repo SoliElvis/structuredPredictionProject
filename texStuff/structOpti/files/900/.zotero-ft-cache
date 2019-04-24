@@ -1,0 +1,352 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stack Exchange Network
+
+Stack Exchange network consists of 175 Q&A communities including Stack Overflow , the largest, most trusted online community for developers to learn, share their knowledge, and build their careers.
+Visit Stack Exchange
+
+    Log In Sign Up
+    current community
+        Theoretical Computer Science
+        help chat
+        Theoretical Computer Science Meta
+    your communities
+    Sign up or log in to customize your list.
+    more stack exchange communities
+    company blog
+        Tour Start here for a quick overview of the site
+        Help Center Detailed answers to any questions you might have
+        Meta Discuss the workings and policies of this site
+        About Us Learn more about Stack Overflow the company
+        Business Learn more about hiring developers or posting ads with us
+
+By using our site, you acknowledge that you have read and understand our Cookie Policy , Privacy Policy , and our Terms of Service .
+Theoretical Computer Science Stack Exchange is a question and answer site for theoretical computer scientists and researchers in related fields. Join them; it only takes a minute:
+Sign up
+Here's how it works:
+Anybody can ask a question
+Anybody can answer
+The best answers are voted up and rise to the top
+Theoretical Computer Science
+
+    Home
+        Questions
+        Tags
+        Users
+        Unanswered
+
+Submodular functions: reference request
+Ask Question
+9
+1
+
+I would be very much interested in references to the theory of submodular functions (from basics to advanced).
+
+In particular, I am studying approximations to hard optimization problems and I want to develop my foundations in submodular functions as they are relevant to the optimization problems I have been studying.
+
+Thanks in advance.
+ds.algorithms reference-request approximation-algorithms optimization
+share | cite | improve this question
+edited Aug 10 '11 at 16:51
+Suresh Venkat
+27.2k 4 80 259
+asked Aug 10 '11 at 7:50
+Nikhil Nikhil
+319 5 13
+
+    1
+    shameless self-promotion: Greedy Δ-Approximation Algorithm for Covering with Arbitrary Constraints and Submodular Cost . –  Neal Young Nov 4 '12 at 16:56
+
+add a comment  | 
+4 Answers 4
+active oldest votes
+8
+
+References such as the ones suggested by Standa Zivny are of course very good. Let me add to the list the new book by Andras Frank titled "Connections in Combinatorial Optimization" published by Oxford University Press, 2011. All of these references treat submodular functions from a classical combinatorial optimization point of view where submodularity primarily appears in constraints. There have been several recent applications and developments with submodular objective functions for which one needs a slightly different view point. There are many papers to give a list here. I would however recommend Shaddin Dughmi's survey on continuous extensions of submodular functions http://arxiv.org/abs/0912.0322v3 .
+share | cite | improve this answer
+edited Aug 11 '11 at 16:55
+answered Aug 11 '11 at 16:50
+Chandra Chekuri Chandra Chekuri
+5,443 24 35
+
+    Thank you for the survey, it looks very good! I've recently purchased Frank's book, but haven't managet to read it yet so I was a bit reluctant to recommend it. –  Standa Zivny Aug 11 '11 at 19:00
+    3
+    @Chandra, time for you to write a survey on the most recent stuff :) –  Suresh Venkat Aug 11 '11 at 22:20
+    Thanks for the survey link. I was looking for something similar to this. –  Nikhil Aug 12 '11 at 1:32
+
+add a comment  | 
+8
+
+The references I use (and like) are selected chapters in Schrijver's 3-volume Combinatorial Optimization: Polyhedra and Efficiency (Springer) and Vygen's Combinatorial Optimization (Springer). There is a book devoted to submodular functions by Fujishige: Submodular Functions and Optimization, volume 58 of Annals of Discrete Mathematics, North-Holland (2nd edition from 2005).
+share | cite | improve this answer
+answered Aug 10 '11 at 17:24
+Standa Zivny Standa Zivny
+690 5 13
+
+add a comment  | 
+4
+
+I would like to add " Submodular Functions and Electrical Networks " by H. Narayanan .
+share | cite | improve this answer
+edited Apr 26 '13 at 15:46
+answered Apr 23 '13 at 18:49
+Sagar Kale Sagar Kale
+41 3
+
+    Thanks. Corrected. There are notes on matroids as well on his homepage. –  Sagar Kale Apr 26 '13 at 15:47
+
+add a comment  | 
+2
+
+One of my favorites, Jan vondrak's thesis and many of his papers.
+share | cite | improve this answer
+answered Apr 24 '13 at 22:21
+Ashwinkumar B V Ashwinkumar B V
+1,114 9 19
+
+add a comment  | 
+Your Answer
+
+Thanks for contributing an answer to Theoretical Computer Science Stack Exchange!
+
+    Please be sure to answer the question . Provide details and share your research!
+
+But avoid …
+
+    Asking for help, clarification, or responding to other answers.
+    Making statements based on opinion; back them up with references or personal experience.
+
+Use MathJax to format equations. MathJax reference .
+
+To learn more, see our tips on writing great answers .
+draft saved
+draft discarded
+Sign up or log in
+Sign up using Google
+Sign up using Facebook
+Sign up using Email and Password
+Post as a guest
+Name
+Email
+
+Required, but never shown
+Post as a guest
+Name
+Email
+
+Required, but never shown
+Post Your Answer Discard
+
+By clicking "Post Your Answer", you agree to our terms of service , privacy policy and cookie policy
+Not the answer you're looking for? Browse other questions tagged ds.algorithms reference-request approximation-algorithms optimization or ask your own question .
+
+asked
+	
+
+7 years, 7 months ago
+
+viewed
+	
+
+453 times
+
+active
+	
+
+5 years, 11 months ago
+Related
+12
+Interdisciplinary topics between control theory and theoretical computer science
+5
+sum versus maximum in computer science
+10
+Motivating Talk on Foundations of Cryptography
+7
+Difference between Primal Dual Algorithm for Proper and Uncrossable Functions
+14
+Complexity of optimization over unitary group
+2
+What are some good references for mathematical optimization for the layman?
+8
+NP-hardness of an optimization problem
+4
+What do you call the join of two optimization problems?
+2
+Stochastic optimization with erroneous oracles
+Hot Network Questions
+
+    What reasons are there for a Capitalist to oppose a 100% inheritance tax?
+    Why is consensus so controversial in Britain?
+    Do UK voters know if their MP will be the Speaker of the House?
+    Examples of smooth manifolds admitting inbetween one and a continuum of complex structures
+    Why are the 737's rear doors unusable in a water landing?
+    What killed these X2 caps?
+    Personal Teleportation: From Rags to Riches
+    How seriously should I take size and weight limits of hand luggage?
+    What exploit are these user agents trying to use?
+    If human space travel is limited by the G force vulnerability, is there a way to counter G forces?
+    Why doesn't using multiple commands with a || or && conditional work?
+    Is "remove commented out code" correct English?
+    How much of data wrangling is a data scientist's job?
+    Blender 2.8 I can't see vertices, edges or faces in edit mode
+    Is it inappropriate for a student to attend their mentor's dissertation defense?
+    Assassin's bullet with mercury
+    Is it possible to create a QR code using text?
+    What method can I use to design a dungeon difficult enough that the PCs can't make it through without killing them?
+    Can I run a new neutral wire to repair a broken circuit?
+    \numexpr behavior in math mode and/or TikZ
+    Do scales need to be in alphabetical order?
+    Would Slavery Reparations be considered Bills of Attainder and hence Illegal?
+    What's the in-universe reasoning behind sorcerers needing material components?
+    Venezuelan girlfriend wants to travel the USA to be with me. What is the process?
+
+question feed
+Theoretical Computer Science
+
+    Tour
+    Help
+    Chat
+    Contact
+    Feedback
+    Mobile
+    Disable Responsiveness
+
+Company
+
+    Stack Overflow
+    Stack Overflow Business
+    Developer Jobs
+    About
+    Press
+    Legal
+    Privacy Policy
+
+Stack Exchange
+Network
+
+    Technology
+    Life / Arts
+    Culture / Recreation
+    Science
+    Other
+
+    Stack Overflow
+    Server Fault
+    Super User
+    Web Applications
+    Ask Ubuntu
+    Webmasters
+    Game Development
+
+    TeX - LaTeX
+    Software Engineering
+    Unix & Linux
+    Ask Different (Apple)
+    WordPress Development
+    Geographic Information Systems
+    Electrical Engineering
+
+    Android Enthusiasts
+    Information Security
+    Database Administrators
+    Drupal Answers
+    SharePoint
+    User Experience
+    Mathematica
+
+    Salesforce
+    ExpressionEngine® Answers
+    Stack Overflow em Português
+    Blender
+    Network Engineering
+    Cryptography
+    Code Review
+
+    Magento
+    Software Recommendations
+    Signal Processing
+    Emacs
+    Raspberry Pi
+    Stack Overflow на русском
+    Programming Puzzles & Code Golf
+
+    Stack Overflow en español
+    Ethereum
+    Data Science
+    Arduino
+    Bitcoin
+    more (31)
+
+    Photography
+    Science Fiction & Fantasy
+    Graphic Design
+    Movies & TV
+    Music: Practice & Theory
+    Worldbuilding
+    Seasoned Advice (cooking)
+
+    Home Improvement
+    Personal Finance & Money
+    Academia
+    Law
+    more (15)
+
+    English Language & Usage
+    Skeptics
+    Mi Yodeya (Judaism)
+    Travel
+    Christianity
+    English Language Learners
+    Japanese Language
+
+    Arqade (gaming)
+    Bicycles
+    Role-playing Games
+    Anime & Manga
+    Puzzling
+    Motor Vehicle Maintenance & Repair
+    more (33)
+
+    MathOverflow
+    Mathematics
+    Cross Validated (stats)
+    Theoretical Computer Science
+    Physics
+    Chemistry
+    Biology
+
+    Computer Science
+    Philosophy
+    more (10)
+
+    Meta Stack Exchange
+    Stack Apps
+    API
+    Data
+
+    Blog
+    Facebook
+    Twitter
+    LinkedIn
+
+site design / logo © 2019 Stack Exchange Inc; user contributions licensed under cc by-sa 3.0 with attribution required . rev 2019.4.3.33213
+Theoretical Computer Science Stack Exchange works best with JavaScript enabled

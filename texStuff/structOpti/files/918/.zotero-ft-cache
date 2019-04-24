@@ -1,0 +1,69 @@
+
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > cs > arXiv:0912.4473
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    PostScript
+    Other formats
+
+( license )
+Current browse context:
+cs.LG
+< prev  |  next >
+new  | recent  | 0912
+Change to browse by:
+cs
+cs.AI
+References & Citations
+
+    NASA ADS
+
+DBLP - CS Bibliography
+listing | bibtex
+Shankar Vembu
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Computer Science > Machine Learning
+Title: Learning to Predict Combinatorial Structures
+Authors: Shankar Vembu
+(Submitted on 22 Dec 2009 ( v1 ), last revised 26 Jun 2010 (this version, v2))
+
+    Abstract: The major challenge in designing a discriminative learning algorithm for predicting structured data is to address the computational issues arising from the exponential size of the output space. Existing algorithms make different assumptions to ensure efficient, polynomial time estimation of model parameters. For several combinatorial structures, including cycles, partially ordered sets, permutations and other graph classes, these assumptions do not hold. In this thesis, we address the problem of designing learning algorithms for predicting combinatorial structures by introducing two new assumptions: (i) The first assumption is that a particular counting problem can be solved efficiently. The consequence is a generalisation of the classical ridge regression for structured prediction. (ii) The second assumption is that a particular sampling problem can be solved efficiently. The consequence is a new technique for designing and analysing probabilistic structured prediction models. These results can be applied to solve several complex learning problems including but not limited to multi-label classification, multi-category hierarchical classification, and label ranking. 
+
+Comments: 	PhD thesis, Department of Computer Science, University of Bonn (submitted, December 2009)
+Subjects: 	Machine Learning (cs.LG) ; Artificial Intelligence (cs.AI)
+Cite as: 	arXiv:0912.4473 [cs.LG]
+  	(or arXiv:0912.4473v2 [cs.LG] for this version)
+Try the Bibliographic Explorer
+(can be disabled at any time)
+Enable Don't show again
+Bibliographic data
+[ Enable Bibex ( What is Bibex? )]
+Submission history
+From: Shankar Vembu [ view email ]
+[v1] Tue, 22 Dec 2009 18:03:55 UTC (242 KB)
+[v2] Sat, 26 Jun 2010 22:47:44 UTC (243 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.1 released 2018-10-22    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.

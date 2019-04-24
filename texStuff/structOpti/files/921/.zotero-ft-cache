@@ -1,0 +1,68 @@
+
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > cs > arXiv:1409.3136
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    Other formats
+
+( license )
+Current browse context:
+cs.LG
+< prev  |  next >
+new  | recent  | 1409
+Change to browse by:
+cs
+References & Citations
+
+    NASA ADS
+
+DBLP - CS Bibliography
+listing | bibtex
+Damien Garreau
+Rémi Lajugie
+Sylvain Arlot
+Francis R. Bach
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Computer Science > Machine Learning
+Title: Metric Learning for Temporal Sequence Alignment
+Authors: Damien Garreau (INRIA Paris - Rocquencourt, DI-ENS), Rémi Lajugie (INRIA Paris - Rocquencourt, DI-ENS), Sylvain Arlot (INRIA Paris - Rocquencourt, DI-ENS), Francis Bach (INRIA Paris - Rocquencourt, DI-ENS)
+(Submitted on 10 Sep 2014)
+
+    Abstract: In this paper, we propose to learn a Mahalanobis distance to perform alignment of multivariate time series. The learning examples for this task are time series for which the true alignment is known. We cast the alignment problem as a structured prediction task, and propose realistic losses between alignments for which the optimization is tractable. We provide experiments on real data in the audio to audio context, where we show that the learning of a similarity measure leads to improvements in the performance of the alignment task. We also propose to use this metric learning framework to perform feature selection and, from basic audio features, build a combination of these with better performance for the alignment. 
+
+Subjects: 	Machine Learning (cs.LG)
+Cite as: 	arXiv:1409.3136 [cs.LG]
+  	(or arXiv:1409.3136v1 [cs.LG] for this version)
+Try the Bibliographic Explorer
+(can be disabled at any time)
+Enable Don't show again
+Bibliographic data
+[ Enable Bibex ( What is Bibex? )]
+Submission history
+From: Remi Lajugie [ view email ]
+[v1] Wed, 10 Sep 2014 16:10:33 UTC (465 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.1 released 2018-10-22    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.

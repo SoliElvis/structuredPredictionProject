@@ -1,0 +1,62 @@
+
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > stat > arXiv:1401.2753
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    PostScript
+    Other formats
+
+( license )
+Current browse context:
+stat.ML
+< prev  |  next >
+new  | recent  | 1401
+Change to browse by:
+cs
+cs.LG
+stat
+References & Citations
+
+    NASA ADS
+
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Statistics > Machine Learning
+Title: Stochastic Optimization with Importance Sampling
+Authors: Peilin Zhao , Tong Zhang
+(Submitted on 13 Jan 2014 ( v1 ), last revised 2 Jan 2015 (this version, v2))
+
+    Abstract: Uniform sampling of training data has been commonly used in traditional stochastic optimization algorithms such as Proximal Stochastic Gradient Descent (prox-SGD) and Proximal Stochastic Dual Coordinate Ascent (prox-SDCA). Although uniform sampling can guarantee that the sampled stochastic quantity is an unbiased estimate of the corresponding true quantity, the resulting estimator may have a rather high variance, which negatively affects the convergence of the underlying optimization procedure. In this paper we study stochastic optimization with importance sampling, which improves the convergence rate by reducing the stochastic variance. Specifically, we study prox-SGD (actually, stochastic mirror descent) with importance sampling and prox-SDCA with importance sampling. For prox-SGD, instead of adopting uniform sampling throughout the training process, the proposed algorithm employs importance sampling to minimize the variance of the stochastic gradient. For prox-SDCA, the proposed importance sampling scheme aims to achieve higher expected dual value at each dual coordinate ascent step. We provide extensive theoretical analysis to show that the convergence rates with the proposed importance sampling methods can be significantly improved under suitable conditions both for prox-SGD and for prox-SDCA. Experiments are provided to verify the theoretical analysis. 
+
+Comments: 	29 pages
+Subjects: 	Machine Learning (stat.ML) ; Machine Learning (cs.LG)
+Cite as: 	arXiv:1401.2753 [stat.ML]
+  	(or arXiv:1401.2753v2 [stat.ML] for this version)
+Submission history
+From: Peilin Zhao [ view email ]
+[v1] Mon, 13 Jan 2014 08:47:44 UTC (26 KB)
+[v2] Fri, 2 Jan 2015 09:17:48 UTC (40 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.1 released 2018-10-22    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.

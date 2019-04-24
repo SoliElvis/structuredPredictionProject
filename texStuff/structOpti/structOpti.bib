@@ -1,0 +1,1833 @@
+
+@article{stratosFrankWolfeAlgorithmBasics,
+  langid = {english},
+  title = {The {{Frank}}-{{Wolfe}} Algorithm Basics},
+  pages = {3},
+  author = {Stratos, Karl}
+}
+
+@article{tibshiraniConditionalGradientFrankWolfe,
+  langid = {english},
+  title = {Conditional {{Gradient}} ({{Frank}}-{{Wolfe}}) {{Method}}},
+  pages = {25},
+  author = {Tibshirani, Ryan}
+}
+
+@article{macedoFrankWolfeAlgorithmAlternating,
+  langid = {english},
+  title = {Frank-{{Wolfe Algorithm}} \& {{Alternating Direction Method}} of {{Multipliers}}},
+  pages = {62},
+  author = {Macedo, Ives}
+}
+
+@article{zhangTheoryDeepLearning,
+  langid = {english},
+  title = {Theory of {{Deep Learning III}}: {{Generalization Properties}} of {{SGD}}},
+  pages = {38},
+  author = {Zhang, Chiyuan and Liao, Qianli and Rakhlin, Alexander and Miranda, Brando and Golowich, Noah and Poggio, Tomaso}
+}
+
+@article{linWhyDoesDeep2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1608.08225},
+  title = {Why Does Deep and Cheap Learning Work so Well?},
+  volume = {168},
+  issn = {0022-4715, 1572-9613},
+  url = {http://arxiv.org/abs/1608.08225},
+  doi = {10.1007/s10955-017-1836-5},
+  abstract = {We show how the success of deep learning could depend not only on mathematics but also on physics: although well-known mathematical theorems guarantee that neural networks can approximate arbitrary functions well, the class of functions of practical interest can frequently be approximated through "cheap learning" with exponentially fewer parameters than generic ones. We explore how properties frequently encountered in physics such as symmetry, locality, compositionality, and polynomial log-probability translate into exceptionally simple neural networks. We further argue that when the statistical process generating the data is of a certain hierarchical form prevalent in physics and machine-learning, a deep neural network can be more efficient than a shallow one. We formalize these claims using information theory and discuss the relation to the renormalization group. We prove various "no-flattening theorems" showing when efficient linear deep networks cannot be accurately approximated by shallow ones without efficiency loss, for example, we show that \$n\$ variables cannot be multiplied using fewer than 2\^n neurons in a single hidden layer.},
+  number = {6},
+  journaltitle = {Journal of Statistical Physics},
+  urldate = {2019-03-28},
+  date = {2017-09},
+  pages = {1223-1247},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning,Computer Science - Neural and Evolutionary Computing,Condensed Matter - Disordered Systems and Neural Networks},
+  author = {Lin, Henry W. and Tegmark, Max and Rolnick, David},
+  annotation = {Comment: Replaced to match version published in Journal of Statistical Physics: https://link.springer.com/article/10.1007/s10955-017-1836-5 Improved refs \& discussion, typos fixed. 16 pages, 3 figs}
+}
+
+@article{lampinenAnalyticTheoryGeneralization2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1809.10374},
+  primaryClass = {cs, stat},
+  title = {An Analytic Theory of Generalization Dynamics and Transfer Learning in Deep Linear Networks},
+  url = {http://arxiv.org/abs/1809.10374},
+  abstract = {Much attention has been devoted recently to the generalization puzzle in deep learning: large, deep networks can generalize well, but existing theories bounding generalization error are exceedingly loose, and thus cannot explain this striking performance. Furthermore, a major hope is that knowledge may transfer across tasks, so that multi-task learning can improve generalization on individual tasks. However we lack analytic theories that can quantitatively predict how the degree of knowledge transfer depends on the relationship between the tasks. We develop an analytic theory of the nonlinear dynamics of generalization in deep linear networks, both within and across tasks. In particular, our theory provides analytic solutions to the training and testing error of deep networks as a function of training time, number of examples, network size and initialization, and the task structure and SNR. Our theory reveals that deep networks progressively learn the most important task structure first, so that generalization error at the early stopping time primarily depends on task structure and is independent of network size. This suggests any tight bound on generalization error must take into account task structure, and explains observations about real data being learned faster than random data. Intriguingly our theory also reveals the existence of a learning algorithm that proveably out-performs neural network training through gradient descent. Finally, for transfer learning, our theory reveals that knowledge transfer depends sensitively, but computably, on the SNRs and input feature alignments of pairs of tasks.},
+  urldate = {2019-03-28},
+  date = {2018-09-27},
+  keywords = {Computer Science - Machine Learning,I.2.6,Statistics - Machine Learning,F.m},
+  author = {Lampinen, Andrew K. and Ganguli, Surya},
+  annotation = {Comment: ICLR 2019, 20 pages}
+}
+
+@article{dinhSharpMinimaCan2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1703.04933},
+  primaryClass = {cs},
+  title = {Sharp {{Minima Can Generalize For Deep Nets}}},
+  url = {http://arxiv.org/abs/1703.04933},
+  abstract = {Despite their overwhelming capacity to overfit, deep learning architectures tend to generalize relatively well to unseen data, allowing them to be deployed in practice. However, explaining why this is the case is still an open area of research. One standing hypothesis that is gaining popularity, e.g. Hochreiter \& Schmidhuber (1997); Keskar et al. (2017), is that the flatness of minima of the loss function found by stochastic gradient based methods results in good generalization. This paper argues that most notions of flatness are problematic for deep models and can not be directly applied to explain generalization. Specifically, when focusing on deep networks with rectifier units, we can exploit the particular geometry of parameter space induced by the inherent symmetries that these architectures exhibit to build equivalent models corresponding to arbitrarily sharper minima. Furthermore, if we allow to reparametrize a function, the geometry of its parameters can change drastically without affecting its generalization properties.},
+  urldate = {2019-03-28},
+  date = {2017-03-15},
+  keywords = {Computer Science - Machine Learning},
+  author = {Dinh, Laurent and Pascanu, Razvan and Bengio, Samy and Bengio, Yoshua},
+  annotation = {Comment: 8.5 pages of main content, 2.5 of bibliography and 1 page of appendix}
+}
+
+@article{kawaguchiGeneralizationDeepLearning2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1710.05468},
+  primaryClass = {cs, stat},
+  title = {Generalization in {{Deep Learning}}},
+  url = {http://arxiv.org/abs/1710.05468},
+  abstract = {Throughout this chapter, we provide theoretical insights into why and how deep learning can generalize well, despite its large capacity, complexity, possible algorithmic instability, nonrobustness, and sharp minima, responding to an open question in the literature. We also propose new open problems and discuss the limitations of our results.},
+  urldate = {2019-03-28},
+  date = {2017-10-15},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning,Computer Science - Neural and Evolutionary Computing,Computer Science - Artificial Intelligence},
+  author = {Kawaguchi, Kenji and Kaelbling, Leslie Pack and Bengio, Yoshua},
+  annotation = {Comment: This is a chapter for the book "Mathematics of Deep Learning", Cambridge University Press, to appear. All previous results remain unchanged}
+}
+
+@article{kuzborskijDataDependentStabilityStochastic2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1703.01678},
+  primaryClass = {cs},
+  title = {Data-{{Dependent Stability}} of {{Stochastic Gradient Descent}}},
+  url = {http://arxiv.org/abs/1703.01678},
+  abstract = {We establish a data-dependent notion of algorithmic stability for Stochastic Gradient Descent (SGD), and employ it to develop novel generalization bounds. This is in contrast to previous distribution-free algorithmic stability results for SGD which depend on the worst-case constants. By virtue of the data-dependent argument, our bounds provide new insights into learning with SGD on convex and non-convex problems. In the convex case, we show that the bound on the generalization error depends on the risk at the initialization point. In the non-convex case, we prove that the expected curvature of the objective function around the initialization point has crucial influence on the generalization error. In both cases, our results suggest a simple data-driven strategy to stabilize SGD by pre-screening its initialization. As a corollary, our results allow us to show optimistic generalization bounds that exhibit fast convergence rates for SGD subject to a vanishing empirical risk and low noise of stochastic gradient.},
+  urldate = {2019-03-28},
+  date = {2017-03-05},
+  keywords = {Computer Science - Machine Learning},
+  author = {Kuzborskij, Ilja and Lampert, Christoph H.}
+}
+
+@inproceedings{bengioCurriculumLearning2009,
+  langid = {english},
+  location = {{Montreal, Quebec, Canada}},
+  title = {Curriculum Learning},
+  isbn = {978-1-60558-516-1},
+  url = {http://portal.acm.org/citation.cfm?doid=1553374.1553380},
+  doi = {10.1145/1553374.1553380},
+  abstract = {Humans and animals learn much better when the examples are not randomly presented but organized in a meaningful order which illustrates gradually more concepts, and gradually more complex ones. Here, we formalize such training strategies in the context of machine learning, and call them “curriculum learning”. In the context of recent research studying the diﬃculty of training in the presence of non-convex training criteria (for deep deterministic and stochastic neural networks), we explore curriculum learning in various set-ups. The experiments show that signiﬁcant improvements in generalization can be achieved. We hypothesize that curriculum learning has both an eﬀect on the speed of convergence of the training process to a minimum and, in the case of non-convex criteria, on the quality of the local minima obtained: curriculum learning can be seen as a particular form of continuation method (a general strategy for global optimization of non-convex functions).},
+  eventtitle = {The 26th {{Annual International Conference}}},
+  booktitle = {Proceedings of the 26th {{Annual International Conference}} on {{Machine Learning}} - {{ICML}} '09},
+  publisher = {{ACM Press}},
+  urldate = {2019-03-29},
+  date = {2009},
+  pages = {1-8},
+  author = {Bengio, Yoshua and Louradour, Jérôme and Collobert, Ronan and Weston, Jason}
+}
+
+@article{chenClosingGeneralizationGap2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1806.06763},
+  primaryClass = {cs, stat},
+  title = {Closing the {{Generalization Gap}} of {{Adaptive Gradient Methods}} in {{Training Deep Neural Networks}}},
+  url = {http://arxiv.org/abs/1806.06763},
+  abstract = {Adaptive gradient methods, which adopt historical gradient information to automatically adjust the learning rate, have been observed to generalize worse than stochastic gradient descent (SGD) with momentum in training deep neural networks. This leaves how to close the generalization gap of adaptive gradient methods an open problem. In this work, we show that adaptive gradient methods such as Adam, Amsgrad, are sometimes "over adapted". We design a new algorithm, called Partially adaptive momentum estimation method (Padam), which unifies the Adam/Amsgrad with SGD to achieve the best from both worlds. Experiments on standard benchmarks show that Padam can maintain fast convergence rate as Adam/Amsgrad while generalizing as well as SGD in training deep neural networks. These results would suggest practitioners pick up adaptive gradient methods once again for faster training of deep neural networks.},
+  urldate = {2019-03-28},
+  date = {2018-06-18},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  author = {Chen, Jinghui and Gu, Quanquan},
+  annotation = {Comment: 18 pages, 3 figures, 2 tables}
+}
+
+@online{shchadeiModernTheoryDeep2017,
+  title = {Modern {{Theory}} of {{Deep Learning}}: {{Why Does It Work}} so {{Well}}},
+  url = {https://medium.com/mlreview/modern-theory-of-deep-learning-why-does-it-works-so-well-9ee1f7fb2808},
+  shorttitle = {Modern {{Theory}} of {{Deep Learning}}},
+  abstract = {What can we learn from the latest research on the paradoxical effectiveness of Deep Learning “Alchemy”.},
+  journaltitle = {Medium},
+  urldate = {2019-03-28},
+  date = {2017-12-20T23:03:19.454Z},
+  author = {ShChadei, Dmytrii S.}
+}
+
+@article{zhangStudyOverfittingDeep2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1804.06893},
+  primaryClass = {cs, stat},
+  title = {A {{Study}} on {{Overfitting}} in {{Deep Reinforcement Learning}}},
+  url = {http://arxiv.org/abs/1804.06893},
+  abstract = {Recent years have witnessed significant progresses in deep Reinforcement Learning (RL). Empowered with large scale neural networks, carefully designed architectures, novel training algorithms and massively parallel computing devices, researchers are able to attack many challenging RL problems. However, in machine learning, more training power comes with a potential risk of more overfitting. As deep RL techniques are being applied to critical problems such as healthcare and finance, it is important to understand the generalization behaviors of the trained agents. In this paper, we conduct a systematic study of standard RL agents and find that they could overfit in various ways. Moreover, overfitting could happen "robustly": commonly used techniques in RL that add stochasticity do not necessarily prevent or detect overfitting. In particular, the same agents and learning algorithms could have drastically different test performance, even when all of them achieve optimal rewards during training. The observations call for more principled and careful evaluation protocols in RL. We conclude with a general discussion on overfitting in RL and a study of the generalization behaviors from the perspective of inductive bias.},
+  urldate = {2019-03-28},
+  date = {2018-04-18},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  author = {Zhang, Chiyuan and Vinyals, Oriol and Munos, Remi and Bengio, Samy}
+}
+
+@article{liuAcceleratingStochasticTraining2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1810.13395},
+  primaryClass = {cs, stat},
+  title = {Accelerating {{Stochastic Training}} for {{Over}}-Parametrized {{Learning}}},
+  url = {http://arxiv.org/abs/1810.13395},
+  abstract = {We introduce MaSS (Momentum-added Stochastic Solver), an accelerated SGD method for optimizing over-parametrized models. Our method is simple and efficient to implement and does not require adapting hyper-parameters or computing full gradients in the course of optimization. Experimental evaluation of MaSS for several standard architectures of deep networks, including ResNet and convolutional networks, shows improved performance over Adam and SGD both in optimization and generalization. We prove accelerated convergence of MaSS over SGD and provide analysis for hyper-parameter selection in the quadratic case as well as some results in general strongly convex setting. In contrast, we show theoretically and verify empirically that the standard SGD+Nesterov can diverge for common choices of hyper-parameter values. We also analyze the practically important question of the dependence of the convergence rate and optimal hyper-parameters as functions of the mini-batch size, demonstrating three distinct regimes: linear scaling, diminishing returns and saturation.},
+  urldate = {2019-03-28},
+  date = {2018-10-31},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  author = {Liu, Chaoyue and Belkin, Mikhail},
+  annotation = {Comment: Minor Changes}
+}
+
+@article{shenTransdisciplinaryReviewDeep2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1712.02162},
+  title = {A Trans-Disciplinary Review of Deep Learning Research for Water Resources Scientists},
+  volume = {54},
+  issn = {0043-1397, 1944-7973},
+  url = {http://arxiv.org/abs/1712.02162},
+  doi = {10.1029/2018WR022643},
+  abstract = {Deep learning (DL), a new-generation of artificial neural network research, has transformed industries, daily lives and various scientific disciplines in recent years. DL represents significant progress in the ability of neural networks to automatically engineer problem-relevant features and capture highly complex data distributions. I argue that DL can help address several major new and old challenges facing research in water sciences such as inter-disciplinarity, data discoverability, hydrologic scaling, equifinality, and needs for parameter regionalization. This review paper is intended to provide water resources scientists and hydrologists in particular with a simple technical overview, trans-disciplinary progress update, and a source of inspiration about the relevance of DL to water. The review reveals that various physical and geoscientific disciplines have utilized DL to address data challenges, improve efficiency, and gain scientific insights. DL is especially suited for information extraction from image-like data and sequential data. Techniques and experiences presented in other disciplines are of high relevance to water research. Meanwhile, less noticed is that DL may also serve as a scientific exploratory tool. A new area termed 'AI neuroscience,' where scientists interpret the decision process of deep networks and derive insights, has been born. This budding sub-discipline has demonstrated methods including correlation-based analysis, inversion of network-extracted features, reduced-order approximations by interpretable models, and attribution of network decisions to inputs. Moreover, DL can also use data to condition neurons that mimic problem-specific fundamental organizing units, thus revealing emergent behaviors of these units. Vast opportunities exist for DL to propel advances in water sciences.},
+  number = {11},
+  journaltitle = {Water Resources Research},
+  urldate = {2019-03-28},
+  date = {2018-11},
+  pages = {8558-8593},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  author = {Shen, Chaopeng}
+}
+
+@article{yurtseverConditionalGradientFramework,
+  langid = {english},
+  title = {A {{Conditional Gradient Framework}} for {{Composite Convex Minimization}}  with {{Applications}} to {{Semidefinite Programming}}},
+  abstract = {We propose a conditional gradient framework for a composite convex minimization template with broad applications. Our approach combines smoothing and homotopy techniques under the CGM fram√ework, and provably achieves the optimal O(1/ k) convergence rate. We demonstrate that the same rate holds if the linear subproblems are solved approximately with additive or multiplicative error. In contrast with the relevant work, we are able to characterize the convergence when the non-smooth term is an indicator function. Speciﬁc applications of our framework include the non-smooth minimization, semideﬁnite programming, and minimization with linear inclusion constraints over a compact domain. Numerical evidence demonstrates the beneﬁts of our framework.},
+  pages = {10},
+  author = {Yurtsever, Alp and Fercoq, Olivier and Locatello, Francesco and Cevher, Volkan}
+}
+
+@article{bachDualitySubgradientConditional2012,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1211.6302},
+  primaryClass = {cs, math, stat},
+  title = {Duality between Subgradient and Conditional Gradient Methods},
+  url = {http://arxiv.org/abs/1211.6302},
+  abstract = {Given a convex optimization problem and its dual, there are many possible first-order algorithms. In this paper, we show the equivalence between mirror descent algorithms and algorithms generalizing the conditional gradient method. This is done through convex duality, and implies notably that for certain problems, such as for supervised machine learning problems with non-smooth losses or problems regularized by non-smooth regularizers, the primal subgradient method and the dual conditional gradient method are formally equivalent. The dual interpretation leads to a form of line search for mirror descent, as well as guarantees of convergence for primal-dual certificates.},
+  urldate = {2019-04-09},
+  date = {2012-11-27},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Bach, Francis}
+}
+
+@article{taskarStructuredPredictionExtragradient,
+  langid = {english},
+  title = {Structured {{Prediction}} via the {{Extragradient Method}}},
+  abstract = {We present a simple and scalable algorithm for large-margin estimation of structured models, including an important class of Markov networks and combinatorial models. We formulate the estimation problem as a convex-concave saddle-point problem and apply the extragradient method, yielding an algorithm with linear convergence using simple gradient and projection calculations. The projection step can be solved using combinatorial algorithms for min-cost quadratic ﬂow. This makes the approach an efﬁcient alternative to formulations based on reductions to a quadratic program (QP). We present experiments on two very different structured prediction tasks: 3D image segmentation and word alignment, illustrating the favorable scaling properties of our algorithm.},
+  pages = {12},
+  author = {Taskar, Ben and Lacoste-Julien, Simon and Jordan, Michael I}
+}
+
+@article{hieuModifiedExtragradientAlgorithms2018,
+  title = {Modified Extragradient Algorithms for Solving Equilibrium Problems},
+  volume = {67},
+  issn = {0233-1934},
+  url = {https://doi.org/10.1080/02331934.2018.1505886},
+  doi = {10.1080/02331934.2018.1505886},
+  abstract = {In this paper, we introduce some new algorithms for solving the equilibrium problem in a Hilbert space which are constructed around the proximal-like mapping and inertial effect. Also, some convergence theorems of the algorithms are established under mild conditions. Finally, several experiments are performed to show the computational efficiency and the advantage of the proposed algorithm over other well-known algorithms.},
+  number = {11},
+  journaltitle = {Optimization},
+  urldate = {2019-04-09},
+  date = {2018-11-02},
+  pages = {2003-2029},
+  keywords = {equilibrium problem,Extragradient method,Lipschitz-type condition,pseudomonotone bifunction},
+  author = {Hieu, Dang Van and Cho, Yeol Je and Xiao, Yi-bin}
+}
+
+@online{OptimizationOnlineExtragradient,
+  title = {Optimization {{Online}} - {{An}} Extragradient Method for Solving Variational Inequalities without Monotonicity},
+  url = {http://www.optimization-online.org/DB_HTML/2019/02/7054.html},
+  urldate = {2019-04-09}
+}
+
+@article{leiExtragradientMethodSolving,
+  langid = {english},
+  title = {An Extragradient Method for Solving Variational Inequalities without Monotonicity},
+  abstract = {A new extragradient projection method is devised in this paper, which does not obviously require generalized monotonicity and assumes only that the so-called dual variational inequality has a solution in order to ensure its global convergence. In particular, it applies to quasimonotone variational inequality having a nontrivial solution.},
+  pages = {10},
+  author = {Lei, Ming and He, Yiran}
+}
+
+@article{hieuModifiedExtragradientAlgorithms2018a,
+  langid = {english},
+  title = {Modified Extragradient Algorithms for Solving Equilibrium Problems},
+  volume = {67},
+  issn = {0233-1934, 1029-4945},
+  url = {https://www.tandfonline.com/doi/full/10.1080/02331934.2018.1505886},
+  doi = {10.1080/02331934.2018.1505886},
+  abstract = {In this paper, we introduce some new algorithms for solving the equilibrium problem in a Hilbert space which are constructed around the proximal-like mapping and inertial effect. Also, some convergence theorems of the algorithms are established under mild conditions. Finally, several experiments are performed to show the computational efficiency and the advantage of the proposed algorithm over other well-known algorithms.},
+  number = {11},
+  journaltitle = {Optimization},
+  urldate = {2019-04-09},
+  date = {2018-11-02},
+  pages = {2003-2029},
+  author = {Hieu, Dang Van and Cho, Yeol Je and Xiao, Yi-bin}
+}
+
+@online{Messenger,
+  title = {Messenger},
+  url = {https://www.messenger.com/t/alisha.dukelow},
+  urldate = {2019-04-10}
+}
+
+@article{mcallesterGeneralizationBoundsConsistency,
+  langid = {english},
+  title = {Generalization {{Bounds}} and {{Consistency}}},
+  pages = {17},
+  author = {McAllester, David}
+}
+
+@article{keshetGeneralizationBoundsConsistency,
+  langid = {english},
+  title = {Generalization {{Bounds}} and {{Consistency}} for {{Latent Structural Probit}} and {{Ramp Loss}}},
+  abstract = {We consider latent structural versions of probit loss and ramp loss. We show that these surrogate loss functions are consistent in the strong sense that for any feature map (ﬁnite or inﬁnite dimensional) they yield predictors approaching the inﬁmum task loss achievable by any linear predictor over the given features. We also give ﬁnite sample generalization bounds (convergence rates) for these loss functions. These bounds suggest that probit loss converges more rapidly. However, ramp loss is more easily optimized on a given sample.},
+  pages = {8},
+  author = {Keshet, Joseph and McAllester, David A}
+}
+
+@inreference{ConcentrationInequality2018,
+  langid = {english},
+  title = {Concentration Inequality},
+  url = {https://en.wikipedia.org/w/index.php?title=Concentration_inequality&oldid=875279308},
+  abstract = {In probability theory, concentration inequalities provide bounds on how a random variable deviates from some value (typically, its expected value). The laws of large numbers of classical probability theory states that sums of independent random variables are, under very mild conditions, close to their expectation with a large probability. Such sums are the most basic examples of random variables concentrated around their mean. Recent results show that such behavior is shared by other functions of independent random variables.
+Concentration inequalities can be sorted according to how much information about the random variable is needed in order to use them.},
+  booktitle = {Wikipedia},
+  urldate = {2019-03-05},
+  date = {2018-12-25T05:40:29Z},
+  note = {Page Version ID: 875279308}
+}
+
+@inreference{ChernoffBound2019,
+  langid = {english},
+  title = {Chernoff Bound},
+  url = {https://en.wikipedia.org/w/index.php?title=Chernoff_bound&oldid=882494940},
+  abstract = {In probability theory, the Chernoff bound, named after Herman Chernoff but due to Herman Rubin, gives exponentially decreasing bounds on tail distributions of sums of independent random variables. It is a sharper bound than the known first- or second-moment-based tail bounds such as Markov's inequality or Chebyshev's inequality, which only yield power-law bounds on tail decay. However, the Chernoff bound requires that the variates be independent – a condition that neither Markov's inequality nor Chebyshev's inequality require, although Chebyshev's inequality does require the variates to be pairwise independent.
+It is related to the (historically prior) Bernstein inequalities and to Hoeffding's inequality.},
+  booktitle = {Wikipedia},
+  urldate = {2019-03-05},
+  date = {2019-02-09T14:21:57Z},
+  note = {Page Version ID: 882494940}
+}
+
+@inreference{HoeffdingLemma2018,
+  langid = {english},
+  title = {Hoeffding's Lemma},
+  url = {https://en.wikipedia.org/w/index.php?title=Hoeffding%27s_lemma&oldid=858256165},
+  abstract = {In probability theory, Hoeffding's lemma is an inequality that bounds the moment-generating function of any bounded random variable.  It is named after the Finnish–American mathematical statistician Wassily Hoeffding.
+The proof of Hoeffding's lemma uses Taylor's theorem and Jensen's inequality.  Hoeffding's lemma is itself used in the proof of McDiarmid's inequality.},
+  booktitle = {Wikipedia},
+  urldate = {2019-03-05},
+  date = {2018-09-05T23:41:27Z},
+  note = {Page Version ID: 858256165}
+}
+
+@incollection{cortesStructuredPredictionTheory2016,
+  title = {Structured {{Prediction Theory Based}} on {{Factor Graph Complexity}}},
+  url = {http://papers.nips.cc/paper/6485-structured-prediction-theory-based-on-factor-graph-complexity.pdf},
+  booktitle = {Advances in {{Neural Information Processing Systems}} 29},
+  publisher = {{Curran Associates, Inc.}},
+  urldate = {2019-03-05},
+  date = {2016},
+  pages = {2514--2522},
+  author = {Cortes, Corinna and Kuznetsov, Vitaly and Mohri, Mehryar and Yang, Scott},
+  editor = {Lee, D. D. and Sugiyama, M. and Luxburg, U. V. and Guyon, I. and Garnett, R.}
+}
+
+@incollection{cortesStructuredPredictionTheory2016a,
+  title = {Structured {{Prediction Theory Based}} on {{Factor Graph Complexity}}},
+  url = {http://papers.nips.cc/paper/6485-structured-prediction-theory-based-on-factor-graph-complexity.pdf},
+  booktitle = {Advances in {{Neural Information Processing Systems}} 29},
+  publisher = {{Curran Associates, Inc.}},
+  urldate = {2019-03-12},
+  date = {2016},
+  pages = {2514--2522},
+  author = {Cortes, Corinna and Kuznetsov, Vitaly and Mohri, Mehryar and Yang, Scott},
+  editor = {Lee, D. D. and Sugiyama, M. and Luxburg, U. V. and Guyon, I. and Garnett, R.}
+}
+
+@article{vertWhatWeKnow,
+  langid = {english},
+  title = {What We Know How to Solve},
+  pages = {498},
+  author = {Vert, Jean-Philippe}
+}
+
+@article{bartlettConvexityClassificationRisk2006,
+  langid = {english},
+  title = {Convexity, {{Classification}}, and {{Risk Bounds}}},
+  volume = {101},
+  issn = {0162-1459, 1537-274X},
+  url = {http://www.tandfonline.com/doi/abs/10.1198/016214505000000907},
+  doi = {10.1198/016214505000000907},
+  number = {473},
+  journaltitle = {Journal of the American Statistical Association},
+  urldate = {2019-03-12},
+  date = {2006-03},
+  pages = {138-156},
+  author = {Bartlett, Peter L and Jordan, Michael I and McAuliffe, Jon D}
+}
+
+@article{steinwartHowCompareDifferent2007,
+  langid = {english},
+  title = {How to {{Compare Different Loss Functions}} and {{Their Risks}}},
+  volume = {26},
+  issn = {1432-0940},
+  url = {https://doi.org/10.1007/s00365-006-0662-3},
+  doi = {10.1007/s00365-006-0662-3},
+  abstract = {Many learning problems are described by a risk functional which in turn is defined by a loss function, and a straightforward and widely known approach to learn such problems is to minimize a (modified) empirical version of this risk functional. However, in many cases this approach suffers from substantial problems such as computational requirements in classification or robustness concerns in regression. In order to resolve these issues many successful learning algorithms try to minimize a (modified) empirical risk of a surrogate loss function, instead. Of course, such a surrogate loss must be "reasonably related" to the original loss function since otherwise this approach cannot work well. For classification good surrogate loss functions have been recently identified, and the relationship between the excess classification risk and the excess risk of these surrogate loss functions has been exactly described. However, beyond the classification problem little is known on good surrogate loss functions up to now. In this work we establish a general theory that provides powerful tools for comparing excess risks of different loss functions. We then apply this theory to several learning problems including (cost-sensitive) classification, regression, density estimation, and density level detection.},
+  number = {2},
+  journaltitle = {Constr Approx},
+  urldate = {2019-03-12},
+  date = {2007-08-01},
+  pages = {225-287},
+  keywords = {Cost Function,Excess Risk,Learning Problem,Loss Function,Support Vector Machine},
+  author = {Steinwart, Ingo}
+}
+
+@article{leeMulticategorySupportVector2004,
+  title = {Multicategory {{Support Vector Machines}}},
+  volume = {99},
+  issn = {0162-1459},
+  url = {https://amstat.tandfonline.com/doi/abs/10.1198/016214504000000098},
+  doi = {10.1198/016214504000000098},
+  abstract = {Two-category support vector machines (SVM) have been very popular in the machine learning community for classification problems. Solving multicategory problems by a series of binary classifiers is quite common in the SVM paradigm; however, this approach may fail under various circumstances. We propose the multicategory support vector machine (MSVM), which extends the binary SVM to the multicategory case and has good theoretical properties. The proposed method provides a unifying framework when there are either equal or unequal misclassification costs. As a tuning criterion for the MSVM, an approximate leave-one-out cross-validation function, called Generalized Approximate Cross Validation, is derived, analogous to the binary case. The effectiveness of the MSVM is demonstrated through the applications to cancer classification using microarray data and cloud classification with satellite radiance profiles.},
+  number = {465},
+  journaltitle = {Journal of the American Statistical Association},
+  urldate = {2019-03-12},
+  date = {2004-03-01},
+  pages = {67-81},
+  author = {Lee, Yoonkyung and Lin, Yi and Wahba, Grace}
+}
+
+@article{mcallesterGeneralizationBoundsConsistencya,
+  langid = {english},
+  title = {Generalization {{Bounds}} and {{Consistency}}},
+  pages = {17},
+  author = {McAllester, David}
+}
+
+@article{ramaswamyConvexCalibrationDimension2016,
+  title = {Convex {{Calibration Dimension}} for {{Multiclass Loss Matrices}}},
+  volume = {17},
+  url = {http://jmlr.org/papers/v17/14-316.html},
+  number = {14},
+  journaltitle = {Journal of Machine Learning Research},
+  urldate = {2019-03-12},
+  date = {2016},
+  pages = {1-45},
+  author = {Ramaswamy, Harish G. and Agarwal, Shivani}
+}
+
+@incollection{osokinStructuredPredictionTheory2017,
+  title = {On {{Structured Prediction Theory}} with {{Calibrated Convex Surrogate Losses}}},
+  url = {http://papers.nips.cc/paper/6634-on-structured-prediction-theory-with-calibrated-convex-surrogate-losses.pdf},
+  booktitle = {Advances in {{Neural Information Processing Systems}} 30},
+  publisher = {{Curran Associates, Inc.}},
+  urldate = {2019-03-12},
+  date = {2017},
+  pages = {302--313},
+  author = {Osokin, Anton and Bach, Francis and Lacoste-Julien, Simon},
+  editor = {Guyon, I. and Luxburg, U. V. and Bengio, S. and Wallach, H. and Fergus, R. and Vishwanathan, S. and Garnett, R.}
+}
+
+@article{lacoste-julienSimplerApproachObtaining2012,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1212.2002},
+  primaryClass = {cs, math, stat},
+  title = {A Simpler Approach to Obtaining an {{O}}(1/t) Convergence Rate for the Projected Stochastic Subgradient Method},
+  url = {http://arxiv.org/abs/1212.2002},
+  abstract = {In this note, we present a new averaging technique for the projected stochastic subgradient method. By using a weighted average with a weight of t+1 for each iterate w\_t at iteration t, we obtain the convergence rate of O(1/t) with both an easy proof and an easy implementation. The new scheme is compared empirically to existing techniques, with similar performance behavior.},
+  urldate = {2019-03-12},
+  date = {2012-12-10},
+  keywords = {Computer Science - Machine Learning,90C15; 68T05; 65K10,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Lacoste-Julien, Simon and Schmidt, Mark and Bach, Francis},
+  annotation = {Comment: 8 pages, 6 figures. Changes with previous version: Added reference to concurrently submitted work arXiv:1212.1824v1; clarifications added; typos corrected; title changed to 'subgradient method' as 'subgradient descent' is misnomer}
+}
+
+@book{nesterovIntroductoryLecturesConvex2004,
+  langid = {english},
+  title = {Introductory {{Lectures}} on {{Convex Optimization}}: {{A Basic Course}}},
+  isbn = {978-1-4020-7553-7},
+  url = {https://www.springer.com/us/book/9781402075537},
+  shorttitle = {Introductory {{Lectures}} on {{Convex Optimization}}},
+  abstract = {It was in the middle of the 1980s, when the seminal paper by Kar­ markar opened a new epoch in nonlinear optimization. The importance of this paper, containing a new polynomial-time algorithm for linear op­ timization problems, was not only in its complexity bound. At that time, the most surprising feature of this algorithm was that the theoretical pre­ diction of its high efficiency was supported by excellent computational results. This unusual fact dramatically changed the style and direc­ tions of the research in nonlinear optimization. Thereafter it became more and more common that the new methods were provided with a complexity analysis, which was considered a better justification of their efficiency than computational experiments. In a new rapidly develop­ ing field, which got the name "polynomial-time interior-point methods", such a justification was obligatory. Afteralmost fifteen years of intensive research, the main results of this development started to appear in monographs [12, 14, 16, 17, 18, 19]. Approximately at that time the author was asked to prepare a new course on nonlinear optimization for graduate students. The idea was to create a course which would reflect the new developments in the field. Actually, this was a major challenge. At the time only the theory of interior-point methods for linear optimization was polished enough to be explained to students. The general theory of self-concordant functions had appeared in print only once in the form of research monograph [12].},
+  series = {Applied {{Optimization}}},
+  publisher = {{Springer US}},
+  urldate = {2019-03-12},
+  date = {2004},
+  author = {Nesterov, Yurii}
+}
+
+@article{hofmannVarianceReducedStochastic2015,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1506.03662},
+  primaryClass = {cs, math, stat},
+  title = {Variance {{Reduced Stochastic Gradient Descent}} with {{Neighbors}}},
+  url = {http://arxiv.org/abs/1506.03662},
+  abstract = {Stochastic Gradient Descent (SGD) is a workhorse in machine learning, yet its slow convergence can be a computational bottleneck. Variance reduction techniques such as SAG, SVRG and SAGA have been proposed to overcome this weakness, achieving linear convergence. However, these methods are either based on computations of full gradients at pivot points, or on keeping per data point corrections in memory. Therefore speed-ups relative to SGD may need a minimal number of epochs in order to materialize. This paper investigates algorithms that can exploit neighborhood structure in the training data to share and re-use information about past stochastic gradients across data points, which offers advantages in the transient optimization phase. As a side-product we provide a unified convergence analysis for a family of variance reduction algorithms, which we call memorization algorithms. We provide experimental results supporting our theory.},
+  urldate = {2019-03-12},
+  date = {2015-06-11},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C06; 90C25; 68T05},
+  author = {Hofmann, Thomas and Lucchi, Aurelien and Lacoste-Julien, Simon and McWilliams, Brian},
+  annotation = {Comment: Appears in: Advances in Neural Information Processing Systems 28 (NIPS 2015). 13 pages}
+}
+
+@article{leblondImprovedAsynchronousParallel2018,
+  title = {Improved {{Asynchronous Parallel Optimization Analysis}} for {{Stochastic Incremental Methods}}},
+  volume = {19},
+  issn = {1533-7928},
+  url = {http://jmlr.org/papers/v19/17-650.html},
+  number = {81},
+  journaltitle = {Journal of Machine Learning Research},
+  urldate = {2019-03-12},
+  date = {2018},
+  pages = {1-68},
+  author = {Leblond, Remi and Pedregosa, Fabian and Lacoste-Julien, Simon}
+}
+
+@article{lacoste-julienBlockCoordinateFrankWolfeOptimization,
+  langid = {english},
+  title = {Block-{{Coordinate Frank}}-{{Wolfe Optimization}} for {{Structural SVMs}}},
+  abstract = {We propose a randomized block-coordinate variant of the classic Frank-Wolfe algorithm for convex optimization with block-separable constraints. Despite its lower iteration cost, we show that it achieves a similar convergence rate in duality gap as the full FrankWolfe algorithm. We also show that, when applied to the dual structural support vector machine (SVM) objective, this yields an online algorithm that has the same low iteration complexity as primal stochastic subgradient methods. However, unlike stochastic subgradient methods, the block-coordinate FrankWolfe algorithm allows us to compute the optimal step-size and yields a computable duality gap guarantee. Our experiments indicate that this simple algorithm outperforms competing structural SVM solvers.},
+  pages = {31},
+  author = {Lacoste-Julien, Simon and Jaggi, Martin and Schmidt, Mark and Pletscher, Patrick}
+}
+
+@article{taskarLearningStructuredPrediction,
+  langid = {english},
+  title = {Learning {{Structured Prediction Models}}: {{A Large Margin Approach}}},
+  abstract = {We consider large margin estimation in a broad range of prediction models where inference involves solving combinatorial optimization problems, for example, weighted graphcuts or matchings. Our goal is to learn parameters such that inference using the model reproduces correct answers on the training data. Our method relies on the expressive power of convex optimization problems to compactly capture inference or solution optimality in structured prediction models. Directly embedding this structure within the learning formulation produces concise convex problems for eﬃcient estimation of very complex and diverse models. We describe experimental results on a matching task, disulﬁde connectivity prediction, showing signiﬁcant improvements over state-of-the-art methods.},
+  pages = {8},
+  author = {Taskar, Ben and Chatalbashev, Vassil and Koller, Daphne and Guestrin, Carlos}
+}
+
+@article{taskarStructuredPredictionDual,
+  langid = {english},
+  title = {Structured {{Prediction}}, {{Dual Extragradient}} and {{Bregman Projections}}},
+  pages = {27},
+  author = {Taskar, Ben and Lacoste-Julien, Simon and Jordan, Michael I}
+}
+
+@inreference{DanskinTheorem2018,
+  langid = {english},
+  title = {Danskin's Theorem},
+  url = {https://en.wikipedia.org/w/index.php?title=Danskin%27s_theorem&oldid=824692156},
+  abstract = {In convex analysis, Danskin's theorem is a theorem which provides information about the derivatives of a function of the form
+
+  
+    
+      
+        f
+        (
+        x
+        )
+        =
+        
+          max
+          
+            z
+            ∈
+            Z
+          
+        
+        ϕ
+        (
+        x
+        ,
+        z
+        )
+        .
+      
+    
+    \{\textbackslash{}displaystyle f(x)=\textbackslash{}max \_\{z\textbackslash{}in Z\}\textbackslash{}phi (x,z).\}
+  The theorem has applications in optimization, where it sometimes is used to solve minimax problems. The original theorem by J. M. Danskin, given in his 1967, monograph "The Theory of Max-Min and its Applications to Weapons Allocation Problems," Springer, NY, provides a formula for the directional derivative of the maximum of a (not necessarily convex) directionally differentiable function. When adapted to the case of a convex function, this formula yields the following theorem given in somewhat more general form as Proposition A.22 in the 1971 Ph.D. Thesis by D. P. Bertsekas, "Control of Uncertain Systems with a Set-Membership Description of the Uncertainty". A proof of the following version can be found in the 1999 book "Nonlinear Programming" by Bertsekas (Section B.5).},
+  booktitle = {Wikipedia},
+  urldate = {2019-03-12},
+  date = {2018-02-08T22:15:54Z},
+  note = {Page Version ID: 824692156}
+}
+
+@incollection{moulinesNonAsymptoticAnalysisStochastic2011,
+  title = {Non-{{Asymptotic Analysis}} of {{Stochastic Approximation Algorithms}} for {{Machine Learning}}},
+  url = {http://papers.nips.cc/paper/4316-non-asymptotic-analysis-of-stochastic-approximation-algorithms-for-machine-learning.pdf},
+  booktitle = {Advances in {{Neural Information Processing Systems}} 24},
+  publisher = {{Curran Associates, Inc.}},
+  urldate = {2019-03-12},
+  date = {2011},
+  pages = {451--459},
+  author = {Moulines, Eric and Bach, Francis R.},
+  editor = {Shawe-Taylor, J. and Zemel, R. S. and Bartlett, P. L. and Pereira, F. and Weinberger, K. Q.}
+}
+
+@article{gidelVariationalInequalityPerspective2018,
+  title = {A {{Variational Inequality Perspective}} on {{Generative Adversarial Networks}}},
+  url = {https://openreview.net/forum?id=r1laEnA5Ym},
+  abstract = {Generative adversarial networks (GANs) form a generative modeling approach known for producing appealing samples, but they are notably difficult to train. One common way to tackle this issue has...},
+  urldate = {2019-03-12},
+  date = {2018-09-27},
+  author = {Gidel, Gauthier and Berard, Hugo and Vignoud, Gaëtan and Vincent, Pascal and Lacoste-Julien, Simon}
+}
+
+@article{nowozinStructuredLearningPrediction2010,
+  langid = {english},
+  title = {Structured {{Learning}} and {{Prediction}} in {{Computer Vision}}},
+  volume = {6},
+  issn = {1572-2740, 1572-2759},
+  url = {http://www.nowpublishers.com/article/Details/CGV-033},
+  doi = {10.1561/0600000033},
+  abstract = {Powerful statistical models that can be learned eﬃciently from large amounts of data are currently revolutionizing computer vision. These models possess a rich internal structure reﬂecting task-speciﬁc relations and constraints. This tutorial introduces the reader to the most popular classes of structured models in computer vision. Our focus is discrete undirected graphical models which we cover in detail together with a description of algorithms for both probabilistic inference and maximum a posteriori inference. We discuss separately recently successful techniques for prediction in general structured models. In the second part of this tutorial we describe methods for parameter learning where we distinguish the classic maximum likelihood based methods from the more recent prediction-based parameter learning methods. We highlight developments to enhance current models and discuss kernelized models and latent variable models. To make the tutorial practical and to provide links to further study we provide examples of successful application of many methods in the computer vision literature.},
+  number = {3-4},
+  journaltitle = {Foundations and Trends® in Computer Graphics and Vision},
+  urldate = {2019-04-06},
+  date = {2010},
+  pages = {185-365},
+  author = {Nowozin, Sebastian}
+}
+
+@article{nowozinStructuredLearningPrediction2010a,
+  langid = {english},
+  title = {Structured {{Learning}} and {{Prediction}} in {{Computer Vision}}},
+  volume = {6},
+  issn = {1572-2740, 1572-2759},
+  url = {http://www.nowpublishers.com/article/Details/CGV-033},
+  doi = {10.1561/0600000033},
+  abstract = {Powerful statistical models that can be learned eﬃciently from large amounts of data are currently revolutionizing computer vision. These models possess a rich internal structure reﬂecting task-speciﬁc relations and constraints. This tutorial introduces the reader to the most popular classes of structured models in computer vision. Our focus is discrete undirected graphical models which we cover in detail together with a description of algorithms for both probabilistic inference and maximum a posteriori inference. We discuss separately recently successful techniques for prediction in general structured models. In the second part of this tutorial we describe methods for parameter learning where we distinguish the classic maximum likelihood based methods from the more recent prediction-based parameter learning methods. We highlight developments to enhance current models and discuss kernelized models and latent variable models. To make the tutorial practical and to provide links to further study we provide examples of successful application of many methods in the computer vision literature.},
+  number = {3-4},
+  journaltitle = {Foundations and Trends® in Computer Graphics and Vision},
+  urldate = {2019-04-06},
+  date = {2010},
+  pages = {185-365},
+  author = {Nowozin, Sebastian}
+}
+
+@article{taskarLearningStructuredPredictiona,
+  langid = {english},
+  title = {Learning {{Structured Prediction Models}}: {{A Large Margin Approach}}},
+  abstract = {We consider large margin estimation in a broad range of prediction models where inference involves solving combinatorial optimization problems, for example, weighted graphcuts or matchings. Our goal is to learn parameters such that inference using the model reproduces correct answers on the training data. Our method relies on the expressive power of convex optimization problems to compactly capture inference or solution optimality in structured prediction models. Directly embedding this structure within the learning formulation produces concise convex problems for eﬃcient estimation of very complex and diverse models. We describe experimental results on a matching task, disulﬁde connectivity prediction, showing signiﬁcant improvements over state-of-the-art methods.},
+  pages = {8},
+  author = {Taskar, Ben and Chatalbashev, Vassil and Koller, Daphne and Guestrin, Carlos}
+}
+
+@article{gidelVariationalInequalityPerspective2018a,
+  title = {A {{Variational Inequality Perspective}} on {{Generative Adversarial Networks}}},
+  url = {https://openreview.net/forum?id=r1laEnA5Ym},
+  abstract = {Generative adversarial networks (GANs) form a generative modeling approach known for producing appealing samples, but they are notably difficult to train. One common way to tackle this issue has...},
+  urldate = {2019-03-12},
+  date = {2018-09-27},
+  author = {Gidel, Gauthier and Berard, Hugo and Vignoud, Gaëtan and Vincent, Pascal and Lacoste-Julien, Simon}
+}
+
+@book{papadimitriouCombinatorialOptimizationAlgorithms1998,
+  langid = {english},
+  title = {Combinatorial {{Optimization}}: {{Algorithms}} and {{Complexity}}},
+  isbn = {978-0-486-40258-1},
+  shorttitle = {Combinatorial {{Optimization}}},
+  abstract = {This clearly written, mathematically rigorous text includes a novel algorithmic exposition of the simplex method and also discusses the Soviet ellipsoid algorithm for linear programming; efficient algorithms for network flow, matching, spanning trees, and matroids; the theory of NP-complete problems; approximation algorithms, local search heuristics for NP-complete problems, more. All chapters are supplemented by thought-provoking problems. A useful work for graduate-level students with backgrounds in computer science, operations research, and electrical engineering. "Mathematicians wishing a self-contained introduction need look no further." — American Mathematical Monthly.},
+  pagetotal = {530},
+  publisher = {{Courier Corporation}},
+  date = {1998},
+  keywords = {Mathematics / Combinatorics},
+  author = {Papadimitriou, Christos H. and Steiglitz, Kenneth},
+  annotation = {Read for definition totally unimodular matrices}
+}
+
+@incollection{taskarMaxMarginMarkovNetworks2004,
+  title = {Max-{{Margin Markov Networks}}},
+  url = {http://papers.nips.cc/paper/2397-max-margin-markov-networks.pdf},
+  booktitle = {Advances in {{Neural Information Processing Systems}} 16},
+  publisher = {{MIT Press}},
+  urldate = {2019-03-12},
+  date = {2004},
+  pages = {25--32},
+  author = {Taskar, Ben and Guestrin, Carlos and Koller, Daphne},
+  editor = {Thrun, S. and Saul, L. K. and Schölkopf, B.}
+}
+
+@online{pressProbabilisticGraphicalModels,
+  langid = {english},
+  title = {Probabilistic {{Graphical Models}}},
+  url = {https://mitpress.mit.edu/books/probabilistic-graphical-models},
+  abstract = {A general framework for constructing and using probabilistic models of complex systems that would enable a computer to use available information for making decisions.
+                Most tasks require a person or an automated system to reason—to reach conclusions based on available information. The framework of probabilistic graphical models, presented in this book, provides a general approach for this task. The approach is model-based, allowing interpretable models to be constructed and then manipulated by reasoning algorithms. These models can also be learned automatically from data, allowing the approach to be used in cases where manually constructing a model is difficult or even impossible. Because uncertainty is an inescapable aspect of most real-world applications, the book focuses on probabilistic models, which make the uncertainty explicit and provide models that are more faithful to reality. 
+                    Probabilistic Graphical Models discusses a variety of models, spanning Bayesian networks, undirected Markov networks, discrete and continuous models, and extensions to deal with dynamical systems and relational data. For each class of models, the text describes the three fundamental cornerstones: representation, inference, and learning, presenting both basic concepts and advanced techniques. Finally, the book considers the use of the proposed framework for causal reasoning and decision making under uncertainty. The main text in each chapter provides the detailed technical development of the key ideas. Most chapters also include boxes with additional material: skill boxes, which describe techniques; case study boxes, which discuss empirical cases related to the approach described in the text, including applications in computer vision, robotics, natural language understanding, and computational biology; and concept boxes, which present significant concepts drawn from the material in the chapter. Instructors (and readers) can group chapters in various combinations, from core topics to more technically advanced material, to suit their particular needs.},
+  journaltitle = {The MIT Press},
+  urldate = {2019-03-12},
+  author = {Press, The MIT},
+  annotation = {The LP formulation of MAP inference in MRF is explained in section 13.5~}
+}
+
+@article{wainwrightGraphicalModelsExponential2007,
+  langid = {english},
+  title = {Graphical {{Models}}, {{Exponential Families}}, and {{Variational Inference}}},
+  volume = {1},
+  issn = {1935-8237, 1935-8245},
+  url = {http://www.nowpublishers.com/article/Details/MAL-001},
+  doi = {10.1561/2200000001},
+  number = {1–2},
+  journaltitle = {Foundations and Trends® in Machine Learning},
+  urldate = {2019-03-12},
+  date = {2007},
+  pages = {1-305},
+  author = {Wainwright, Martin J. and Jordan, Michael I.},
+  annotation = {For definition of polytopes}
+}
+
+@article{gidelFrankWolfeAlgorithmsSaddle2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1610.07797},
+  primaryClass = {cs, math, stat},
+  title = {Frank-{{Wolfe Algorithms}} for {{Saddle Point Problems}}},
+  url = {http://arxiv.org/abs/1610.07797},
+  abstract = {We extend the Frank-Wolfe (FW) optimization algorithm to solve constrained smooth convex-concave saddle point (SP) problems. Remarkably, the method only requires access to linear minimization oracles. Leveraging recent advances in FW optimization, we provide the first proof of convergence of a FW-type saddle point solver over polytopes, thereby partially answering a 30 year-old conjecture. We also survey other convergence results and highlight gaps in the theoretical underpinnings of FW-style algorithms. Motivating applications without known efficient alternatives are explored through structured prediction with combinatorial penalties as well as games over matching polytopes involving an exponential number of constraints.},
+  urldate = {2019-03-12},
+  date = {2016-10-25},
+  keywords = {90C52; 90C90; 68T05,Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Gidel, Gauthier and Jebara, Tony and Lacoste-Julien, Simon},
+  annotation = {Comment: Appears in: Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS 2017). 39 pages}
+}
+
+@book{boydConvexOptimization2004,
+  langid = {english},
+  location = {{Cambridge, UK ; New York}},
+  title = {Convex Optimization},
+  isbn = {978-0-521-83378-3},
+  pagetotal = {716},
+  publisher = {{Cambridge University Press}},
+  date = {2004},
+  keywords = {Convex functions,Mathematical optimization},
+  author = {Boyd, Stephen P. and Vandenberghe, Lieven},
+  annotation = {chapter 11: interior points methods
+
+chapter 5:lagrangian duality
+
+~}
+}
+
+@article{lacoste-julienBlockCoordinateFrankWolfeOptimizationa,
+  langid = {english},
+  title = {Block-{{Coordinate Frank}}-{{Wolfe Optimization}} for {{Structural SVMs}}},
+  abstract = {We propose a randomized block-coordinate variant of the classic Frank-Wolfe algorithm for convex optimization with block-separable constraints. Despite its lower iteration cost, we show that it achieves a similar convergence rate in duality gap as the full FrankWolfe algorithm. We also show that, when applied to the dual structural support vector machine (SVM) objective, this yields an online algorithm that has the same low iteration complexity as primal stochastic subgradient methods. However, unlike stochastic subgradient methods, the block-coordinate FrankWolfe algorithm allows us to compute the optimal step-size and yields a computable duality gap guarantee. Our experiments indicate that this simple algorithm outperforms competing structural SVM solvers.},
+  pages = {31},
+  author = {Lacoste-Julien, Simon and Jaggi, Martin and Schmidt, Mark and Pletscher, Patrick}
+}
+
+@online{Lecture14ScribblesPdf,
+  title = {Lecture14\_scribbles.Pdf},
+  url = {http://www.iro.umontreal.ca/~slacoste/teaching/ift6132/W19/notes/lecture14_scribbles.pdf},
+  urldate = {2019-03-12},
+  annotation = {PGM notes}
+}
+
+@article{tsochantaridisLargeMarginMethods2005,
+  title = {Large {{Margin Methods}} for {{Structured}} and {{Interdependent Output Variables}}},
+  volume = {6},
+  issn = {ISSN 1533-7928},
+  url = {http://www.jmlr.org/papers/v6/tsochantaridis05a.html},
+  issue = {Sep},
+  journaltitle = {Journal of Machine Learning Research},
+  urldate = {2019-03-12},
+  date = {2005},
+  pages = {1453-1484},
+  author = {Tsochantaridis, Ioannis and Joachims, Thorsten and Hofmann, Thomas and Altun, Yasemin}
+}
+
+@online{SVMStructSupportVector,
+  title = {{{SVM}}-{{Struct Support Vector Machine}} for {{Complex Outputs}}},
+  url = {https://www.cs.cornell.edu/people/tj/svm_light/svm_struct.html},
+  urldate = {2019-03-12}
+}
+
+@article{jaggiRevisitingFrankWolfeProjectionFree,
+  langid = {english},
+  title = {Revisiting {{Frank}}-{{Wolfe}}: {{Projection}}-{{Free Sparse Convex Optimization}}},
+  abstract = {We provide stronger and more general primal-dual convergence results for FrankWolfe-type algorithms (a.k.a. conditional gradient) for constrained convex optimization, enabled by a simple framework of duality gap certiﬁcates. Our analysis also holds if the linear subproblems are only solved approximately (as well as if the gradients are inexact), and is proven to be worst-case optimal in the sparsity of the obtained solutions. On the application side, this allows us to unify a large variety of existing sparse greedy methods, in particular for optimization over convex hulls of an atomic set, even if those sets can only be approximated, including sparse (or structured sparse) vectors or matrices, low-rank matrices, permutation matrices, or max-norm bounded matrices.},
+  pages = {12},
+  author = {Jaggi, Martin}
+}
+
+@article{joachimsCuttingplaneTrainingStructural2009,
+  langid = {english},
+  title = {Cutting-Plane Training of Structural {{SVMs}}},
+  volume = {77},
+  issn = {0885-6125, 1573-0565},
+  url = {http://link.springer.com/10.1007/s10994-009-5108-8},
+  doi = {10.1007/s10994-009-5108-8},
+  abstract = {Discriminative training approaches like structural SVMs have shown much promise for building highly complex and accurate models in areas like natural language processing, protein structure prediction, and information retrieval. However, current training algorithms are computationally expensive or intractable on large datasets. To overcome this bottleneck, this paper explores how cutting-plane methods can provide fast training not only for classiﬁcation SVMs, but also for structural SVMs. We show that for an equivalent “1-slack” reformulation of the linear SVM training problem, our cutting-plane method has time complexity linear in the number of training examples. In particular, the number of iterations does not depend on the number of training examples, and it is linear in the desired precision and the regularization parameter. Furthermore, we present an extensive empirical evaluation of the method applied to binary classiﬁcation, multi-class classiﬁcation, HMM sequence tagging, and CFG parsing. The experiments show that the cuttingplane algorithm is broadly applicable and fast in practice. On large datasets, it is typically several orders of magnitude faster than conventional training methods derived from decomposition methods like SVM-light, or conventional cutting-plane methods. Implementations of our methods are available at www.joachims.org.},
+  number = {1},
+  journaltitle = {Machine Learning},
+  urldate = {2019-03-12},
+  date = {2009-10},
+  pages = {27-59},
+  author = {Joachims, Thorsten and Finley, Thomas and Yu, Chun-Nam John}
+}
+
+@incollection{joachimsLearningAlignSequences2006,
+  langid = {english},
+  location = {{Berlin/Heidelberg}},
+  title = {Learning to {{Align Sequences}}: {{A Maximum}}-{{Margin Approach}}},
+  volume = {49},
+  isbn = {978-3-540-25542-0},
+  url = {http://link.springer.com/10.1007/3-540-31618-3_4},
+  shorttitle = {Learning to {{Align Sequences}}},
+  abstract = {We propose a discriminative method for learning the parameters (e.g. cost of substitutions, deletions, insertions) of linear sequence alignment models from training examples. While the resulting training problem leads to an optimization problem with an exponential number of constraints, we present a simple algorithm that ﬁnds an arbitrarily close approximation after considering only a subset of the constraints that is linear in the number of training examples and polynomial in the length of the sequences. We also evaluate empirically that the method effectively learns good parameter values while being computationally feasible.},
+  booktitle = {New {{Algorithms}} for {{Macromolecular Simulation}}},
+  publisher = {{Springer-Verlag}},
+  urldate = {2019-03-12},
+  date = {2006},
+  pages = {57-69},
+  author = {Joachims, Thorsten and Galor, Tamara and Elber, Ron},
+  editor = {Leimkuhler, Benedict and Chipot, Christophe and Elber, Ron and Laaksonen, Aatto and Mark, Alan and Schlick, Tamar and Schütte, Christoph and Skeel, Robert},
+  doi = {10.1007/3-540-31618-3_4}
+}
+
+@article{tsochantaridisSupportVectorMachine,
+  langid = {english},
+  title = {Support {{Vector Machine Learning}} for {{Interdependent}} and {{Structured Output Spaces}}},
+  abstract = {Learning general functional dependencies is one of the main goals in machine learning. Recent progress in kernel-based methods has focused on designing ﬂexible and powerful input representations. This paper addresses the complementary issue of problems involving complex outputs such as multiple dependent output variables and structured output spaces. We propose to generalize multiclass Support Vector Machine learning in a formulation that involves features extracted jointly from inputs and outputs. The resulting optimization problem is solved eﬃciently by a cutting plane algorithm that exploits the sparseness and structural decomposition of the problem. We demonstrate the versatility and eﬀectiveness of our method on problems ranging from supervised grammar learning and named-entity recognition, to taxonomic text classiﬁcation and sequence alignment.},
+  pages = {8},
+  author = {Tsochantaridis, Ioannis and Hofmann, Thomas and Joachims, Thorsten and Altun, Yasemin}
+}
+
+@article{lacoste-julienGlobalLinearConvergence2015,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1511.05932},
+  primaryClass = {cs, math, stat},
+  title = {On the {{Global Linear Convergence}} of {{Frank}}-{{Wolfe Optimization Variants}}},
+  url = {http://arxiv.org/abs/1511.05932},
+  abstract = {The Frank-Wolfe (FW) optimization algorithm has lately re-gained popularity thanks in particular to its ability to nicely handle the structured constraints appearing in machine learning applications. However, its convergence rate is known to be slow (sublinear) when the solution lies at the boundary. A simple less-known fix is to add the possibility to take 'away steps' during optimization, an operation that importantly does not require a feasibility oracle. In this paper, we highlight and clarify several variants of the Frank-Wolfe optimization algorithm that have been successfully applied in practice: away-steps FW, pairwise FW, fully-corrective FW and Wolfe's minimum norm point algorithm, and prove for the first time that they all enjoy global linear convergence, under a weaker condition than strong convexity of the objective. The constant in the convergence rate has an elegant interpretation as the product of the (classical) condition number of the function with a novel geometric quantity that plays the role of a 'condition number' of the constraint set. We provide pointers to where these algorithms have made a difference in practice, in particular with the flow polytope, the marginal polytope and the base polytope for submodular optimization.},
+  urldate = {2019-03-12},
+  date = {2015-11-18},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C52; 90C90; 68T05},
+  author = {Lacoste-Julien, Simon and Jaggi, Martin},
+  annotation = {Comment: Appears in: Advances in Neural Information Processing Systems 28 (NIPS 2015). 26 pages}
+}
+
+@incollection{garberLinearMemoryDecompositionInvariantLinearly2016,
+  title = {Linear-{{Memory}} and {{Decomposition}}-{{Invariant Linearly Convergent Conditional Gradient Algorithm}} for {{Structured Polytopes}}},
+  url = {http://papers.nips.cc/paper/6115-linear-memory-and-decomposition-invariant-linearly-convergent-conditional-gradient-algorithm-for-structured-polytopes.pdf},
+  booktitle = {Advances in {{Neural Information Processing Systems}} 29},
+  publisher = {{Curran Associates, Inc.}},
+  urldate = {2019-03-12},
+  date = {2016},
+  pages = {1001--1009},
+  author = {Garber, Dan and Garber, Dan and Meshi, Ofer},
+  editor = {Lee, D. D. and Sugiyama, M. and Luxburg, U. V. and Guyon, I. and Garnett, R.}
+}
+
+@article{lacoste-julienConvergenceRateFrankWolfe2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1607.00345},
+  primaryClass = {cs, math, stat},
+  title = {Convergence {{Rate}} of {{Frank}}-{{Wolfe}} for {{Non}}-{{Convex Objectives}}},
+  url = {http://arxiv.org/abs/1607.00345},
+  abstract = {We give a simple proof that the Frank-Wolfe algorithm obtains a stationary point at a rate of \$O(1/\textbackslash{}sqrt\{t\})\$ on non-convex objectives with a Lipschitz continuous gradient. Our analysis is affine invariant and is the first, to the best of our knowledge, giving a similar rate to what was already proven for projected gradient methods (though on slightly different measures of stationarity).},
+  urldate = {2019-03-12},
+  date = {2016-07-01},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C52; 90C90; 68T05,Computer Science - Numerical Analysis},
+  author = {Lacoste-Julien, Simon},
+  annotation = {Comment: 6 pages}
+}
+
+@article{alayracLearningNarratedInstruction2018,
+  langid = {english},
+  title = {Learning from {{Narrated Instruction Videos}}},
+  volume = {40},
+  issn = {0162-8828, 2160-9292, 1939-3539},
+  url = {https://ieeexplore.ieee.org/document/8025823/},
+  doi = {10.1109/TPAMI.2017.2749223},
+  abstract = {Automatic assistants could guide a person or a robot in performing new tasks, such as changing a car tire or repotting a plant. Creating such assistants, however, is non-trivial and requires understanding of visual and verbal content of a video. Towards this goal, we here address the problem of automatically learning the main steps of a task from a set of narrated instruction videos. We develop a new unsupervised learning approach that takes advantage of the complementary nature of the input video and the associated narration. The method sequentially clusters textual and visual representations of a task, where the two clustering problems are linked by joint constraints to obtain a single coherent sequence of steps in both modalities. To evaluate our method, we collect and annotate a new challenging dataset of real-world instruction videos from the Internet. The dataset contains videos for ﬁve different tasks with complex interactions between people and objects, captured in a variety of indoor and outdoor settings. We experimentally demonstrate that the proposed method can automatically discover, learn and localize the main steps of a task in input videos.},
+  number = {9},
+  journaltitle = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  urldate = {2019-03-12},
+  date = {2018-09-01},
+  pages = {2194-2208},
+  author = {Alayrac, Jean-Baptiste and Bojanowski, Piotr and Agrawal, Nishant and Sivic, Josef and Laptev, Ivan and Lacoste-Julien, Simon}
+}
+
+@article{lacoste-julienBlockCoordinateFrankWolfeOptimizationb,
+  langid = {english},
+  title = {Block-{{Coordinate Frank}}-{{Wolfe Optimization}} for {{Structural SVMs}}},
+  abstract = {We propose a randomized block-coordinate variant of the classic Frank-Wolfe algorithm for convex optimization with block-separable constraints. Despite its lower iteration cost, we show that it achieves a similar convergence rate in duality gap as the full FrankWolfe algorithm. We also show that, when applied to the dual structural support vector machine (SVM) objective, this yields an online algorithm that has the same low iteration complexity as primal stochastic subgradient methods. However, unlike stochastic subgradient methods, the block-coordinate FrankWolfe algorithm allows us to compute the optimal step-size and yields a computable duality gap guarantee. Our experiments indicate that this simple algorithm outperforms competing structural SVM solvers.},
+  pages = {31},
+  author = {Lacoste-Julien, Simon and Jaggi, Martin and Schmidt, Mark and Pletscher, Patrick}
+}
+
+@article{lacoste-julienGlobalLinearConvergence2015a,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1511.05932},
+  primaryClass = {cs, math, stat},
+  title = {On the {{Global Linear Convergence}} of {{Frank}}-{{Wolfe Optimization Variants}}},
+  url = {http://arxiv.org/abs/1511.05932},
+  abstract = {The Frank-Wolfe (FW) optimization algorithm has lately re-gained popularity thanks in particular to its ability to nicely handle the structured constraints appearing in machine learning applications. However, its convergence rate is known to be slow (sublinear) when the solution lies at the boundary. A simple less-known fix is to add the possibility to take 'away steps' during optimization, an operation that importantly does not require a feasibility oracle. In this paper, we highlight and clarify several variants of the Frank-Wolfe optimization algorithm that have been successfully applied in practice: away-steps FW, pairwise FW, fully-corrective FW and Wolfe's minimum norm point algorithm, and prove for the first time that they all enjoy global linear convergence, under a weaker condition than strong convexity of the objective. The constant in the convergence rate has an elegant interpretation as the product of the (classical) condition number of the function with a novel geometric quantity that plays the role of a 'condition number' of the constraint set. We provide pointers to where these algorithms have made a difference in practice, in particular with the flow polytope, the marginal polytope and the base polytope for submodular optimization.},
+  urldate = {2019-03-19},
+  date = {2015-11-18},
+  keywords = {90C52; 90C90; 68T05,Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Lacoste-Julien, Simon and Jaggi, Martin},
+  annotation = {Comment: Appears in: Advances in Neural Information Processing Systems 28 (NIPS 2015). 26 pages}
+}
+
+@article{krishnanBarrierFrankWolfeMarginal2015,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1511.02124},
+  primaryClass = {cs, math, stat},
+  title = {Barrier {{Frank}}-{{Wolfe}} for {{Marginal Inference}}},
+  url = {http://arxiv.org/abs/1511.02124},
+  abstract = {We introduce a globally-convergent algorithm for optimizing the tree-reweighted (TRW) variational objective over the marginal polytope. The algorithm is based on the conditional gradient method (Frank-Wolfe) and moves pseudomarginals within the marginal polytope through repeated maximum a posteriori (MAP) calls. This modular structure enables us to leverage black-box MAP solvers (both exact and approximate) for variational inference, and obtains more accurate results than tree-reweighted algorithms that optimize over the local consistency relaxation. Theoretically, we bound the sub-optimality for the proposed algorithm despite the TRW objective having unbounded gradients at the boundary of the marginal polytope. Empirically, we demonstrate the increased quality of results found by tightening the relaxation over the marginal polytope as well as the spanning tree polytope on synthetic and real-world instances.},
+  urldate = {2019-03-19},
+  date = {2015-11-06},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Krishnan, Rahul G. and Lacoste-Julien, Simon and Sontag, David},
+  annotation = {Comment: 25 pages, 12 figures, To appear in Neural Information Processing Systems (NIPS) 2015, Corrected reference and cleaned up bibliography}
+}
+
+@article{nesterovEfficiencyCoordinateDescent2012,
+  title = {Efficiency of {{Coordinate Descent Methods}} on {{Huge}}-{{Scale Optimization Problems}}},
+  volume = {22},
+  issn = {1052-6234},
+  url = {https://epubs.siam.org/doi/abs/10.1137/100802001},
+  doi = {10.1137/100802001},
+  abstract = {In this paper we propose new methods for solving huge-scale optimization problems. For problems of this size, even the simplest full-dimensional vector operations are very expensive. Hence, we propose to apply an optimization technique based on random partial update of decision variables. For these methods, we prove the global estimates for the rate of convergence. Surprisingly, for certain classes of objective functions, our results are better than the standard worst-case bounds for deterministic algorithms. We present constrained and unconstrained versions of the method and its accelerated variant. Our numerical test confirms a high efficiency of this technique on problems of very big size.},
+  number = {2},
+  journaltitle = {SIAM J. Optim.},
+  urldate = {2019-03-19},
+  date = {2012-01-01},
+  pages = {341-362},
+  author = {Nesterov, Y.}
+}
+
+@article{bachDualitySubgradientConditional2015,
+  langid = {english},
+  title = {Duality {{Between Subgradient}} and {{Conditional Gradient Methods}}},
+  volume = {25},
+  issn = {1052-6234, 1095-7189},
+  url = {http://epubs.siam.org/doi/10.1137/130941961},
+  doi = {10.1137/130941961},
+  abstract = {Given a convex optimization problem and its dual, there are many possible ﬁrstorder algorithms. In this paper, we show the equivalence between mirror descent algorithms and algorithms generalizing the conditional gradient method. This is done through convex duality and implies notably that for certain problems, such as for supervised machine learning problems with nonsmooth losses or problems regularized by nonsmooth regularizers, the primal subgradient method and the dual conditional gradient method are formally equivalent. The dual interpretation leads to a form of line search for mirror descent, as well as guarantees of convergence for primal-dual certiﬁcates.},
+  number = {1},
+  journaltitle = {SIAM Journal on Optimization},
+  urldate = {2019-03-19},
+  date = {2015-01},
+  pages = {115-129},
+  author = {Bach, Francis}
+}
+
+@article{osokinMindingGapsBlock2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1605.09346},
+  primaryClass = {cs, math, stat},
+  title = {Minding the {{Gaps}} for {{Block Frank}}-{{Wolfe Optimization}} of {{Structured SVMs}}},
+  url = {http://arxiv.org/abs/1605.09346},
+  abstract = {In this paper, we propose several improvements on the block-coordinate Frank-Wolfe (BCFW) algorithm from Lacoste-Julien et al. (2013) recently used to optimize the structured support vector machine (SSVM) objective in the context of structured prediction, though it has wider applications. The key intuition behind our improvements is that the estimates of block gaps maintained by BCFW reveal the block suboptimality that can be used as an adaptive criterion. First, we sample objects at each iteration of BCFW in an adaptive non-uniform way via gapbased sampling. Second, we incorporate pairwise and away-step variants of Frank-Wolfe into the block-coordinate setting. Third, we cache oracle calls with a cache-hit criterion based on the block gaps. Fourth, we provide the first method to compute an approximate regularization path for SSVM. Finally, we provide an exhaustive empirical evaluation of all our methods on four structured prediction datasets.},
+  urldate = {2019-03-19},
+  date = {2016-05-30},
+  keywords = {90C52; 90C90; 90C06; 68T05,Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Osokin, Anton and Alayrac, Jean-Baptiste and Lukasewitz, Isabella and Dokania, Puneet K. and Lacoste-Julien, Simon},
+  annotation = {Comment: Appears in Proceedings of the 33rd International Conference on Machine Learning (ICML 2016). 31 pages}
+}
+
+@article{lacoste-julienBlockCoordinateFrankWolfeOptimizationc,
+  langid = {english},
+  title = {Block-{{Coordinate Frank}}-{{Wolfe Optimization}} for {{Structural SVMs}}},
+  abstract = {We propose a randomized block-coordinate variant of the classic Frank-Wolfe algorithm for convex optimization with block-separable constraints. Despite its lower iteration cost, we show that it achieves a similar convergence rate in duality gap as the full FrankWolfe algorithm. We also show that, when applied to the dual structural support vector machine (SVM) objective, this yields an online algorithm that has the same low iteration complexity as primal stochastic subgradient methods. However, unlike stochastic subgradient methods, the block-coordinate FrankWolfe algorithm allows us to compute the optimal step-size and yields a computable duality gap guarantee. Our experiments indicate that this simple algorithm outperforms competing structural SVM solvers.},
+  pages = {31},
+  author = {Lacoste-Julien, Simon and Jaggi, Martin and Schmidt, Mark and Pletscher, Patrick}
+}
+
+@book{bakirPredictingStructuredData2007,
+  langid = {english},
+  location = {{Cambridge, Mass.}},
+  title = {Predicting Structured Data},
+  isbn = {978-0-262-52804-7 978-0-262-02617-8},
+  publisher = {{MIT Press}},
+  date = {2007},
+  author = {BakIr, Gökhan and {Neural Information Processing Systems Foundation}},
+  note = {OCLC: 74965922}
+}
+
+@article{dieuleveutStochasticApproximationHilbert,
+  langid = {english},
+  title = {Stochastic Approximation in {{Hilbert}} Spaces},
+  pages = {222},
+  author = {Dieuleveut, Aymeric}
+}
+
+@article{swerskySupportVectorMachines,
+  langid = {english},
+  title = {Support {{Vector Machines}} vs {{Logistic Regression}}},
+  journaltitle = {Logistic regression},
+  pages = {23},
+  author = {Swersky, Kevin}
+}
+
+@article{bagnellLearningPositiveFunctions,
+  langid = {english},
+  title = {Learning {{Positive Functions}} in a {{Hilbert Space}}},
+  abstract = {We develop a method for learning positive functions by optimizing over SoSK, a reproducing kernel Hilbert space subject to a Sum-of-Squares (SoS) constraint. This constraint ensures that only nonnegative functions are learned. We establish a new representer theorem that demonstrates that the regularized convex loss minimization subject to the SoS constraint has a unique solution and moreover, its solution lies on a ﬁnite dimensional subspace of an RKHS that is deﬁned by data. Furthermore, we show how this optimization problem can be formulated as a semideﬁnite program. We conclude with examples of learning such functions.},
+  pages = {10},
+  author = {Bagnell, J Andrew and Farahmand, Amir-massoud}
+}
+
+@article{ruderOverviewGradientDescent2016,
+  langid = {english},
+  title = {An Overview of Gradient Descent Optimization Algorithms},
+  url = {https://arxiv.org/abs/1609.04747v2},
+  abstract = {Gradient descent optimization algorithms, while increasingly popular, are
+often used as black-box optimizers, as practical explanations of their
+strengths and weaknesses are hard to come by. This article aims to provide the
+reader with intuitions with regard to the behaviour of different algorithms
+that will allow her to put them to use. In the course of this overview, we look
+at different variants of gradient descent, summarize challenges, introduce the
+most common optimization algorithms, review architectures in a parallel and
+distributed setting, and investigate additional strategies for optimizing
+gradient descent.},
+  urldate = {2019-03-20},
+  date = {2016-09-15},
+  author = {Ruder, Sebastian}
+}
+
+@article{neubigStructuredPredictionBasics,
+  langid = {english},
+  title = {Structured {{Prediction Basics}}},
+  pages = {37},
+  author = {Neubig, Graham}
+}
+
+@article{berwickIdiotGuideSupport,
+  langid = {english},
+  title = {An {{Idiot}}’s Guide to {{Support}} Vector Machines ({{SVMs}})},
+  pages = {28},
+  author = {Berwick, R}
+}
+
+@article{schmidtNoteStructuralExtensions,
+  langid = {english},
+  title = {A {{Note}} on {{Structural Extensions}} of {{SVMs}}},
+  pages = {15},
+  author = {Schmidt, Mark}
+}
+
+@article{joachimsCuttingplaneTrainingStructural2009a,
+  langid = {english},
+  title = {Cutting-Plane Training of Structural {{SVMs}}},
+  volume = {77},
+  issn = {0885-6125, 1573-0565},
+  url = {http://link.springer.com/10.1007/s10994-009-5108-8},
+  doi = {10.1007/s10994-009-5108-8},
+  abstract = {Discriminative training approaches like structural SVMs have shown much promise for building highly complex and accurate models in areas like natural language processing, protein structure prediction, and information retrieval. However, current training algorithms are computationally expensive or intractable on large datasets. To overcome this bottleneck, this paper explores how cutting-plane methods can provide fast training not only for classiﬁcation SVMs, but also for structural SVMs. We show that for an equivalent “1-slack” reformulation of the linear SVM training problem, our cutting-plane method has time complexity linear in the number of training examples. In particular, the number of iterations does not depend on the number of training examples, and it is linear in the desired precision and the regularization parameter. Furthermore, we present an extensive empirical evaluation of the method applied to binary classiﬁcation, multi-class classiﬁcation, HMM sequence tagging, and CFG parsing. The experiments show that the cuttingplane algorithm is broadly applicable and fast in practice. On large datasets, it is typically several orders of magnitude faster than conventional training methods derived from decomposition methods like SVM-light, or conventional cutting-plane methods. Implementations of our methods are available at www.joachims.org.},
+  number = {1},
+  journaltitle = {Machine Learning},
+  urldate = {2019-03-20},
+  date = {2009-10},
+  pages = {27-59},
+  author = {Joachims, Thorsten and Finley, Thomas and Yu, Chun-Nam John}
+}
+
+@article{carpuatLossaugmentedStructuredPrediction,
+  langid = {english},
+  title = {Loss-Augmented {{Structured Prediction}}},
+  pages = {40},
+  author = {Carpuat, Marine}
+}
+
+@book{nesterovIntroductoryLecturesConvex1998,
+  title = {Introductory {{Lectures On Convex Programming}}},
+  abstract = {1.1.1 General formulation of the problem................... 9},
+  date = {1998},
+  author = {Nesterov, Yu}
+}
+
+@article{lacoste-julienCombiningSVMGraphical,
+  langid = {english},
+  title = {Combining {{SVM}} with Graphical Models for Supervised Classiﬁcation: An Introduction to {{Max}}-{{Margin Markov Networks}}},
+  abstract = {The goal of this paper is to present a survey of the concepts needed to understand the novel Max-Margin Markov Networks (M3-net) framework, a new formalism invented by Taskar, Guestrin and Koller [TGK03] which combines both the advantages of the graphical models and the Support Vector Machines (SVMs) to solve the problem of multi-label multi-class supervised classiﬁcation. We will compare generative models, discriminative graphical models and SVMs for this task, introducing the basic concepts at the same time, leading at the end to a presentation of the M3-net paper.},
+  pages = {25},
+  author = {Lacoste-Julien, Simon}
+}
+
+@article{defazioIneffectivenessVarianceReduced2018,
+  title = {On the {{Ineffectiveness}} of {{Variance Reduced Optimization}} for {{Deep Learning}}},
+  url = {https://openreview.net/forum?id=B1MIBs05F7},
+  abstract = {The application of stochastic variance reduction to optimization has shown remarkable recent theoretical and practical success. The applicability of these techniques to the hard non-convex...},
+  urldate = {2019-03-28},
+  date = {2018-09-27},
+  author = {Defazio, Aaron}
+}
+
+@article{zhouMomentumSchemesStochastic2019,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1902.02715},
+  primaryClass = {cs, math},
+  langid = {english},
+  title = {Momentum {{Schemes}} with {{Stochastic Variance Reduction}} for {{Nonconvex Composite Optimization}}},
+  url = {http://arxiv.org/abs/1902.02715},
+  abstract = {Two new stochastic variance-reduced algorithms named SARAH and SPIDER have been recently proposed, and SPIDER has been shown to achieve a near-optimal gradient oracle complexity for nonconvex optimization. However, the theoretical advantage of SPIDER does not lead to substantial improvement of practical performance over SVRG. To address this issue, momentum technique can be a good candidate to improve the performance of SPIDER. However, existing momentum schemes used in variance-reduced algorithms are designed speciﬁcally for convex optimization, and are not applicable to nonconvex scenarios. In this paper, we develop novel momentum schemes with ﬂexible coefﬁcient settings to accelerate SPIDER for nonconvex and nonsmooth composite optimization, and show that the resulting algorithms achieve the near-optimal gradient oracle complexity for achieving a generalized ﬁrst-order stationary condition. Furthermore, we generalize our algorithm to online nonconvex and nonsmooth optimization, and establish an oracle complexity result that matches the state-of-the-art. Our extensive experiments demonstrate the superior performance of our proposed algorithm over other stochastic variance-reduced algorithms.},
+  urldate = {2019-03-28},
+  date = {2019-02-07},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control},
+  author = {Zhou, Yi and Wang, Zhe and Ji, Kaiyi and Liang, Yingbin and Tarokh, Vahid}
+}
+
+@article{maQuasihyperbolicMomentumAdam2018,
+  title = {Quasi-Hyperbolic Momentum and {{Adam}} for Deep Learning},
+  url = {https://openreview.net/forum?id=S1fUpoR5FQ},
+  abstract = {Momentum-based acceleration of stochastic gradient descent (SGD) is widely used in deep learning. We propose the quasi-hyperbolic momentum algorithm (QHM) as an extremely simple alteration of...},
+  urldate = {2019-03-28},
+  date = {2018-09-27},
+  author = {Ma, Jerry and Yarats, Denis}
+}
+
+@article{rouxOnlineVariancereducingOptimization2018,
+  title = {Online Variance-Reducing Optimization},
+  url = {https://openreview.net/forum?id=r1qKBtJvG},
+  abstract = {We emphasize the importance of variance reduction in stochastic methods and propose a probabilistic interpretation as a way to store information about past gradients. The resulting algorithm is...},
+  urldate = {2019-03-28},
+  date = {2018-02-12},
+  author = {Roux, Nicolas Le and Babanezhad, Reza and Manzagol, Pierre-Antoine}
+}
+
+@article{smithBayesianPerspectiveGeneralization2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1710.06451},
+  primaryClass = {cs, stat},
+  title = {A {{Bayesian Perspective}} on {{Generalization}} and {{Stochastic Gradient Descent}}},
+  url = {http://arxiv.org/abs/1710.06451},
+  abstract = {We consider two questions at the heart of machine learning; how can we predict if a minimum will generalize to the test set, and why does stochastic gradient descent find minima that generalize well? Our work responds to Zhang et al. (2016), who showed deep neural networks can easily memorize randomly labeled training data, despite generalizing well on real labels of the same inputs. We show that the same phenomenon occurs in small linear models. These observations are explained by the Bayesian evidence, which penalizes sharp minima but is invariant to model parameterization. We also demonstrate that, when one holds the learning rate fixed, there is an optimum batch size which maximizes the test set accuracy. We propose that the noise introduced by small mini-batches drives the parameters towards minima whose evidence is large. Interpreting stochastic gradient descent as a stochastic differential equation, we identify the "noise scale" \$g = \textbackslash{}epsilon (\textbackslash{}frac\{N\}\{B\} - 1) \textbackslash{}approx \textbackslash{}epsilon N/B\$, where \$\textbackslash{}epsilon\$ is the learning rate, \$N\$ the training set size and \$B\$ the batch size. Consequently the optimum batch size is proportional to both the learning rate and the size of the training set, \$B\_\{opt\} \textbackslash{}propto \textbackslash{}epsilon N\$. We verify these predictions empirically.},
+  urldate = {2019-03-28},
+  date = {2017-10-17},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning,Computer Science - Artificial Intelligence},
+  author = {Smith, Samuel L. and Le, Quoc V.},
+  annotation = {Comment: 13 pages, 9 figures. Published as a conference paper at ICLR 2018}
+}
+
+@article{schrijverCourseCombinatorialOptimization,
+  langid = {english},
+  title = {A {{Course}} in {{Combinatorial Optimization}}},
+  pages = {221},
+  author = {Schrijver, Alexander}
+}
+
+@online{AppliedCombinatorics6th,
+  langid = {british},
+  title = {Applied {{Combinatorics}}, 6th {{Edition}}},
+  url = {https://www.wiley.com/en-gb/Applied+Combinatorics%2C+6th+Edition-p-9780470458389},
+  abstract = {The new 6th edition of Applied Combinatorics  builds on the previous editions with more in depth analysis of  computer systems in order to help develop proficiency in basic  discrete math problem solving. As one of the most widely used book  in combinatorial problems, this edition explains how to reason and  model combinatorically while stressing the systematic analysis of  different possibilities, exploration of the logical structure of a  problem, and ingenuity. Although important uses of combinatorics in  computer science, operations research, and finite probability are  mentioned, these applications are often used solely for motivation.  Numerical examples involving the same concepts use more interesting  settings such as poker probabilities or logical games.   This book is designed for use by students with a wide range of  ability and maturity (sophomores through beginning graduate  students). The stronger the students, the harder the exercises that  can be assigned. The book can be used for one-quarter, two-quarter,  or one-semester course depending on how much material is used.},
+  journaltitle = {Wiley.com},
+  urldate = {2019-03-20}
+}
+
+@book{korteCombinatorialOptimizationTheory2012,
+  langid = {english},
+  location = {{Berlin Heidelberg}},
+  title = {Combinatorial {{Optimization}}: {{Theory}} and {{Algorithms}}},
+  edition = {5},
+  isbn = {978-3-642-24488-9},
+  url = {https://www.springer.com/gp/book/9783642244889},
+  shorttitle = {Combinatorial {{Optimization}}},
+  abstract = {This comprehensive textbook on combinatorial optimization places special emphasis on theoretical results and algorithms with provably good performance, in contrast to heuristics. It is based on numerous courses on combinatorial optimization and specialized topics, mostly at graduate level. This book reviews the fundamentals, covers the classical topics (paths, flows, matching, matroids, NP-completeness, approximation algorithms) in detail, and proceeds to advanced and recent topics, some of which have not appeared in a textbook before. Throughout, it contains complete but concise proofs, and also provides numerous exercises and references. This fifth edition has again been updated, revised, and significantly extended, with more than 60 new exercises and new material on various topics, including Cayley's formula, blocking flows, faster b-matching separation, multidimensional knapsack, multicommodity max-flow min-cut ratio, and sparsest cut. Thus, this book represents the state of the art of combinatorial optimization.},
+  series = {Algorithms and {{Combinatorics}}},
+  publisher = {{Springer-Verlag}},
+  urldate = {2019-03-20},
+  date = {2012},
+  author = {Korte, Bernhard and Vygen, Jens}
+}
+
+@article{marchandCuttingPlanesInteger2002,
+  title = {Cutting Planes in Integer and Mixed Integer Programming},
+  volume = {123},
+  issn = {0166-218X},
+  url = {http://www.sciencedirect.com/science/article/pii/S0166218X01003481},
+  doi = {10.1016/S0166-218X(01)00348-1},
+  abstract = {This survey presents cutting planes that are useful or potentially useful in solving mixed integer programs. Valid inequalities for (i) general integer programs, (ii) problems with local structure such as knapsack constraints, and (iii) problems with 0–1 coefficient matrices, such as set packing, are examined in turn. Finally, the use of valid inequalities for classes of problems with structure, such as network design, is explored.},
+  number = {1},
+  journaltitle = {Discrete Applied Mathematics},
+  urldate = {2019-03-31},
+  date = {2002-11-15},
+  pages = {397-446},
+  keywords = {Cutting planes,Mixed integer programming},
+  author = {Marchand, Hugues and Martin, Alexander and Weismantel, Robert and Wolsey, Laurence}
+}
+
+@online{j2kunWhenGreedyAlgorithms2014,
+  langid = {english},
+  title = {When {{Greedy Algorithms}} Are {{Good Enough}}: {{Submodularity}} and the (1 – 1/e)-{{Approximation}}},
+  url = {https://jeremykun.com/2014/07/07/when-greedy-algorithms-are-good-enough-submodularity-and-the-1-1e-approximation/},
+  shorttitle = {When {{Greedy Algorithms}} Are {{Good Enough}}},
+  abstract = {Greedy algorithms are among the simplest and most intuitive~algorithms known to humans.~Their name essentially gives their description: do the~thing that looks best right now, and repeat until noth…},
+  journaltitle = {Math ∩ Programming},
+  urldate = {2019-04-04},
+  date = {2014-07-07T15:00:01+00:00},
+  author = {{j2kun}}
+}
+
+@article{bachMachineLearningConvex,
+  langid = {english},
+  title = {Machine Learning and Convex Optimization with Submodular Functions},
+  pages = {154},
+  author = {Bach, Francis}
+}
+
+@book{rockafellarVariationalAnalysis2004,
+  langid = {english},
+  location = {{Berlin}},
+  title = {Variational Analysis},
+  edition = {Corr. 2nd print},
+  isbn = {978-3-540-62772-2},
+  pagetotal = {734},
+  number = {317},
+  series = {Grundlehren Der Mathematischen {{Wissenschaften}}},
+  publisher = {{Springer}},
+  date = {2004},
+  keywords = {Calculus of variations},
+  author = {Rockafellar, R. Tyrrell and Wets, Roger J.-B.},
+  file = {/home/sole/Zotero/storage/C5GSSP6R/Rockafellar and Wets - 2004 - Variational analysis.pdf}
+}
+
+@book{botConjugateDualityConvex2010,
+  langid = {english},
+  location = {{Berlin ; New York}},
+  title = {Conjugate Duality in Convex Optimization},
+  isbn = {978-3-642-04900-2},
+  pagetotal = {164},
+  number = {637},
+  series = {Lecture Notes in Economics and Mathematical Systems},
+  publisher = {{Springer}},
+  date = {2010},
+  keywords = {Convex functions,Duality theory (Mathematics),Mathematical optimization},
+  author = {Boţ, Radu Ioan},
+  file = {/home/sole/Zotero/storage/UD6ZNAUU/Boţ - 2010 - Conjugate duality in convex optimization.pdf},
+  note = {OCLC: ocn647845796}
+}
+
+@book{ConvexAnalysisMonotone2016,
+  langid = {english},
+  location = {{New York, NY}},
+  title = {Convex Analysis and Monotone Operator Theory in {{Hilbert}} Spaces},
+  isbn = {978-3-319-48310-8},
+  publisher = {{Springer Science+Business Media}},
+  date = {2016},
+  file = {/home/sole/Zotero/storage/7H5FEX8N/2016 - Convex analysis and monotone operator theory in Hi.pdf}
+}
+
+@book{mordukhovichEasyPathConvex2014,
+  langid = {english},
+  location = {{San Rafael, Calif.}},
+  title = {An Easy Path to Convex Analysis and Applications},
+  isbn = {978-1-62705-237-5 978-1-62705-238-2},
+  pagetotal = {202},
+  number = {14},
+  series = {Synthesis Lectures on Mathematics and Statistics},
+  publisher = {{Morgan \& Claypool}},
+  date = {2014},
+  author = {Mordukhovich, Boris S. and Nam, Nguyen Mau},
+  file = {/home/sole/Zotero/storage/HISVKFVH/Mordukhovich and Nam - 2014 - An easy path to convex analysis and applications.pdf}
+}
+
+@article{selesnickSparseRegularizationConvex2017,
+  langid = {english},
+  title = {Sparse {{Regularization}} via {{Convex Analysis}}},
+  volume = {65},
+  issn = {1053-587X, 1941-0476},
+  url = {http://ieeexplore.ieee.org/document/7938377/},
+  doi = {10.1109/TSP.2017.2711501},
+  abstract = {Sparse approximate solutions to linear equations are classically obtained via L1 norm regularized least squares, but this method often underestimates the true solution. As an alternative to the L1 norm, this paper proposes a class of nonconvex penalty functions that maintain the convexity of the least squares cost function to be minimized, and avoids the systematic underestimation characteristic of L1 norm regularization. The proposed penalty function is a multivariate generalization of the minimax-concave (MC) penalty. It is deﬁned in terms of a new multivariate generalization of the Huber function, which in turn is deﬁned via inﬁmal convolution. The proposed sparseregularized least squares cost function can be minimized by proximal algorithms comprising simple computations.},
+  number = {17},
+  journaltitle = {IEEE Transactions on Signal Processing},
+  urldate = {2019-04-15},
+  date = {2017-09-01},
+  pages = {4481-4494},
+  author = {Selesnick, Ivan},
+  file = {/home/sole/Zotero/storage/5PH77JH4/Selesnick - 2017 - Sparse Regularization via Convex Analysis.pdf}
+}
+
+@article{bauschkeWHATFenchelConjugate,
+  langid = {english},
+  title = {{{WHAT IS}} a {{Fenchel}} Conjugate?},
+  pages = {3},
+  author = {Bauschke, Heinz H and Lucet, Yves},
+  file = {/home/sole/Zotero/storage/3N9G8UTX/Bauschke and Lucet - WHAT IS a Fenchel conjugate.pdf}
+}
+
+@article{hamedaniPrimalDualAlgorithmGeneral2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1803.01401},
+  primaryClass = {math},
+  title = {A {{Primal}}-{{Dual Algorithm}} for {{General Convex}}-{{Concave Saddle Point Problems}}},
+  url = {http://arxiv.org/abs/1803.01401},
+  abstract = {In this paper we propose a primal-dual algorithm with a novel momentum term using the partial gradients of the coupling function that can be viewed as a generalization of the method proposed by Chambolle and Pock in 2016 to solve saddle point problems defined by a convex-concave function \$\textbackslash{}mathcal\{L\}(x,y)=f(x)+\textbackslash{}Phi(x,y)-h(y)\$ with a general coupling term \$\textbackslash{}Phi(x,y)\$ that is \textbackslash{}emph\{not\} assumed to be bilinear. Given a saddle point \$(x\^*,y\^*)\$, assuming \$\textbackslash{}nabla\_x\textbackslash{}Phi(\textbackslash{}cdot,y)\$ is Lipschitz in \$x\$ for any fixed \$y\$, and \$\textbackslash{}nabla\_y\textbackslash{}Phi(\textbackslash{}cdot,\textbackslash{}cdot)\$ is Lipschitz, we derive error bounds in terms of \$\textbackslash{}mathcal\{L\}(\textbackslash{}bar\{x\}\_k,y\^*)-\textbackslash{}mathcal\{L\}(x\^*,\textbackslash{}bar\{y\}\_k)\$ for the ergodic sequence \$\textbackslash\{\textbackslash{}bar\{x\}\_k,\textbackslash{}bar\{y\}\_k\textbackslash\}\$; in particular, we show \$\textbackslash{}mathcal\{O\}(1/k)\$ rate when the problem is merely convex in \$x\$. Furthermore, assuming \$\textbackslash{}Phi(x,\textbackslash{}cdot)\$ is linear in \$y\$ for each fixed \$x\$ and \$f\$ is strongly convex, we obtain the ergodic convergence rate of \$\textbackslash{}mathcal\{O\}(1/k\^2)\$ -- we are not aware of another single-loop method in the related literature achieving the same rate when \$\textbackslash{}Phi\$ is not bilinear. We tested our method for solving kernel matrix learning problem, and compare it against the Mirror-prox algorithm and interior point methods.},
+  urldate = {2019-04-16},
+  date = {2018-03-04},
+  keywords = {Mathematics - Optimization and Control},
+  author = {Hamedani, Erfan Yazdandoost and Aybat, Necdet Serhat},
+  file = {/home/sole/Zotero/storage/8XCTK5RE/Hamedani and Aybat - 2018 - A Primal-Dual Algorithm for General Convex-Concave.pdf;/home/sole/Zotero/storage/G4D9SYH6/1803.html},
+  annotation = {Comment: Typos are corrected; new references, results and important remarks are added in this version}
+}
+
+@article{zhuAdaptiveStochasticPrimalDual2015a,
+  title = {Adaptive {{Stochastic Primal}}-{{Dual Coordinate Descent}} for {{Separable Saddle Point Problems}}},
+  abstract = {We consider a generic convex-concave saddle point problem with separable structure, a form that covers a wide-ranged machine learning applications. Under this problem structure, we follow the framework of primal-dual updates for saddle point problems, and incorporate stochastic block coordinate descent with adaptive stepsize into this framework. We theoretically show that our proposal of adaptive stepsize potentially achieves a sharper linear convergence rate compared with the existing methods. Additionally, since we can select "mini-batch" of block coordinates to update, our method is also amenable to parallel processing for large-scale data. We apply the proposed method to regularized empirical risk minimization and show that it performs comparably or, more often, better than state-of-the-art methods on both synthetic and real-world data sets.},
+  date = {2015-06-12},
+  author = {Zhu, Zhanxing and J. Storkey, Amos}
+}
+
+@article{zhuAdaptiveStochasticPrimalDual2015,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1506.04093},
+  primaryClass = {cs, stat},
+  title = {Adaptive {{Stochastic Primal}}-{{Dual Coordinate Descent}} for {{Separable Saddle Point Problems}}},
+  url = {http://arxiv.org/abs/1506.04093},
+  abstract = {We consider a generic convex-concave saddle point problem with separable structure, a form that covers a wide-ranged machine learning applications. Under this problem structure, we follow the framework of primal-dual updates for saddle point problems, and incorporate stochastic block coordinate descent with adaptive stepsize into this framework. We theoretically show that our proposal of adaptive stepsize potentially achieves a sharper linear convergence rate compared with the existing methods. Additionally, since we can select "mini-batch" of block coordinates to update, our method is also amenable to parallel processing for large-scale data. We apply the proposed method to regularized empirical risk minimization and show that it performs comparably or, more often, better than state-of-the-art methods on both synthetic and real-world data sets.},
+  urldate = {2019-04-16},
+  date = {2015-06-12},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  author = {Zhu, Zhanxing and Storkey, Amos J.},
+  file = {/home/sole/Zotero/storage/C3LKLACA/Zhu and Storkey - 2015 - Adaptive Stochastic Primal-Dual Coordinate Descent.pdf;/home/sole/Zotero/storage/YY4UAWUB/1506.html},
+  annotation = {Comment: Accepted by ECML/PKDD2015}
+}
+
+@article{carbonettoInteriorpointStochasticApproximation,
+  langid = {english},
+  title = {An Interior-Point Stochastic Approximation Method and an {{L1}}-Regularized Delta Rule},
+  abstract = {The stochastic approximation method is behind the solution to many important, actively-studied problems in machine learning. Despite its farreaching application, there is almost no work on applying stochastic approximation to learning problems with general constraints. The reason for this, we hypothesize, is that no robust, widely-applicable stochastic approximation method exists for handling such problems. We propose that interior-point methods are a natural solution. We establish the stability of a stochastic interior-point approximation method both analytically and empirically, and demonstrate its utility by deriving an on-line learning algorithm that also performs feature selection via L1 regularization.},
+  pages = {10},
+  author = {Carbonetto, Peter and Schmidt, Mark and de Freitas, Nando},
+  options = {useprefix=true},
+  file = {/home/sole/Zotero/storage/PBY5EPE9/Carbonetto et al. - An interior-point stochastic approximation method .pdf}
+}
+
+@article{nesterovSmoothMinimizationNonsmooth2005,
+  langid = {english},
+  title = {Smooth Minimization of Non-Smooth Functions},
+  volume = {103},
+  issn = {0025-5610, 1436-4646},
+  url = {http://link.springer.com/10.1007/s10107-004-0552-5},
+  doi = {10.1007/s10107-004-0552-5},
+  number = {1},
+  journaltitle = {Mathematical Programming},
+  urldate = {2019-04-04},
+  date = {2005-05},
+  pages = {127-152},
+  author = {Nesterov, Yu.},
+  file = {/home/sole/Zotero/storage/4ZLN295I/nesterov2004.pdf;/home/sole/Zotero/storage/Y4SASYBR/Nesterov - 2005 - Smooth minimization of non-smooth functions.pdf}
+}
+
+@article{schaferSpernerLemmaDifferential,
+  langid = {english},
+  title = {From {{Sperner}}'s {{Lemma}} to {{Differential Equations}} in {{Banach Spaces}} : {{An Introduction}} to {{Fixed Point Theorems}} and Their {{Applications}}},
+  pages = {150},
+  author = {Schäfer, Uwe},
+  file = {/home/sole/Zotero/storage/73GFGL4W/Schäfer - From Sperner's Lemma to Differential Equations in .pdf}
+}
+
+@article{bacakProximalMappingsYoung2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1709.04700},
+  primaryClass = {math},
+  title = {On Proximal Mappings with {{Young}} Functions in Uniformly Convex {{Banach}} Spaces},
+  url = {http://arxiv.org/abs/1709.04700},
+  abstract = {It is well known in convex analysis that proximal mappings on Hilbert spaces are \$1\$-Lipschitz. In the present paper we show that proximal mappings on uniformly convex Banach spaces are uniformly continuous on bounded sets. Moreover, we introduce a new general proximal mapping whose regularization term is given as a composition of a Young function and the norm, and formulate our results at this level of generality. It is our aim to obtain the corresponding modulus of uniform continuity explicitly in terms of a modulus of uniform convexity of the norm and of moduli witnessing properties of the Young function. We also derive several quantitative results on uniform convexity, which may be of interest on their own.},
+  urldate = {2019-04-16},
+  date = {2017-09-14},
+  keywords = {Mathematics - Optimization and Control,46T20 (Primary); 46B20 (Secondary),Mathematics - Functional Analysis},
+  author = {Bacak, Miroslav and Kohlenbach, Ulrich},
+  file = {/home/sole/Zotero/storage/Y7EBKSTY/Bacak and Kohlenbach - 2017 - On proximal mappings with Young functions in unifo.pdf;/home/sole/Zotero/storage/JBYZGPSQ/1709.html},
+  annotation = {Comment: Accepted in J. Convex Anal}
+}
+
+@article{chengImprovedTrustRegion2013,
+  title = {Improved {{Trust Region Based MPS Method}} for {{High}}-{{Dimensional Expensive Black}}-{{Box Problems}}},
+  url = {http://dx.doi.org/10.1115/DETC2013-12665},
+  doi = {10.1115/DETC2013-12665},
+  abstract = {Mode Pursuing Sampling (MPS) was developed as a global optimization algorithm for optimization problems involving expensive black box functions. MPS has been found to be effective and efficient for problems of low dimensionality, i.e., the number of design variables is less than ten. A previous conference publication integrated the concept of trust regions into the MPS framework to create a new algorithm, TRMPS, which dramatically improved performance and efficiency for high dimensional problems. However, although TRMPS performed better than MPS, it was unproven against other established algorithms such as GA. This paper introduces an improved algorithm, TRMPS2, which incorporates guided sampling and low function value criterion to further improve algorithm performance for high dimensional problems. TRMPS2 is benchmarked against MPS and GA using a suite of test problems. The results show that TRMPS2 performs better than MPS and GA on average for high dimensional, expensive, and black box (HEB) problems.},
+  urldate = {2019-04-16},
+  date = {2013-08-04},
+  pages = {V03BT03A013},
+  author = {Cheng, George H. and Younis, Adel and Hajikolaei, Kambiz Haji and Wang, G. Gary}
+}
+
+@article{belmegaOnlineConvexOptimization2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1804.04529},
+  primaryClass = {cs, math, stat},
+  title = {Online Convex Optimization and No-Regret Learning: {{Algorithms}}, Guarantees and Applications},
+  url = {http://arxiv.org/abs/1804.04529},
+  shorttitle = {Online Convex Optimization and No-Regret Learning},
+  abstract = {Spurred by the enthusiasm surrounding the "Big Data" paradigm, the mathematical and algorithmic tools of online optimization have found widespread use in problems where the trade-off between data exploration and exploitation plays a predominant role. This trade-off is of particular importance to several branches and applications of signal processing, such as data mining, statistical inference, multimedia indexing and wireless communications (to name but a few). With this in mind, the aim of this tutorial paper is to provide a gentle introduction to online optimization and learning algorithms that are asymptotically optimal in hindsight - i.e., they approach the performance of a virtual algorithm with unlimited computational power and full knowledge of the future, a property known as no-regret. Particular attention is devoted to identifying the algorithms' theoretical performance guarantees and to establish links with classic optimization paradigms (both static and stochastic). To allow a better understanding of this toolbox, we provide several examples throughout the tutorial ranging from metric learning to wireless resource allocation problems.},
+  urldate = {2019-04-16},
+  date = {2018-04-12},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning,Computer Science - Information Theory,Primary 68Q32; 90C90; secondary 68T05; 91A26; 94A12},
+  author = {Belmega, E. Veronica and Mertikopoulos, Panayotis and Negrel, Romain and Sanguinetti, Luca},
+  file = {/home/sole/Zotero/storage/MZTLR8UJ/Belmega et al. - 2018 - Online convex optimization and no-regret learning.pdf;/home/sole/Zotero/storage/U2VPMUH2/1804.html},
+  annotation = {Comment: 34 pages, 15 figures}
+}
+
+@article{bubeckIntroductionOnlineOptimization,
+  langid = {english},
+  title = {Introduction to {{Online Optimization}}},
+  pages = {86},
+  author = {Bubeck, Sebastien},
+  file = {/home/sole/Zotero/storage/47BUAD9T/Bubeck - Introduction to Online Optimization.pdf}
+}
+
+@book{hazanIntroductionOnlineConvex2017,
+  langid = {english},
+  title = {Introduction to Online Convex Optimization},
+  isbn = {978-1-68083-170-2},
+  date = {2017},
+  author = {Hazan, Elad},
+  file = {/home/sole/Zotero/storage/38M5AHMF/Hazan - 2017 - Introduction to online convex optimization.pdf},
+  note = {OCLC: 995130886}
+}
+
+@article{zhaoStochasticOptimizationImportance2014,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1401.2753},
+  primaryClass = {cs, stat},
+  title = {Stochastic {{Optimization}} with {{Importance Sampling}}},
+  url = {http://arxiv.org/abs/1401.2753},
+  abstract = {Uniform sampling of training data has been commonly used in traditional stochastic optimization algorithms such as Proximal Stochastic Gradient Descent (prox-SGD) and Proximal Stochastic Dual Coordinate Ascent (prox-SDCA). Although uniform sampling can guarantee that the sampled stochastic quantity is an unbiased estimate of the corresponding true quantity, the resulting estimator may have a rather high variance, which negatively affects the convergence of the underlying optimization procedure. In this paper we study stochastic optimization with importance sampling, which improves the convergence rate by reducing the stochastic variance. Specifically, we study prox-SGD (actually, stochastic mirror descent) with importance sampling and prox-SDCA with importance sampling. For prox-SGD, instead of adopting uniform sampling throughout the training process, the proposed algorithm employs importance sampling to minimize the variance of the stochastic gradient. For prox-SDCA, the proposed importance sampling scheme aims to achieve higher expected dual value at each dual coordinate ascent step. We provide extensive theoretical analysis to show that the convergence rates with the proposed importance sampling methods can be significantly improved under suitable conditions both for prox-SGD and for prox-SDCA. Experiments are provided to verify the theoretical analysis.},
+  urldate = {2019-04-16},
+  date = {2014-01-13},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  author = {Zhao, Peilin and Zhang, Tong},
+  file = {/home/sole/Zotero/storage/SUS9NFFU/Zhao and Zhang - 2014 - Stochastic Optimization with Importance Sampling.pdf;/home/sole/Zotero/storage/M6LGQJ7V/1401.html},
+  annotation = {Comment: 29 pages}
+}
+
+@article{salehiStochasticOptimizationBandit2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1708.02544},
+  primaryClass = {cs, math, stat},
+  title = {Stochastic {{Optimization}} with {{Bandit Sampling}}},
+  url = {http://arxiv.org/abs/1708.02544},
+  abstract = {Many stochastic optimization algorithms work by estimating the gradient of the cost function on the fly by sampling datapoints uniformly at random from a training set. However, the estimator might have a large variance, which inadvertently slows down the convergence rate of the algorithms. One way to reduce this variance is to sample the datapoints from a carefully selected non-uniform distribution. In this work, we propose a novel non-uniform sampling approach that uses the multi-armed bandit framework. Theoretically, we show that our algorithm asymptotically approximates the optimal variance within a factor of 3. Empirically, we show that using this datapoint-selection technique results in a significant reduction in the convergence time and variance of several stochastic optimization algorithms such as SGD, SVRG and SAGA. This approach for sampling datapoints is general, and can be used in conjunction with any algorithm that uses an unbiased gradient estimation -- we expect it to have broad applicability beyond the specific examples explored in this work.},
+  urldate = {2019-04-16},
+  date = {2017-08-08},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning,Computer Science - Artificial Intelligence},
+  author = {Salehi, Farnood and Celis, L. Elisa and Thiran, Patrick},
+  file = {/home/sole/Zotero/storage/4HWS9K55/Salehi et al. - 2017 - Stochastic Optimization with Bandit Sampling.pdf;/home/sole/Zotero/storage/SUCPY4WE/1708.html}
+}
+
+@incollection{stichSafeAdaptiveImportance2017,
+  title = {Safe {{Adaptive Importance Sampling}}},
+  url = {http://papers.nips.cc/paper/7025-safe-adaptive-importance-sampling.pdf},
+  booktitle = {Advances in {{Neural Information Processing Systems}} 30},
+  publisher = {{Curran Associates, Inc.}},
+  urldate = {2019-04-16},
+  date = {2017},
+  pages = {4381--4391},
+  author = {Stich, Sebastian U and Raj, Anant and Jaggi, Martin},
+  editor = {Guyon, I. and Luxburg, U. V. and Bengio, S. and Wallach, H. and Fergus, R. and Vishwanathan, S. and Garnett, R.},
+  file = {/home/sole/Zotero/storage/DEBHJMK5/Stich et al. - 2017 - Safe Adaptive Importance Sampling.pdf;/home/sole/Zotero/storage/Z4XJHICX/7025-safe-adaptive-importance-sampling.html}
+}
+
+@book{vershyninHighDimensionalProbabilityIntroduction2018,
+  langid = {english},
+  location = {{Cambridge}},
+  title = {High-{{Dimensional Probability}}: {{An Introduction}} with {{Applications}} in {{Data Science}}},
+  edition = {1 edition},
+  isbn = {978-1-108-41519-4},
+  shorttitle = {High-{{Dimensional Probability}}},
+  abstract = {High-dimensional probability offers insight into the behavior of random vectors, random matrices, random subspaces, and objects used to quantify uncertainty in high dimensions. Drawing on ideas from probability, analysis, and geometry, it lends itself to applications in mathematics, statistics, theoretical computer science, signal processing, optimization, and more. It is the first to integrate theory, key tools, and modern applications of high-dimensional probability. Concentration inequalities form the core, and it covers both classical results such as Hoeffding's and Chernoff's inequalities and modern developments such as the matrix Bernstein's inequality. It then introduces the powerful methods based on stochastic processes, including such tools as Slepian's, Sudakov's, and Dudley's inequalities, as well as generic chaining and bounds based on VC dimension. A broad range of illustrations is embedded throughout, including classical and modern results for covariance estimation, clustering, networks, semidefinite programming, coding, dimension reduction, matrix completion, machine learning, compressed sensing, and sparse regression.},
+  pagetotal = {296},
+  publisher = {{Cambridge University Press}},
+  date = {2018-09-27},
+  author = {Vershynin, Roman}
+}
+
+@book{pearlCausalityModelsReasoning2009,
+  langid = {english},
+  location = {{Cambridge, U.K. ; New York}},
+  title = {Causality: {{Models}}, {{Reasoning}} and {{Inference}}},
+  edition = {2nd edition},
+  isbn = {978-0-521-89560-6},
+  shorttitle = {Causality},
+  abstract = {Written by one of the preeminent researchers in the field, this book provides a comprehensive exposition of modern analysis of causation. It shows how causality has grown from a nebulous concept into a mathematical theory with significant applications in the fields of statistics, artificial intelligence, economics, philosophy, cognitive science, and the health and social sciences. Judea Pearl presents and unifies the probabilistic, manipulative, counterfactual, and structural approaches to causation and devises simple mathematical tools for studying the relationships between causal connections and statistical associations. The book will open the way for including causal analysis in the standard curricula of statistics, artificial intelligence, business, epidemiology, social sciences, and economics. Students in these fields will find natural models, simple inferential procedures, and precise mathematical definitions of causal concepts that traditional texts have evaded or made unduly complicated. The first edition of Causality has led to a paradigmatic change in the way that causality is treated in statistics, philosophy, computer science, social science, and economics. Cited in more than 5,000 scientific publications, it continues to liberate scientists from the traditional molds of statistical thinking. In this revised edition, Judea Pearl elucidates thorny issues, answers readers' questions, and offers a panoramic view of recent advances in this field of research. Causality will be of interests to students and professionals in a wide variety of fields. Anyone who wishes to elucidate meaningful relationships from data, predict effects of actions and policies, assess explanations of reported events, or form theories of causal understanding and causal speech will find this book stimulating and invaluable.},
+  pagetotal = {484},
+  publisher = {{Cambridge University Press}},
+  date = {2009-09-14},
+  author = {Pearl, Judea}
+}
+
+@article{bauschkeWHATFenchelConjugatea,
+  langid = {english},
+  title = {{{WHAT IS}} a {{Fenchel}} Conjugate?},
+  pages = {3},
+  author = {Bauschke, Heinz H and Lucet, Yves},
+  file = {/home/sole/Zotero/storage/8AV4VIPW/Bauschke and Lucet - WHAT IS a Fenchel conjugate.pdf}
+}
+
+@article{attouchRATECONVERGENCENESTEROV,
+  langid = {english},
+  title = {{{THE RATE OF CONVERGENCE OF NESTEROV}}’{{S ACCELERATED FORWARD}}-{{BACKWARD METHOD IS ACTUALLY}} o(K−2)},
+  abstract = {The forward-backward algorithm is a powerful tool for solving optimization problems with a additively separable and smooth + nonsmooth structure. In the convex setting, a simple but ingenious acceleration scheme developed by Nesterov has been proved useful to improve the theoretical rate of convergence for the function values from the standard O(k−1) down to O(k−2). In this short paper, we prove that the rate of convergence of a slight variant of Nesterov’s accelerated forward-backward method, which produces convergent sequences, is actually o(k−2), rather than O(k−2). Our arguments rely on the connection between this algorithm and a second-order diﬀerential inclusion with vanishing damping.},
+  pages = {7},
+  author = {Attouch, Hedy and Peypouquet, Juan},
+  file = {/home/sole/Zotero/storage/IVTKJECJ/Attouch and Peypouquet - THE RATE OF CONVERGENCE OF NESTEROV’S ACCELERATED .pdf}
+}
+
+@article{kakadeDualityStrongConvexity,
+  langid = {english},
+  title = {On the Duality of Strong Convexity and Strong Smoothness: {{Learning}} Applications and Matrix Regularization},
+  abstract = {We show that a function is strongly convex with respect to some norm if and only if its conjugate function is strongly smooth with respect to the dual norm. This result has already been found to be a key component in deriving and analyzing several learning algorithms. Utilizing this duality, we isolate a single inequality which seamlessly implies both generalization bounds and online regret bounds; and we show how to construct strongly convex functions over matrices based on strongly convex functions over vectors. The newly constructed functions (over matrices) inherit the strong convexity properties of the underlying vector functions. We demonstrate the potential of this framework by analyzing several learning algorithms including group Lasso, kernel learning, and online control with adversarial quadratic costs.},
+  pages = {10},
+  author = {Kakade, Sham M and Shalev-Shwartz, Shai and Tewari, Ambuj},
+  file = {/home/sole/Zotero/storage/M9LWFL7A/Kakade et al. - On the duality of strong convexity and strong smoo.pdf}
+}
+
+@article{nesterovNewPerspectivesIncreasing,
+  langid = {english},
+  title = {New Perspectives for Increasing Efficiency of Optimization Schemes},
+  pages = {10},
+  author = {Nesterov, Yurii},
+  file = {/home/sole/Zotero/storage/RX32X5NA/Nesterov - New perspectives for increasing efficiency of opti.pdf}
+}
+
+@article{scieurIntegrationMethodsAccelerated,
+  langid = {english},
+  title = {Integration {{Methods}} and {{Accelerated Optimization Algorithms}}},
+  abstract = {We show that accelerated optimization methods can be seen as particular instances of multi-step integration schemes from numerical analysis, applied to the gradient ﬂow equation. In comparison with recent advances in this vein, the differential equation considered here is the basic gradient ﬂow and we show that multi-step schemes allow integration of this differential equation using larger step sizes, thus intuitively explaining acceleration results.},
+  pages = {23},
+  author = {Scieur, Damien and Roulet, Vincent and Bach, Francis},
+  file = {/home/sole/Zotero/storage/DXVXD3D2/Scieur et al. - Integration Methods and Accelerated Optimization A.pdf}
+}
+
+@inproceedings{bengioCurriculumLearning2009a,
+  location = {{New York, NY, USA}},
+  title = {Curriculum {{Learning}}},
+  isbn = {978-1-60558-516-1},
+  url = {http://doi.acm.org/10.1145/1553374.1553380},
+  doi = {10.1145/1553374.1553380},
+  abstract = {Humans and animals learn much better when the examples are not randomly presented but organized in a meaningful order which illustrates gradually more concepts, and gradually more complex ones. Here, we formalize such training strategies in the context of machine learning, and call them "curriculum learning". In the context of recent research studying the difficulty of training in the presence of non-convex training criteria (for deep deterministic and stochastic neural networks), we explore curriculum learning in various set-ups. The experiments show that significant improvements in generalization can be achieved. We hypothesize that curriculum learning has both an effect on the speed of convergence of the training process to a minimum and, in the case of non-convex criteria, on the quality of the local minima obtained: curriculum learning can be seen as a particular form of continuation method (a general strategy for global optimization of non-convex functions).},
+  booktitle = {Proceedings of the 26th {{Annual International Conference}} on {{Machine Learning}}},
+  series = {{{ICML}} '09},
+  publisher = {{ACM}},
+  urldate = {2019-03-28},
+  date = {2009},
+  pages = {41--48},
+  author = {Bengio, Yoshua and Louradour, Jérôme and Collobert, Ronan and Weston, Jason},
+  file = {/home/sole/Zotero/storage/5IFWZT2K/Bengio et al. - 2009 - Curriculum Learning.pdf},
+  venue = {Montreal, Quebec, Canada}
+}
+
+@article{parikhProximalAlgorithms2014,
+  langid = {english},
+  title = {Proximal {{Algorithms}}},
+  volume = {1},
+  issn = {2167-3888, 2167-3918},
+  url = {http://www.nowpublishers.com/articles/foundations-and-trends-in-optimization/OPT-003},
+  doi = {10.1561/2400000003},
+  number = {3},
+  journaltitle = {Foundations and Trends® in Optimization},
+  urldate = {2019-03-27},
+  date = {2014},
+  pages = {127-239},
+  author = {Parikh, Neal},
+  file = {/home/sole/Zotero/storage/E37R4QNN/Parikh - 2014 - Proximal Algorithms.pdf;/home/sole/Zotero/storage/XRPRXRYV/parikh2014.pdf}
+}
+
+@article{cieliebakNonlinearFunctionalAnalysis,
+  langid = {english},
+  title = {Nonlinear {{Functional Analysis}}},
+  pages = {264},
+  author = {Cieliebak, K},
+  file = {/home/sole/Zotero/storage/EWZCV3LE/Cieliebak - Nonlinear Functional Analysis.pdf}
+}
+
+@article{abramovichColleaguesCollaboratorsFriends,
+  langid = {english},
+  title = {. . . Colleagues, Collaborators, Friends.},
+  pages = {717},
+  author = {Abramovich, Yuri},
+  file = {/home/sole/Zotero/storage/CQ7DIRS9/Abramovich - . . . colleagues, collaborators, friends..pdf}
+}
+
+@book{nesterovLecturesConvexOptimization2018,
+  langid = {english},
+  location = {{Cham}},
+  title = {Lectures on {{Convex Optimization}}},
+  volume = {137},
+  isbn = {978-3-319-91577-7 978-3-319-91578-4},
+  url = {http://link.springer.com/10.1007/978-3-319-91578-4},
+  series = {Springer {{Optimization}} and {{Its Applications}}},
+  publisher = {{Springer International Publishing}},
+  urldate = {2019-03-27},
+  date = {2018},
+  author = {Nesterov, Yurii},
+  file = {/home/sole/Zotero/storage/2YULHJW2/Nesterov - 2018 - Lectures on Convex Optimization.pdf},
+  doi = {10.1007/978-3-319-91578-4}
+}
+
+@article{liuStochasticSecondorderMethods2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1809.09853},
+  primaryClass = {cs, math, stat},
+  langid = {english},
+  title = {Stochastic {{Second}}-Order {{Methods}} for {{Non}}-Convex {{Optimization}} with {{Inexact Hessian}} and {{Gradient}}},
+  url = {http://arxiv.org/abs/1809.09853},
+  abstract = {Trust region and cubic regularization methods have demonstrated good performance in small scale non-convex optimization, showing the ability to escape from saddle points. Each iteration of these methods involves computation of gradient, Hessian and function value in order to obtain search direction and adjust the radius or cubic regularization parameter. However, exactly computing those quantities are too expensive in large-scale problems such as training deep networks. In this paper, we study a family of stochastic trust region and cubic regularization methods when gradient, Hessian and function values are computed inexactly, and show the iteration complexity to achieve ǫ-approximate second-order optimality is in the same order with previous work for which gradient and function values are computed exactly. The mild conditions on inexactness can be achieved in ﬁnite-sum minimization using random sampling. We show the algorithm performs well on training convolutional neural networks compared with previous second-order methods.},
+  urldate = {2019-03-27},
+  date = {2018-09-26},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Liu, Liu and Liu, Xuanqing and Hsieh, Cho-Jui and Tao, Dacheng},
+  file = {/home/sole/Zotero/storage/NSH7KS8Y/Liu et al. - 2018 - Stochastic Second-order Methods for Non-convex Opt.pdf}
+}
+
+@book{calafioreOptimizationModels2014,
+  langid = {english},
+  location = {{Cambridge}},
+  title = {Optimization Models},
+  isbn = {978-1-107-05087-7},
+  abstract = {Emphasizing practical understanding over the technicalities of specific algorithms, this elegant textbook is an accessible introduction to the field of optimization, focusing on powerful and reliable convex optimization techniques. Students and practitioners will learn how to recognize, simplify, model and solve optimization problems - and apply these principles to their own projects. A clear and self-contained introduction to linear algebra demonstrates core mathematical concepts in a way that is easy to follow, and helps students to understand their practical relevance. Requiring only a basic understanding of geometry, calculus, probability and statistics, and striking a careful balance between accessibility and rigor, it enables students to quickly understand the material, without being overwhelmed by complex mathematics. Accompanied by numerous end-of-chapter problems, an online solutions manual for instructors, and relevant examples from diverse fields including engineering, data science, economics, finance, and management, this is the perfect introduction to optimization for undergraduate and graduate students. --},
+  pagetotal = {631},
+  publisher = {{Cambridge University Press}},
+  date = {2014},
+  keywords = {Convex functions,Mathematical optimization,Convex sets},
+  author = {Calafiore, Giuseppe and El Ghaoui, Laurent},
+  file = {/home/sole/Zotero/storage/69FU579U/Calafiore and El Ghaoui - 2014 - Optimization models.pdf},
+  note = {OCLC: ocn881038143}
+}
+
+@book{ElementaryFixedPoint2018,
+  langid = {english},
+  location = {{New York, NY}},
+  title = {Elementary Fixed Point Theorems},
+  isbn = {9789811331572},
+  publisher = {{Springer Berlin Heidelberg}},
+  date = {2018},
+  file = {/home/sole/Zotero/storage/RN8BRDDM/2018 - Elementary fixed point theorems.pdf}
+}
+
+@book{borderFixedPointTheorems1985,
+  langid = {english},
+  location = {{Cambridge [Cambridgeshire] ; New York}},
+  title = {Fixed Point Theorems with Applications to Economics and Game Theory},
+  isbn = {978-0-521-26564-5},
+  pagetotal = {129},
+  publisher = {{Cambridge University Press}},
+  date = {1985},
+  keywords = {Economics; Mathematical,Fixed point theory,Game theory},
+  author = {Border, Kim C.},
+  file = {/home/sole/Zotero/storage/LGTXYCM4/Border - 1985 - Fixed point theorems with applications to economic.pdf}
+}
+
+@article{liuStochasticSecondorderMethods2018a,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1809.09853},
+  primaryClass = {cs, math, stat},
+  title = {Stochastic {{Second}}-Order {{Methods}} for {{Non}}-Convex {{Optimization}} with {{Inexact Hessian}} and {{Gradient}}},
+  url = {http://arxiv.org/abs/1809.09853},
+  abstract = {Trust region and cubic regularization methods have demonstrated good performance in small scale non-convex optimization, showing the ability to escape from saddle points. Each iteration of these methods involves computation of gradient, Hessian and function value in order to obtain the search direction and adjust the radius or cubic regularization parameter. However, exactly computing those quantities are too expensive in large-scale problems such as training deep networks. In this paper, we study a family of stochastic trust region and cubic regularization methods when gradient, Hessian and function values are computed inexactly, and show the iteration complexity to achieve \$\textbackslash{}epsilon\$-approximate second-order optimality is in the same order with previous work for which gradient and function values are computed exactly. The mild conditions on inexactness can be achieved in finite-sum minimization using random sampling. We show the algorithm performs well on training convolutional neural networks compared with previous second-order methods.},
+  urldate = {2019-03-28},
+  date = {2018-09-26},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Liu, Liu and Liu, Xuanqing and Hsieh, Cho-Jui and Tao, Dacheng},
+  file = {/home/sole/Zotero/storage/JHMZZ2DF/Liu et al. - 2018 - Stochastic Second-order Methods for Non-convex Opt.pdf;/home/sole/Zotero/storage/GD89ECV6/1809.html}
+}
+
+@online{ECE236COptimizationMethods,
+  title = {{{ECE236C}} - {{Optimization Methods}} for {{Large}}-{{Scale Systems}} ({{Spring}} 2019)},
+  url = {http://www.seas.ucla.edu/~vandenbe/ee236c.html},
+  urldate = {2019-03-29},
+  file = {/home/sole/Zotero/storage/2EEKDQPI/ellipsoid.pdf;/home/sole/Zotero/storage/3LQ6JGZQ/localization.pdf;/home/sole/Zotero/storage/4HC2INZZ/conic.pdf;/home/sole/Zotero/storage/6MSE5LFQ/ppm.pdf;/home/sole/Zotero/storage/A4CL4CGG/gradient.pdf;/home/sole/Zotero/storage/BAVMYVZG/dualdecomp.pdf;/home/sole/Zotero/storage/CYAPETN6/barriers.pdf;/home/sole/Zotero/storage/GLNNVGZV/pf.pdf;/home/sole/Zotero/storage/H9LSPTWT/conj.pdf;/home/sole/Zotero/storage/HQEBSIPY/pd.pdf;/home/sole/Zotero/storage/KUB5N8JX/symmetric.pdf;/home/sole/Zotero/storage/PIG4X5ZK/smoothing.pdf;/home/sole/Zotero/storage/PQZJZ5V4/fgrad.pdf;/home/sole/Zotero/storage/Q54DPD57/proxop2.pdf;/home/sole/Zotero/storage/Q7QXCBSF/cg.pdf;/home/sole/Zotero/storage/RCMLEMML/proxgrad.pdf;/home/sole/Zotero/storage/TJ7ZAKSN/subgradients.pdf;/home/sole/Zotero/storage/VZEPCZ2B/sgmethod.pdf;/home/sole/Zotero/storage/WR7SSCCA/dr.pdf;/home/sole/Zotero/storage/XN6APXXU/qnewton.pdf;/home/sole/Zotero/storage/XXC3BFSC/accpm.pdf;/home/sole/Zotero/storage/XY4VIIKY/fista.pdf;/home/sole/Zotero/storage/Y7F6UGKX/cp.pdf;/home/sole/Zotero/storage/YW8XFETA/proxop.pdf;/home/sole/Zotero/storage/ZL3BNL9V/dualproxgrad.pdf;/home/sole/Zotero/storage/SIHKGF8E/ee236c.html}
+}
+
+@article{kakadeProvablyCorrectAutomatic2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1809.08530},
+  primaryClass = {cs, math, stat},
+  title = {Provably {{Correct Automatic Subdifferentiation}} for {{Qualified Programs}}},
+  url = {http://arxiv.org/abs/1809.08530},
+  abstract = {The Cheap Gradient Principle (Griewank 2008) --- the computational cost of computing the gradient of a scalar-valued function is nearly the same (often within a factor of \$5\$) as that of simply computing the function itself --- is of central importance in optimization; it allows us to quickly obtain (high dimensional) gradients of scalar loss functions which are subsequently used in black box gradient-based optimization procedures. The current state of affairs is markedly different with regards to computing subderivatives: widely used ML libraries, including TensorFlow and PyTorch, do not correctly compute (generalized) subderivatives even on simple examples. This work considers the question: is there a Cheap Subgradient Principle? Our main result shows that, under certain restrictions on our library of nonsmooth functions (standard in nonlinear programming), provably correct generalized subderivatives can be computed at a computational cost that is within a (dimension-free) factor of \$6\$ of the cost of computing the scalar function itself.},
+  urldate = {2019-03-31},
+  date = {2018-09-23},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Kakade, Sham and Lee, Jason D.},
+  file = {/home/sole/Zotero/storage/QWU6FXXH/Kakade and Lee - 2018 - Provably Correct Automatic Subdifferentiation for .pdf;/home/sole/Zotero/storage/N33YNI8V/1809.html}
+}
+
+@online{BackpropNotJust,
+  title = {Backprop Is Not Just the Chain Rule — {{Graduate Descent}}},
+  url = {https://timvieira.github.io/blog/post/2017/08/18/backprop-is-not-just-the-chain-rule/},
+  urldate = {2019-03-31},
+  file = {/home/sole/Zotero/storage/MMIF4Y9Z/backprop-is-not-just-the-chain-rule.html}
+}
+
+@inproceedings{nesterovRecentAdvancesStructural2010,
+  title = {Recent {{Advances}} in {{Structural Optimization}}},
+  abstract = {In this paper we present the main directions of research in Structural Convex Optimization. In this field, we use additional information on the structure of specific problem instances for accelerating standard Black-Box methods. We show that the proper use of problem structure can provably accelerate these methods by the order of magnitudes. As examples, we consider polynomialtime interior-point methods, smoothing technique, minimization of composite functions and some other approaches. Mathematics Subject Classification (2010). Primary 90C25; Secondary 90C06.},
+  date = {2010},
+  keywords = {Convex optimization,Interior point method,Mathematics Subject Classification},
+  author = {Nesterov, Yurii},
+  file = {/home/sole/Zotero/storage/PILV2EYI/Nesterov - 2010 - Recent Advances in Structural Optimization.pdf}
+}
+
+@online{DsAlgorithmsSubmodular,
+  title = {Ds.Algorithms - {{Submodular}} Functions: Reference Request},
+  url = {https://cstheory.stackexchange.com/questions/7686/submodular-functions-reference-request},
+  shorttitle = {Ds.Algorithms - {{Submodular}} Functions},
+  journaltitle = {Theoretical Computer Science Stack Exchange},
+  urldate = {2019-04-04},
+  file = {/home/sole/Zotero/storage/3JYQ5BW5/submodular-functions-reference-request.html}
+}
+
+@article{clasonPrimaldualExtragradientMethods2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1606.06219},
+  primaryClass = {math},
+  title = {Primal-Dual Extragradient Methods for Nonlinear Nonsmooth {{PDE}}-Constrained Optimization},
+  url = {http://arxiv.org/abs/1606.06219},
+  doi = {10.1137/16M1080859},
+  abstract = {We study the extension of the Chambolle--Pock primal-dual algorithm to nonsmooth optimization problems involving nonlinear operators between function spaces. Local convergence is shown under technical conditions including metric regularity of the corresponding primal-dual optimality conditions. We also show convergence for a Nesterov-type accelerated variant provided one part of the functional is strongly convex. We show the applicability of the accelerated algorithm to examples of inverse problems with \$L\^1\$- and \$L\^\textbackslash{}infty\$-fitting terms as well as of state-constrained optimal control problems, where convergence can be guaranteed after introducing an (arbitrary small, still nonsmooth) Moreau--Yosida regularization. This is verified in numerical examples.},
+  urldate = {2019-04-10},
+  date = {2016-06-20},
+  keywords = {Mathematics - Optimization and Control},
+  author = {Clason, Christian and Valkonen, Tuomo},
+  file = {/home/sole/Zotero/storage/TH44DBHI/Clason and Valkonen - 2016 - Primal-dual extragradient methods for nonlinear no.pdf;/home/sole/Zotero/storage/2RB5NY6L/1606.html}
+}
+
+@article{linStochasticPrimalDualProximal2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1708.05978},
+  primaryClass = {cs, math, stat},
+  title = {Stochastic {{Primal}}-{{Dual Proximal ExtraGradient Descent}} for {{Compositely Regularized Optimization}}},
+  url = {http://arxiv.org/abs/1708.05978},
+  doi = {10.1016/j.neucom.2017.07.066},
+  abstract = {We consider a wide range of regularized stochastic minimization problems with two regularization terms, one of which is composed with a linear function. This optimization model abstracts a number of important applications in artificial intelligence and machine learning, such as fused Lasso, fused logistic regression, and a class of graph-guided regularized minimization. The computational challenges of this model are in two folds. On one hand, the closed-form solution of the proximal mapping associated with the composed regularization term or the expected objective function is not available. On the other hand, the calculation of the full gradient of the expectation in the objective is very expensive when the number of input data samples is considerably large. To address these issues, we propose a stochastic variant of extra-gradient type methods, namely \textbackslash{}textsf\{Stochastic Primal-Dual Proximal ExtraGradient descent (SPDPEG)\}, and analyze its convergence property for both convex and strongly convex objectives. For general convex objectives, the uniformly average iterates generated by \textbackslash{}textsf\{SPDPEG\} converge in expectation with \$O(1/\textbackslash{}sqrt\{t\})\$ rate. While for strongly convex objectives, the uniformly and non-uniformly average iterates generated by \textbackslash{}textsf\{SPDPEG\} converge with \$O(\textbackslash{}log(t)/t)\$ and \$O(1/t)\$ rates, respectively. The order of the rate of the proposed algorithm is known to match the best convergence rate for first-order stochastic algorithms. Experiments on fused logistic regression and graph-guided regularized logistic regression problems show that the proposed algorithm performs very efficiently and consistently outperforms other competing algorithms.},
+  urldate = {2019-04-10},
+  date = {2017-08-20},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Lin, Tianyi and Qiao, Linbo and Zhang, Teng and Feng, Jiashi and Zhang, Bofeng},
+  file = {/home/sole/Zotero/storage/5Q87N4RX/lin2017.pdf;/home/sole/Zotero/storage/7RWHJ593/Lin et al. - 2017 - Stochastic Primal-Dual Proximal ExtraGradient Desc.pdf;/home/sole/Zotero/storage/HN2IGB4C/1708.html}
+}
+
+@article{lauProximalBlockCoordinate2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1803.09082},
+  primaryClass = {cs, math, stat},
+  title = {A {{Proximal Block Coordinate Descent Algorithm}} for {{Deep Neural Network Training}}},
+  url = {http://arxiv.org/abs/1803.09082},
+  abstract = {Training deep neural networks (DNNs) efficiently is a challenge due to the associated highly nonconvex optimization. The backpropagation (backprop) algorithm has long been the most widely used algorithm for gradient computation of parameters of DNNs and is used along with gradient descent-type algorithms for this optimization task. Recent work have shown the efficiency of block coordinate descent (BCD) type methods empirically for training DNNs. In view of this, we propose a novel algorithm based on the BCD method for training DNNs and provide its global convergence results built upon the powerful framework of the Kurdyka-Lojasiewicz (KL) property. Numerical experiments on standard datasets demonstrate its competitive efficiency against standard optimizers with backprop.},
+  urldate = {2019-04-14},
+  date = {2018-03-24},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Lau, Tim Tsz-Kit and Zeng, Jinshan and Wu, Baoyuan and Yao, Yuan},
+  file = {/home/sole/Zotero/storage/F4KI6SA2/Lau et al. - 2018 - A Proximal Block Coordinate Descent Algorithm for .pdf;/home/sole/Zotero/storage/NGWL6CHY/1803.html},
+  annotation = {Comment: The 6th International Conference on Learning Representations (ICLR 2018), Workshop Track}
+}
+
+@thesis{liType2ComplexityTheory2001,
+  location = {{Syracuse, NY, USA}},
+  title = {Type-2 {{Complexity Theory}}},
+  abstract = {The notion of type-2 computability occurs naturally in many practical and theoretical settings in computer science. For examples, machine learning, programing languages, databases enquiry, complexity-theoretic problem reductions, and so on, are immediate applications of type-2 computation. However, there is no satisfactory type-2 complexity theory to characterize the computational cost of these widely ranged applications. Thus, the purpose of this thesis is to give a theoretical framework for analyzing the complexity of type-2 computation. We use the Oracle Turing Machine (OTM) as our standard formalism for type-2 computation. The best way to characterize the computational cost of type-2 computation is to give a robust notion of type-2 complexity classes. In order to do so, we first study the induced topologies determined by type-2 continuous functionals of type (N → N) ×  N   ⇀  N. Then, based on the compact sets in the induced topologies, we define a type-2 almost-everywhere relation   ≤ *2  over type-2 continuous functionals. The type-2 almost-everywhere relation   ≤* 2  provides an analogous notion of asymptotic approach for complexity analysis in type-2. We also specify a clocking scheme for OTMs based on a class of computable functions called Type-2 Time Bounds ( T2TB). With the tools we developed, each type-2 time bound β ∈  T2TB determines a type-2 complexity class C(β). We also define a type-2 big-O notation—O(β)—which would be a useful tool for type-2 algorithm analysis. To justify our notion of type-2 complexity classes, we prove the Union Theorem, the Gap Theorem, the Compression Theorem, and the Speed-up Theorem in type-2 along the lines of classical complexity theory. Most of the theorems we proved are very different from their type-1 counterparts. We thus learn that the structure of type-2 complexity classes is not as sturdy as the structure in type-1; they are very sensitive to the topological constraint. With theses complexity results, we have a reasonable outlook for a general type-2 complexity theory.},
+  institution = {{Syracuse University}},
+  type = {PhD Thesis},
+  date = {2001},
+  author = {Li, Chung-Chih},
+  annotation = {AAI3019100}
+}
+
+@article{vembuLearningPredictCombinatorial2009,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {0912.4473},
+  primaryClass = {cs},
+  title = {Learning to {{Predict Combinatorial Structures}}},
+  url = {http://arxiv.org/abs/0912.4473},
+  abstract = {The major challenge in designing a discriminative learning algorithm for predicting structured data is to address the computational issues arising from the exponential size of the output space. Existing algorithms make different assumptions to ensure efficient, polynomial time estimation of model parameters. For several combinatorial structures, including cycles, partially ordered sets, permutations and other graph classes, these assumptions do not hold. In this thesis, we address the problem of designing learning algorithms for predicting combinatorial structures by introducing two new assumptions: (i) The first assumption is that a particular counting problem can be solved efficiently. The consequence is a generalisation of the classical ridge regression for structured prediction. (ii) The second assumption is that a particular sampling problem can be solved efficiently. The consequence is a new technique for designing and analysing probabilistic structured prediction models. These results can be applied to solve several complex learning problems including but not limited to multi-label classification, multi-category hierarchical classification, and label ranking.},
+  urldate = {2019-04-14},
+  date = {2009-12-22},
+  keywords = {Computer Science - Machine Learning,Computer Science - Artificial Intelligence},
+  author = {Vembu, Shankar},
+  file = {/home/sole/Zotero/storage/GRKH8BYP/Vembu - 2009 - Learning to Predict Combinatorial Structures.pdf;/home/sole/Zotero/storage/ST7RHNZR/0912.html},
+  annotation = {Comment: PhD thesis, Department of Computer Science, University of Bonn (submitted, December 2009)}
+}
+
+@article{garreauMetricLearningTemporal2014,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1409.3136},
+  primaryClass = {cs},
+  title = {Metric {{Learning}} for {{Temporal Sequence Alignment}}},
+  url = {http://arxiv.org/abs/1409.3136},
+  abstract = {In this paper, we propose to learn a Mahalanobis distance to perform alignment of multivariate time series. The learning examples for this task are time series for which the true alignment is known. We cast the alignment problem as a structured prediction task, and propose realistic losses between alignments for which the optimization is tractable. We provide experiments on real data in the audio to audio context, where we show that the learning of a similarity measure leads to improvements in the performance of the alignment task. We also propose to use this metric learning framework to perform feature selection and, from basic audio features, build a combination of these with better performance for the alignment.},
+  urldate = {2019-04-14},
+  date = {2014-09-10},
+  keywords = {Computer Science - Machine Learning},
+  author = {Garreau, Damien and Lajugie, Rémi and Arlot, Sylvain and Bach, Francis},
+  file = {/home/sole/Zotero/storage/2Z5U2TUY/Garreau et al. - 2014 - Metric Learning for Temporal Sequence Alignment.pdf;/home/sole/Zotero/storage/DRYP68TA/1409.html}
+}
+
+@article{nguyenExtragradientMethodOptimization2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1609.08177},
+  primaryClass = {math},
+  title = {Extragradient {{Method}} in {{Optimization}}: {{Convergence}} and {{Complexity}}},
+  url = {http://arxiv.org/abs/1609.08177},
+  shorttitle = {Extragradient {{Method}} in {{Optimization}}},
+  abstract = {We consider the extragradient method to minimize the sum of two functions, the first one being smooth and the second being convex. Under the Kurdyka-Lojasiewicz assumption, we prove that the sequence produced by the extragradient method converges to a critical point of the problem and has finite length. The analysis is extended to the case when both functions are convex. We provide, in this case, a sublinear convergence rate, as for gradient-based methods. Furthermore, we show that the recent small-prox complexity result can be applied to this method. Considering the extragradient method is an occasion to describe an exact line search scheme for proximal decomposition methods. We provide details for the implementation of this scheme for the one norm regularized least squares problem and demonstrate numerical results which suggest that combining nonaccelerated methods with exact line search can be a competitive choice.},
+  urldate = {2019-04-21},
+  date = {2016-09-26},
+  keywords = {Mathematics - Optimization and Control},
+  author = {Nguyen, Trong Phong and Pauwels, Edouard and Richard, Emile and Suter, Bruce W.},
+  file = {/home/sole/Zotero/storage/R4FMS7UK/Nguyen et al. - 2016 - Extragradient Method in Optimization Convergence .pdf;/home/sole/Zotero/storage/I63ZJ2MC/1609.html}
+}
+
+@article{dongModifiedSubgradientExtragradient2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1801.00561},
+  primaryClass = {math},
+  title = {A Modified Subgradient Extragradient Method for Solving the Variational Inequality Problem},
+  url = {http://arxiv.org/abs/1801.00561},
+  abstract = {The subgradient extragradient method for solving the variational inequality (VI) problem, which is introduced by Censor et al. \textbackslash{}cite\{CGR\}, replaces the second projection onto the feasible set of the VI, in the extragradient method, with a subgradient projection onto some constructible half-space. Since the method has been introduced, many authors proposed extensions and modifications with applications to various problems. In this paper, we introduce a modified subgradient extragradient method by improving the stepsize of its second step. Convergence of the proposed method is proved under standard and mild conditions and primary numerical experiments illustrate the performance and advantage of this new subgradient extragradient variant.},
+  urldate = {2019-04-21},
+  date = {2018-01-02},
+  keywords = {Mathematics - Optimization and Control},
+  author = {Dong, Qiao-Li and Jiang, Dan and Gibali, Aviv},
+  file = {/home/sole/Zotero/storage/NGS5CNIC/Dong et al. - 2018 - A modified subgradient extragradient method for so.pdf;/home/sole/Zotero/storage/WWZDBZTN/1801.html}
+}
+
+@article{linStochasticPrimalDualProximal2017a,
+  title = {Stochastic {{Primal}}-{{Dual Proximal ExtraGradient Descent}} for {{Compositely Regularized Optimization}}},
+  volume = {273},
+  doi = {10.1016/j.neucom.2017.07.066},
+  abstract = {We consider a wide range of regularized stochastic minimization problems with two regularization terms, one of which is composed with a linear function. This optimization model abstracts a number of important applications in artificial intelligence and machine learning, such as fused Lasso, fused logistic regression, and a class of graph-guided regularized minimization. The computational challenges of this model are in two folds. On one hand, the closed-form solution of the proximal mapping associated with the composed regularization term or the expected objective function is not available. On the other hand, the calculation of the full gradient of the expectation in the objective is very expensive when the number of input data samples is considerably large. To address these issues, we propose a stochastic variant of extra-gradient type methods, namely Stochastic Primal-Dual Proximal ExtraGradient descent (SPDPEG), and analyze its convergence property for both convex and strongly convex objectives. For general convex objectives, the uniformly average iterates generated by SPDPEG converge in expectation with O(1/t) rate. While for strongly convex objectives, the uniformly and non-uniformly average iterates generated by SPDPEG converge with O(log (t)/. t) and O(1/. t) rates, respectively. The order of the rate of the proposed algorithm is known to match the best convergence rate for first-order stochastic algorithms. Experiments on fused logistic regression and graph-guided regularized logistic regression problems show that the proposed algorithm performs very efficiently and consistently outperforms other competing algorithms.},
+  journaltitle = {Neurocomputing},
+  date = {2017-08-01},
+  author = {Lin, Tianyi and Qiao, Linbo and Zhang, Teng and Feng, Jiashi and Zhang, Bofeng},
+  file = {/home/sole/Zotero/storage/5WW53DMJ/Lin et al. - 2017 - Stochastic Primal-Dual Proximal ExtraGradient Desc.pdf}
+}
+
+

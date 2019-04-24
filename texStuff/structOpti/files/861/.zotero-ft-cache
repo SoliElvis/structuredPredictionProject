@@ -1,0 +1,62 @@
+
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > math > arXiv:1809.09853
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    PostScript
+    Other formats
+
+( license )
+Current browse context:
+math.OC
+< prev  |  next >
+new  | recent  | 1809
+Change to browse by:
+cs
+cs.LG
+math
+stat
+stat.ML
+References & Citations
+
+    NASA ADS
+
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Mathematics > Optimization and Control
+Title: Stochastic Second-order Methods for Non-convex Optimization with Inexact Hessian and Gradient
+Authors: Liu Liu , Xuanqing Liu , Cho-Jui Hsieh , Dacheng Tao
+(Submitted on 26 Sep 2018)
+
+    Abstract: Trust region and cubic regularization methods have demonstrated good performance in small scale non-convex optimization, showing the ability to escape from saddle points. Each iteration of these methods involves computation of gradient, Hessian and function value in order to obtain the search direction and adjust the radius or cubic regularization parameter. However, exactly computing those quantities are too expensive in large-scale problems such as training deep networks. In this paper, we study a family of stochastic trust region and cubic regularization methods when gradient, Hessian and function values are computed inexactly, and show the iteration complexity to achieve ϵ -approximate second-order optimality is in the same order with previous work for which gradient and function values are computed exactly. The mild conditions on inexactness can be achieved in finite-sum minimization using random sampling. We show the algorithm performs well on training convolutional neural networks compared with previous second-order methods. 
+
+Subjects: 	Optimization and Control (math.OC) ; Machine Learning (cs.LG); Machine Learning (stat.ML)
+Cite as: 	arXiv:1809.09853 [math.OC]
+  	(or arXiv:1809.09853v1 [math.OC] for this version)
+Submission history
+From: Liu Liu [ view email ]
+[v1] Wed, 26 Sep 2018 08:59:09 UTC (95 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.1 released 2018-10-22    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.

@@ -1,0 +1,61 @@
+
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > stat > arXiv:1506.04093
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    PostScript
+    Other formats
+
+( license )
+Current browse context:
+stat.ML
+< prev  |  next >
+new  | recent  | 1506
+Change to browse by:
+cs
+cs.LG
+stat
+References & Citations
+
+    NASA ADS
+
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Statistics > Machine Learning
+Title: Adaptive Stochastic Primal-Dual Coordinate Descent for Separable Saddle Point Problems
+Authors: Zhanxing Zhu , Amos J. Storkey
+(Submitted on 12 Jun 2015)
+
+    Abstract: We consider a generic convex-concave saddle point problem with separable structure, a form that covers a wide-ranged machine learning applications. Under this problem structure, we follow the framework of primal-dual updates for saddle point problems, and incorporate stochastic block coordinate descent with adaptive stepsize into this framework. We theoretically show that our proposal of adaptive stepsize potentially achieves a sharper linear convergence rate compared with the existing methods. Additionally, since we can select "mini-batch" of block coordinates to update, our method is also amenable to parallel processing for large-scale data. We apply the proposed method to regularized empirical risk minimization and show that it performs comparably or, more often, better than state-of-the-art methods on both synthetic and real-world data sets. 
+
+Comments: 	Accepted by ECML/PKDD2015
+Subjects: 	Machine Learning (stat.ML) ; Machine Learning (cs.LG)
+Cite as: 	arXiv:1506.04093 [stat.ML]
+  	(or arXiv:1506.04093v1 [stat.ML] for this version)
+Submission history
+From: Zhanxing Zhu [ view email ]
+[v1] Fri, 12 Jun 2015 18:08:37 UTC (139 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.1 released 2018-10-22    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.

@@ -1,0 +1,25 @@
+
+Loading [MathJax]/extensions/MathZoom.js
+NIPS Proceedings β
+
+    Books
+    2017
+
+Safe Adaptive Importance Sampling
+
+Part of: Advances in Neural Information Processing Systems 30 (NIPS 2017)
+[PDF] [BibTeX] [Supplemental] [Reviews]
+Authors
+
+    Sebastian U. Stich
+    Anant Raj
+    Martin Jaggi
+
+Conference Event Type: Poster
+Abstract
+
+Importance sampling has become an indispensable strategy to speed up optimization algorithms for large-scale applications. Improved adaptive variants -- using importance values defined by the complete gradient information which changes during optimization -- enjoy favorable theoretical properties, but are typically computationally infeasible. In this paper we propose an efficient approximation of gradient-based sampling, which is based on safe bounds on the gradient. The proposed sampling distribution is (i) provably the \emph{best sampling} with respect to the given bounds, (ii) always better than uniform sampling and fixed importance sampling and (iii) can efficiently be computed -- in many applications at negligible extra cost. The proposed sampling scheme is generic and can easily be integrated into existing algorithms. In particular, we show that coordinate-descent (CD) and stochastic gradient descent (SGD) can enjoy significant a speed-up under the novel scheme. The proven efficiency of the proposed sampling is verified by extensive numerical testing.
+Neural Information Processing Systems (NIPS)
+
+Papers published at the Neural Information Processing Systems Conference.
+© 1987 – 2019 Neural Information Processing Systems Foundation, Inc.

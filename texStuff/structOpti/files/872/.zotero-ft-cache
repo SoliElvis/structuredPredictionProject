@@ -1,0 +1,81 @@
+
+ECE236C - Optimization Methods for Large-Scale Systems (Spring 2019)
+Prof. L. Vandenberghe , UCLA
+Lecture notes (Spring 2016)
+
+    Gradient method
+
+    Quasi-Newton methods
+
+    Conjugate gradient method
+
+    Subgradients
+
+    Subgradient method
+
+    Proximal gradient method
+
+    Conjugate functions
+
+    The proximal mapping
+
+    Accelerated proximal gradient methods
+
+    Proximal point method
+
+    Dual decomposition
+
+    Dual proximal gradient method
+
+    Douglas-Rachford splitting and ADMM
+
+    Primal-dual proximal methods
+
+    Conic optimization
+
+    Barrier functions
+
+    Path-following methods
+
+    Symmetric cones
+
+    Primal-dual interior-point methods
+
+Additional lectures (from previous editions of the course)
+
+    Fast proximal gradient methods (FISTA)
+
+    Smoothing
+
+    Proximal mapping via network optimization
+
+    Cutting-plane methods
+
+    Analytic center cutting-plane method
+
+    Ellipsoid method
+
+Homework and project
+
+Homework solutions are posted on the CCLE course website .
+Course information
+
+Description. The course continues ECE236B and covers several advanced and current topics in optimization, with an emphasis on large-scale algorithms for convex optimization. This includes first-order methods for large-scale optimization (gradient and subgradient method, conjugate gradient method, proximal gradient method, accelerated gradient methods), decomposition and splitting methods (dual decomposition, augmented Lagrangian method, alternating direction method of multipliers, monotone operators and operator splitting), and (possibly) interior-point algorithms for conic optimization.
+
+Lecture notes. The lecture notes will be posted on this website. Many of the topics are covered in the following books and in the course EE364b (Convex Optimization II) at Stanford University.
+
+    A. Beck, First-Order Methods in Optimization , SIAM.
+
+    D. Bertsekas, Convex Optimization Algorithms , Athena Scientific.
+
+    D. Bertsekas and J. Tsitsiklis, Parallel and Distributed Computation , Athena Scientific.
+
+    Yu. Nesterov, Lectures on Convex Optimization , Springer.
+
+    J. Nocedal and S. Wright, Numerical Optimization , Springer.
+
+    B. T. Polyak, Introduction to Optimization , Optimization Software.
+
+Course requirements . Weekly homework assignments and a project.
+
+Grading . Approximate weights in the final grade: homework 30%, project 70%.

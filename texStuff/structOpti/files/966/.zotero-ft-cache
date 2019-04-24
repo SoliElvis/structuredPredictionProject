@@ -1,0 +1,67 @@
+
+Donate to arXiv
+
+Please join the Simons Foundation and our generous member organizations in supporting arXiv during our giving campaign. 100% of your contribution will fund improvements and new initiatives to benefit arXiv's global scientific community.
+DONATE
+
+[secure site, no need to create account]
+Cornell University
+We gratefully acknowledge support from
+the Simons Foundation and member institutions.
+arXiv.org > math > arXiv:1609.08177
+( Help | Advanced search )
+Full-text links:
+Download:
+
+    PDF
+    Other formats
+
+( license )
+Current browse context:
+math.OC
+< prev  |  next >
+new  | recent  | 1609
+Change to browse by:
+math
+References & Citations
+
+    NASA ADS
+
+Google Scholar
+Bookmark
+( what is this? )
+CiteULike logo BibSonomy logo Mendeley logo Reddit logo ScienceWISE logo
+Mathematics > Optimization and Control
+Title: Extragradient Method in Optimization: Convergence and Complexity
+Authors: Trong Phong Nguyen , Edouard Pauwels , Emile Richard , Bruce W. Suter
+(Submitted on 26 Sep 2016 ( v1 ), last revised 13 Dec 2017 (this version, v5))
+
+    Abstract: We consider the extragradient method to minimize the sum of two functions, the first one being smooth and the second being convex. Under the Kurdyka-Lojasiewicz assumption, we prove that the sequence produced by the extragradient method converges to a critical point of the problem and has finite length. The analysis is extended to the case when both functions are convex. We provide, in this case, a sublinear convergence rate, as for gradient-based methods. Furthermore, we show that the recent small-prox complexity result can be applied to this method. Considering the extragradient method is an occasion to describe an exact line search scheme for proximal decomposition methods. We provide details for the implementation of this scheme for the one norm regularized least squares problem and demonstrate numerical results which suggest that combining nonaccelerated methods with exact line search can be a competitive choice. 
+
+Subjects: 	Optimization and Control (math.OC)
+Cite as: 	arXiv:1609.08177 [math.OC]
+  	(or arXiv:1609.08177v5 [math.OC] for this version)
+Submission history
+From: Trong Phong Nguyen [ view email ]
+[v1] Mon, 26 Sep 2016 20:18:17 UTC (152 KB)
+[v2] Thu, 4 May 2017 09:15:25 UTC (152 KB)
+[v3] Mon, 4 Sep 2017 23:20:33 UTC (85 KB)
+[v4] Wed, 22 Nov 2017 13:40:11 UTC (94 KB)
+[v5] Wed, 13 Dec 2017 16:11:00 UTC (95 KB)
+Which authors of this paper are endorsers? | Disable MathJax ( What is MathJax? ) Browse v0.2.1 released 2019-04-18    Feedback?
+
+    About arXiv
+    Leadership Team
+
+    Contact Us
+    Follow us on Twitter
+
+    Help
+    Privacy Policy
+
+    Blog
+    Subscribe
+
+arXiv® is a registered trademark of Cornell University.
+
+If you have a disability and are having trouble accessing information on this website or need materials in an alternate format, contact web-accessibility@cornell.edu for assistance.
