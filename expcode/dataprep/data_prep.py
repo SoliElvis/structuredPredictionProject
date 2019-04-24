@@ -18,6 +18,7 @@ import time
 from typing import List
 from IPython.core import debugger
 debug = debugger.Pdb().set_trace
+import pathlib
 
 save_dir = "./FEC_dataset"
 process_dir = "./process_fec"
@@ -61,15 +62,10 @@ class ImageDataPrepFEC(ImageDataPrep):
               print(" not 200")
               break
 
-            if testOrTrain == "train":
-              path = os.path.join(self.imagesDir,"train", str(id) + "-" + str(slot) + ".jpg")
+            path = os.path.join(self.imagesDir,testOrTrain, str(id) + "-" + str(slot) + ".jpg")
+            if not pathlib.Path(path).is_file():
               wget.download(url, out=path)
-              print(path)
-
-            else :
-              path = os.path.join(self.imagesDir,"test", str(id) + "-" + str(slot) + ".jpg")
-              wget.download(url, out=path)
-              print(path)
+            print(path)
 
   def process_data(self):
 
@@ -98,21 +94,16 @@ class ImageDataPrepFEC(ImageDataPrep):
           except e:
             print("=".join("Image not a thruple : ", str(id), str(row)))
 
-
   def image_processing(self,im,id,row):
-
-		w, h = im.size
+    w, h = im.size
     left, up = np.rint(float(row[id + 1]) * w), np.rint(float(row[id + 3]) * h)
     right, down = np.rint(float(row[id + 2]) * w), np.rint(float(row[id + 4]) * h)
     area = (int(left), int(up), int(right), int(down))
     crop = im.crop(area)
-
     # resize the image to the right proportion
     Crop = np.asarray(ImageOps.fit(crop, (self.dim,self.dim), Image.ANTIALIAS), dtype=np.float32)
-
     # append the image to image tuple
     im_tup.append(crop)
-
     # if the image tuple does  not contain three images skip
     if not len(im_tup) == 3:
       raise Exception("Not a thruple")
@@ -132,7 +123,6 @@ class ImageDataPrepFEC(ImageDataPrep):
       label = np.concatenate(([3], label)).astype("float32")
 
     im_tup = np.concatenate((features, label)).reshape([1, -1])
-
     # add the row to_save
     to_save = np.concatenate((to_save, im_tup))
     return to_save
@@ -167,7 +157,6 @@ def parse_arguments():
                       help="Path to directory to store images")
   args, unkown = parser.parse_known_args()
   return args
-
 
 def createFolder(directory_list : List[str]):
   print(directory_list)
