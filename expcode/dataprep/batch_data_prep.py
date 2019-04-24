@@ -83,18 +83,6 @@ class ImageDataPrepFEC(ImageDataPrep):
     self.process_dir = process_dir
     ImageDataPrep.__init__(self,self.save_dir,self.process_dir)
 
-  def troubleshoot(self,spamreader=False):
-    urlSlots = [0,5,10]
-    ssl._create_default_https_context = ssl._create_unverified_context
-    csv_file = open(self.dataSets[0])
-    if spamreader:
-      spamreader = csv.reader(csv_file, delimiter=',')
-      for row in spamreader:
-        print(', '.join(row))
-
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    return csv_reader
-
   def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
     urlSlots = [0,5,10]
     ssl._create_default_https_context = ssl._create_unverified_context
@@ -135,7 +123,10 @@ class ImageDataPrepFEC(ImageDataPrep):
     tt = ("train", "test")
     for testOrTrainStr in tt:
       dataPath = self.dataPathDict[testOrTrainStr]
-      with open(os.path.join(self.save_dir,testOrTrainStr, ".npy"), 'ab+') as f:
+      try:
+        p = os.path.join(self.dataDir,testOrTrainStr,"image_processed.npy")
+        print(p)
+        f = open(p, "b+")
         with open(dataPath) as csv_file:
           csv_reader = csv.reader(csv_file, delimiter=',')
           it = enumerate(csv_reader)
@@ -170,8 +161,16 @@ class ImageDataPrepFEC(ImageDataPrep):
               except e:
                 print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
                 raise e
+      except FileNotFoundError:
+        print("filenotfound")
+      except FileExistsError:
+        print("exists")
+      except e:
+        print("skipppp")
+        print(e)
+        pass
 
-  def image_processing(self,im,id,row):
+  def _image_processing(self,im,id,row):
     w, h = im.size
     left, up = np.rint(float(row[id + 1]) * w), np.rint(float(row[id + 3]) * h)
     right, down = np.rint(float(row[id + 2]) * w), np.rint(float(row[id + 4]) * h)
@@ -204,12 +203,24 @@ class ImageDataPrepFEC(ImageDataPrep):
     to_save = np.concatenate((to_save, im_tup))
     return to_save
 
+  def _troubleshoot(self,spamreader=False):
+    urlSlots = [0,5,10]
+    ssl._create_default_https_context = ssl._create_unverified_context
+    csv_file = open(self.dataSets[0])
+    if spamreader:
+      spamreader = csv.reader(csv_file, delimiter=',')
+      for row in spamreader:
+        print(', '.join(row))
+
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    return csv_reader
+
 
 def main():
   start = time.time()
   test = ImageDataPrepFEC()
-  test.batch_download_images()
-  test.image_processing()
+  #test.batch_download_images()
+  test.process_data()
   return test
   print("Elapsed time", time.time() - start)
 
