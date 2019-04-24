@@ -64,6 +64,7 @@ class ImageDataPrepFEC(ImageDataPrep):
 
             if testOrTrain == "train":
               path = os.path.join(self.imagesDir,"train", str(id) + "-" + str(slot) + ".jpg")
+              wget.download(url, out=path)
               print(path)
 
             else :
