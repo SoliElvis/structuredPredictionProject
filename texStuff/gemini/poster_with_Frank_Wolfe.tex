@@ -95,6 +95,14 @@
       \item We only need a strongly convex function for the norm on the combined parameters (i.e. $u = (w,z)$).
     \end{itemize}
   \end{block}
+  
+  \begin{block}{References}
+
+    \nocite{*}
+    \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
+
+  \end{block}
+
 \end{column}
 
 \separatorcolumn
@@ -118,82 +126,63 @@
     \end{figure}
   \end{alertblock}
 
+    \begin{figure}
+     \includegraphics[width=\linewidth]{img/fig2.png}
+     \caption{(left) The FW algorithm zig-zags when the solution $x$ lies on the boundary. (middle) Adding the possibility of an away step attenuates this problem. (right) As an alternative, a pairwise FW step.}
+    \label{fig:Away steps}
+   \end{figure}
+    
+    \begin{table}
+      \centering
+      \begin{tabular}{l r r r c}
+        \toprule
+        \textbf{Extragradient |} & \textbf{Frank-Wolfe |} & \textbf{Block coordinate FW |} & \textbf{Away-steps FW |} & \textbf{Randomized AFW}\\
+        \midrule
+        Sublinear & Sublinear & Sublinear & Linear & Linear\\
+        exercice to the reader?? & $\mathcal{O}(Kn)$ & $\mathcal{O}(Kn)$ & $\mathcal{O}(K\eta n)$\\
+        \bottomrule
+      \end{tabular}
+      \caption{Convergence rates}
+    \end{table}   
+   
+   
 \end{column}
+
 
 \separatorcolumn
 
 \begin{column}{\colwidth}
 
-  \begin{block}{Block-coordinate Frank-Wolfe}
-    The BCFW algorithm takes advantage of the shape of the constraints of the optimization problem. If they can separated in independent
-    blocks, we can view smaller optimization problems for each block and recombine later to find a solution to the main problem. 
-
-    $$
-    \int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
-    $$
-
-    Interdum et malesuada fames $\{1, 4, 9, \ldots\}$ ac ante ipsum primis in
-    faucibus. Cras eleifend dolor eu nulla suscipit suscipit. Sed lobortis non
-    felis id vulputate.
-
-    \heading{A heading inside a block}
-
-    Praesent consectetur mi $x^2 + y^2$ metus, nec vestibulum justo viverra
-    nec. Proin eget nulla pretium, egestas magna aliquam, mollis neque. Vivamus
-    dictum $\mathbf{u}^\intercal\mathbf{v}$ sagittis odio, vel porta erat
-    congue sed. Maecenas ut dolor quis arcu auctor porttitor.
-
-    \heading{Another heading inside a block}
-
-    Sed augue erat, scelerisque a purus ultricies, placerat porttitor neque.
-    Donec $P(y \mid x)$ fermentum consectetur $\nabla_x P(y \mid x)$ sapien
-    sagittis egestas. Duis eget leo euismod nunc viverra imperdiet nec id
-    justo.
-
+  \begin{block}{Frank-Wolfe variants in different contexts}
+    Consider the problem of minimizing a convex objective function $f$ over the convex hull of its domain $\mathcal{M}= conv(\mathcal{A})$.\\
+    By minimizing the first-order approximation of the objective function, the Frank-Wolfe algorithms takes a convex combination of the immediate iterate with the previous one. Suppose having access to an efficient \textit{\textbf{L}inear \textbf{M}inimization \textbf{O}racle},
+    \begin{equation*}
+    \begin{aligned}
+        &LMO_{\mathcal{A}}(\nabla f(x_{t}))\in \textit{argmin}_{s\in\mathcal{A}}\langle s, \nabla f(x_{t})\rangle
+    \end{aligned}    
+    \end{equation*}
+    For the $t^{th}$ iteration, we call $s_{t}= LMO_{\mathcal{A}}(\nabla f(x_{t}))$, an "atom".\\
+    Starting with an active set of an initial feasible point $S^{(t=0)}= \{x_{0}\}$, at each iteration the Frank-Wolfe algorithm adds an "atom" , to $S^{(t)}$ by taking a convex combination of $s_{t}$ with its elements. Just like subgradient methods, this algorithm converges at a sublinear rate.\\
+    However, in a structured SVM setting, with $LMO_{\mathcal{A}}$ being equivalent to maximizing the hinge loss on $\mathcal{Y}_{i}$ where $i\in\{1..n\}$\quad batch FW requires $n$ calls to the max oracle each iteration. Which can make subgradient methods a more practical alternative.\\
+    Depending on the domain of the objective we have 2 alternatives:
+    \begin{itemize}
+      \item When the domain has the structure of a Cartesian product $\mathcal{M}=\mathcal{M}^{(1)}\times...\times\mathcal{M}^{(n)}$, and the objective is convex, we can perform update steps one block at a time while still converging to a global minimum.\\
+     While this looks like coordinate descent, in \textit{Block coordinate Frank-Wolfe}, we choose the coordinate at random.\\
+     Hence BCFW is $n$ times faster than the classical F-W, while still keeping a sublinear convergence rate.
+      \item When the domain is non-separable (e.g. $l_{1}$ constrained optimization), at each iteration, we call the $LMO$ on an $\eta\in(0,1]$\quad subsample of $\mathcal{A}$.\\
+      By doing this, each iteration costs $\eta$ times cheaper than classical FW, while keeping a sublinear convergence rate
+    \end{itemize}
   \end{block}
-
-  \begin{block}{Nullam vel erat at velit convallis laoreet}
-
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos. Phasellus libero enim, gravida sed erat sit amet,
-    scelerisque congue diam. Fusce dapibus dui ut augue pulvinar iaculis.
-
-    \begin{table}
-      \centering
-      \begin{tabular}{l r r c}
-        \toprule
-        \textbf{First column} & \textbf{Second column} & \textbf{Third column} & \textbf{Fourth} \\
-        \midrule
-        Foo & 13.37 & 384,394 & $\alpha$ \\
-        Bar & 2.17 & 1,392 & $\beta$ \\
-        Baz & 3.14 & 83,742 & $\delta$ \\
-        Qux & 7.59 & 974 & $\gamma$ \\
-        \bottomrule
-      \end{tabular}
-      \caption{A table caption.}
-    \end{table}
-
-    Donec quis posuere ligula. Nunc feugiat elit a mi malesuada consequat. Sed
-    imperdiet augue ac nibh aliquet tristique. Aenean eu tortor vulputate,
-    eleifend lorem in, dictum urna. Proin auctor ante in augue tincidunt
-    tempor. Proin pellentesque vulputate odio, ac gravida nulla posuere
-    efficitur. Aenean at velit vel dolor blandit molestie. Mauris laoreet
-    commodo quam, non luctus nibh ullamcorper in. Class aptent taciti sociosqu
-    ad litora torquent per conubia nostra, per inceptos himenaeos.
-
-    Nulla varius finibus volutpat. Mauris molestie lorem tincidunt, iaculis
-    libero at, gravida ante. Phasellus at felis eu neque suscipit suscipit.
-    Integer ullamcorper, dui nec pretium ornare, urna dolor consequat libero,
-    in feugiat elit lorem euismod lacus. Pellentesque sit amet dolor mollis,
-    auctor urna non, tempus sem.
-
-  \end{block}
-
-  \begin{block}{References}
-
-    \nocite{*}
-    \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
-
+    \begin{block}{Speeding up convergence}
+    When the minimizer of the objective function lies at the boundary of the domain, the F-W algorithm starts to zig-zag around the descent direction as can be seen in figure 3.
+    \begin{itemize}
+    \item  \textbf{Away-steps Frank-Wolfe: }Due to the strong dependency of the immediate iterate on previously accumulated atoms in the active set, as it approaches to boundary, FW starts going in non-descent directions.\\
+    To address this issue an improved variant of F-W named \textit{Away-steps Frank-Wolfe} adds the possibility of moving away from a non-descent direction by removing a fraction of a maximizer of the $LMO_{\mathcal{S}_{t}}$.\\
+    While this slows down each iteration it should be noted that the added step is easier than $LMO_{\mathcal{A}}$ given that we maximize over a subset of $\mathcal{A}$.\\ The resulting variant converges linearly, and as the algorithm progresses in a fewer number of iterations in the descent direction, it is much faster than the original F-W.
+    \item \textbf{Randomized Away-steps Frank-Wolfe}
+    By subsampling a $\eta\in(0,1]$ portion of the domain $\mathcal{A}$ in the $LMO$ and adding an away step at each iteration, the Randomized Away-steps Frank-Wolfe (RAWF) combines the best of both words.\\
+    While being applicable in non sparable domains, unlike BCFW we have a linear convergence rate and cheaper oracle calls than that of the original F-W.
+    \end{itemize}
   \end{block}
 
 \end{column}
