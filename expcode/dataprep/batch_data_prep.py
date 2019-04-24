@@ -28,11 +28,11 @@ test_csv = "faceexp-comparison-data-test-public.csv"
 tt= ("train", "test")
 lineskip=18
 csvRange=(0,4000,lineskip)
+
 #utilities
 def tt_join_paths(prefixes):
   r = [os.path.join(p,t) for p in prefixes for t in tt]
   return r
-
 def parse_arguments():
   parser = argparse.ArgumentParser()
   parser.add_argument("--save_dir", type=str, default="./FEC_dataset")
@@ -57,6 +57,7 @@ def createFolder(directory_list : List[str]):
       print ('Error: Creating directory. ' +  directory)
 
   return directory_list
+
 
 class ImageDataPrep:
   def __init__(self,save_dir,process_dir,dim=32):
@@ -94,7 +95,6 @@ class ImageDataPrepFEC(ImageDataPrep):
     csv_reader = csv.reader(csv_file, delimiter=',')
     return csv_reader
 
-
   def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
     urlSlots = [0,5,10]
     ssl._create_default_https_context = ssl._create_unverified_context
@@ -124,7 +124,10 @@ class ImageDataPrepFEC(ImageDataPrep):
 
             path = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
             if not pathlib.Path(path).is_file():
-              wget.download(url, out=path)
+              try:
+                wget.download(url, out=path)
+              except e:
+                print(path)
             print(path)
 
   def process_data(self,spamreader=True,skip=4000,stopLine=5000):
@@ -159,13 +162,16 @@ class ImageDataPrepFEC(ImageDataPrep):
                 np.save(f.name, to_save)
 
               except FileNotFoundError as e:
-                wget.download(url, out=imagePath)
+                try:
+                  wget.download(url, out=imagePath)
+                except e:
+                  print(imagePaht)
+
               except ValueError as e:
                 print("=".join("value error",str(id),str(row)))
               except e:
                 print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
                 raise e
-
 
   def image_processing(self,im,id,row):
     w, h = im.size
