@@ -126,7 +126,7 @@ class ImageDataPrepFEC(ImageDataPrep):
             if not pathlib.Path(path).is_file():
               try:
                 wget.download(url, out=path)
-              except e:
+              except :
                 print(path)
             print(path)
 
@@ -208,6 +208,8 @@ class ImageDataPrepFEC(ImageDataPrep):
 def main():
   start = time.time()
   test = ImageDataPrepFEC()
+  test.batch_download_images()
+  test.image_processing()
   return test
   print("Elapsed time", time.time() - start)
 
