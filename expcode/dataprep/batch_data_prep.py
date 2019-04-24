@@ -127,30 +127,41 @@ class ImageDataPrepFEC(ImageDataPrep):
               wget.download(url, out=path)
             print(path)
 
-  def process_data(self):
+  def process_data(self,spamreader=True,skip=4000,stopLine=5000):
 
     urlSlots = [0,5,10]
-    ssl._create_default_https_context = ssl._create_unverified_context
-    for testOrTrainStr, path in self.dataPathDict.items():
-      with open(path) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        with open(os.path.join(args.save_dir, dataset + ".npy"), 'ab+') as f:
-          for id, row in islice(enumerate(csv_reader),skipcsvline):
-            print(id,row)
-            path = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
-            try:
-              im = Image.open(BytesIO(path))
-            except e:
-              print(e)
+		tt = ("train", "test")
 
-          try:
-            to_save = self.image_processing(im,id,row)
-            np.save(f.name, to_save)
+		for testOrTrainStr in tt:
+			dataPath = self.dataPathDict[testOrTrainStr]
+			with open(os.path.join(self.save_dir,testOrTrainStr, ".npy"), 'ab+') as f:
+				with open(dataPath) as csv_file:
+					csv_reader = csv.reader(csv_file, delimiter=',')
+					if (spamreader):
+						spamreader = csv.reader(csv_file, delimiter=',')
+						for id, row in enumerate(spamreader): next(it); if id == skip: break
+					for id, row in enumerate(csv_reader):
+						imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
+						try:
+							im = Image.open(BytesIO(imagePath))
+							to_save = self.image_processing(im,id,row)
+							np.save(f.name, to_save)
+						except ValueError as e:
+							print("=".join("value error",str(id),str(row)))
+						except e:
+							print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
+							raise e
 
-          except ValueError as e:
-            print("=".join("value error",str(id),str(row)))
-          except e:
-            print("=".join("Image not a thruple : ", str(id), str(row)))
+
+					for id, row in it:
+						print(id); if id >= stopLine: break
+
+						path = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
+						try:
+							im = Image.open(BytesIO(path))
+						except e:
+							print(e)
+
 
   def image_processing(self,im,id,row):
     w, h = im.size
