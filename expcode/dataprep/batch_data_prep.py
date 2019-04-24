@@ -130,37 +130,41 @@ class ImageDataPrepFEC(ImageDataPrep):
   def process_data(self,spamreader=True,skip=4000,stopLine=5000):
 
     urlSlots = [0,5,10]
-		tt = ("train", "test")
+    tt = ("train", "test")
 
-		for testOrTrainStr in tt:
-			dataPath = self.dataPathDict[testOrTrainStr]
-			with open(os.path.join(self.save_dir,testOrTrainStr, ".npy"), 'ab+') as f:
-				with open(dataPath) as csv_file:
-					csv_reader = csv.reader(csv_file, delimiter=',')
-					if (spamreader):
-						spamreader = csv.reader(csv_file, delimiter=',')
-						for id, row in enumerate(spamreader): next(it); if id == skip: break
-					for id, row in enumerate(csv_reader):
-						imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
-						try:
-							im = Image.open(BytesIO(imagePath))
-							to_save = self.image_processing(im,id,row)
-							np.save(f.name, to_save)
-						except ValueError as e:
-							print("=".join("value error",str(id),str(row)))
-						except e:
-							print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
-							raise e
+    for testOrTrainStr in tt:
+      dataPath = self.dataPathDict[testOrTrainStr]
+      with open(os.path.join(self.save_dir,testOrTrainStr, ".npy"), 'ab+') as f:
+        with open(dataPath) as csv_file:
+          csv_reader = csv.reader(csv_file, delimiter=',')
+          it = enumerate(csv_reader)
+          if (spamreader):
+            spamreader = csv.reader(csv_file, delimiter=',')
+            for id, row in enumerate(spamreader):
+              next(it)
+              if id == skip:
+                break
 
+          for id, row in it:
+            for slot in urlSlots:
+              print(id)
+              if (spamreader and id >= stopLine):
+                break
 
-					for id, row in it:
-						print(id); if id >= stopLine: break
+              imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
+              try:
+                if not os.path.isfile(image_path): raise(FileNotFoundError)
+                im = Image.open(BytesIO(imagePath))
+                to_save = self.image_processing(im,id,row)
+                np.save(f.name, to_save)
 
-						path = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
-						try:
-							im = Image.open(BytesIO(path))
-						except e:
-							print(e)
+              except FileNotFoundError as e:
+                wget.download(url, out=imagePath)
+              except ValueError as e:
+                print("=".join("value error",str(id),str(row)))
+              except e:
+                print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
+                raise e
 
 
   def image_processing(self,im,id,row):
