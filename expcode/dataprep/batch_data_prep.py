@@ -26,6 +26,36 @@ train_csv = "faceexp-comparison-data-train-public.csv"
 test_csv = "faceexp-comparison-data-test-public.csv"
 tt= ("train", "test")
 
+#utilities
+def tt_join_paths(prefixes):
+  r = [os.path.join(p,t) for p in prefixes for t in tt]
+  return r
+
+def parse_arguments():
+  parser = argparse.ArgumentParser()
+  parser.add_argument("--save_dir", type=str, default="./FEC_dataset")
+  parser.add_argument("--data_path", type=str,
+                      default="./FEC_dataset/faceexp-comparison-data-train-public.csv",
+                      help="Path to  the data file")
+  parser.add_argument("--dim", type=int, default=32,
+                      help="The desired dimension for the images")
+  parser.add_argument("--images_path", type=str,
+                      default="./face_images",
+                      help="Path to directory to store images")
+  args, unkown = parser.parse_known_args()
+  return args
+
+def createFolder(directory_list : List[str]):
+  print(directory_list)
+  for directory in directory_list:
+    try:
+      if not os.path.exists(directory):
+        os.makedirs(directory)
+    except OSError:
+      print ('Error: Creating directory. ' +  directory)
+
+  return directory_list
+
 class ImageDataPrep:
   def __init__(self,save_dir,process_dir,dim=32):
     self.save_dir = save_dir
@@ -137,33 +167,5 @@ def main():
 if __name__ == "__main__":
   main()
 
-#utilities
-def tt_join_paths(prefixes):
-  r = [os.path.join(p,t) for p in prefixes for t in tt]
-  return r
 
-def parse_arguments():
-  parser = argparse.ArgumentParser()
-  parser.add_argument("--save_dir", type=str, default="./FEC_dataset")
-  parser.add_argument("--data_path", type=str,
-                      default="./FEC_dataset/faceexp-comparison-data-train-public.csv",
-                      help="Path to  the data file")
-  parser.add_argument("--dim", type=int, default=32,
-                      help="The desired dimension for the images")
-  parser.add_argument("--images_path", type=str,
-                      default="./face_images",
-                      help="Path to directory to store images")
-  args, unkown = parser.parse_known_args()
-  return args
-
-def createFolder(directory_list : List[str]):
-  print(directory_list)
-  for directory in directory_list:
-    try:
-      if not os.path.exists(directory):
-        os.makedirs(directory)
-    except OSError:
-      print ('Error: Creating directory. ' +  directory)
-
-  return directory_list
 
