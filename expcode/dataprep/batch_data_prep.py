@@ -20,8 +20,9 @@ from IPython.core import debugger
 debug = debugger.Pdb().set_trace
 import pathlib
 from os import listdir
-from os.path import isfile, join, walk
+from os.path import isfile
 from itertools import islice
+from collections import namedtuple
 
 save_dir = "./FEC_dataset"
 process_dir = "./process_fec"
@@ -67,9 +68,9 @@ class ImageDataPrep:
     self.imagesDir = os.path.join(process_dir, "images")
     self.dataDir = os.path.join(process_dir, "data")
 
-    self.dataSets = [os.path.join(self.process_dir, f) for f in [train_csv,test_csv]]
-    self.dataPathDict = {"train" : self.dataSets[0],
-                         "test"  : self.dataSets[1]}
+    self.csvDataSets = [os.path.join(self.process_dir, f) for f in [train_csv,test_csv]]
+    self.csvDataPathDict = {"train" : self.csvDataSets[0],
+                         "test"  : self.csvDataSets[1]}
     self._prep_file_system()
     self.dim = dim
 
@@ -89,7 +90,7 @@ class ImageDataPrepFEC(ImageDataPrep):
   def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
     urlSlots = [0,5,10]
     ssl._create_default_https_context = ssl._create_unverified_context
-    for testOrTrainStr, path in self.dataPathDict.items():
+    for testOrTrainStr, path in self.csvDataPathDict.items():
       with open(path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         it = enumerate(csv_reader)
@@ -125,7 +126,7 @@ class ImageDataPrepFEC(ImageDataPrep):
     urlSlots = [0,5,10]
     tt = ("train", "test")
     for testOrTrainStr in tt:
-      dataPath = self.dataPathDict[testOrTrainStr]
+      dataPath = self.csvDataPathDict[testOrTrainStr]
       try:
         p = os.path.join(self.process_dir,testOrTrainStr,"image_processed.npy")
         print(p)
@@ -168,25 +169,15 @@ class ImageDataPrepFEC(ImageDataPrep):
         pass
 
   def _check_local_images(self):
-		mypath = "./process_fec/data"
-		f = []
-		for (dirpath, dirnames, filenames) in walk(mypath):
-			f.extend(filenames)
-		print(filenames)
+    present_images = {"train" : list(), "test" :list()}
+    for testOrTrainStr in present_images:
+      mypath = os.path.join(self.imagesDir,testOrTrainStr)
+      for f in listdir(mypath):
+        imageCodeFromFileName, extension = os.path.splitext(f)
+        present_images[testOrTrainStr].append(imageCodeFromFileName)
+    return present_images
 
-  def _image_processing(self,im,id,row):
-    w, h = im.size
-    left, up = np.rint(float(row[id + 1]) * w), np.rint(float(row[id + 3]) * h)
-    right, down = np.rint(float(row[id + 2]) * w), np.rint(float(row[id + 4]) * h)
-    area = (int(left), int(up), int(right), int(down))
-    crop = im.crop(area)
-    # resize the image to the right proportion
-    Crop = np.asarray(ImageOps.fit(crop, (self.dim,self.dim), Image.ANTIALIAS), dtype=np.float32)
-    # append the image to image tuple
-    im_tup.append(crop)
-    # if the image tuple does  not contain three images skip
-    if not len(im_tup) == 3:
-      raise Exception("Not a thruple")
+
 
     # extract features and label
     try:
@@ -210,7 +201,7 @@ class ImageDataPrepFEC(ImageDataPrep):
   def _troubleshoot(self,spamreader=False):
     urlSlots = [0,5,10]
     ssl._create_default_https_context = ssl._create_unverified_context
-    csv_file = open(self.dataSets[0])
+    csv_file = open(self.csvDataSets[0])
     if spamreader:
       spamreader = csv.reader(csv_file, delimiter=',')
       for row in spamreader:
@@ -223,13 +214,11 @@ class ImageDataPrepFEC(ImageDataPrep):
 def main():
   start = time.time()
   test = ImageDataPrepFEC()
+  local_images = test._check_local_images()
   # test.batch_download_images()
   # test.process_data()
-  return test
+  return test, local_images
   print("Elapsed time", time.time() - start)
 
 if __name__ == "__main__":
   main()
-
-
-
