@@ -130,7 +130,7 @@ class ImageDataPrepFEC(ImageDataPrep):
                 print(path)
             print(path)
 
-  def process_data(self,spamreader=True,skip=4000,stopLine=5000):
+  def process_data(self,skip=4000,stopLine=5000):
     urlSlots = [0,5,10]
     tt = ("train", "test")
     for testOrTrainStr in tt:
@@ -143,27 +143,27 @@ class ImageDataPrepFEC(ImageDataPrep):
           csv_reader = csv.reader(csv_file, delimiter=',')
           it = enumerate(csv_reader)
           spamreader = csv.reader(csv_file, delimiter=',')
-
-
-          if (spamreader):
-            it = seeker(it,spamreader,skip)
+          it = seeker(it,spamreader,skip)
           to_save = np.empty([0, (3 * args.dim) ** 2 + 7])
-
-          def process_image_tuple(): # retunns the cropped array tuple
-            pass
-
           for id, row in it:
-            image_tuple = []
+            print(id)
+            if (id >= stopLine):
+              break
+            process_image_tuple()
+
+          #factor out in method later
+          def process_image_tuple(): # retunns the cropped array tuple
+            image_path_tuple = []
             for slot in urlSlots:
-              print(id)
-              if (spamreader and id >= stopLine):
-                break
               imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
               if not os.path.isfile(image_path):
-                  continue
+                raise ValueError
+              image_path_tuple.append(imagePath)
               try:
+                # TODO
+                #####FAIRE UN MULTIPATH IMAGE IO SHIT#####
                 im = Image.open(BytesIO(imagePath))
-                to_save = self._image_processing(im,id,row)
+                to_save = process_numerical_data(im)
                 np.save(f.name, to_save)
 
               except ValueError as e:
@@ -173,6 +173,9 @@ class ImageDataPrepFEC(ImageDataPrep):
                 print(e)
                 # print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
 
+          def process_numerical_data():
+            pass
+
       except FileExistsError:
         print("exists")
       except Exception as e:
@@ -180,8 +183,6 @@ class ImageDataPrepFEC(ImageDataPrep):
         print(e)
         pass
 
-      #id cest un int aparemment, row cest un enumearteur de csv reader
-  def _image_processing(im,id,row):
 
   def _check_local_images(self):
     present_images = {"train" : list(), "test" :list()}
