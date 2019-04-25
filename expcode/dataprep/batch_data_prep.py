@@ -93,7 +93,9 @@ class ImageDataPrepFEC(ImageDataPrep):
     self.process_dir = process_dir
     self.local_state_dict = None
     self.urlSlots = [0,5,10]
+
     ImageDataPrep.__init__(self,self.save_dir,self.process_dir)
+    self.to_save = np.empty([0, (3 * self.dim) ** 2 + 7])
 
   def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
     urlSlots = [0,5,10]
@@ -130,49 +132,52 @@ class ImageDataPrepFEC(ImageDataPrep):
                 print(path)
             print(path)
 
-  def process_data(self,skip=4000,stopLine=5000,to_save=None):
+  def process_data(self,skip=4000,stopLine=5000):
     to_save = np.empty([0, (3 * self.dim) ** 2 + 7])
     self.urlSlots = [0,5,10]
     tt = ("train", "test")
     for testOrTrainStr in tt:
-      dataPath = self.csvDataPathDict[testOrTrainStr]
-      p = os.path.join(self.dataDir,testOrTrainStr,"image_processed.npy")
+      p = os.path.join(self.dataDir,"-".join([testOrTrainStr,"image_processed.npy"]))
+      print(str(p))
       try:
-        with open(dataPath) as csv_file:
-          f = open(p, "w+")
+        with open(self.csvDataPathDict[testOrTrainStr]) as csv_file:
+          f = open(p, "w")
           csv_reader = csv.reader(csv_file, delimiter=',')
           it = enumerate(csv_reader)
           spamreader = csv.reader(csv_file, delimiter=',')
           it = seeker(it,spamreader,skip)
           for id, row in it:
-            print(id)
-            if (id >= stopLine):
-              break
-            try:
-              self._process_image_triple(id,row,it,to_save)
-            except ValueError as e:
-              print(e)
+            self.to_save = self._process_image_triple(testOrTrainStr,id,row,it)
+            print("to_save")
+
+        try:
+          np.save(p.name, self.to_save)
+        except Exception as e:
+          debug()
 
       except FileExistsError:
         print("exists")
       except Exception as e:
         print(e)
-      finally:
-        print("skipppp")
-        f.close()
+        debug()
 
+  def _process_image_triple(self,testOrTrainStr,id,row,it): # retunns the cropped array tuple
 
-  def _process_image_triple(testOrTrainStr,id,row,it,to_save): # retunns the cropped array tuple
     image_path_triple = []
-    processed_asarray_triple = []
     for slot in self.urlSlots:
       imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
-      if not os.path.isfile(image_path):
+      if not os.path.isfile(imagePath):
         raise ValueError
       image_path_triple.append(imagePath)
 
+    processed_asarray_triple = []
     for i in self.urlSlots:
-      im = Image.open(BytesIO(image_path_triple[0]))
+      try:
+        im = Image.open(BytesIO(image_path_triple[0]))
+      except Exception as e:
+        print(e)
+        print("haha")
+
       w, h = im.size
       left, up = np.rint(float(row[i + 1]) * w), np.rint(float(row[i + 3]) * h)
       right, down = np.rint(float(row[i + 2]) * w), np.rint(float(row[i + 4]) * h)
@@ -182,11 +187,11 @@ class ImageDataPrepFEC(ImageDataPrep):
       crop = np.asarray(ImageOps.fit(crop, (self.dim, self.dim), Image.ANTIALIAS), dtype=np.float32)
       processed_asarray_triple.append(crop)
 
-    if len(processed_asarray_triple) == 3:
+    if len(processed_asarray_triple) != 3:
       raise ValueError
 
     # extract features and label
-    features = np.stack(im_tup).ravel()
+    features = np.stack(processed_asarray_triple).ravel()
     label = np.asarray([row[17 + i * 2] for i in range(6)], dtype=np.float32)
 
     if row[15] == "ONE_CLASS_TRIPLET":
@@ -196,10 +201,9 @@ class ImageDataPrepFEC(ImageDataPrep):
     else:
         label = np.concatenate(([3], label)).astype("float32")
 
-    im_tup = np.concatenate((features, label)).reshape([1, -1])
-
-    # add the row to_save
-    to_save = np.concatenate((to_save, im_tup))
+    processed_asarray_triple = np.concatenate((features, label)).reshape([1, -1])
+    self.to_save = np.concatenate((self.to_save,processed_asarray_triple))
+    return self.to_save
 
   def _check_local_images(self):
     present_images = {"train" : list(), "test" :list()}
