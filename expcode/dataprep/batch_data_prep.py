@@ -93,6 +93,8 @@ class ImageDataPrepFEC(ImageDataPrep):
     self.save_dir = save_dir
     self.process_dir = process_dir
     self.local_state_dict = None
+    self.urlSlots = [0,5,10]
+
     ImageDataPrep.__init__(self,self.save_dir,self.process_dir)
 
   def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
@@ -131,58 +133,71 @@ class ImageDataPrepFEC(ImageDataPrep):
             print(path)
 
   def process_data(self,skip=4000,stopLine=5000):
+    to_save = np.empty([0, (3 * self.dim) ** 2 + 7])
     urlSlots = [0,5,10]
     tt = ("train", "test")
     for testOrTrainStr in tt:
       dataPath = self.csvDataPathDict[testOrTrainStr]
+      p = os.path.join(self.dataDir,testOrTrainStr,"image_processed.npy")
       try:
-        p = os.path.join(self.dataDir,testOrTrainStr,"image_processed.npy")
-        print(p)
-        f = open(p, "w+")
         with open(dataPath) as csv_file:
+          f = open(p, "w+")
           csv_reader = csv.reader(csv_file, delimiter=',')
           it = enumerate(csv_reader)
           spamreader = csv.reader(csv_file, delimiter=',')
           it = seeker(it,spamreader,skip)
-          to_save = np.empty([0, (3 * args.dim) ** 2 + 7])
           for id, row in it:
             print(id)
             if (id >= stopLine):
               break
-            process_image_tuple()
-
-          #factor out in method later
-          def process_image_tuple(): # retunns the cropped array tuple
-            image_path_tuple = []
-            for slot in urlSlots:
-              imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
-              if not os.path.isfile(image_path):
-                raise ValueError
-              image_path_tuple.append(imagePath)
-              try:
-                # TODO
-                #####FAIRE UN MULTIPATH IMAGE IO SHIT#####
-                im = Image.open(BytesIO(imagePath))
-                to_save = process_numerical_data(im)
-                np.save(f.name, to_save)
-
-              except ValueError as e:
-                print(e)
-                # print("=".join("value error",str(id),str(row)))
-              except Exception as e:
-                print(e)
-                # print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
-
-          def process_numerical_data():
-            pass
+            try:
+              self._process_image_triple(id,row,it)
+            except ValueError as e:
+              print(e)
 
       except FileExistsError:
         print("exists")
       except Exception as e:
         print("skipppp")
         print(e)
-        pass
 
+  def _process_image_triple(testOrTrainStr,id,row,it): # retunns the cropped array tuple
+    image_path_triple = []
+    processed_asarray_triple = []
+    for slot in urlSlots:
+      imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
+      if not os.path.isfile(image_path):
+        raise ValueError
+      image_path_triple.append(imagePath)
+
+    for i in [0, 5, 10]:
+      im = Image.open(BytesIO(image_path_triple[0]))
+      w, h = im.size
+      left, up = np.rint(float(row[i + 1]) * w), np.rint(float(row[i + 3]) * h)
+      right, down = np.rint(float(row[i + 2]) * w), np.rint(float(row[i + 4]) * h)
+      area = (int(left), int(up), int(right), int(down))
+      crop = im.crop(area)
+      # resize the image to the right proportion
+      crop = np.asarray(ImageOps.fit(crop, (self.dim, self.dim), Image.ANTIALIAS), dtype=np.float32)
+      processed_asarray_triple.append(crop)
+
+    if not len() == 3:
+      raise ValueError
+    # extract features and label
+    features = np.stack(im_tup).ravel()
+    label = np.asarray([row[17 + i * 2] for i in range(6)], dtype=np.float32)
+
+    if row[15] == "ONE_CLASS_TRIPLET":
+        label = np.concatenate(([1.], label)).astype("float32")
+    elif row[15] == "TWO_CLASS_TRIPLET":
+        label = np.concatenate(([2.], label)).astype("float32")
+    else:
+        label = np.concatenate(([3], label)).astype("float32")
+
+    im_tup = np.concatenate((features, label)).reshape([1, -1])
+
+    # add the row to_save
+    to_save = np.concatenate((to_save, im_tup))
 
   def _check_local_images(self):
     present_images = {"train" : list(), "test" :list()}
