@@ -63,9 +63,9 @@ class ImageDataPrep:
   def __init__(self,save_dir,process_dir,dim=32):
     self.save_dir = save_dir
     self.imagesDir = os.path.join(process_dir, "images")
-    self.dataDir = os.path.join(save_dir, "data")
+    self.dataDir = os.path.join(process_dir, "data")
 
-    self.dataSets = [os.path.join(self.save_dir, f) for f in [train_csv,test_csv]]
+    self.dataSets = [os.path.join(self.process_dir, f) for f in [train_csv,test_csv]]
     self.dataPathDict = {"train" : self.dataSets[0],
                          "test"  : self.dataSets[1]}
     self._prep_file_system()
@@ -124,9 +124,9 @@ class ImageDataPrepFEC(ImageDataPrep):
     for testOrTrainStr in tt:
       dataPath = self.dataPathDict[testOrTrainStr]
       try:
-        p = os.path.join(self.dataDir,testOrTrainStr,"image_processed.npy")
+        p = os.path.join(self.process_dir,testOrTrainStr,"image_processed.npy")
         print(p)
-        f = open(p, "b+")
+        f = open(p, "w+")
         with open(dataPath) as csv_file:
           csv_reader = csv.reader(csv_file, delimiter=',')
           it = enumerate(csv_reader)
@@ -145,27 +145,21 @@ class ImageDataPrepFEC(ImageDataPrep):
 
               imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
               try:
-                if not os.path.isfile(image_path): raise(FileNotFoundError)
+                if not os.path.isfile(image_path):
+                  continue
                 im = Image.open(BytesIO(imagePath))
                 to_save = self.image_processing(im,id,row)
                 np.save(f.name, to_save)
 
-              except FileNotFoundError as e:
-                try:
-                  wget.download(url, out=imagePath)
-                except e:
-                  print(imagePaht)
-
               except ValueError as e:
                 print("=".join("value error",str(id),str(row)))
-              except e:
+              except Exception as e:
                 print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
                 raise e
-      except FileNotFoundError:
-        print("filenotfound")
+
       except FileExistsError:
         print("exists")
-      except e:
+      except Exception as e:
         print("skipppp")
         print(e)
         pass
