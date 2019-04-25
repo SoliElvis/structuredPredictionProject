@@ -215,8 +215,8 @@ def main():
   start = time.time()
   test = ImageDataPrepFEC()
   local_images = test._check_local_images()
-  # test.batch_download_images()
-  # test.process_data()
+  test.batch_download_images()
+  test.process_data()
   return test, local_images
   print("Elapsed time", time.time() - start)
 
