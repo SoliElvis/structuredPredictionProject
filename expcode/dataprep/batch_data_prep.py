@@ -171,12 +171,14 @@ class ImageDataPrepFEC(ImageDataPrep):
       image_path_triple.append(imagePath)
 
     processed_asarray_triple = []
-    for i in self.urlSlots:
+    for i in range(3):
+      im = None
       try:
-        im = Image.open(BytesIO(image_path_triple[0]))
+        im = Image.open(image_path_triple[i])
       except Exception as e:
         print(e)
         print("haha")
+        continue
 
       w, h = im.size
       left, up = np.rint(float(row[i + 1]) * w), np.rint(float(row[i + 3]) * h)
