@@ -14,7 +14,7 @@ import timeit
 from io import BytesIO
 import requests
 import wget
-import tim
+import time
 
 from typing import List
 from IPython.core import debugger
@@ -192,10 +192,9 @@ class ImageDataPrepFEC(ImageDataPrep):
           # resize the image to the right proportion
           crop = np.asarray(ImageOps.fit(crop, (self.dim, self.dim), Image.ANTIALIAS), dtype=np.float32)
           crop_triple.append(crop)
+          print(crop)
           print(i)
 
-      print("Hello")
-    print("helooo")
     _features = np.ravel(crop_triple)
     features = np.stack(_features)
     label = np.asarray([row[17 + i * 2] for i in range(6)], dtype=np.float32)
