@@ -69,7 +69,6 @@ def seeker(it,spamreader,skip):
       break
   return it
 
-
 class ImageDataPrep:
   def __init__(self,save_dir,process_dir,dim=32):
     self.save_dir = save_dir
@@ -94,7 +93,6 @@ class ImageDataPrepFEC(ImageDataPrep):
     self.process_dir = process_dir
     self.local_state_dict = None
     self.urlSlots = [0,5,10]
-
     ImageDataPrep.__init__(self,self.save_dir,self.process_dir)
 
   def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
@@ -132,9 +130,9 @@ class ImageDataPrepFEC(ImageDataPrep):
                 print(path)
             print(path)
 
-  def process_data(self,skip=4000,stopLine=5000):
+  def process_data(self,skip=4000,stopLine=5000,to_save=None):
     to_save = np.empty([0, (3 * self.dim) ** 2 + 7])
-    urlSlots = [0,5,10]
+    self.urlSlots = [0,5,10]
     tt = ("train", "test")
     for testOrTrainStr in tt:
       dataPath = self.csvDataPathDict[testOrTrainStr]
@@ -151,26 +149,29 @@ class ImageDataPrepFEC(ImageDataPrep):
             if (id >= stopLine):
               break
             try:
-              self._process_image_triple(id,row,it)
+              self._process_image_triple(id,row,it,to_save)
             except ValueError as e:
               print(e)
 
       except FileExistsError:
         print("exists")
       except Exception as e:
-        print("skipppp")
         print(e)
+      finally:
+        print("skipppp")
+        f.close()
 
-  def _process_image_triple(testOrTrainStr,id,row,it): # retunns the cropped array tuple
+
+  def _process_image_triple(testOrTrainStr,id,row,it,to_save): # retunns the cropped array tuple
     image_path_triple = []
     processed_asarray_triple = []
-    for slot in urlSlots:
+    for slot in self.urlSlots:
       imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
       if not os.path.isfile(image_path):
         raise ValueError
       image_path_triple.append(imagePath)
 
-    for i in [0, 5, 10]:
+    for i in self.urlSlots:
       im = Image.open(BytesIO(image_path_triple[0]))
       w, h = im.size
       left, up = np.rint(float(row[i + 1]) * w), np.rint(float(row[i + 3]) * h)
@@ -181,8 +182,9 @@ class ImageDataPrepFEC(ImageDataPrep):
       crop = np.asarray(ImageOps.fit(crop, (self.dim, self.dim), Image.ANTIALIAS), dtype=np.float32)
       processed_asarray_triple.append(crop)
 
-    if not len() == 3:
+    if len(processed_asarray_triple) == 3:
       raise ValueError
+
     # extract features and label
     features = np.stack(im_tup).ravel()
     label = np.asarray([row[17 + i * 2] for i in range(6)], dtype=np.float32)
@@ -230,8 +232,6 @@ class ImageDataPrepFEC(ImageDataPrep):
     return to_save
 
   def _troubleshoot(self,spamreader=False):
-    urlSlots = [0,5,10]
-    ssl._create_default_https_context = ssl._create_unverified_context
     csv_file = open(self.csvDataSets[0])
     if spamreader:
       spamreader = csv.reader(csv_file, delimiter=',')
