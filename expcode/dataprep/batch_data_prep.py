@@ -2,6 +2,7 @@ import numpy as np
 import numba as nb
 import csv
 import os
+import io
 import argparse
 import wget
 import ssl
@@ -13,7 +14,7 @@ import timeit
 from io import BytesIO
 import requests
 import wget
-import time
+import tim
 
 from typing import List
 from IPython.core import debugger
@@ -95,7 +96,6 @@ class ImageDataPrepFEC(ImageDataPrep):
     self.urlSlots = [0,5,10]
 
     ImageDataPrep.__init__(self,self.save_dir,self.process_dir)
-    self.to_save = np.empty([0, (3 * self.dim) ** 2 + 7])
 
   def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
     urlSlots = [0,5,10]
@@ -133,7 +133,7 @@ class ImageDataPrepFEC(ImageDataPrep):
             print(path)
 
   def process_data(self,skip=4000,stopLine=5000):
-    to_save = np.empty([0, (3 * self.dim) ** 2 + 7])
+    self.to_save = np.empty([0, (3 * self.dim) ** 2 + 7])
     self.urlSlots = [0,5,10]
     tt = ("train", "test")
     for testOrTrainStr in tt:
@@ -147,7 +147,10 @@ class ImageDataPrepFEC(ImageDataPrep):
           spamreader = csv.reader(csv_file, delimiter=',')
           it = seeker(it,spamreader,skip)
           for id, row in it:
-            self.to_save = self._process_image_triple(testOrTrainStr,id,row,it)
+            try:
+              self.to_save = self._process_image_triple(testOrTrainStr,id,row,it)
+            except Exception as e:
+              print(e,id,row)
             print("to_save")
 
         try:
@@ -155,10 +158,13 @@ class ImageDataPrepFEC(ImageDataPrep):
         except Exception as e:
           debug()
 
+      except ValueError:
+        continue
       except FileExistsError:
         print("exists")
       except Exception as e:
         print(e)
+
         debug()
 
   def _process_image_triple(self,testOrTrainStr,id,row,it): # retunns the cropped array tuple
@@ -170,30 +176,28 @@ class ImageDataPrepFEC(ImageDataPrep):
         raise ValueError
       image_path_triple.append(imagePath)
 
+    print(image_path_triple)
     processed_asarray_triple = []
+    crop_triple = []
+    im = None
     for i in range(3):
-      im = None
-      try:
-        im = Image.open(image_path_triple[i])
-      except Exception as e:
-        print(e)
-        print("haha")
-        continue
+      print(i)
+      with open(image_path_triple[i], "rb") as f:
+        with Image.open(f) as im:
+          w, h = im.size
+          left, up = np.rint(float(row[i + 1]) * w), np.rint(float(row[i + 3]) * h)
+          right, down = np.rint(float(row[i + 2]) * w), np.rint(float(row[i + 4]) * h)
+          area = (int(left), int(up), int(right), int(down))
+          crop = im.crop(area)
+          # resize the image to the right proportion
+          crop = np.asarray(ImageOps.fit(crop, (self.dim, self.dim), Image.ANTIALIAS), dtype=np.float32)
+          crop_triple.append(crop)
+          print(i)
 
-      w, h = im.size
-      left, up = np.rint(float(row[i + 1]) * w), np.rint(float(row[i + 3]) * h)
-      right, down = np.rint(float(row[i + 2]) * w), np.rint(float(row[i + 4]) * h)
-      area = (int(left), int(up), int(right), int(down))
-      crop = im.crop(area)
-      # resize the image to the right proportion
-      crop = np.asarray(ImageOps.fit(crop, (self.dim, self.dim), Image.ANTIALIAS), dtype=np.float32)
-      processed_asarray_triple.append(crop)
-
-    if len(processed_asarray_triple) != 3:
-      raise ValueError
-
-    # extract features and label
-    features = np.stack(processed_asarray_triple).ravel()
+      print("Hello")
+    print("helooo")
+    _features = np.ravel(crop_triple)
+    features = np.stack(_features)
     label = np.asarray([row[17 + i * 2] for i in range(6)], dtype=np.float32)
 
     if row[15] == "ONE_CLASS_TRIPLET":
@@ -202,9 +206,9 @@ class ImageDataPrepFEC(ImageDataPrep):
         label = np.concatenate(([2.], label)).astype("float32")
     else:
         label = np.concatenate(([3], label)).astype("float32")
-
-    processed_asarray_triple = np.concatenate((features, label)).reshape([1, -1])
-    self.to_save = np.concatenate((self.to_save,processed_asarray_triple))
+    processed = np.concatenate((features, label)).reshape([1, -1])
+    debug()
+    self.to_save = np.concatenate((self.to_save,processed))
     return self.to_save
 
   def _check_local_images(self):

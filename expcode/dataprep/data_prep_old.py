@@ -13,6 +13,8 @@ import timeit
 from io import BytesIO
 import requests
 import time
+from IPython.core import debugger
+debug = debugger.Pdb().set_trace
 
 
 parser = argparse.ArgumentParser()
@@ -38,7 +40,7 @@ def download_data():
             os.mkdir(os.path.join(args.save_dir, "test"))
 
         for dataset in ["train", "test"]:
-            with open(os.path.join("testing", dataset + ".npy"), "ab") as f:
+            with open(os.path.join("testing", dataset + ".npy"), "ab+") as f:
                 to_save = np.empty([0, (3 * args.dim) ** 2 + 7])
                 for id, row in enumerate(csv_reader):
                     im_tup = []
@@ -46,6 +48,7 @@ def download_data():
                         # load the image
                         response = requests.get(row[i])
                         try:
+
                             im = Image.open(BytesIO(response.content))
                         except OSError:
                             break
@@ -65,7 +68,7 @@ def download_data():
 
                     # if the image tuple does  not contain three images skip
                     if not len(im_tup) == 3:
-                        continue
+ w wj
 
                     # extract features and label
                     try:
