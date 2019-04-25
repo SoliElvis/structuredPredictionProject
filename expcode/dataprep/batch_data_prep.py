@@ -19,6 +19,8 @@ from typing import List
 from IPython.core import debugger
 debug = debugger.Pdb().set_trace
 import pathlib
+from os import listdir
+from os.path import isfile, join, walk
 from itertools import islice
 
 save_dir = "./FEC_dataset"
@@ -81,6 +83,7 @@ class ImageDataPrepFEC(ImageDataPrep):
   def __init__(self,save_dir="./FEC_dataset",process_dir="./process_fec/"):
     self.save_dir = save_dir
     self.process_dir = process_dir
+    self.local_state_dict = None
     ImageDataPrep.__init__(self,self.save_dir,self.process_dir)
 
   def batch_download_images(self,spamreader=True,skip=4000,stopLine=5000):
@@ -164,6 +167,13 @@ class ImageDataPrepFEC(ImageDataPrep):
         print(e)
         pass
 
+  def _check_local_images(self):
+		mypath = "./process_fec/data"
+		f = []
+		for (dirpath, dirnames, filenames) in walk(mypath):
+			f.extend(filenames)
+		print(filenames)
+
   def _image_processing(self,im,id,row):
     w, h = im.size
     left, up = np.rint(float(row[id + 1]) * w), np.rint(float(row[id + 3]) * h)
@@ -213,8 +223,8 @@ class ImageDataPrepFEC(ImageDataPrep):
 def main():
   start = time.time()
   test = ImageDataPrepFEC()
-  #test.batch_download_images()
-  test.process_data()
+  # test.batch_download_images()
+  # test.process_data()
   return test
   print("Elapsed time", time.time() - start)
 
