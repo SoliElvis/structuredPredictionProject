@@ -14,7 +14,7 @@ def data_iter(dataset, label_type="hard"):
     :param label_type: The type of labels that are returned. Can be soft or hard labels
     :return:
     """
-    np.random.shuffle(dataset)
+    dataset = np.random.permutation(dataset)
     for row in dataset:
         obj, rating = row[:args.obj_size], row[args.obj_size + 1:] # for now we ignore the class tuple type
 
@@ -206,8 +206,8 @@ if __name__ == "__main__":
     args, unkown = parser.parse_known_args()
 
     # load the datasets
-    train_data = np.load(os.path.join(args.data_dir, "train.npy"))
-    test_data = np.load(os.path.join(args.data_dir, "test.npy"))
+    train_data = np.load(os.path.join(args.data_dir, "train.npy"), mmap_mode='r')
+    test_data = np.load(os.path.join(args.data_dir, "test.npy"), mmap_mode='r')
 
     # get iterators over the data
     np.random.seed(args.seed)
