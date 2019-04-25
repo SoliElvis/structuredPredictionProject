@@ -61,6 +61,14 @@ def createFolder(directory_list : List[str]):
 
   return directory_list
 
+#vrmt batard
+def seeker(it,spamreader,skip):
+  for id, row in enumerate(spamreader):
+    next(it)
+    if id == skip:
+      break
+  return it
+
 
 class ImageDataPrep:
   def __init__(self,save_dir,process_dir,dim=32):
@@ -128,38 +136,42 @@ class ImageDataPrepFEC(ImageDataPrep):
     for testOrTrainStr in tt:
       dataPath = self.csvDataPathDict[testOrTrainStr]
       try:
-        p = os.path.join(self.process_dir,testOrTrainStr,"image_processed.npy")
+        p = os.path.join(self.dataDir,testOrTrainStr,"image_processed.npy")
         print(p)
         f = open(p, "w+")
         with open(dataPath) as csv_file:
           csv_reader = csv.reader(csv_file, delimiter=',')
           it = enumerate(csv_reader)
+          spamreader = csv.reader(csv_file, delimiter=',')
+
+
           if (spamreader):
-            spamreader = csv.reader(csv_file, delimiter=',')
-            for id, row in enumerate(spamreader):
-              next(it)
-              if id == skip:
-                break
+            it = seeker(it,spamreader,skip)
+          to_save = np.empty([0, (3 * args.dim) ** 2 + 7])
+
+          def process_image_tuple(): # retunns the cropped array tuple
+            pass
 
           for id, row in it:
+            image_tuple = []
             for slot in urlSlots:
               print(id)
               if (spamreader and id >= stopLine):
                 break
-
               imagePath = os.path.join(self.imagesDir,testOrTrainStr, str(id) + "-" + str(slot) + ".jpg")
-              try:
-                if not os.path.isfile(image_path):
+              if not os.path.isfile(image_path):
                   continue
+              try:
                 im = Image.open(BytesIO(imagePath))
-                to_save = self.image_processing(im,id,row)
+                to_save = self._image_processing(im,id,row)
                 np.save(f.name, to_save)
 
               except ValueError as e:
-                print("=".join("value error",str(id),str(row)))
+                print(e)
+                # print("=".join("value error",str(id),str(row)))
               except Exception as e:
-                print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
-                raise e
+                print(e)
+                # print("=".join("Maybe Image not a thruple : ", str(id), str(row)))
 
       except FileExistsError:
         print("exists")
@@ -167,6 +179,9 @@ class ImageDataPrepFEC(ImageDataPrep):
         print("skipppp")
         print(e)
         pass
+
+      #id cest un int aparemment, row cest un enumearteur de csv reader
+  def _image_processing(im,id,row):
 
   def _check_local_images(self):
     present_images = {"train" : list(), "test" :list()}
@@ -214,8 +229,9 @@ class ImageDataPrepFEC(ImageDataPrep):
 def main():
   start = time.time()
   test = ImageDataPrepFEC()
-  local_images = test._check_local_images()
-  test.batch_download_images()
+  local_images=None
+  # local_images = test._check_local_images()
+  # test.batch_download_images()
   test.process_data()
   return test, local_images
   print("Elapsed time", time.time() - start)
