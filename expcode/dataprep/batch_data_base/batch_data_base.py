@@ -24,9 +24,27 @@ from sqlalchemy import create_engine
 # connection = sql_engine.raw_connection()
 # working_df.to_sql('data', connection,index=False, if_exists='append')
 
-#TODO: factor out formater
-# Idea: a bunch of csv files in a dict and one db file path
+#Utilities
+def face_crop_df_formater(df):
+  _cols  = [[str(i)  + "_url",
+              str(i) + "_faceCrop_1", str(i) + "_faceCrop_2",
+              str(i) + "_faceCrop_3", str(i) + "_faceCrop_4"] for i in range(0,11,5)]
+  _cols = [item for sublist in _cols for item in sublist]
+  _cols.append("_".join(["16","triple_config"]))
+  for i in range(17,23):
+    _cols.append("_".join([str(i),"Anotator_id"]))
+    _cols.append("_".join([str(i),"note"]))
 
+  df.columns = _cols
+  df.name = "_".join([c[0] for c in _cols])
+  return df
+
+def connection_test(db):
+  return db is not None
+def dataframe_test(df):
+  return df is not None
+
+# Idea: a bunch of csv files in a dict and one db file path
 class csv_to_sql():
   def __init__(self,csv_file_dict : Dict[str,str],db_file_path : str):
     self.csv_file_dict = csv_file_dict
@@ -39,8 +57,18 @@ class csv_to_sql():
       print(e)
 
 
-  #csv stuff
-  def _pandas_load_csv(self,csv_file_key):
+  def export_to_sql(self,df=None,db=None):
+    df = df or self.df
+    db = db or self.db
+    if not connection_test(db):
+      print("db closed"); pass
+    if not dataframe_test(df):
+      print("dataframe fucked"); pass
+    df.to_sql(df.name,db)
+    return df,db
+
+
+  def _pandas_load_csv(self,csv_file_key="train"):
     try:
       self.df = pd.read_csv(csv_file_dict[csv_file_key],sep=',',header=None,error_bad_lines=False)
     except KeyError as kerr:
@@ -48,24 +76,12 @@ class csv_to_sql():
       self.df = None
     return self.df
 
-  def _format_panda(self,csv_file_key,formater=None):
-
+  def _format_panda(self,csv_file_key="train",formater=face_crop_df_formater):
     df = self._pandas_load_csv(csv_file_key)
-    _cols  = [[str(i) + "_url",
-                str(i) + "_faceCrop_1", str(i) + "_faceCrop_2",
-                str(i) + "_faceCrop_3", str(i) + "_faceCrop_4"] for i in range(0,11,5)]
-    _cols = [item for sublist in _cols for item in sublist]
-    _cols.append("_".join(["16","triple_config"]))
-    for i in range(17,23):
-      _cols.append("_".join([str(i),"Anotator_id"]))
-      _cols.append("_".join([str(i),"note"]))
-
-    df.columns = _cols
-    df.name = "_".join([c[0] for c in _cols])
-    self.df = df
+    if formater is not None:
+      self.df = formater(df)
     return self.df
 
-  #db stuff
   def _create_connection(self,db_file_path=None):
     db_file_path = db_file_path or self.db_file_path
     try:
@@ -76,33 +92,9 @@ class csv_to_sql():
     return None
 
 
-  #df needs a name which will be the one of the table
-  def export_to_sql(self,df=None,db=None):
-    df = df or self.df
-    db = db or self.db
-    if not connection_test(db):
-      print("db closed"); pass
-
-    if not dataframe_test(df):
-      print("dataframe fucked"); pass
-
-    df.to_sql(df.name,db)
-    return df,db
-
-
-def connection_test(db):
-  return db is not None
-def dataframe_test(df):
-  return df is not None
-
-
-
-
-
 def test():
   db_file_path = os.path.join("./","test.db")
   plug = csv_to_sql(csv_file_dict,db_file_path)
-
   return plug
 
 
