@@ -75,6 +75,8 @@ expcode/dataprep/process_fec/images/train/*.jpg
 expcode/dataprep/process_fec/images/test/*.jpg
 
 expcode/dataprep/**/*.csv
+expcode/dataprep/test.db
+
 
 
 !*.tex
@@ -84,4 +86,4 @@ expcode/dataprep/**/*.csv
 !*.rst
 !*.py
 
-
+*.db
