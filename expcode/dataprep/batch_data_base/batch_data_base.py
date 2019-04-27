@@ -16,67 +16,94 @@ import itertools
 
 
 db_file_path = "./test.db"
+csv_file_dict = {"train" :
+                  "/home/sole/project/expcode/dataprep/FEC_dataset/faceexp-comparison-data-train-public.csv"}
+from sqlalchemy import create_engine
+
+# sql_engine = create_engine('sqlite:///test.db', echo=False)
+# connection = sql_engine.raw_connection()
+# working_df.to_sql('data', connection,index=False, if_exists='append')
+
+#TODO: factor out formater
+# Idea: a bunch of csv files in a dict and one db file path
 
 class csv_to_sql():
   def __init__(self,csv_file_dict : Dict[str,str],db_file_path : str):
     self.csv_file_dict = csv_file_dict
     self.db_file_path = db_file_path
     self.df = None
-
-  def _create_connection(self,db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
-    :param db_file: database file
-    :return: Connection object or None
-    """
+    self.db= None
     try:
-      conn = sqlite3.connect(db_file)
-      return conn
+      self.db = self._create_connection(db_file_path)
+    except Exception as e:
+      print(e)
+
+
+  #csv stuff
+  def _pandas_load_csv(self,csv_file_key):
+    try:
+      self.df = pd.read_csv(csv_file_dict[csv_file_key],sep=',',header=None,error_bad_lines=False)
+    except KeyError as kerr:
+      print(kerr)
+      self.df = None
+    return self.df
+
+  def _format_panda(self,csv_file_key,formater=None):
+
+    df = self._pandas_load_csv(csv_file_key)
+    _cols  = [[str(i) + "_url",
+                str(i) + "_faceCrop_1", str(i) + "_faceCrop_2",
+                str(i) + "_faceCrop_3", str(i) + "_faceCrop_4"] for i in range(0,11,5)]
+    _cols = [item for sublist in _cols for item in sublist]
+    _cols.append("_".join(["16","triple_config"]))
+    for i in range(17,23):
+      _cols.append("_".join([str(i),"Anotator_id"]))
+      _cols.append("_".join([str(i),"note"]))
+
+    df.columns = _cols
+    df.name = "_".join([c[0] for c in cols])
+    self.df = df
+    return self.df
+
+  #db stuff
+  def _create_connection(self,db_file_path=None):
+    db_file_path = db_file_path or self.db_file_path
+    try:
+      self.db= sqlite3.connect(db_file_path)
+      return self.db
     except Error as e:
       print(e)
     return None
 
-  def _create_table(self,conn, create_table_sql):
-    """ create a table from the create_table_sql statement
-    :param conn: Connection object
-    :param create_table_sql: a CREATE TABLE statement
-    :return:
-    """
-    try:
-      c = conn.cursor()
-      c.execute(create_table_sql)
-    except Error as e:
-      print(e)
 
-  def _pandas_load_csv(self,csv_file_key):
-    self.df = pd.read_csv(csv_file_dict[csv_file_key],sep=',',header=None,error_bad_lines=False)
-    return self.df
+  #df needs a name which will be the one of the table
+  def export_to_sql(self,df=None,db=None):
+    df = df or self.df
+    db = db or self.db
+    if not connection_test(db):
+      print("db closed"); pass
 
-  def _format_panda(self,formater,csv_file_key):
-    self.df = self._pandas_load_csv(self,csv_file_key)
-    __cols={0:"url", 1:"faceCrop_1", 2:"faceCrop_2", 3:"faceCrop_3", 4:"faceCrop_4"}
-    for i in range(1,15,5):
-      for __c in __cols.items():
-        _cols[i+c[0]] = __c[1]
+    if not dataframe_test(df):
+      print("dataframe fucked"); pass
 
-    _cols[16] = "triple_config"
-    for i in range(17,28,2):
-      _cols[i] = "Anotator_id"
-      _cols[i+1] = "note"
-    cols = {k-1: v for (k,v) in _cols.items() if k>0}
-    plug_df.rename(index=int, columns=cols)
+    df.to_sql(df.name,db)
+    return df,db
+
+
+def connection_test(db):
+  return db is not None
+def dataframe_test(df):
+  return df is not None
+
+
+
 
 
 def test():
-  csv_file_dict = {"train" :
-                    "/home/sole/project/expcode/dataprep/FEC_dataset/faceexp-comparison-data-train-public.csv"}
   db_file_path = os.path.join("./","test.db")
-
   plug = csv_to_sql(csv_file_dict,db_file_path)
-  c = plug._create_connection(db_file_path)
 
-  plug._form
-  return plug_df
+  return plug
 
 
 
