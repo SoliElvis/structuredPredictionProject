@@ -40,10 +40,9 @@ def dataframe_test(df):
 #
 
 # Idea: a bunch of csv files in a dict and one db file path
-#TODO: what to do if db exists, error exception in general,
-# use env_variable preferably, json?
-# for csv_file_dict and db_file_path
-#db_file_path should be system wide, csv_file
+# TODO : what to do if db exists, error exception in general,
+# TODO : sanitize closing db
+# db_file_path should be system wide
 
 class Extractor_csv_to_sql():
   def __init__(self,csv_file_dict : Dict[str,str], db_file_path : str):
@@ -52,26 +51,26 @@ class Extractor_csv_to_sql():
     self.df = None
     self.db= None
     try:
-      self.db = self._create_connection(db_file_path)
+      self.db = self._create_connection()
     except Exception as e:
       print(e)
 
-  def _create_connection(self,db_file_path=None):
-    db_file_path = db_file_path or self.db_file_path
+  def _create_connection(self):
     try:
-      self.db= sqlite3.connect(db_file_path)
+      self.db= sqlite3.connect(self.db_file_path)
       return self.db
     except Error as e:
+      print(self.db_file_path)
       print(e)
     return None
 
-  def export_to_sql(self,df_dict,db=None):
+  def export_to_sql(self,db=None):
     df_dict = {}
     db = db or self.db
     if not connection_test(db):
       print("db closed"); return None
 
-    for name, path in csv_file_dict.items():
+    for name, path in self.csv_file_dict.items():
       df_dict[name] = self._pandas_load_csv(name) | self._format_panda(name)
       df_dict[name].name = name
       if not dataframe_test(df_dict[name]):
@@ -95,16 +94,22 @@ class Extractor_csv_to_sql():
     return self.df
 
 
+#Needs to run from root of project
 def extract_csv_fec():
-  save_dir = "home/sole/project/expcode/dataprep/FEC_dataset"
-  process_dir = "./process"
-  csv_file_dict = {"train-fec" :
-                   "/home/sole/project/expcode/dataprep/FEC_dataset/faceexp-comparison-data-train-public.csv",
-                   "test-fec"  :
-                    "/home/sole/project/expcode/dataprep/FEC_dataset/faceexp-comparison-data-test-public.csv"}
+  #move all that to json file
+  proj_dir = "./expcode"
+  db_file_path = os.path.join(proj_dir,"fec.db")
+  save_dir = os.path.join(proj_dir,"dataprep/FEC_dataset")
+  process_dir = os.path.join(proj_dir,"process_dev")
 
-  db_file_path = os.path.join("./","fec.db")
+  csv_file_dict = {"train-fec": os.path.join(save_dir, "faceexp-comparison-data-train-public.csv"),
+                   "test-fec" : os.path.join(save_dir, "faceexp-comparison-data-test-public")}
+
+  image_file_dict = {"train-fec" : os.path.join(process_dir,"images/train"),
+                     "test-fec"  : os.path.join(process_dir, "images/test")}
+
   plug = Extractor_csv_to_sql(csv_file_dict,db_file_path)
+  plug.export_to_sql()
 
 
 
