@@ -1,29 +1,17 @@
-save_dir = "./FEC_dataset"
-process_dir = "./process_fec"
-train_csv = "faceexp-comparison-data-train-public.csv"
-test_csv = "faceexp-comparison-data-test-public.csv"
-tt= ("train", "test")
-lineskip=18
-csvRange=(0,4000,lineskip)
+
+import expcode.dataprep.batch_data_prep as prep
 
 import os
 import sqlite3
-from sqlite3 import Error
 import pandas as pd
-import expcode.dataprep.batch_data_prep as prep
+from sqlite3 import Error
 from typing import List, Dict
 import itertools
-
-
-db_file_path = "./test.db"
-csv_file_dict = {"train" :
-                  "/home/sole/project/expcode/dataprep/FEC_dataset/faceexp-comparison-data-train-public.csv"}
-from sqlalchemy import create_engine
-
+import pipe
+# from sqlalchemy import create_engine
 # sql_engine = create_engine('sqlite:///test.db', echo=False)
 # connection = sql_engine.raw_connection()
 # working_df.to_sql('data', connection,index=False, if_exists='append')
-
 #Utilities
 def face_crop_df_formater(df):
   _cols  = [[str(i)  + "_url",
@@ -44,9 +32,21 @@ def connection_test(db):
 def dataframe_test(df):
   return df is not None
 
+#
+# csv -> dataframe -> db -> -> ETL of tables -> .npy
+#                     |      \
+#                    sync      -> dataframe -> .npy
+#                     db!!!
+#
+
 # Idea: a bunch of csv files in a dict and one db file path
-class csv_to_sql():
-  def __init__(self,csv_file_dict : Dict[str,str],db_file_path : str):
+#TODO: what to do if db exists, error exception in general,
+# use env_variable preferably, json?
+# for csv_file_dict and db_file_path
+#db_file_path should be system wide, csv_file
+
+class Extractor_csv_to_sql():
+  def __init__(self,csv_file_dict : Dict[str,str], db_file_path : str):
     self.csv_file_dict = csv_file_dict
     self.db_file_path = db_file_path
     self.df = None
@@ -55,32 +55,6 @@ class csv_to_sql():
       self.db = self._create_connection(db_file_path)
     except Exception as e:
       print(e)
-
-
-  def export_to_sql(self,df=None,db=None):
-    df = df or self.df
-    db = db or self.db
-    if not connection_test(db):
-      print("db closed"); pass
-    if not dataframe_test(df):
-      print("dataframe fucked"); pass
-    df.to_sql(df.name,db)
-    return df,db
-
-
-  def _pandas_load_csv(self,csv_file_key="train"):
-    try:
-      self.df = pd.read_csv(csv_file_dict[csv_file_key],sep=',',header=None,error_bad_lines=False)
-    except KeyError as kerr:
-      print(kerr)
-      self.df = None
-    return self.df
-
-  def _format_panda(self,csv_file_key="train",formater=face_crop_df_formater):
-    df = self._pandas_load_csv(csv_file_key)
-    if formater is not None:
-      self.df = formater(df)
-    return self.df
 
   def _create_connection(self,db_file_path=None):
     db_file_path = db_file_path or self.db_file_path
@@ -91,19 +65,50 @@ class csv_to_sql():
       print(e)
     return None
 
+  def export_to_sql(self,df_dict,db=None):
+    df_dict = {}
+    db = db or self.db
+    if not connection_test(db):
+      print("db closed"); return None
 
-def test():
-  db_file_path = os.path.join("./","test.db")
-  plug = csv_to_sql(csv_file_dict,db_file_path)
+    for name, path in csv_file_dict.items():
+      df_dict[name] = self._pandas_load_csv(name) | self._format_panda(name)
+      df_dict[name].name = name
+      if not dataframe_test(df_dict[name]):
+        print("dataframe fucked"); continue
+      df_dict[name].to_sql(name,db)
+
+    return df_dict,db
+
+  def _pandas_load_csv(self,csv_file_key):
+    try:
+      self.df = pd.read_csv(self.csv_file_dict[csv_file_key],sep=',',error_bad_lines=False)
+    except KeyError as kerr:
+      print(kerr)
+      self.df = None
+    return self.df
+
+  def _format_panda(self,csv_file_key,formater=face_crop_df_formater):
+    df = self._pandas_load_csv(csv_file_key)
+    if formater is not None:
+      self.df = formater(df)
+    return self.df
+
+
+def extract_csv_fec():
+  save_dir = "home/sole/project/expcode/dataprep/FEC_dataset"
+  process_dir = "./process"
+  csv_file_dict = {"train-fec" :
+                   "/home/sole/project/expcode/dataprep/FEC_dataset/faceexp-comparison-data-train-public.csv",
+                   "test-fec"  :
+                    "/home/sole/project/expcode/dataprep/FEC_dataset/faceexp-comparison-data-test-public.csv"}
+
+  db_file_path = os.path.join("./","fec.db")
+  plug = Extractor_csv_to_sql(csv_file_dict,db_file_path)
+
+
+
   return plug
-
-
-
-
-
-
-
-
 
 
 
