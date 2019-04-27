@@ -74,6 +74,8 @@ texStuff/rapport/*.toc
 expcode/dataprep/process_fec/images/train/*.jpg
 expcode/dataprep/process_fec/images/test/*.jpg
 
+expcode/dataprep/**/*.csv
+
 
 !*.tex
 !*.bib
