@@ -1,17 +1,11 @@
-
 import expcode.dataprep.batch_data_prep as prep
-
 import os
 import sqlite3
-import pandas as pd
 from sqlite3 import Error
+import pandas as pd
 from typing import List, Dict
 import itertools
 import pipe
-# from sqlalchemy import create_engine
-# sql_engine = create_engine('sqlite:///test.db', echo=False)
-# connection = sql_engine.raw_connection()
-# working_df.to_sql('data', connection,index=False, if_exists='append')
 #Utilities
 def face_crop_df_formater(df):
   _cols  = [[str(i)  + "_url",
@@ -24,7 +18,6 @@ def face_crop_df_formater(df):
     _cols.append("_".join([str(i),"note"]))
 
   df.columns = _cols
-  df.name = "_".join([c[0] for c in _cols])
   return df
 
 def connection_test(db):
@@ -32,23 +25,23 @@ def connection_test(db):
 def dataframe_test(df):
   return df is not None
 
-#
-# csv -> dataframe -> db -> -> ETL of tables -> .npy
+# TODO : what to do if db exists, error exception in general,
+# TODO : sanitize closing db
+# TODO : db_file_path should be system wide
+#                            file system maintenance for blobs
+#                          /           |
+# csv -> dataframe -> db -> * -> ETL of tables -> .npy
 #                     |      \
 #                    sync      -> dataframe -> .npy
 #                     db!!!
 #
 
-# Idea: a bunch of csv files in a dict and one db file path
-# TODO : what to do if db exists, error exception in general,
-# TODO : sanitize closing db
-# db_file_path should be system wide
 
 class Extractor_csv_to_sql():
   def __init__(self,csv_file_dict : Dict[str,str], db_file_path : str):
     self.csv_file_dict = csv_file_dict
     self.db_file_path = db_file_path
-    self.df = None
+    self.df_dict = None
     self.db= None
     try:
       self.db = self._create_connection()
@@ -64,6 +57,22 @@ class Extractor_csv_to_sql():
       print(e)
     return None
 
+  def _pandas_load_csv(self,csv_file_key):
+    try:
+      df = pd.read_csv(self.csv_file_dict[csv_file_key],sep=',',error_bad_lines=False)
+      df = self._format_panda(df)
+      df.name = csv_file_key
+      return df
+    except KeyError as kerr:
+      print(kerr)
+    return df
+
+  def _format_panda(self,df,formater=face_crop_df_formater):
+    if formater is not None:
+      df = formater(df)
+    return df
+
+
   def export_to_sql(self,db=None):
     df_dict = {}
     db = db or self.db
@@ -71,43 +80,37 @@ class Extractor_csv_to_sql():
       print("db closed"); return None
 
     for name, path in self.csv_file_dict.items():
-      df_dict[name] = self._pandas_load_csv(name) | self._format_panda(name)
-      df_dict[name].name = name
+      df_dict[name] = self._pandas_load_csv(name)
       if not dataframe_test(df_dict[name]):
         print("dataframe fucked"); continue
       df_dict[name].to_sql(name,db)
 
     return df_dict,db
 
-  def _pandas_load_csv(self,csv_file_key):
-    try:
-      self.df = pd.read_csv(self.csv_file_dict[csv_file_key],sep=',',error_bad_lines=False)
-    except KeyError as kerr:
-      print(kerr)
-      self.df = None
-    return self.df
 
-  def _format_panda(self,csv_file_key,formater=face_crop_df_formater):
-    df = self._pandas_load_csv(csv_file_key)
-    if formater is not None:
-      self.df = formater(df)
-    return self.df
+class Blob_manager(db,db_to_file_format):
+  pass
+
+class ETL_manager(db,aggregate_pattern):
+  pass
+
+class Numerical_transformation(db,numerical_pattern):
+  pass
 
 
 #Needs to run from root of project
 def extract_csv_fec():
-  #move all that to json file
+
+  ###move all that to json file
   proj_dir = "./expcode"
   db_file_path = os.path.join(proj_dir,"fec.db")
   save_dir = os.path.join(proj_dir,"dataprep/FEC_dataset")
   process_dir = os.path.join(proj_dir,"process_dev")
-
   csv_file_dict = {"train-fec": os.path.join(save_dir, "faceexp-comparison-data-train-public.csv"),
                    "test-fec" : os.path.join(save_dir, "faceexp-comparison-data-test-public")}
-
   image_file_dict = {"train-fec" : os.path.join(process_dir,"images/train"),
                      "test-fec"  : os.path.join(process_dir, "images/test")}
-
+  #####
   plug = Extractor_csv_to_sql(csv_file_dict,db_file_path)
   plug.export_to_sql()
 
