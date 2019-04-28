@@ -1,14 +1,28 @@
-\section{Experiments}
-In this section, we describe the implementation we performed for this project. The goal was to see how the Dual Extragradient algrithm compared to the Block-coordinate Frank-Wolfe algorithm. The task on which we performed the evaluation was word alignment in machine translation. We extracted the dataset from the Europarl dataset \textbf{CITE THIS SHIT}. The data consisted of approximately 2 million sentence pairs in both english and french. Each the sentences in each pair were translations of one another. The data had been aigned using the GIZA++ algorithm \textbf{CITE THIS SHIT}. We extracted all sentences and performed a clean by splitting longer sentences into shorter ones. The goal of this step was to reduce the eventual number of matchings in training, which could take long to solve using a LP solver. 
+\subsection{Experiments}
+In this section, we describe the implementation we performed for this project.
+The goal was to see how the Dual Extragradient algrithm compared to the
+Block-coordinate Frank-Wolfe algorithm. The task on which we performed the
+evaluation was word alignment in machine translation. We extracted the dataset
+from the Europarl dataset \textbf{CITE THIS SHIT}. The data consisted of
+approximately 2 million sentence pairs in both english and french. Each the
+sentences in each pair were translations of one another. The data had been
+aigned using the GIZA++ algorithm \textbf{CITE THIS SHIT}. We extracted all
+sentences and performed a clean by splitting longer sentences into shorter ones.
+The goal of this step was to reduce the eventual number of matchings in
+training, which could take long to solve using a LP solver.
 
-We then proceeded to implement the Dual Extragradient and BCFW algorithms using a SVM. We had to define a feature mapping for an input sentence pair. As in Taskar \textbf{CITE THIS SHIT}, the features were composed of the following statistics of the corpora:
+We then proceeded to implement the Dual Extragradient and BCFW algorithms using
+a SVM. We had to define a feature mapping for an input sentence pair. As in
+Taskar \textbf{CITE THIS SHIT}, the features were composed of the following
+statistics of the corpora:
 \begin{itemize}
   \item Dice coefficient between pairs of words:
     \begin{equation*}
       \frac{2*C_{ef}}{C_e + C_f}
     \end{equation*}
-    where $C_ef$ is the number of co-occurrences of the pair of words $e,f$ in sentences and $C_e, C_f$ are the number of occurrences
-    of the words in english and french respectively.
+    where $C_ef$ is the number of co-occurrences of the pair of words $e,f$ in
+sentences and $C_e, C_f$ are the number of occurrences of the words in english
+and french respectively.
 
   \item Absolute value of the difference of the relative positions of each words in each sentence
 
@@ -24,8 +38,22 @@ We combined these statistics by summing them for all word tuples in each sentenc
   \item This assignment was hard
   \item Ce travail etait ardu
 \end{itemize}
-We would compute the statistics for each word tuple (e.g. this/ce, this/travail, \dots, hard/ardu). Thus, we end up with a vector of statistics for each tuple. Then, we simply performed a weighted combination of these vectors using the edge labels as weights. To clarify what we mean by edge labels, suppose that the edge linking ``assignment'' and ``travail'' has a value of 1. Then, we weight the vector extracted from these two words with 1. As another example, if the edge between ``ce'' and ``ardu'' has a value of 0 (i.e. no link between the words), we do not include the vector computed from the statistics of this word pair. This is exactly what was done in Taskar \textbf{CITE THIS SHIT} modulo some other features.
+We would compute the statistics for each word tuple (e.g. this/ce, this/travail,
+\dots, hard/ardu). Thus, we end up with a vector of statistics for each tuple.
+Then, we simply performed a weighted combination of these vectors using the edge
+labels as weights. To clarify what we mean by edge labels, suppose that the edge
+linking ``assignment'' and ``travail'' has a value of 1. Then, we weight the
+vector extracted from these two words with 1. As another example, if the edge
+between ``ce'' and ``ardu'' has a value of 0 (i.e. no link between the words),
+we do not include the vector computed from the statistics of this word pair.
+This is exactly what was done in Taskar \textbf{CITE THIS SHIT} modulo some
+other features.
 
-In the implementation of BCFW, we used the solver from scipy \textbf{CITE THIS SHIT} with the simplex method. Since the constraint matrix given by the optimization of $H_i$ in the algorithm is unimodular, when we relax the LP, we still get a solution to the ILP without relaxation. Thus, we take advantage of this fact and indeed use the LP solver. The loss that we used was the $L_1$ distance between the two labels, the proposal and the ground truth.
+In the implementation of BCFW, we used the solver from scipy \textbf{CITE THIS
+SHIT} with the simplex method. Since the constraint matrix given by the
+optimization of $H_i$ in the algorithm is unimodular, when we relax the LP, we
+still get a solution to the ILP without relaxation. Thus, we take advantage of
+this fact and indeed use the LP solver. The loss that we used was the $L_1$
+distance between the two labels, the proposal and the ground truth.
 
-\subsection{Results}
+\subsubsection{Results}

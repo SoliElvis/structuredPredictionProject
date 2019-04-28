@@ -4,6 +4,7 @@
    (TeX-run-style-hooks
     "premath"
     "extraGradMain"
-    "rapport_edited_main"))
+    "rapport_edited_main"
+    "exp"))
  :latex)
 
