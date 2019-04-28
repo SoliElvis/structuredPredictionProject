@@ -5,11 +5,13 @@
                      '(("biblatex" "backend=biber" "style=numeric" "citestyle=numeric")))
    (TeX-run-style-hooks
     "premath"
+    "preliminaries"
     "extraGradMain"
-    "rapport_edited_main"
+    "bcfwMain"
     "exp"
     "discussion"
     "conclusion"
+    "appendix"
     "biblatex")
    (LaTeX-add-bibliographies
     "tocite"))
