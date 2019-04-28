@@ -14,6 +14,7 @@ import signal
 from contextlib import contextmanager
 
 import asyncio
+import mmap
 
 #Globals-----------------------------------------------------
 
@@ -138,19 +139,34 @@ class ProcessorBase():
   pass
 
 class Processor_textFile_to_lite(ProcessorBase):
-  def __init__(self,extractor):
+  def __init__(self,extractor,queue):
     self.ex = extractor
     self.dp_trl = self.ex.dp_trl
+    self.line_cache = {}
+    self.fMap = None
+    self.queue = queue
+
   async def produce_sentence(self):
     for l in lang:
-      with open(self.ex.text_fileDict, 'r'):
+      with open(self.ex.text_fileDict, 'r') as f:
         pass
 
-  async def producer(name, queue):
+  async def chunk_producer(self,chunkReadLineNb=100):
+    #while True wait if queue is passed a certain threshold
     while True:
-      #process a number of sentences
+      chunk = [l for l in self.fMap.readline() for _ in range(chunkReadLineNb)]
+      queue.task_done()
+      print("\n chunk producer queue")
+
+  async def sentence_producer_chunk_consumer(self):
+    while True:
+      sleep_for = await queue.get()
+      await asyncio.sleep(sleep_for)
+      #process chunks
       queue.task_done()
       print("\n producer queue")
+
+
 
 async def main():
 

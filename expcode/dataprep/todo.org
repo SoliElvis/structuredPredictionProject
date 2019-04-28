@@ -14,10 +14,12 @@
 
 * db
 ** URGENT txt to db
-*** MIDWAY refactor extractor
 *** URGENT split sequences and check if alignement matches
+*** MAYBE async check how to optimize producer-consumer rate
 *** URGENT export to db
 *** MAYBE post-processing
+*** DONE refactor extractor
+		CLOSED: [2019-04-28 Sun 10:03]
 ** MIDWAY [#A] pickle
 *** URGENT pickle load into memory
 *** URGENT pickle dump to sql
