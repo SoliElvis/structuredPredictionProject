@@ -1,4 +1,6 @@
 import expcode.dataprep.batch_data_prep as prep
+from expcode.dataprep import dataParams_fec, dp_fec
+
 import os
 import sqlite3
 from sqlite3 import Error
@@ -6,6 +8,7 @@ import pandas as pd
 from typing import List, Dict
 import itertools
 import pipe
+
 #Utilities
 def face_crop_df_formater(df):
   _cols  = [[str(i)  + "_url",
@@ -92,7 +95,8 @@ class PostProcessor_csv_to_sql():
     return None
 
 
-
+class Lite_to_postgres():
+  pass
 
 class Extractor_pickle_to_sql():
   pass
@@ -113,6 +117,9 @@ def extract_csv_fec():
   plug = Extractor_csv_to_sql(csv_file_dict,db_file)
   plug.first_export_to_sql()
   return plug
+
+def test():
+  return dp_fec
 
 
 
