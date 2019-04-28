@@ -693,7 +693,7 @@ The proof of Hoeffding's lemma uses Taylor's theorem and Jensen's inequality.  H
   abstract = {We extend the Frank-Wolfe (FW) optimization algorithm to solve constrained smooth convex-concave saddle point (SP) problems. Remarkably, the method only requires access to linear minimization oracles. Leveraging recent advances in FW optimization, we provide the first proof of convergence of a FW-type saddle point solver over polytopes, thereby partially answering a 30 year-old conjecture. We also survey other convergence results and highlight gaps in the theoretical underpinnings of FW-style algorithms. Motivating applications without known efficient alternatives are explored through structured prediction with combinatorial penalties as well as games over matching polytopes involving an exponential number of constraints.},
   urldate = {2019-03-12},
   date = {2016-10-25},
-  keywords = {90C52; 90C90; 68T05,Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C52; 90C90; 68T05},
   author = {Gidel, Gauthier and Jebara, Tony and Lacoste-Julien, Simon},
   annotation = {Comment: Appears in: Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS 2017). 39 pages}
 }
@@ -876,7 +876,7 @@ chapter 5:lagrangian duality
   abstract = {The Frank-Wolfe (FW) optimization algorithm has lately re-gained popularity thanks in particular to its ability to nicely handle the structured constraints appearing in machine learning applications. However, its convergence rate is known to be slow (sublinear) when the solution lies at the boundary. A simple less-known fix is to add the possibility to take 'away steps' during optimization, an operation that importantly does not require a feasibility oracle. In this paper, we highlight and clarify several variants of the Frank-Wolfe optimization algorithm that have been successfully applied in practice: away-steps FW, pairwise FW, fully-corrective FW and Wolfe's minimum norm point algorithm, and prove for the first time that they all enjoy global linear convergence, under a weaker condition than strong convexity of the objective. The constant in the convergence rate has an elegant interpretation as the product of the (classical) condition number of the function with a novel geometric quantity that plays the role of a 'condition number' of the constraint set. We provide pointers to where these algorithms have made a difference in practice, in particular with the flow polytope, the marginal polytope and the base polytope for submodular optimization.},
   urldate = {2019-03-19},
   date = {2015-11-18},
-  keywords = {90C52; 90C90; 68T05,Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C52; 90C90; 68T05},
   author = {Lacoste-Julien, Simon and Jaggi, Martin},
   annotation = {Comment: Appears in: Advances in Neural Information Processing Systems 28 (NIPS 2015). 26 pages}
 }
@@ -937,7 +937,7 @@ chapter 5:lagrangian duality
   abstract = {In this paper, we propose several improvements on the block-coordinate Frank-Wolfe (BCFW) algorithm from Lacoste-Julien et al. (2013) recently used to optimize the structured support vector machine (SSVM) objective in the context of structured prediction, though it has wider applications. The key intuition behind our improvements is that the estimates of block gaps maintained by BCFW reveal the block suboptimality that can be used as an adaptive criterion. First, we sample objects at each iteration of BCFW in an adaptive non-uniform way via gapbased sampling. Second, we incorporate pairwise and away-step variants of Frank-Wolfe into the block-coordinate setting. Third, we cache oracle calls with a cache-hit criterion based on the block gaps. Fourth, we provide the first method to compute an approximate regularization path for SSVM. Finally, we provide an exhaustive empirical evaluation of all our methods on four structured prediction datasets.},
   urldate = {2019-03-19},
   date = {2016-05-30},
-  keywords = {90C52; 90C90; 90C06; 68T05,Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C52; 90C90; 90C06; 68T05},
   author = {Osokin, Anton and Alayrac, Jean-Baptiste and Lukasewitz, Isabella and Dokania, Puneet K. and Lacoste-Julien, Simon},
   annotation = {Comment: Appears in Proceedings of the 33rd International Conference on Machine Learning (ICML 2016). 31 pages}
 }
@@ -1211,7 +1211,7 @@ gradient descent.},
   series = {Lecture Notes in Economics and Mathematical Systems},
   publisher = {{Springer}},
   date = {2010},
-  keywords = {Convex functions,Duality theory (Mathematics),Mathematical optimization},
+  keywords = {Convex functions,Mathematical optimization,Duality theory (Mathematics)},
   author = {Boţ, Radu Ioan},
   file = {/home/sole/Zotero/storage/UD6ZNAUU/Boţ - 2010 - Conjugate duality in convex optimization.pdf},
   note = {OCLC: ocn647845796}
@@ -1843,6 +1843,33 @@ gradient descent.},
   date = {2005},
   pages = {73-80},
   author = {Taskar, Ben and Lacoste-Julien, Simon and Klein, Dan}
+}
+
+@article{taskarMaxMarginMarkovNetworks,
+  langid = {english},
+  title = {Max-{{Margin Markov Networks}}},
+  abstract = {In typical classiﬁcation tasks, we seek a function which assigns a label to a single object. Kernel-based approaches, such as support vector machines (SVMs), which maximize the margin of conﬁdence of the classiﬁer, are the method of choice for many such tasks. Their popularity stems both from the ability to use high-dimensional feature spaces, and from their strong theoretical guarantees. However, many real-world tasks involve sequential, spatial, or structured data, where multiple labels must be assigned. Existing kernel-based methods ignore structure in the problem, assigning labels independently to each object, losing much useful information. Conversely, probabilistic graphical models, such as Markov networks, can represent correlations between labels, by exploiting problem structure, but cannot handle high-dimensional feature spaces, and lack strong theoretical generalization guarantees. In this paper, we present a new framework that combines the advantages of both approaches: Maximum margin Markov (M3) networks incorporate both kernels, which efﬁciently deal with high-dimensional features, and the ability to capture correlations in structured data. We present an efﬁcient algorithm for learning M3 networks based on a compact quadratic program formulation. We provide a new theoretical bound for generalization in structured domains. Experiments on the task of handwritten character recognition and collective hypertext classiﬁcation demonstrate very signiﬁcant gains over previous approaches.},
+  pages = {12},
+  author = {Taskar, Ben and Guestrin, Carlos and Koller, Daphne},
+  file = {/home/sole/Zotero/storage/QVXTQMN4/Taskar et al. - Max-Margin Markov Networks.pdf}
+}
+
+@article{tsochantaridisLargeMarginMethods,
+  langid = {english},
+  title = {Large {{Margin Methods}} for {{Structured}} and {{Interdependent Output Variables}}},
+  abstract = {Learning general functional dependencies between arbitrary input and output spaces is one of the key challenges in computational intelligence. While recent progress in machine learning has mainly focused on designing ﬂexible and powerful input representations, this paper addresses the complementary issue of designing classiﬁcation algorithms that can deal with more complex outputs, such as trees, sequences, or sets. More generally, we consider problems involving multiple dependent output variables, structured output spaces, and classiﬁcation problems with class attributes. In order to accomplish this, we propose to appropriately generalize the well-known notion of a separation margin and derive a corresponding maximum-margin formulation. While this leads to a quadratic program with a potentially prohibitive, i.e. exponential, number of constraints, we present a cutting plane algorithm that solves the optimization problem in polynomial time for a large class of problems. The proposed method has important applications in areas such as computational biology, natural language processing, information retrieval/extraction, and optical character recognition. Experiments from various domains involving different types of output spaces emphasize the breadth and generality of our approach.},
+  pages = {32},
+  author = {Tsochantaridis, Ioannis and Joachims, Thorsten and Hofmann, Thomas and Altun, Yasemin},
+  file = {/home/sole/Zotero/storage/NVPNP8G7/Tsochantaridis et al. - Large Margin Methods for Structured and Interdepen.pdf}
+}
+
+@article{taskarLearningStructuredPredictionb,
+  langid = {english},
+  title = {Learning {{Structured Prediction Models}}: {{A Large Margin Approach}}},
+  abstract = {We consider large margin estimation in a broad range of prediction models where inference involves solving combinatorial optimization problems, for example, weighted graphcuts or matchings. Our goal is to learn parameters such that inference using the model reproduces correct answers on the training data. Our method relies on the expressive power of convex optimization problems to compactly capture inference or solution optimality in structured prediction models. Directly embedding this structure within the learning formulation produces concise convex problems for eﬃcient estimation of very complex and diverse models. We describe experimental results on a matching task, disulﬁde connectivity prediction, showing signiﬁcant improvements over state-of-the-art methods.},
+  pages = {8},
+  author = {Taskar, Ben and Chatalbashev, Vassil and Koller, Daphne and Guestrin, Carlos},
+  file = {/home/sole/Zotero/storage/2NXVYU7A/Taskar et al. - Learning Structured Prediction Models A Large Mar.pdf}
 }
 
 
