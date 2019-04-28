@@ -11,12 +11,11 @@ proj_dir = config["proj_dir"]
 datasets_path = config["datasets"]
 
 @dataclass
-class dataP:
+class dataParams():
   db_file : str
   rawData_dir : str
   processedData_dir: str
 
-class dataParams(dataP):
   def __init__(self,config_str):
     self.config = config[config_str]
     self.db_file = join(proj_dir,self.config["db_file"])

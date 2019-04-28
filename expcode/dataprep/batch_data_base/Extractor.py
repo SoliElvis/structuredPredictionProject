@@ -13,10 +13,13 @@ import pickle
 import signal
 from contextlib import contextmanager
 
+#Globals-----------------------------------------------------
+
 testOrTrain = ("train","test")
 lang = ("fr","en")
 
-#Utilities
+#Utilities---------------------------------------------------
+
 def face_crop_df_formater(df):
   _cols  = [[str(i)  + "_url",
               str(i) + "_faceCrop_1", str(i) + "_faceCrop_2",
@@ -48,6 +51,8 @@ def time_limit(seconds):
     signal.alarm(0)
 
 
+#Extractors --------------------------------------------------
+
 class ExtractorBase():
   def __init__(self,db_file_path : str):
     self.db_file_path = db_file_path
@@ -66,26 +71,12 @@ class ExtractorBase():
       print(e)
     return None
 
-class Extractor_csv_to_sql():
-  def __init__(self,csv_file_dict :
-               Dict[str,str], db_file_path : str):
-    self.csv_file_dict = csv_file_dict
-    self.db_file_path = db_file_path
-    self.df_dict = None
-    self.db= None
-    try:
-      self.db = self._create_connection()
-    except Exception as e:
-      print(e)
 
-  def _create_connection(self):
-    try:
-      self.db= sqlite3.connect(self.db_file_path)
-      return self.db
-    except Error as e:
-      print(self.db_file_path)
-      print(e)
-    return None
+class Extractor_csv_to_sql(ExtractorBase):
+  def __init__(self,db_file_path : str, csv_file_dict : Dict[str,str]):
+    ExtractorBase.__init__(db_file_path)
+    self.csv_file_dict = csv_file_dict
+    self.df_dict = None
 
   def _pandas_load_csv(self,csv_file_key):
     try:
@@ -117,18 +108,12 @@ class Extractor_csv_to_sql():
     return df_dict,db
 
 
-class Extractor_pickle_to_sql():
+class Extractor_pickle_to_sql(ExtractorBase):
   def __init__(self,dp_pickle):
+    ExtractorBase.__init__(dp_pickle.db_file)
     self.pickdic = dp_pickle.pickdic
-    self.db_file_path = dp_pickle.db_file
     self.df_dict = None
-    self.db = None
     self.content_inMem = {lang[0]:list(), lang[1]:list()}
-    try:
-      self.db = self._create_connection()
-    except Exception as e:
-      print(e)
-
   def _load_pickle_file(self):
     for l in lang:
       with open(self.pickdic[l], 'rb') as f:
@@ -139,37 +124,11 @@ class Extractor_pickle_to_sql():
 
     return self.content_inMem
 
-  def _create_connection(self):
-    try:
-      self.db= sqlite3.connect(self.db_file_path)
-      return self.db
-    except Error as e:
-      print(self.db_file_path)
-      print(e)
-    return None
 
+class Extractor_textFile_to_sql(ExtractorBase):
+  def __init__(self,dp_trl):
+    self.text_fileDict = dp_trl.text_fileDict
 
-
-class Unprocessed_textFile_to_sql():
- pass
-
-#same process different tables
-class PostProcessor_csv_to_sql():
-  def __init__(self,db : str,table_namesz : List[str], update_postfix: str):
-    self.db = self._create_connection(db)
-    self.table_names = table_names
-    self.new_table_names = [os.path.join(n, update_postfix) for n in table_namesz]
-  def _create_connection(self):
-    try:
-      self.db= sqlite3.connect(self.db_file_path)
-      return self.db
-    except Error as e:
-      print(self.db_file_path)
-      print(e)
-    return None
-
-class Lite_to_postgres():
-  pass
 
 
 def test():
@@ -188,6 +147,8 @@ def test():
   return dp_fec,dp_pkl
 
 
+def test2():
+  return Extractor_textFile_to_sql(dp_trl)
 #Needs to run from root of project
 def extract_csv_fec():
   plug = Extractor_csv_to_sql(dp_fec.csv_file_dict,dp_fec.db_file)
@@ -214,28 +175,21 @@ def extract_csv_fec():
 #   pass
 # class Numerical_transformation(db,numerical_pattern):
 #   pass
+#same process different tables
+# class PostProcessor_csv_to_sql():
+#   def __init__(self,db : str,table_namesz : List[str], update_postfix: str):
+#     self.db = self._create_connection(db)
+#     self.table_names = table_names
+#     self.new_table_names = [os.path.join(n, update_postfix) for n in table_namesz]
+#   def _create_connection(self):
+#     try:
+#       self.db= sqlite3.connect(self.db_file_path)
+#       return self.db
+#     except Error as e:
+#       print(self.db_file_path)
+#       print(e)
+#     return None
 
 
-
-# Each line in the CSV files has the following entries:
-# ● URL of image1 (string)
-# ● Top-left column of the face bounding box in image1 normalized by width (float)
-# ● Bottom-right column of the face bounding box in image1 normalized by width (float)
-# ● Top-left row of the face bounding box in image1 normalized by height (float)
-# ● Bottom-right row of the face bounding box in image1 normalized by height (float)
-# ● URL of image2 (string)
-# ● Top-left column of the face bounding box in image2 normalized by width (float)
-# ● Bottom-right column of the face bounding box in image2 normalized by width (float)
-# ● Top-left row of the face bounding box in image2 normalized by height (float)
-# ● Bottom-right row of the face bounding box in image2 normalized by height (float)
-# ● URL of image3 (string)
-# ● Top-left column of the face bounding box in image3 normalized by width (float)
-# ● Bottom-right column of the face bounding box in image3 normalized by width (float)
-# ● Top-left row of the face bounding box in image3 normalized by height (float)
-# ● Bottom-right row of the face bounding box in image3 normalized by height (float)
-# ● Triplet_type (string) - A string indicating the variation of expressions in the triplet.
-# ● Annotator1_id (string) - This is just a string of random numbers that can be used to
-# search for all the samples in the dataset annotated by a particular annotator.
-# ● Annotation1 (integer)
-# ● Annotator2_id (string)
-# ● Annotation2 (integer)
+# class Lite_to_postgres():
+#   pass

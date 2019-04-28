@@ -13,7 +13,12 @@
 ** requirements file/ clean up imports
 
 * db
-** URGENT [#A] pickle
+** URGENT txt to db
+*** MIDWAY refactor extractor
+*** URGENT split sequences and check if alignement matches
+*** URGENT export to db
+*** MAYBE post-processing
+** MIDWAY [#A] pickle
 *** URGENT pickle load into memory
 *** URGENT pickle dump to sql
 *** DONE are decorators inheritated? yes
@@ -33,3 +38,27 @@
 * Rapport
 ** TODO Bib file update and cleanup, switch to zotero
 ** TODO [#B] intro convex analysis
+
+
+# Each line in the CSV files has the following entries:
+# ● URL of image1 (string)
+# ● Top-left column of the face bounding box in image1 normalized by width (float)
+# ● Bottom-right column of the face bounding box in image1 normalized by width (float)
+# ● Top-left row of the face bounding box in image1 normalized by height (float)
+# ● Bottom-right row of the face bounding box in image1 normalized by height (float)
+# ● URL of image2 (string)
+# ● Top-left column of the face bounding box in image2 normalized by width (float)
+# ● Bottom-right column of the face bounding box in image2 normalized by width (float)
+# ● Top-left row of the face bounding box in image2 normalized by height (float)
+# ● Bottom-right row of the face bounding box in image2 normalized by height (float)
+# ● URL of image3 (string)
+# ● Top-left column of the face bounding box in image3 normalized by width (float)
+# ● Bottom-right column of the face bounding box in image3 normalized by width (float)
+# ● Top-left row of the face bounding box in image3 normalized by height (float)
+# ● Bottom-right row of the face bounding box in image3 normalized by height (float)
+# ● Triplet_type (string) - A string indicating the variation of expressions in the triplet.
+# ● Annotator1_id (string) - This is just a string of random numbers that can be used to
+# search for all the samples in the dataset annotated by a particular annotator.
+# ● Annotation1 (integer)
+# ● Annotator2_id (string)
+# ● Annotation2 (integer)
