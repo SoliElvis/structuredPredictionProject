@@ -72,7 +72,6 @@ class Extractor_csv_to_sql():
       df = formater(df)
     return df
 
-
   def export_to_sql(self,db=None):
     df_dict = {}
     db = db or self.db
@@ -83,19 +82,21 @@ class Extractor_csv_to_sql():
       df_dict[name] = self._pandas_load_csv(name)
       if not dataframe_test(df_dict[name]):
         print("dataframe fucked"); continue
-      df_dict[name].to_sql(name,db)
+      df_dict[name].to_sql(name,db,if_exists='append')
 
     return df_dict,db
 
 
-class Blob_manager(db,db_to_file_format):
-  pass
+# class Blob_manager_fs(db,db_to_file_format):
+#   pass
+# class Blob_manager_postGre(db,db_to_file_format):
+#   pass
 
-class ETL_manager(db,aggregate_pattern):
-  pass
+# class ETL_manager(db,aggregate_pattern):
+#   pass
 
-class Numerical_transformation(db,numerical_pattern):
-  pass
+# class Numerical_transformation(db,numerical_pattern):
+#   pass
 
 
 #Needs to run from root of project
@@ -106,10 +107,10 @@ def extract_csv_fec():
   db_file_path = os.path.join(proj_dir,"fec.db")
   save_dir = os.path.join(proj_dir,"dataprep/FEC_dataset")
   process_dir = os.path.join(proj_dir,"process_dev")
-  csv_file_dict = {"train-fec": os.path.join(save_dir, "faceexp-comparison-data-train-public.csv"),
-                   "test-fec" : os.path.join(save_dir, "faceexp-comparison-data-test-public")}
-  image_file_dict = {"train-fec" : os.path.join(process_dir,"images/train"),
-                     "test-fec"  : os.path.join(process_dir, "images/test")}
+  csv_file_dict = {"train_fec": os.path.join(save_dir, "faceexp-comparison-data-train-public.csv"),
+                   "test_fec" : os.path.join(save_dir, "faceexp-comparison-data-test-public.csv")}
+  image_file_dict = {"train_fec" : os.path.join(process_dir,"images/train"),
+                     "test_fec"  : os.path.join(process_dir, "images/test")}
   #####
   plug = Extractor_csv_to_sql(csv_file_dict,db_file_path)
   plug.export_to_sql()
