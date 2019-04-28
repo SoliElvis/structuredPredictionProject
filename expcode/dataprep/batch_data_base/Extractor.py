@@ -21,7 +21,6 @@ import nltk
 #Globals-----------------------------------------------------
 
 testOrTrain = ("train","test")
-lang = ("fr","en")
 
 #Utilities---------------------------------------------------
 
@@ -130,86 +129,31 @@ class Extractor_pickle_to_lite(ExtractorBase):
     return self.content_inMem
 
 
+
+#sql table : 20 phrases, varchar
+lang = ("fr","en")
 class Extractor_textFile_to_lite(ExtractorBase):
   def __init__(self,dp_trl):
+    ExtractorBase.__init__(dp_trl.db_file_path)
     self.dp_trl = dp_trl
     self.text_fileDict = dp_trl.text_fileDict
+    self.corpus= []
 
-#Processors -------------------------------------------------
-
-class ProcessorBase():
-  pass
-
-class Processor_textFile_to_lite(ProcessorBase):
-  def __init__(self,extractor):
-    self.ex = extractor
-    self.dp_trl = self.ex.dp_trl
-
-  def export(
-
-
-
-#Async FAIL ---------------------------------------
-
-
-
-
-
-import threading
-def text_pipeline(processor,q1):
-  for l in lang:
-    try:
-      with open(processor.ex.text_fileDict[l], 'r') as f:
-        pp = processor.ex.dp_trl.processedData_dir + l + "sents.txt"
-        with open(processor.ex.dp_trl.processedData_dir, 'w+') as out:
-          p = Producer(q1,f)
-          c = Consumer(q1,out)
-          p.start()
-          c.start()
-    except Exception as e:
-      print(e)
-    finally:
-      print("finally")
-
-class Consumer(threading.Thread):
-  def __init__(self,q1,out):
-    super(Consumer,self).__init__()
-    self.q1 = q1
-    self.out = out
-  def run(q1,out):
-    while True:
-      if not q1.empty():
-        chunk = q1.get()
-        _sents = ''.join(chunk)
-        sent_text = '|'.join(nltk.sent_tokenize(_sents))
-        out.write(sent_text)
-
-class Producer(threading.Thread):
-  def __init__(self,q1,f):
-    super(Producer,self).__init__()
-    self.q1 = q1
-    self.f = f
-  def run(q1,f):
-    chunk = f.readline()
-    while True:
-      if not q1.full():
-        chunk = f.read(1024)
-        q1.put(chunk)
+  def controller(self):
+    #open DB in append mode
+    for l in lang:
+      with open(self.text_fileDict[l], 'r') as f:
+        for chunk in iter(functools.partial(f.read,1024), b''):
+          _sents = [c for c in chunk]
+          _sents = ''.join(_sents)
+          sent_text = nltk.sent_tokenize(_sents)
+          self.corpus.append(sent_text)
 
 
 
 def main():
   ex = Extractor_textFile_to_lite(dp_trl)
-  pr = Processor_textFile_to_lite(ex)
-  loop = asyncio.get_event_loop()
-  q1 = asyncio.Queue(loop=loop)
-  # asyncio.run(text_pipeline(pr,q1))
-  text_pipeline(pr,q1)
-
-
-  # executor = ThreadPoolExecutor(max_workers=10)
-  return pr
-
+  return ex
 
 def test():
   time_limit_sec = 60
@@ -225,7 +169,6 @@ def test():
   [print(t) for t in pk_test._load_pickle_file()]
   return pk_test
   return dp_fec,dp_pkl
-
 
 def test2():
   return Extractor_textFile_to_lite(dp_trl)
