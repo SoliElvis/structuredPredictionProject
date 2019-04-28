@@ -48,7 +48,7 @@ def phi(feature_matrix, label):
     :return: The feature vector \phi(x_i,y) where x_i is composed of the english and french sentences and y
     is the label. Its size is [2*embed_size,]
     """
-    return np.matmul(feature_matrix, label.reshape(-1))
+    return np.matmul(feature_matrix, label)
 
 
 def psi(feature_matrix, label, truth):
@@ -71,14 +71,14 @@ def H(w, feature_matrix, en, fr, truth, c_pos=1, c_neg=3):
     :param feature_matrix: Pre-computed Phi table where each column is the feature phi(x_jk) where is a possible edge
     :param en: english sentence
     :param fr: french sentence
-    :param truth: The matrix that gives the true matching for a pair of sentences
+    :param truth: The label that gives the true matching for a pair of sentences
     :param c_pos: The cost coefficient for a false positive
     :param c_neg: The cost coefficient for a false negative
     :return:
     """
     # The the c cost vector
     c = np.matmul(-w, feature_matrix)  # Size is  len(en) * len(fr)
-    c = c + (c_neg + c_pos) * truth.reshape(-1) - c_pos
+    c = c + (c_neg + c_pos) * truth - c_pos
 
     # Get the constraints' RHS
     b_ub = np.ones(len(en) + len(fr), dtype=np.float32)
@@ -102,7 +102,7 @@ def H(w, feature_matrix, en, fr, truth, c_pos=1, c_neg=3):
 def L(truth, label, c_pos=1, c_neg=3):
     """
     Function that computes the L_1 loss for label y (ground truth) and y_i the label we are testing
-    :param truth: The ground truth. Matrix where the two dimenstions are the lengths of the sentences
+    :param truth: The ground truth. Vector where the two dimension is the product of the length of the two sentences
     :param label: Label we are testing. Same shape as y
     :param c_pos: The cost coefficient for a false positive
     :parma c_neg: The cost coefficient for a false negative
@@ -110,6 +110,36 @@ def L(truth, label, c_pos=1, c_neg=3):
     """
     loss = c_neg * truth * (1. - label) + c_pos * label * (1. - truth)
     return loss.sum()
+
+
+def get_matching(en_sent, fr_sent, label):
+    """
+    Function that extracts the matching of words between the two sentences
+    :param en_sent: The english sentence
+    :param fr_sent: The french sentence
+    :param label: The label (i.e. the matching) for the two sequences
+    :return: The pairs of words that are matched
+    """
+    assert len(en_sent) * len(fr_sent) == len(label), print("The lengths are: ", len(en_sent), len(fr_sent), len(label))
+    match = []
+    for id in range(len(label)):
+        id_en = id // len(fr_sent)
+        id_fr = id % len(fr_sent)
+        if label[id] == 1:
+            match.append((en_sent[id_en], fr_sent[id_fr]))
+    return match
+
+
+def plot_losses(losses):
+    """
+    Function that plots the lossest that were computed after each iteration
+    :param losses: Array of losses
+    :return: The plot object
+    """
+    plt.title("Training loss after each iteration")
+    plt.xlabel("Iterations")
+    plt.ylabel("The training loss")
+    plt.plot(np.arange(1, len(losses) + 1), losses)
 
 
 def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
@@ -136,10 +166,11 @@ def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
         if len(en_data[i]) + len(fr_data[i]) > 60:  # REMOVE THIS LINE WHEN WE HAVE SPLIT THE SENTENCES
             continue
 
-        # find the ground truth
+        # find the ground truth. Must be a vector of dimension len(en_data[i]) * len(fr_data[i])
         truth = np.zeros([len(en_data[i]), len(fr_data[i])])
         diag_align = min(len(en_data[i]), len(fr_data[i]))
         truth[:diag_align, :diag_align] = np.eye(diag_align)
+        truth = truth.reshape(-1)
 
         # find the feature matrix for the pair of sentences
         feature_matrix = phi_table(en_data[i], fr_data[i], dim)
@@ -169,19 +200,34 @@ def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
         # add the loss to a list to plot
         losses.append(l)
 
-    return w, l
+        # get example sentence pair and word alignment
+        if k > 0 and k % 100 == 0:
+            print("This is the machine translation:")
+            print(get_matching(en_data[i], fr_data[i], y_star))
+
+            print("This is the ground truth:")
+            print(get_matching(en_data[i], fr_data[i], truth))
+
+    return w, l, losses
 
 
 if __name__ == "__main__":
     # load the datasets and perform split into training and test set
-    en_corpus = pickle.load(open(os.getcwd() + 'english_vocab.pkl', 'rb'))[:5000]   # CHANGE THIS WHEN WE HAVE DB
-    fr_corpus = pickle.load(open(os.getcwd() + 'french_vocab.pkl', 'rb'))[:5000]  # CHANGE THIS WHEN WE HAVE DB
+    dir = os.path.join(os.getcwd(), "expcode", "numerical_code")
+    en_corpus = pickle.load(open(os.path.join(dir, 'english_vocab.pkl'), 'rb'))[:5000]   # CHANGE THIS WHEN WE HAVE DB
+    fr_corpus = pickle.load(open(os.path.join(dir, 'french_vocab.pkl'), 'rb'))[:5000]  # CHANGE THIS WHEN WE HAVE DB
 
     # load the counts and co-occurences
-    en_count = pickle.load(open(os.getcwd() + 'count_en_5000.pkl', 'rb'))  # CHANGE THIS WHEN WE HAVE DB
-    fr_count = pickle.load(open(os.getcwd() + 'count_fr_5000.pkl', 'rb'))  # CHANGE THIS WHEN WE HAvE DB
-    co_count = pickle.load(open(os.getcwd() + 'co_count_5000.pkl', 'rb'))  # CHANGE THIS WHEN WE HAVE DB
+    en_count = pickle.load(open(os.path.join(dir, 'count_en_5000.pkl'), 'rb'))  # CHANGE THIS WHEN WE HAVE DB
+    fr_count = pickle.load(open(os.path.join(dir, 'count_fr_5000.pkl'), 'rb'))  # CHANGE THIS WHEN WE HAvE DB
+    co_count = pickle.load(open(os.path.join(dir, 'co_count_5000.pkl'), 'rb'))  # CHANGE THIS WHEN WE HAVE DB
 
     start = time.time()
-    w, _ = bcfw_svm(en_corpus, fr_corpus, 5, lamb=0.001, nb_epochs=1000)
+    w, l, losses = bcfw_svm(en_corpus, fr_corpus, 5, lamb=1./5000., nb_epochs=5000)
     print(time.time() - start)
+
+    # get graph of losses
+    graph = plot_losses(losses)
+
+    # show the graph of losses
+    plt.show()
