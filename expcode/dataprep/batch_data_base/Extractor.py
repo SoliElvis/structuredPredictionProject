@@ -6,7 +6,6 @@ import pandas as pd
 from typing import List, Dict
 import itertools
 import pipe
-from .expcode import proj_dir,db_file_path,save_dir,process_dir,csv_file_dict,image_file_dict
 #Utilities
 def face_crop_df_formater(df):
   _cols  = [[str(i)  + "_url",
@@ -92,10 +91,8 @@ class Extractor_csv_to_sql():
 #   pass
 # class Blob_manager_postGre(db,db_to_file_format):
 #   pass
-
 # class ETL_manager(db,aggregate_pattern):
 #   pass
-
 # class Numerical_transformation(db,numerical_pattern):
 #   pass
 
@@ -113,7 +110,7 @@ def extract_csv_fec():
   # image_file_dict = {"train_fec" : os.path.join(process_dir,"images/train"),
   #                    "test_fec"  : os.path.join(process_dir, "images/test")}
   # #####
-  plug = Extractor_csv_to_sql(csv_file_dict,db_file_path)
+  plug = Extractor_csv_to_sql(csv_file_dict,db_file)
   plug.export_to_sql()
 
 

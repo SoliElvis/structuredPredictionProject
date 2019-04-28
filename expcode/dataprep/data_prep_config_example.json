@@ -1,0 +1,16 @@
+{
+    "FEC": {
+        "proj_dir": "./expcode/dataprep",
+        "db_file": "fec.db",
+        "rawData_dir": "FEC_dataset",
+        "processedData_dir": "process_dev",
+        "csv_file_dict": {
+            "train_fec": "faceexp-comparison-data-train-public.csv",
+            "test_fec": "faceexp-comparison-data-test-public.csv"
+        },
+        "image_file_dict": {
+            "train_fec": "images/train",
+            "test_fec": "images/test"
+        }
+    }
+}
