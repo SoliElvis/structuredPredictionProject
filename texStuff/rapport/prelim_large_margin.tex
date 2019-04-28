@@ -1,0 +1,37 @@
+\subsection{Large Margin Approach}
+Taskar pioeneeried blabla max margin markov networks pgms are nice: \cite{taskarMaxMarginMarkovNetworks2004}
+Tsochantaridis saw that combinatorial nature of certain problems virtually
+require us to take the max margin / svm approach as more tradionational MLE
+method require the partition function to be computed which is P\#-complete in
+many interesting cases.\cite{tsochantaridisSupportVectorMachine}
+
+For a dataset $ S = \{ (\vec x_i, \vec y_i) \}_{i=1}^{m} $,
+where each $\vec x_i$ is an object with a structure (e.g. sequence of words in
+french), we attempt to find the optimal parameter $\vec w$ of a linear classifier:
+
+\begin{equation}
+  \vec y_i = \argmax_{\vec y_i' \in \mathcal{Y}} \vec w^T \vec f(\vec x_i,\vec y_i')
+  \label{eq1}
+\end{equation}
+
+The function $f$ is the feature mapping (which can be learned with modern deep
+learning techniques) of a structured object with its
+corresponding label $\vec y_i$. \textbf{Hinge Loss formulation}
+
+\begin{equation}
+  \min_{\vec w \in \mathcal{W}} \sum_i \max_{\vec y_i' \in \mathcal{Y}_i} \left[
+\vec w^T \vec f_i(\vec y_i') + l_i(\vec y_i') \right] - \vec w^T \vec f_i(\vec
+y_i)
+\end{equation}
+
+The parameters $\vec w$ are also regularized with parameter $\lambda$. Since we are
+optimizing over $\vec y_i'$, we can drop the term from equation \ref{eq1} and we end
+up with a loss-augmented inference problem inside the min function.
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mainProject"
+%%% End:
