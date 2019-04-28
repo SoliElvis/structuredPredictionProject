@@ -138,16 +138,24 @@ class Extractor_textFile_to_lite(ExtractorBase):
     self.dp_trl = dp_trl
     self.text_fileDict = dp_trl.text_fileDict
     self.corpus= []
+    # self.db.execute("create table fr_batch(id,sent)")
+    # self.db.execute("create table en_batch(id,sent)")
+
+    # self.db.execute("create table fr(id,sent)")
+    # self.db.execute("create table en(id,sent)")
 
   def controller(self):
-    #connection type
     #open DB in append mode
     for l in lang:
       with open(self.text_fileDict[l], 'r') as f:
-        for chunk in iter(functools.partial(f.read,1024), b''):
+        chunks = {}
+        for id,chunk in zip(range(10000),iter(functools.partial(f.read,1024), b'')):
+          tableName = l + "_batch" + "(id,sent)"
           sents = ''.join([c for c in chunk])
-          sents = nltk.sent_tokenize(sents)
-          #WILL
+          sents = '|'.join(nltk.sent_tokenize(sents))
+          payload = (id,sents)
+          self.db.execute("insert into " + tableName  + " values (?,?)",payload)
+    return self.db
 
 
 
