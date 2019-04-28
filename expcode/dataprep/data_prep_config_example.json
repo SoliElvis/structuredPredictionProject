@@ -1,7 +1,7 @@
 {
 		"datasets" : "./expcode/dataprep/datasets",
+		"proj_dir": "./expcode/dataprep",
     "FEC": {
-        "proj_dir": "./expcode/dataprep",
         "db_file": "fec.db",
         "rawData_dir": "FEC_dataset",
         "processedData_dir": "process_dev",

@@ -1,12 +1,26 @@
+#+SEQ_TODO: URGENT(u) STARTED(s)  NEXT(n) TODO(t)  MIDWAY(m) WAITING(w) MAYBE(m) | DONE(d) DEFERRED(l) CANCELLED(c)
+#+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
+
+#                            file system maintenance for blobs
+#                          /           |
+# csv -> dataframe -> db -> * -> ETL of tables -> .npy
+#                     |      \
+#                    sync      -> dataframe -> .npy
+#                     db!!!
+#
 * db
-** TODO [#A] pickle
-** TODO [#B] Create db script enforce schema and uniqueness
-** TODO [#A] numerical prep
-** TODO [#B] incremental update
+
+** MAYBE [#C] : what to do if db exists, error exception in general,
+** URGENT [#A] pickle
+** DONE [#A] numerical prep
+	 CLOSED: [2019-04-28 Sun 04:12]
+** MIDWAY [#B] Create db script enforce schema and uniqueness
+** MIDWAY [#B] incremental update
 ** TODO [#C] image data with postgresql
 
 * numerical
 ** TODO mettre extragrad online
+
 
 * Rapport
 ** TODO Bib file update and cleanup, switch to zotero

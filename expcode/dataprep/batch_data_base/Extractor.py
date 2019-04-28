@@ -25,17 +25,6 @@ def connection_test(db):
 def dataframe_test(df):
   return df is not None
 
-# TODO : what to do if db exists, error exception in general,
-# TODO : sanitize closing db
-# TODO : db_file_path should be system wide
-#                            file system maintenance for blobs
-#                          /           |
-# csv -> dataframe -> db -> * -> ETL of tables -> .npy
-#                     |      \
-#                    sync      -> dataframe -> .npy
-#                     db!!!
-#
-
 
 class Extractor_csv_to_sql():
   def __init__(self,csv_file_dict : Dict[str,str], db_file_path : str):
@@ -72,7 +61,7 @@ class Extractor_csv_to_sql():
       df = formater(df)
     return df
 
-  def export_to_sql(self,db=None):
+  def first_export_to_sql(self,db=None):
     df_dict = {}
     db = db or self.db
     if not connection_test(db):
@@ -87,8 +76,27 @@ class Extractor_csv_to_sql():
     return df_dict,db
 
 
+#same process different tables
+class PostProcessor_csv_to_sql():
+  def __init__(self,db : str,table_namesz : List[str], update_postfix: str):
+    self.db = self._create_connection(db)
+    self.table_names = table_names
+    self.new_table_names = [os.path.join(n, update_postfix) for n in table_namesz]
+  def _create_connection(self):
+    try:
+      self.db= sqlite3.connect(self.db_file_path)
+      return self.db
+    except Error as e:
+      print(self.db_file_path)
+      print(e)
+    return None
+
+
+
+
 class Extractor_pickle_to_sql():
   pass
+
 # class Blob_manager_fs(db,db_to_file_format):
 #   pass
 # class Blob_manager_postGre(db,db_to_file_format):
@@ -103,7 +111,7 @@ class Extractor_pickle_to_sql():
 #Look at init and config file
 def extract_csv_fec():
   plug = Extractor_csv_to_sql(csv_file_dict,db_file)
-  plug.export_to_sql()
+  plug.first_export_to_sql()
   return plug
 
 

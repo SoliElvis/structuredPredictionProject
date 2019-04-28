@@ -1,4 +1,3 @@
-
 import json
 from os.path import join
 #assuming running from root
@@ -6,8 +5,9 @@ with open('./expcode/dataprep/data_prep_config_example.json', 'r') as f:
 	config = json.load(f)
 
 datasets_path = config["datasets"]
+proj_dir = config["proj_dir"]
+
 fec_config = config["FEC"]
-proj_dir = fec_config["proj_dir"]
 db_file = join(proj_dir,fec_config["db_file"])
 rawData_dir = join(datasets_path,fec_config["rawData_dir"])
 processedData_dir = join(proj_dir,fec_config["processedData_dir"])
