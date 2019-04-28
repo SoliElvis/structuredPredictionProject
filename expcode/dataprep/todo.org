@@ -9,10 +9,16 @@
 #                    sync      -> dataframe -> .npy
 #                     db!!!
 #
+* Logistics
+** requirements file/ clean up imports
+
 * db
 ** URGENT [#A] pickle
+*** URGENT pickle load into memory
+*** URGENT pickle dump to sql
 *** DONE are decorators inheritated? yes
 		CLOSED: [2019-04-28 Sun 05:09]
+
 ** TODO [#C] image data with postgresql
 ** MIDWAY [#B] Create db script enforce schema and uniqueness
 ** MIDWAY [#B] incremental update
@@ -23,7 +29,6 @@
 
 * numerical
 ** TODO mettre extragrad online
-
 
 * Rapport
 ** TODO Bib file update and cleanup, switch to zotero

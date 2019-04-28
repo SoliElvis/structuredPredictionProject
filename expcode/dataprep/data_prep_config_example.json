@@ -19,8 +19,8 @@
         "rawData_dir": "PICKLE",
         "processedData_dir": "process_dev",
 				"pickdic": {
-						"french_vocab_pick" : "french_vocab.pkl",
-						"englis_vocab_pick" : "english_vocab.pkl"
+						"fr" : "french_vocab.pkl",
+						"en" : "english_vocab.pkl"
 				}
 		}
 }

@@ -9,6 +9,10 @@ from typing import List, Dict
 import itertools
 import pipe
 import pickle
+# import cPickle
+
+testOrTrain = ("train","test")
+lang = ("fr","en")
 
 #Utilities
 def face_crop_df_formater(df):
@@ -31,7 +35,8 @@ def dataframe_test(df):
 
 
 class Extractor_csv_to_sql():
-  def __init__(self,csv_file_dict : Dict[str,str], db_file_path : str):
+  def __init__(self,csv_file_dict :
+               Dict[str,str], db_file_path : str):
     self.csv_file_dict = csv_file_dict
     self.db_file_path = db_file_path
     self.df_dict = None
@@ -86,13 +91,24 @@ class Extractor_pickle_to_sql():
     self.db_file_path = dp_pickle.db_file
     self.df_dict = None
     self.db = None
+    self.content_inMem = {lang[0]:list(), lang[1]:list()}
+
   try:
     self.db = self._create_connection()
   except Exception as e:
     print(e)
 
   def _load_pickle_file(self):
-    pass
+    for l in lang:
+      with open(self.pickdic[l], 'rb') as f:
+        self.content_inMem[l].append(pickle.load(f))
+
+    return self.content_inMem
+
+
+
+
+
 
 #same process different tables
 class PostProcessor_csv_to_sql():
@@ -124,10 +140,7 @@ def extract_csv_fec():
 
 def test():
   pk_test = Extractor_pickle_to_sql(dp_pkl)
-  with open(pk_test.pickdic["french_vocab_pick"], 'rb') as f:
-    content = pickle.load(f)
-    print(content)
-
+  return pk_test._load_pickle_file()
   return pk_test
   return dp_fec,dp_pkl
 
