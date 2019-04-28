@@ -13,7 +13,7 @@ training, which could take long to solve using a LP solver.
 
 We then proceeded to implement the Dual Extragradient and BCFW algorithms using
 a SVM. We had to define a feature mapping for an input sentence pair. As in
-Taskar \textbf{CITE THIS SHIT}, the features were composed of the following
+Taskar \cite{taskarStructuredPredictionExtragradient}, the features were composed of the following
 statistics of the corpora:
 \begin{itemize}
   \item Dice coefficient between pairs of words:
@@ -57,3 +57,8 @@ this fact and indeed use the LP solver. The loss that we used was the $L_1$
 distance between the two labels, the proposal and the ground truth.
 
 \subsubsection{Results}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
