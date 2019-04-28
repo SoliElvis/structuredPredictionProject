@@ -1,3 +1,4 @@
 ./datasets/
-./datasets/translation/*
+./datasets/translation/europarl-v7.fr-en-EN.txt
+./datasets/translation/europarl-v7.fr-en-FR.txt
 
