@@ -134,20 +134,23 @@ class Extractor_pickle_to_lite(ExtractorBase):
 lang = ("fr","en")
 class Extractor_textFile_to_lite(ExtractorBase):
   def __init__(self,dp_trl):
-    ExtractorBase.__init__(dp_trl.db_file_path)
+    ExtractorBase.__init__(self,dp_trl.db_file)
     self.dp_trl = dp_trl
     self.text_fileDict = dp_trl.text_fileDict
     self.corpus= []
 
   def controller(self):
+    #connection type
     #open DB in append mode
     for l in lang:
       with open(self.text_fileDict[l], 'r') as f:
         for chunk in iter(functools.partial(f.read,1024), b''):
-          _sents = [c for c in chunk]
-          _sents = ''.join(_sents)
-          sent_text = nltk.sent_tokenize(_sents)
-          self.corpus.append(sent_text)
+          sents = ''.join([c for c in chunk])
+          sents = nltk.sent_tokenize(sents)
+          #WILL
+
+
+
 
 
 
