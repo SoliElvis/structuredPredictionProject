@@ -15,11 +15,11 @@
         }
     },
 		"PICKLE": {
-				"db_file" : "pickle_db",
+				"db_file" : "pickle.db",
         "rawData_dir": "PICKLE",
         "processedData_dir": "process_dev",
 				"pickdic": {
-						"french_vocab_pick" : "fench_vocab.pkl",
+						"french_vocab_pick" : "french_vocab.pkl",
 						"englis_vocab_pick" : "english_vocab.pkl"
 				}
 		}

@@ -1,5 +1,5 @@
 import expcode.dataprep.batch_data_prep as prep
-from expcode.dataprep import dataParams_fec, dp_fec
+from expcode.dataprep import dp_fec, dp_pkl, dataParams
 
 import os
 import sqlite3
@@ -8,6 +8,7 @@ import pandas as pd
 from typing import List, Dict
 import itertools
 import pipe
+import pickle
 
 #Utilities
 def face_crop_df_formater(df):
@@ -79,6 +80,20 @@ class Extractor_csv_to_sql():
     return df_dict,db
 
 
+class Extractor_pickle_to_sql():
+  def __init__(self,dp_pickle):
+    self.pickdic = dp_pickle.pickdic
+    self.db_file_path = dp_pickle.db_file
+    self.df_dict = None
+    self.db = None
+  try:
+    self.db = self._create_connection()
+  except Exception as e:
+    print(e)
+
+  def _load_pickle_file(self):
+    pass
+
 #same process different tables
 class PostProcessor_csv_to_sql():
   def __init__(self,db : str,table_namesz : List[str], update_postfix: str):
@@ -98,9 +113,38 @@ class PostProcessor_csv_to_sql():
 class Lite_to_postgres():
   pass
 
-class Extractor_pickle_to_sql():
-  pass
 
+
+#Needs to run from root of project
+def extract_csv_fec():
+
+  plug = Extractor_csv_to_sql(dp_fec.csv_file_dict,dp_fec.db_file)
+  plug.first_export_to_sql()
+  return plug
+
+def test():
+  pk_test = Extractor_pickle_to_sql(dp_pkl)
+  with open(pk_test.pickdic["french_vocab_pick"], 'rb') as f:
+    content = pickle.load(f)
+    print(content)
+
+  return pk_test
+  return dp_fec,dp_pkl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####################################################
 # class Blob_manager_fs(db,db_to_file_format):
 #   pass
 # class Blob_manager_postGre(db,db_to_file_format):
@@ -109,18 +153,6 @@ class Extractor_pickle_to_sql():
 #   pass
 # class Numerical_transformation(db,numerical_pattern):
 #   pass
-
-
-#Needs to run from root of project
-#Look at init and config file
-def extract_csv_fec():
-  plug = Extractor_csv_to_sql(csv_file_dict,db_file)
-  plug.first_export_to_sql()
-  return plug
-
-def test():
-  return dp_fec
-
 
 
 
