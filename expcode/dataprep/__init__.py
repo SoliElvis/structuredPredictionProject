@@ -34,6 +34,12 @@ class dataParams_pkl(dataParams):
     dataParams.__init__(self,config_str)
     self.pickdic = {k : join(self.rawData_dir,v) for (k,v) in self.config["pickdic"].items()}
 
+class dataParams_trl(dataParams):
+  def __init__(self,config_str):
+    dataParams.__init__(self,config_str)
+    self.text_fileDict = {k : join(self.rawData_dir,v) for (k,v) in self.config["text_fileDict"].items()}
+
 
 dp_fec = dataParams_fec("FEC")
 dp_pkl = dataParams_pkl("PICKLE")
+dp_trl = dataParams_trl("translation")

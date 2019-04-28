@@ -22,5 +22,15 @@
 						"fr" : "french_vocab.pkl",
 						"en" : "english_vocab.pkl"
 				}
+		},
+
+		"translation": {
+				"db_file" : "translation.db",
+        "rawData_dir": "translation",
+        "processedData_dir": "process_dev",
+				"text_fileDict": {
+						"fr" : "europarl-v7.fr-en-FR.txt",
+						"en" : "europarl-v7.fr-en-EN.txt"
+				}
 		}
 }

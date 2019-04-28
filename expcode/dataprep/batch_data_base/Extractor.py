@@ -10,6 +10,8 @@ import itertools
 import pipe
 import pickle
 # import cPickle
+import signal
+from contextlib import contextmanager
 
 testOrTrain = ("train","test")
 lang = ("fr","en")
@@ -33,6 +35,36 @@ def connection_test(db):
 def dataframe_test(df):
   return df is not None
 
+class TimeoutException(Exception): pass
+@contextmanager
+def time_limit(seconds):
+  def signal_handler(signum, frame):
+    raise TimeoutException("Timed out!")
+  signal.signal(signal.SIGALRM, signal_handler)
+  signal.alarm(seconds)
+  try:
+    yield
+  finally:
+    signal.alarm(0)
+
+
+class ExtractorBase():
+  def __init__(self,db_file_path : str):
+    self.db_file_path = db_file_path
+    self.db = None
+    try:
+      self.db = self._create_connection()
+    except Exception as e:
+      print(e)
+
+  def _create_connection(self):
+    try:
+      self.db= sqlite3.connect(self.db_file_path)
+      return self.db
+    except Error as e:
+      print(self.db_file_path)
+      print(e)
+    return None
 
 class Extractor_csv_to_sql():
   def __init__(self,csv_file_dict :
@@ -92,23 +124,34 @@ class Extractor_pickle_to_sql():
     self.df_dict = None
     self.db = None
     self.content_inMem = {lang[0]:list(), lang[1]:list()}
-
-  try:
-    self.db = self._create_connection()
-  except Exception as e:
-    print(e)
+    try:
+      self.db = self._create_connection()
+    except Exception as e:
+      print(e)
 
   def _load_pickle_file(self):
     for l in lang:
       with open(self.pickdic[l], 'rb') as f:
-        self.content_inMem[l].append(pickle.load(f))
+        unpick = pickle.Unpickler(f)
+        temp_content = unpick.load()
+        yield temp_content
+        self.content_inMem[l].append(temp_content)
 
     return self.content_inMem
 
+  def _create_connection(self):
+    try:
+      self.db= sqlite3.connect(self.db_file_path)
+      return self.db
+    except Error as e:
+      print(self.db_file_path)
+      print(e)
+    return None
 
 
 
-
+class Unprocessed_textFile_to_sql():
+ pass
 
 #same process different tables
 class PostProcessor_csv_to_sql():
@@ -125,26 +168,31 @@ class PostProcessor_csv_to_sql():
       print(e)
     return None
 
-
 class Lite_to_postgres():
   pass
 
 
-
-#Needs to run from root of project
-def extract_csv_fec():
-
-  plug = Extractor_csv_to_sql(dp_fec.csv_file_dict,dp_fec.db_file)
-  plug.first_export_to_sql()
-  return plug
-
 def test():
-  pk_test = Extractor_pickle_to_sql(dp_pkl)
-  return pk_test._load_pickle_file()
+  time_limit_sec = 60
+  try:
+    with time_limit(time_limit_sec):
+      pk_test = Extractor_pickle_to_sql(dp_pkl)
+      for p in pk_test._load_pickle_file():
+        print("----------------------------------------------------------------")
+        print("----------------------------------------------------------------")
+        print(p)
+  except TimeoutException as e:
+    print("Timed out!")
+  [print(t) for t in pk_test._load_pickle_file()]
   return pk_test
   return dp_fec,dp_pkl
 
 
+#Needs to run from root of project
+def extract_csv_fec():
+  plug = Extractor_csv_to_sql(dp_fec.csv_file_dict,dp_fec.db_file)
+  plug.first_export_to_sql()
+  return plug
 
 
 
