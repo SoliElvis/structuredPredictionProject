@@ -6,6 +6,7 @@ import itertools
 import scipy.optimize as opt
 import time
 from scipy.spatial.distance import hamming
+import os
 
 
 def phi_table(en_sent, fr_sent, dim):
@@ -19,10 +20,15 @@ def phi_table(en_sent, fr_sent, dim):
     table = np.empty([len(en_sent), len(fr_sent), dim])
     for j, en in enumerate(en_sent):
         for k, fr in enumerate(fr_sent):
-            dice = (2 * co_count[(en, fr)]) / (en_count[en] + fr_count[fr])
+            # extract the dice coefficient between the two words
+            dice = (2 * co_count[(en, fr)]) / (en_count[en] + fr_count[fr])  # MODIFY THIS LINE WHEN WE HAVE DB
+
+            # find the words relative position distance (abs, sqrt, square)
             dist = np.abs((j+1) / len(en_sent) - (k + 1) / len(fr_sent))
             sqrt_dist = np.sqrt(dist)
             sq_dist = np.square(dist)
+
+            # compute the hamming distance between the strings
             str_len = min(len(en_sent), len(fr_sent))
             len_diff = max(len(en_sent), len(fr_sent)) - str_len
             str_dist = hamming(en[:str_len], fr[:str_len]) + len_diff
@@ -74,19 +80,20 @@ def H(w, feature_matrix, en, fr, truth, c_pos=1, c_neg=3):
     c = c + (c_neg + c_pos) * truth.reshape(-1) - c_pos
 
     # Get the constraints' RHS
-    b_eq = np.ones(len(en) + len(fr), dtype=np.float32)
+    b_ub = np.ones(len(en) + len(fr), dtype=np.float32)
 
     # Matrix of eqiality constraints. Will fill with ones to make it unimodular -> gives integer solution -> use simplex
-    A_eq = np.zeros([len(en) + len(fr), len(en) * len(fr)], dtype=np.float32)
+    A_ub = np.zeros([len(en) + len(fr), len(en) * len(fr)], dtype=np.float32)
+    print("The shape of the coefficient matrix is:", A_ub.shape)
     for k in range(len(fr)):
         for j in range(len(en)):
-            A_eq[k, k + j * len(fr)] = 1.
+            A_ub[k, k + j * len(fr)] = 1.
     for j in range(len(en)):
         for k in range(len(fr)):
-            A_eq[j + len(fr), k + j * len(fr)] = 1.
+            A_ub[j + len(fr), k + j * len(fr)] = 1.
 
     # solve using the simplex method
-    y = opt.linprog(c=c, A_eq=A_eq, b_eq=b_eq, bounds=(0., 1.))['x']
+    y = opt.linprog(c=c, A_ub=A_ub, b_ub=b_ub, bounds=(0., 1.))['x']
 
     return y
 
@@ -104,52 +111,68 @@ def L(truth, label, c_pos=1, c_neg=3):
     return loss.sum()
 
 
-def bcfw_svm(en_data, fr_data, dim, nb_epochs):
+def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
     """
     Function that trains a SVM using Block-Coordinate Frank-Wolfe method
     :param en_data: The english corpus
     :param fr_data: The french corpus
     :param dim: The dimension of the feature vectors
+    :param lamb: The lambda value that is used for regularization
     :param nb_epochs: The number of epochs for which to train the model
     :return:
     """
     w = w_i = np.zeros(dim, dtype=np.float32)
-    l0 = l_i0 = np.zeros(dim, dtype=np.float32)
+    l = l_i = np.zeros(dim, dtype=np.float32)
 
     n = len(en_data)
 
     for k in range(nb_epochs):
         i = random.randrange(0, n)
+        if len(en_data[i]) + len(fr_data[i]) > 60:  # REMOVE THIS LINE WHEN WE HAVE SPLIT THE SENTENCES
+            continue
 
         # find the ground truth
         truth = np.zeros([len(en_data[i]), len(fr_data[i])])
         diag_align = min(len(en_data[i]), len(fr_data[i]))
         truth[:diag_align, :diag_align] = np.eye(diag_align)
 
+        # find the feature matrix for the pair of sentences
+        feature_matrix = phi_table(en_data[i], fr_data[i], dim)
+
         # compute optimal label
         y_star = H(w, feature_matrix, en_data[i], fr_data[i], truth)
 
-    pass
+        w_s = 1. / (lamb * n) * psi(feature_matrix, y_star, truth)
+        l_s = 1. / n * L(truth.reshape(-1), y_star)
+
+        gamma = 2 * n / (k + 2 * n)
+
+        # update the parameters
+        w_i_new = (1. - gamma) * w_i + gamma * w_s
+        l_i_new = (1. - gamma) * l_i + gamma * l_s
+        w = w + w_i_new - w_i
+        l = l + l_i_new - l_i
+
+        # get rid of the previous values for w_i and l_i
+        w_i = w_i_new
+        l_i = l_i_new
+
+        # save the w vector every 100 iterations
+        np.save(os.getcwd() + 'svm_params', w)
+
+    return w, l
 
 
 if __name__ == "__main__":
     # load the datasets and perform split into training and test set
-    en_corpus = pickle.load(open('english_vocab.pkl', 'rb'))[:5000]
-    fr_corpus = pickle.load(open('french_vocab.pkl', 'rb'))[:5000]
+    en_corpus = pickle.load(open(os.getcwd() + 'english_vocab.pkl', 'rb'))[:5000]   # CHANGE THIS WHEN WE HAVE DB
+    fr_corpus = pickle.load(open(os.getcwd() + 'french_vocab.pkl', 'rb'))[:5000]  # CHANGE THIS WHEN WE HAVE DB
 
     # load the counts and co-occurences
-    en_count = pickle.load(open('count_en_5000.pkl', 'rb'))
-    fr_count = pickle.load(open('count_fr_5000.pkl', 'rb'))
-    co_count = pickle.load(open('co_count_5000.pkl', 'rb'))
-
-    w = np.random.normal(size=[5, ])
-
-    en_sentence = en_corpus[0]
-    fr_sentence = fr_corpus[0]
-    print(en_sentence, fr_sentence)
-    truth = np.eye(len(en_sentence))
-    label = truth[:, np.random.permutation(np.arange(len(fr_sentence)))]
+    en_count = pickle.load(open(os.getcwd() + 'count_en_5000.pkl', 'rb'))  # CHANGE THIS WHEN WE HAVE DB
+    fr_count = pickle.load(open(os.getcwd() + 'count_fr_5000.pkl', 'rb'))  # CHANGE THIS WHEN WE HAvE DB
+    co_count = pickle.load(open(os.getcwd() + 'co_count_5000.pkl', 'rb'))  # CHANGE THIS WHEN WE HAVE DB
 
     start = time.time()
-    feature_matrix = phi_table(en_sentence, fr_sentence, 5)
-    print(H(w, feature_matrix, en_sentence, fr_sentence, truth))
+    w, _ = bcfw_svm(en_corpus, fr_corpus, 5, lamb=0.001, nb_epochs=1000)
+    print(time.time() - start)
