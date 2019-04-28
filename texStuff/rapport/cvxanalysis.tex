@@ -1,14 +1,14 @@
 \subsubsection{Proximal step operator}
 We define the proximal step operator as follows:
 \begin{equation}
-  \mathcal{T}_{\eta}(\vec u, \vec s) = \max_{\vec u \in \mathcal{U}} \left \{
+  {T}_{\eta}(\vec u, \vec s) = \max_{\vec u \in {U}} \left \{
 \langle \vec s, \vec u' - \vec u \rangle - \frac{1}{\eta} d(\vec u, \vec u')
 \leq D \right \}
 \end{equation}
 
 The operator is useful to compute projections since when we have a strongly
 convex function $h(\vec u)$, we can find its convex conjugate $h^*(\vec u) =
-\max_{\vec u \in \mathcal{U}} \left [ \langle \vec s, \vec u \rangle - h(\vec u)
+\max_{\vec u \in {U}} \left [ \langle \vec s, \vec u \rangle - h(\vec u)
 \right ]$. From the definition of a strongly convex function, we have that:
 \begin{equation}
   h(\vec u') \geq h(\vec u) + \langle \nabla h(\vec u), \vec u' - \vec u \rangle
