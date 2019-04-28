@@ -7,6 +7,7 @@ import scipy.optimize as opt
 import time
 from scipy.spatial.distance import hamming
 import os
+from matplotlib import pyplot as plt
 
 
 def phi_table(en_sent, fr_sent, dim):
@@ -121,6 +122,10 @@ def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
     :param nb_epochs: The number of epochs for which to train the model
     :return:
     """
+    # list that gets losses to print
+    losses = []
+
+    # initialize the parameter w and the loss
     w = w_i = np.zeros(dim, dtype=np.float32)
     l = l_i = np.zeros(dim, dtype=np.float32)
 
@@ -142,12 +147,13 @@ def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
         # compute optimal label
         y_star = H(w, feature_matrix, en_data[i], fr_data[i], truth)
 
+        # lookahead step for parameter and corresponding loss
         w_s = 1. / (lamb * n) * psi(feature_matrix, y_star, truth)
         l_s = 1. / n * L(truth.reshape(-1), y_star)
 
         gamma = 2 * n / (k + 2 * n)
 
-        # update the parameters
+        # update the parameters and the loss
         w_i_new = (1. - gamma) * w_i + gamma * w_s
         l_i_new = (1. - gamma) * l_i + gamma * l_s
         w = w + w_i_new - w_i
@@ -159,6 +165,9 @@ def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
 
         # save the w vector every 100 iterations
         np.save(os.getcwd() + 'svm_params', w)
+
+        # add the loss to a list to plot
+        losses.append(l)
 
     return w, l
 
