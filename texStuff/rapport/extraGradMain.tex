@@ -1,6 +1,6 @@
-\subsection{saddle-point}
+\subsection{Saddle-Point}
 \begin{equation}
-  \min_{\vec w \in \mathcal{W}} \max_{\vec z \in \mathcal{Z}} \sum_i \left( \vec
+  \min_{\vec w \in {W}} \max_{\vec z \in {Z}} \sum_i \left( \vec
 w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)
 \right)
   \label{saddle_point}
@@ -15,7 +15,7 @@ the following:
 
 \begin{equation}
   \begin{aligned}
-    &\min_{\vec w \in \mathcal{W}, (\vec \lambda,\vec \mu) \geq \vec 0} &\sum_i
+    &\min_{\vec w \in {W}, (\vec \lambda,\vec \mu) \geq \vec 0} &\sum_i
 \left( \vec b_i^T \lambda_i + \mathbf{1}^T \vec \mu_i - \vec w^T \vec f_i(\vec
 y_i) \right)\\ &\text{s.t.} &\vec F_i^T \vec w + \vec c_i \leq \vec A_i^T \vec
 \lambda_i + \vec \mu_i \quad i=1,\dots,m
@@ -30,7 +30,7 @@ In equation \ref{saddle_point}, the term that is opitmized is defined
 as:
 
 \begin{equation}
-  \mathcal{L}(\vec w,\vec z) \triangleq \sum_i \vec w^T \vec F_i \vec z_i + \vec
+  {L}(\vec w,\vec z) \triangleq \sum_i \vec w^T \vec F_i \vec z_i + \vec
 c_i^T - \vec w^T \vec f_i(\vec y_i)
   \label{saddle_obj}
 \end{equation}
@@ -48,10 +48,10 @@ updates for both players at the same time.
 \begin{equation}
   \begin{pmatrix}
     \begin{array}{c}
-      \nabla_{\vec w} \mathcal{L}(\vec w,\vec z)\\
-      -\nabla_{\vec z_1} \mathcal{L}(\vec w,\vec z)\\
+      \nabla_{\vec w} {L}(\vec w,\vec z)\\
+      -\nabla_{\vec z_1} {L}(\vec w,\vec z)\\
       \vdots\\
-      -\nabla_{\vec z_m} \mathcal{L}(\vec w,\vec z)
+      -\nabla_{\vec z_m} {L}(\vec w,\vec z)
     \end{array}
   \end{pmatrix} =
   \underbrace{
@@ -84,23 +84,23 @@ updates for both players at the same time.
 \end{equation}
 
 We can measure the ``goodness'' of the parameters using the gap function
-$\mathcal{G}$:
+${G}$:
 \begin{equation}
-  \mathcal{G}(\vec w, \vec z) \triangleq \left[ \max_{\vec z' \in \mathcal{Z}}
-\mathcal{L}(\vec w,\vec z') - \mathcal{L}^* \right] + \left[ \mathcal{L}^* -
-\min_{\vec w' \in \mathcal{W}} \mathcal{L}(\vec w', \vec z) \right]
+  {G}(\vec w, \vec z) \triangleq \left[ \max_{\vec z' \in {Z}}
+{L}(\vec w,\vec z') - {L}^* \right] + \left[ {L}^* -
+\min_{\vec w' \in {W}} {L}(\vec w', \vec z) \right]
 \end{equation}
 
-where $\mathcal{L}^*$ gives the result of the min-max of the objective
-$\mathcal{L}$. When we have a non-optimal point (i.e. not a saddle point), the
+where ${L}^*$ gives the result of the min-max of the objective
+${L}$. When we have a non-optimal point (i.e. not a saddle point), the
 gap is strictly positive. At at an optimal point, the gap is exaclty equal to 0.
 Now the restricted gap is exactly the same but the min and max are computed over
 a set of parameters that are within a certain distance of the start point
-$(\hat{\vec u}_{\vec w},\hat{\vec u}_{\vec z}) \in \mathcal{U}$:
+$(\hat{\vec u}_{\vec w},\hat{\vec u}_{\vec z}) \in {U}$:
 \begin{equation}
-  \mathcal{G}_{D_{\vec w}, D_{\vec z}}(\vec w, \vec z) = \max_{\vec z' \in
-\mathcal{Z}} \left[ \mathcal{L}(\vec w', \vec z') : d(\vec z, \vec z') \leq
-D_{\vec z} \right] - \left [ \min_{\vec w' \in \mathcal{W}} \mathcal{L}(\vec w',
+  {G}_{D_{\vec w}, D_{\vec z}}(\vec w, \vec z) = \max_{\vec z' \in
+{Z}} \left[ {L}(\vec w', \vec z') : d(\vec z, \vec z') \leq
+D_{\vec z} \right] - \left [ \min_{\vec w' \in {W}} {L}(\vec w',
 \vec z) : d(\vec w, \vec w') \leq D_{\vec w'} \right ]
 \end{equation}
 
@@ -115,13 +115,13 @@ This can be seen in the convergence analysis of the method.
 
 We mainly follow the intuition and proofs of \cite{taskarStructuredPredictionExtragradient}.\\
 The dual extragradient algorithm from Nesterov gives a convergence guarantee for
-the objective $\mathcal{L}$.\\
+the objective ${L}$.\\
 We present a simple formulation of the algorithm:
 \begin{algorithmic}
-  \STATE Initialize: Choose $\hat{\vec u} \in \mathcal{U}$, set $\vec s^{-1} = 0$.
+  \STATE Initialize: Choose $\hat{\vec u} \in {U}$, set $\vec s^{-1} = 0$.
   \FOR{$t=0$ to $t=\tau$}
-  \STATE $\vec v = \mathbf{\Pi}_{\mathcal{U}}(\hat{\vec u} + \eta \vec s^{t-1})$\\
-  \STATE $\vec u^t = \mathbf{\Pi}_{\mathcal{U}}(\vec v - \eta (\vec F \vec v - \vec a))$\\
+  \STATE $\vec v = \mathbf{\Pi}_{{U}}(\hat{\vec u} + \eta \vec s^{t-1})$\\
+  \STATE $\vec u^t = \mathbf{\Pi}_{{U}}(\vec v - \eta (\vec F \vec v - \vec a))$\\
   \STATE $\vec s^t =  \vec s^{t-1} - (\vec F \vec u^t - \vec a)$
   \ENDFOR
   \RETURN $\overline{\vec u^{\tau}} = \frac{1}{1 + \tau} \sum_{t=0}^{\tau} \vec u^t$
@@ -133,14 +133,14 @@ function to optimize that is Lipschitz, Nesterov was able to show that we can
 upper bound $f_{D}(\bar{u^n}) = \max_y \left \{ \langle g(y),\bar{u^n} - y
 \rangle : d(\hat{u},y) \leq D \right \}$, where $\bar{u^n}$ is the weighted
 average over all the updates $u^t$ up to iteration n. The function g corresponds
-to the objective $\mathcal{L}$ in our setting. When value of $f_D(\bar{u^n})$
+to the objective ${L}$ in our setting. When value of $f_D(\bar{u^n})$
 gets close to 0, we have that the value $g(y^*)$ for an optimal $y^*$ is close
 to 0, which signifies that we have reached saddle point (i.e. what we wanted).
 Nesterov goes on to show that this upper bound indeed goes to 0. We then get
 convergence to a saddle point. Note that in the definition of $f_D$, we used a
 distance metric d. This corresponds to the Euclidean distance (or Bregman
-distance in non-Euclidean setting). The rojection operator $\Pi_{\mathcal{U}}$
-in the algorithm simply projects a point back to the set $\mathcal{U}$ by
+distance in non-Euclidean setting). The rojection operator $\Pi_{{U}}$
+in the algorithm simply projects a point back to the set ${U}$ by
 finding the nearest point with respect to the distance metric used.
 
 
@@ -161,10 +161,10 @@ In the dual extragradient algorithm, both a vector $s^t$ and a vector
 $\bar{u^t}$ are maintained. However, we can observe that the $s_t$'s can be
 found using the running average $\bar{u^t}$ since $s^t = -(t + 1 ) \sum_{i=0}^t
 (F \bar{u^t} - a)$. We only have to store the vector $\bar{u^t}$. We can even do
-better when $|\mathcal{Z}| \gg |\mathcal{W}|$ since $\bar{u^t} = \{
+better when $|{Z}| \gg |{W}|$ since $\bar{u^t} = \{
 \bar{u^t}_w,\bar{u^t}_z \}$ and we only care about the part that corresponds to
 $w$. $\bar{u^t}_z$ is maintained implicitly by storing a vector of size
-$|\mathcal{W}|$ (although we now need to store $s_w^t$). It can be reconstructed
+$|{W}|$ (although we now need to store $s_w^t$). It can be reconstructed
 using $\bar{u^t}_w$. The following figure (\textbf{ADD FIGURE 5 FROM PAPER})
 illustrates the various dependencies.
 
