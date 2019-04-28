@@ -1,3 +1,118 @@
+\subsection{saddle-point}
+\begin{equation}
+  \min_{\vec w \in \mathcal{W}} \max_{\vec z \in \mathcal{Z}} \sum_i \left( \vec
+w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)
+\right)
+  \label{saddle_point}
+\end{equation}
+
+where the $\vec z_i$'s can be identified with the edge and node potentials of a
+markov network and satisfy the constraints of the structured problem. The terms
+$\vec F_i$ correspond to the feature mapping for over all labels $\vec y_i$ when
+multiplied by $\vec z_i$'s. The $\vec c_i$'s correspond to the costs of a $\vec z_i$ and can be
+identified with the loss $l$ for a label $\vec y_i'$. Taking the dual, we end up with
+the following:
+
+\begin{equation}
+  \begin{aligned}
+    &\min_{\vec w \in \mathcal{W}, (\vec \lambda,\vec \mu) \geq \vec 0} &\sum_i
+\left( \vec b_i^T \lambda_i + \mathbf{1}^T \vec \mu_i - \vec w^T \vec f_i(\vec
+y_i) \right)\\ &\text{s.t.} &\vec F_i^T \vec w + \vec c_i \leq \vec A_i^T \vec
+\lambda_i + \vec \mu_i \quad i=1,\dots,m
+  \end{aligned}
+\end{equation}
+The number of variables and constraints is linear in the number of paramters and
+training data. We already see that this formulation is much more efficient. We
+do have a set of constraints that is tractable, as is the number of parameters
+to update.
+
+In equation \ref{saddle_point}, the term that is opitmized is defined
+as:
+
+\begin{equation}
+  \mathcal{L}(\vec w,\vec z) \triangleq \sum_i \vec w^T \vec F_i \vec z_i + \vec
+c_i^T - \vec w^T \vec f_i(\vec y_i)
+  \label{saddle_obj}
+\end{equation}
+
+It is bilinear in $w$ and $z$. We can then imagine two players represented by
+$\vec w$ and $\vec z$ that play a zero-sum game. They perform updates using gradients of
+the objective w.r.t. their parameters. They then project the result to the set
+of feasible points given by the constraints imposed on the structure. We usually
+consider Euclidean projections, as there are well-known problems where they are
+efficient to compute. However, as seen later, this is not the case for all
+problem. This is why Bregman projections will be introduced. Going back to the
+zero-sum game, we have the following operator that is used to perform the
+updates for both players at the same time.
+
+\begin{equation}
+  \begin{pmatrix}
+    \begin{array}{c}
+      \nabla_{\vec w} \mathcal{L}(\vec w,\vec z)\\
+      -\nabla_{\vec z_1} \mathcal{L}(\vec w,\vec z)\\
+      \vdots\\
+      -\nabla_{\vec z_m} \mathcal{L}(\vec w,\vec z)
+    \end{array}
+  \end{pmatrix} =
+  \underbrace{
+    \begin{pmatrix}
+      \begin{array}{cccc}
+        0 & \vec F_1 & \dots & \vec F_m\\
+        -\vec F_1^T & & &\\
+        \vdots & & \vec 0 &\\
+        -\vec F_m^T & & &
+      \end{array}
+    \end{pmatrix}}_{\vec F}
+  \underbrace{
+    \begin{pmatrix}
+      \begin{array}{c}
+        \vec w\\
+        \vec z_1\\
+        \vdots\\
+        \vec z_m
+      \end{array}
+    \end{pmatrix}}_{\vec u}-
+  \underbrace{
+    \begin{pmatrix}
+      \begin{array}{c}
+        \sum_i \vec f_i(\vec y_i)\\
+        \vec c_1\\
+        \vdots\\
+        \vec c_m
+      \end{array}
+    \end{pmatrix}}_{\vec a} = \vec F \vec u - \vec a
+\end{equation}
+
+We can measure the ``goodness'' of the parameters using the gap function
+$\mathcal{G}$:
+\begin{equation}
+  \mathcal{G}(\vec w, \vec z) \triangleq \left[ \max_{\vec z' \in \mathcal{Z}}
+\mathcal{L}(\vec w,\vec z') - \mathcal{L}^* \right] + \left[ \mathcal{L}^* -
+\min_{\vec w' \in \mathcal{W}} \mathcal{L}(\vec w', \vec z) \right]
+\end{equation}
+
+where $\mathcal{L}^*$ gives the result of the min-max of the objective
+$\mathcal{L}$. When we have a non-optimal point (i.e. not a saddle point), the
+gap is strictly positive. At at an optimal point, the gap is exaclty equal to 0.
+Now the restricted gap is exactly the same but the min and max are computed over
+a set of parameters that are within a certain distance of the start point
+$(\hat{\vec u}_{\vec w},\hat{\vec u}_{\vec z}) \in \mathcal{U}$:
+\begin{equation}
+  \mathcal{G}_{D_{\vec w}, D_{\vec z}}(\vec w, \vec z) = \max_{\vec z' \in
+\mathcal{Z}} \left[ \mathcal{L}(\vec w', \vec z') : d(\vec z, \vec z') \leq
+D_{\vec z} \right] - \left [ \min_{\vec w' \in \mathcal{W}} \mathcal{L}(\vec w',
+\vec z) : d(\vec w, \vec w') \leq D_{\vec w'} \right ]
+\end{equation}
+
+The motivation for using this restricted gap function is that if we start
+``close'' to an optimal point, of course we will converge more rapidly to it.
+This can be seen in the convergence analysis of the method.
+
+
+
+
+
+
 We mainly follow the intuition and proofs of \cite{taskarStructuredPredictionExtragradient}.\\
 The dual extragradient algorithm from Nesterov gives a convergence guarantee for
 the objective $\mathcal{L}$.\\

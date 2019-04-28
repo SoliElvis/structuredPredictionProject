@@ -316,6 +316,55 @@ Combined with the the convergence results above, we get a sublinear convergence
 rate for BCFW. And although subgradient methods converge at the same rate, BCFW
 presents an adaptive stepsize and an indication as to when to terminate, making
 it a more practical alternative.
+
+
+
+\subsection{Away steps Frank-Wolfe}
+When the minimizer of the objective function lies at the boundary of the domain,
+after a number of iterations, the duality gap starts to stagnate.\\ As a result
+of the strong dependency of the immediate iterate on previously accumulated
+atoms in the active set, as it approaches to boundary, the F-W algorithm starts
+to zig-zag around the descent direction as can be seen in figure 2.\\
+% \begin{algorithm}[tb]
+%    \caption{Away-steps Frank-Wolfe}
+%    \label{alg:example}
+\begin{algorithmic}
+    \STATE {Let $x_{0}\in\mathcal{A}$ and $S_{0}:=\{x_{0}\}$}\\
+    \FOR {$t=0...T$}{
+        \STATE{Let $s_{t}:= LMO_{\mathcal{A}}(\nabla f(x_{t}))$ and $d^{FW}_{t}:= s_{t}- x_{t}$}\\
+        \STATE{Let $v_{t}\in \underset{v\in S_{t}}{\textit{argmax}}\langle\nabla f(x_{t}), v\rangle$ and $d^{A}_{t}:= x_{t}- v_{t}$}\\
+        \STATE {\textbf{if} $g^{FW}_{t}=\langle-\nabla f(x_{t}),
+d^{FW}_{t}\rangle\leq \epsilon$ \textbf{then return} $x_{t}$}\\ \STATE
+{\textbf{if} $\langle-\nabla f(x_{t}), d^{FW}_{t}\rangle\geq \langle-\nabla
+f(x_{t}), d^{A}_{t}\rangle$\quad\textbf{then}}\\
+\STATE{\quad\quad\quad$d_{t}=d^{FW}_{t}$ and $\gamma^{max}=1$}\\
+\STATE{\textbf{else}}\\
+        \STATE{\quad\quad\quad $d_{t}=d^{A}_{t}$ and
+$\gamma^{max}=\frac{\alpha^{(t)}_{v_{t}}}{1-\alpha^{(t)}_{v_{t}}}$}\\
+\STATE{Line-search: $\gamma_{t}\in\underset{\gamma}{argmin}f(x_{t}+\gamma
+d_{t})$}\\ \STATE{Update $x_{t}= x_{t}+\gamma_{t}d_{t}$}\\ } \ENDFOR
+\end{algorithmic}
+%\end{algorithm}
+% \begin{figure}
+%   \includegraphics[width=\linewidth]{fig2.png}
+%   \caption{(left) The FW algorithm zig-zags when the solution $x$ lies on the
+% boundary. (middle) Adding the possibility of an away step attenuates this
+% problem. (right) As an alternative, a pairwise FW step.}
+%   \label{fig:Away steps}
+% \end{figure}
+
+To address this issue an improved variant of F-W named \textbf{Away-steps
+Frank-Wolfe} adds the possibility of moving away (by removing a fraction of) a
+maximizer of the $LMO_{\mathcal{S_{t}}}$ in the active set. While this slows
+down each iteration it should be noted that the added step is easier than
+$LMO_{\mathcal{A}}$ given that we maximize over a subset of $\mathcal{A}$.
+Furthermore, given that this variant converges linearly, the algorithm
+progresses in a fewer number of iterations in the descent direction, making it
+much faster than the original F-W.
+
+
+
+
 \subsection{Randomized Away-step Frank-Wolfe}
 A crucial assumption in constructing the BCFW is whether the domain is
 block-separable. While this is true in the context of the structured SVM, this
