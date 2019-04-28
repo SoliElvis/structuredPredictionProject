@@ -1,4 +1,3 @@
-
 import expcode.dataprep.batch_data_prep as prep
 from expcode.dataprep import dp_fec, dp_pkl,dp_trl, dataParams
 
@@ -146,47 +145,69 @@ class Processor_textFile_to_lite(ProcessorBase):
     self.ex = extractor
     self.dp_trl = self.ex.dp_trl
 
-async def row_pro_sentence_cons(processor):
+  def export(
+
+
+
+#Async FAIL ---------------------------------------
+
+
+
+
+
+import threading
+def text_pipeline(processor,q1):
   for l in lang:
     try:
-      f = os.open(processor.ex.text_fileDict[l], os.O_RDONLY)
-      counter = 0
-      fMap = mmap.mmap(f,0,prot=mmap.PROT_READ)
-      loop = asyncio.get_event_loop()
-      q1 = asyncio.Queue(loop=loop)
-      print("hellooo")
-      producers = asyncio.create_task(chunk_pro(q1,loop,fMap))
-      consumers = asyncio.create_task(sent_pro(q1,loop))
-      await asyncio.gather(*producers)
-      print("----done producing")
-      consumers.cancel()
+      with open(processor.ex.text_fileDict[l], 'r') as f:
+        pp = processor.ex.dp_trl.processedData_dir + l + "sents.txt"
+        with open(processor.ex.dp_trl.processedData_dir, 'w+') as out:
+          p = Producer(q1,f)
+          c = Consumer(q1,out)
+          p.start()
+          c.start()
     except Exception as e:
       print(e)
     finally:
-      print("finaly")
-      f.close()
+      print("finally")
 
-async def sent_pro(q1,loop,chunkReadLineNb=10):
-  sents = {}
-  while True:
-    chunk = await q1.get()
-    __sents = [c for _,c in chunks]
-    _sents = ''.join(__sents)
-    sent_text = nltk.sent_tokenize(text)
-    q1.task_done()
+class Consumer(threading.Thread):
+  def __init__(self,q1,out):
+    super(Consumer,self).__init__()
+    self.q1 = q1
+    self.out = out
+  def run(q1,out):
+    while True:
+      if not q1.empty():
+        chunk = q1.get()
+        _sents = ''.join(chunk)
+        sent_text = '|'.join(nltk.sent_tokenize(_sents))
+        out.write(sent_text)
 
-async def chunk_pro(q1,loop,fMap,chunkReadLineNb=10):
-  while True:
-    chunks = {}
-    for i in range(chunkReadLineNb):
-      for l in iter(fMap.readline, b""):
-        chunks[i] = l
-    await q1.put(chunk)
+class Producer(threading.Thread):
+  def __init__(self,q1,f):
+    super(Producer,self).__init__()
+    self.q1 = q1
+    self.f = f
+  def run(q1,f):
+    chunk = f.readline()
+    while True:
+      if not q1.full():
+        chunk = f.read(1024)
+        q1.put(chunk)
+
 
 
 def main():
   ex = Extractor_textFile_to_lite(dp_trl)
   pr = Processor_textFile_to_lite(ex)
+  loop = asyncio.get_event_loop()
+  q1 = asyncio.Queue(loop=loop)
+  # asyncio.run(text_pipeline(pr,q1))
+  text_pipeline(pr,q1)
+
+
+  # executor = ThreadPoolExecutor(max_workers=10)
   return pr
 
 
