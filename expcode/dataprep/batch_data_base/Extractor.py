@@ -87,6 +87,8 @@ class Extractor_csv_to_sql():
     return df_dict,db
 
 
+class Extractor_pickle_to_sql():
+  pass
 # class Blob_manager_fs(db,db_to_file_format):
 #   pass
 # class Blob_manager_postGre(db,db_to_file_format):
