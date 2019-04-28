@@ -1,0 +1,13 @@
+* db
+** TODO [#A] pickle
+** TODO [#B] Create db script enforce schema and uniqueness
+** TODO [#A] numerical prep
+** TODO [#B] incremental update
+** TODO [#C] image data with postgresql
+
+* numerical
+** TODO mettre extragrad online
+
+* Rapport
+** TODO Bib file update and cleanup, switch to zotero
+** TODO [#B] intro convex analysis
