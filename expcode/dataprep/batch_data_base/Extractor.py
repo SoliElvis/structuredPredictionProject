@@ -6,6 +6,7 @@ import pandas as pd
 from typing import List, Dict
 import itertools
 import pipe
+from .expcode import proj_dir,db_file_path,save_dir,process_dir,csv_file_dict,image_file_dict
 #Utilities
 def face_crop_df_formater(df):
   _cols  = [[str(i)  + "_url",
@@ -103,15 +104,15 @@ class Extractor_csv_to_sql():
 def extract_csv_fec():
 
   ###move all that to json file
-  proj_dir = "./expcode"
-  db_file_path = os.path.join(proj_dir,"fec.db")
-  save_dir = os.path.join(proj_dir,"dataprep/FEC_dataset")
-  process_dir = os.path.join(proj_dir,"process_dev")
-  csv_file_dict = {"train_fec": os.path.join(save_dir, "faceexp-comparison-data-train-public.csv"),
-                   "test_fec" : os.path.join(save_dir, "faceexp-comparison-data-test-public.csv")}
-  image_file_dict = {"train_fec" : os.path.join(process_dir,"images/train"),
-                     "test_fec"  : os.path.join(process_dir, "images/test")}
-  #####
+  # proj_dir = "./expcode"
+  # db_file_path = os.path.join(proj_dir,"fec.db")
+  # save_dir = os.path.join(proj_dir,"dataprep/FEC_dataset")
+  # process_dir = os.path.join(proj_dir,"process_dev")
+  # csv_file_dict = {"train_fec": os.path.join(save_dir, "faceexp-comparison-data-train-public.csv"),
+  #                  "test_fec" : os.path.join(save_dir, "faceexp-comparison-data-test-public.csv")}
+  # image_file_dict = {"train_fec" : os.path.join(process_dir,"images/train"),
+  #                    "test_fec"  : os.path.join(process_dir, "images/test")}
+  # #####
   plug = Extractor_csv_to_sql(csv_file_dict,db_file_path)
   plug.export_to_sql()
 
