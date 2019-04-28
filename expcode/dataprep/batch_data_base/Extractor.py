@@ -13,6 +13,8 @@ import pickle
 import signal
 from contextlib import contextmanager
 
+import asyncio
+
 #Globals-----------------------------------------------------
 
 testOrTrain = ("train","test")
@@ -72,7 +74,7 @@ class ExtractorBase():
     return None
 
 
-class Extractor_csv_to_sql(ExtractorBase):
+class Extractor_csv_to_lite(ExtractorBase):
   def __init__(self,db_file_path : str, csv_file_dict : Dict[str,str]):
     ExtractorBase.__init__(db_file_path)
     self.csv_file_dict = csv_file_dict
@@ -93,7 +95,7 @@ class Extractor_csv_to_sql(ExtractorBase):
       df = formater(df)
     return df
 
-  def first_export_to_sql(self,db=None):
+  def first_export_to_lite(self,db=None):
     df_dict = {}
     db = db or self.db
     if not connection_test(db):
@@ -108,7 +110,7 @@ class Extractor_csv_to_sql(ExtractorBase):
     return df_dict,db
 
 
-class Extractor_pickle_to_sql(ExtractorBase):
+class Extractor_pickle_to_lite(ExtractorBase):
   def __init__(self,dp_pickle):
     ExtractorBase.__init__(dp_pickle.db_file)
     self.pickdic = dp_pickle.pickdic
@@ -125,17 +127,40 @@ class Extractor_pickle_to_sql(ExtractorBase):
     return self.content_inMem
 
 
-class Extractor_textFile_to_sql(ExtractorBase):
+class Extractor_textFile_to_lite(ExtractorBase):
   def __init__(self,dp_trl):
+    self.dp = dp_trl
     self.text_fileDict = dp_trl.text_fileDict
 
+#Processors -------------------------------------------------
 
+class ProcessorBase():
+  pass
+
+class Processor_textFile_to_lite(ProcessorBase):
+  def __init__(self,extractor):
+    self.ex = extractor
+    self.dp_trl = self.ex.dp_trl
+  async def produce_sentence(self):
+    for l in lang:
+      with open(self.ex.text_fileDict, 'r'):
+        pass
+
+  async def producer(name, queue):
+    while True:
+      #process a number of sentences
+      queue.task_done()
+      print("\n producer queue")
+
+async def main():
+
+  queue = asyncio.Queue()
 
 def test():
   time_limit_sec = 60
   try:
     with time_limit(time_limit_sec):
-      pk_test = Extractor_pickle_to_sql(dp_pkl)
+      pk_test = Extractor_pickle_to_lite(dp_pkl)
       for p in pk_test._load_pickle_file():
         print("----------------------------------------------------------------")
         print("----------------------------------------------------------------")
@@ -148,11 +173,11 @@ def test():
 
 
 def test2():
-  return Extractor_textFile_to_sql(dp_trl)
+  return Extractor_textFile_to_lite(dp_trl)
 #Needs to run from root of project
 def extract_csv_fec():
-  plug = Extractor_csv_to_sql(dp_fec.csv_file_dict,dp_fec.db_file)
-  plug.first_export_to_sql()
+  plug = Extractor_csv_to_lite(dp_fec.csv_file_dict,dp_fec.db_file)
+  plug.first_export_to_lite()
   return plug
 
 
