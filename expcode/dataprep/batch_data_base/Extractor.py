@@ -123,7 +123,6 @@ class Extractor_pickle_to_lite(ExtractorBase):
       with open(self.pickdic[l], 'rb') as f:
         unpick = pickle.Unpickler(f)
         temp_content = unpick.load()
-        yield temp_content
         self.content_inMem[l].append(temp_content)
 
     return self.content_inMem
