@@ -1,5 +1,6 @@
+
 import expcode.dataprep.batch_data_prep as prep
-from expcode.dataprep import dp_fec, dp_pkl, dataParams
+from expcode.dataprep import dp_fec, dp_pkl,dp_trl, dataParams
 
 import os
 import sqlite3
@@ -15,6 +16,8 @@ from contextlib import contextmanager
 
 import asyncio
 import mmap
+import functools
+import nltk
 
 #Globals-----------------------------------------------------
 
@@ -130,7 +133,7 @@ class Extractor_pickle_to_lite(ExtractorBase):
 
 class Extractor_textFile_to_lite(ExtractorBase):
   def __init__(self,dp_trl):
-    self.dp = dp_trl
+    self.dp_trl = dp_trl
     self.text_fileDict = dp_trl.text_fileDict
 
 #Processors -------------------------------------------------
@@ -139,38 +142,53 @@ class ProcessorBase():
   pass
 
 class Processor_textFile_to_lite(ProcessorBase):
-  def __init__(self,extractor,queue):
+  def __init__(self,extractor):
     self.ex = extractor
     self.dp_trl = self.ex.dp_trl
-    self.line_cache = {}
-    self.fMap = None
-    self.queue = queue
 
-  async def produce_sentence(self):
-    for l in lang:
-      with open(self.ex.text_fileDict, 'r') as f:
-        pass
+async def row_pro_sentence_cons(processor):
+  for l in lang:
+    try:
+      f = os.open(processor.ex.text_fileDict[l], os.O_RDONLY)
+      counter = 0
+      fMap = mmap.mmap(f,0,prot=mmap.PROT_READ)
+      loop = asyncio.get_event_loop()
+      q1 = asyncio.Queue(loop=loop)
+      print("hellooo")
+      producers = asyncio.create_task(chunk_pro(q1,loop,fMap))
+      consumers = asyncio.create_task(sent_pro(q1,loop))
+      await asyncio.gather(*producers)
+      print("----done producing")
+      consumers.cancel()
+    except Exception as e:
+      print(e)
+    finally:
+      print("finaly")
+      f.close()
 
-  async def chunk_producer(self,chunkReadLineNb=100):
-    #while True wait if queue is passed a certain threshold
-    while True:
-      chunk = [l for l in self.fMap.readline() for _ in range(chunkReadLineNb)]
-      queue.task_done()
-      print("\n chunk producer queue")
+async def sent_pro(q1,loop,chunkReadLineNb=10):
+  sents = {}
+  while True:
+    chunk = await q1.get()
+    __sents = [c for _,c in chunks]
+    _sents = ''.join(__sents)
+    sent_text = nltk.sent_tokenize(text)
+    q1.task_done()
 
-  async def sentence_producer_chunk_consumer(self):
-    while True:
-      sleep_for = await queue.get()
-      await asyncio.sleep(sleep_for)
-      #process chunks
-      queue.task_done()
-      print("\n producer queue")
+async def chunk_pro(q1,loop,fMap,chunkReadLineNb=10):
+  while True:
+    chunks = {}
+    for i in range(chunkReadLineNb):
+      for l in iter(fMap.readline, b""):
+        chunks[i] = l
+    await q1.put(chunk)
 
 
+def main():
+  ex = Extractor_textFile_to_lite(dp_trl)
+  pr = Processor_textFile_to_lite(ex)
+  return pr
 
-async def main():
-
-  queue = asyncio.Queue()
 
 def test():
   time_limit_sec = 60
