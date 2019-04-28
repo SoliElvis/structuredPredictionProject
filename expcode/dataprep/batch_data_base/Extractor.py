@@ -138,13 +138,15 @@ class Extractor_textFile_to_lite(ExtractorBase):
     self.dp_trl = dp_trl
     self.text_fileDict = dp_trl.text_fileDict
     self.corpus= []
-    # self.db.execute("create table fr_batch(id,sent)")
-    # self.db.execute("create table en_batch(id,sent)")
+    try:
+       self.db.execute("create table fr_batch(id,sent)")
+       self.db.execute("create table en_batch(id,sent)")
+       self.db.execute("create table fr(id,sent)")
+       self.db.execute("create table en(id,sent)")
+    except Exception as e:
+      print(e)
 
-    # self.db.execute("create table fr(id,sent)")
-    # self.db.execute("create table en(id,sent)")
-
-  def controller(self):
+  def mass_inserter(self):
     #open DB in append mode
     for l in lang:
       with open(self.text_fileDict[l], 'r') as f:
@@ -156,6 +158,17 @@ class Extractor_textFile_to_lite(ExtractorBase):
           payload = (id,sents)
           self.db.execute("insert into " + tableName  + " values (?,?)",payload)
     return self.db
+
+  def etl_1(self):
+    for l in lang:
+      source = l + "_batch"
+      target = l + "_1"
+      counter = 0
+      text = self.db.execute("select * from " + source).fetchone()
+      for row in text:
+        print(row)
+        print('\n')
+
 
 
 
