@@ -2,7 +2,14 @@
 %%% mode: latex
 %%% TeX-master: t
 %%% End:
+
 \input{premath}
+\usepackage[
+  backend=biber,
+  style=numeric,
+  citestyle=numeric
+]{biblatex}
+\addbibresource{tocite.bib}
 \title{Scalable optimization algorithms for the Structured SVM}
 \date{\today}
 \author{Frederic Boileau Elyes Lamouchi William St-Arnaud}
@@ -15,4 +22,12 @@
 \input{rapport_edited_main}
 \section{Empirical}
 \input{exp.tex}
+\section{Discussion}
+\input{discussion}
+\section{Conclusion and Further Work}
+\input{conclusion}
+
+\clearpage
+\section{Citations and References}
+\printbibliography
 \end{document}
