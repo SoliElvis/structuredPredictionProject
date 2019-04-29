@@ -1,101 +1,3 @@
-\subsubsection{Convergence analysis} The restricted gap function
-$\mathcal{G}_{D_{\vec v}, D_{\vec z}}$ is upper bounded by:
-\begin{equation} \mathcal{G}_{D_{\vec w}, D_{\vec z}}(\overline{\vec w^{\tau}},
-\overline{\vec z^{\tau}}) \leq \frac{\left( D_{\vec w} + D_{\vec z} \right)
-L}{\tau + 1}
-\label{eq:ub}
-\end{equation}
-
-In his proof on the convergence of the extragradient algorithm, Nesterov uses a
-function $f_D$ instead of $\mathcal{G}_{D_{\vec w}, D_{\vec z}}$, where $f_D$ is
-defined as:
-\begin{equation}
-f_D(\vec x) = \max_{\vec y \in \mathcal{Q}} \left \{ \langle g(\vec y), \vec x -
-\vec y \rangle : d(\vec x, \vec y) \right \}
-\end{equation}
-
-where the set $\mathcal{Q}$ is the set of parameters and $g$ is a monotone
-operator. We can already see a link between the function $f_D$ and the gap
-$\mathcal{G}_{D_{\vec w}, D_{\vec z}}$. This comes out as:
-
-\begin{equation}
-  \begin{aligned}
-    \mathcal{G}_{D_{\vec w},D_{\vec z}}(\vec w, \vec z) &= \sum_i \vec w^T \vec F_i \vec z_i^* - (\vec w^*)^T \vec F_i \vec z_i - \sum_i (\vec w^T - (\vec w^*)^T ) \vec f_i (\vec y_i) - \sum_i \vec c_i^T (\vec z_i - \vec z_i^*)\\
-    &= \sum_i (\vec z_i^*)^T \vec F_i^T \vec w - (\vec w^*)^T \vec F_i \vec z_i - \sum_i \vec (\vec f_i (\vec y_i))^T (\vec w - \vec w^*) - \sum_i \vec c_i^T (\vec z_i - \vec z_i^*)\\
-    &= \sum_i (\vec z_i^*)^T \vec F_i^T (\vec w - \vec w^*) - (\vec w^*)^T \vec F_i (\vec z_i - \vec z_i^*) - \sum_i (\vec f_i(\vec y_i))^T (\vec w - \vec w^*) - \sum_i \vec c_i^T (\vec z_i - \vec z_i^*)\\
-    &=
-    \begin{pmatrix}
-      \begin{array}{c}
-        \sum_i \vec F_i \vec z_i^*\\
-	-\vec F_1^T \vec w^*\\
-	\vdots\\
-	-\vec F_m^T \vec w^*
-      \end{array}
-    \end{pmatrix}^T
-    \begin{pmatrix}
-      \begin{array}{c}
-	\vec w - \vec w^*\\
-	\vec z_1 - \vec z_1^*\\
-	\vdots\\
-	\vec z_m - \vec z_m^*
-      \end{array}
-    \end{pmatrix} -
-    \begin{pmatrix}
-      \begin{array}{c}
-	\sum_i \vec f_i(\vec y_i)\\
-	\vec c_1\\
-	\vdots\\
-	\vec c_m
-      \end{array}
-    \end{pmatrix}^T
-    \begin{pmatrix}
-      \begin{array}{c}
-	\vec w - \vec w^*\\
-	\vec z_1 - \vec z_1^*\\
-	\vdots\\
-	\vec z_m - \vec z_m^*
-      \end{array}
-    \end{pmatrix}
-  \end{aligned}
-\end{equation}
-
-From this, we deduce that the function $g$ from the definition of $f_D$ corresponds to:
-\begin{equation}
-  g(\vec w, \vec z) =
-  \begin{pmatrix}
-    \begin{array}{c}
-      \sum_i \vec F_i \vec z_i^*\\
-      - \vec F_i^T \vec w^*\\
-      \vdots\\
-      - \vec F_m^T \vec w^*
-    \end{array}
-  \end{pmatrix} -
-  \begin{pmatrix}
-    \begin{array}{c}
-      \sum_i \vec f_i (\vec y_i)\\
-      \vec c_1\\
-      \vdots\\
-      \vec c_m
-    \end{array}
-  \end{pmatrix} = \vec F \vec u^* - \vec a
-\end{equation}
-
-
-It is constant and thus monotone as required by Nesterov's proof of the
-convergence of the algorithm. Its Lipschitz constant $L$ is equal to $\max_{\vec
-u \in \mathcal{U}} \lVert \vec F (\vec u - \vec u') \rVert_2 / \lVert \vec u -
-\vec u' \rVert_2 \leq \lVert \vec F \rVert_2$. Of course, a point $\vec w, \vec
-z$ that satisifies $\lVert \vec w \rVert_2 \leq D_{\vec w}$ and $\lVert \vec z
-\rVert_2 \leq D_{\vec z}$ also satisifies $\lVert (\vec w, \vec z) \rVert_2 \leq
-D$ when $D = \sqrt{D_{\vec w}^2 + D_{\vec z}^2}$ since $(\vec w, 0) \perp (0,
-\vec z)$. It is then easy to see that $f_D \geq \mathcal{G}_{D_{\vec w}, D_{\vec
-z}}$. Thus, the function $\mathcal{G}_{D_{\vec w}, D_{\vec z}}$ is upper bounded
-by the right-hand side of equation \ref{eq:ub}. We can also observe that the
-function $g(\vec w, \vec z)$ is exactly the gradient of the objective
-$\mathcal{L}(\vec w, \vec z)$ at the point $\vec w, \vec z$.
-
-
-
 \subsection{From classical Frank-Wolfe to more sophisticated variants}
 \subsubsection{Classical Frank-Wolfe}
 Consider a linear minimization oracle,
@@ -291,27 +193,25 @@ that of batch Frank Wolfe which is $\leq \frac{4}{\lambda}R^{2}$. Hence the $n$
 times faster convergence rate of BCFW. \subsubsection{Tightening the bound}
 \textbf{Definition.} Let $||.||$ be a norm on $\mathbb{R}^{n}$. The associated
 dual norm, denoted $||.||_{*}$ is defined as,
-\begin{equation*}
-\begin{aligned}
+\begin{align*}
     ||z||_{*}= \underset{z}{\textit{sup}} \{z^{T}x|\quad||x||\leq1\}
-\end{aligned}
-\end{equation*}
+\end{align*}
 We denote the dual norm of $l_{p}$ by $l_{q}$. For $p=2$ we have $q=2$ and for $p=1$, $q=\infty$.
 \textit{Problem.}\quad For $p= q= 2$ we get $\textit{diam}_{2}^{2}(C)= 2n$, and the Lipschitz constant $L_{q}$ is the largest eigenvalue of the hessian.
-\begin{equation*}
-\begin{aligned}
-    &\lambda A^{T}A= \frac{1}{n^{2}\lambda}\Big(\langle \psi_{i}(y)- \psi_{j}(y\prime) \rangle\Big)_{(i,y),(j,y\prime)}\\
-    &\textit{And say}\quad \langle \psi_{i}(y)- \psi_{j}(y\prime) \rangle \approx  1\quad\textit{for a lot of outputs, we get:}\\
+\begin{align*}
+    &\lambda A^{T}A= \frac{1}{n^{2}\lambda}\Big(\langle \psi_{i}(y)-
+\psi_{j}(y\prime) \rangle\Big)_{(i,y),(j,y\prime)}\\ &\textit{And say}\quad
+\langle \psi_{i}(y)- \psi_{j}(y\prime) \rangle \approx 1\quad\textit{for a lot
+of outputs, we get:}\\
     &\mathbbm{1}^{T}\mathbbm{1}\approx \mathbbm{1}\underbrace{diam_{2}(C)}_{=\sqrt{2n}}
-\end{aligned}
-\end{equation*}
+\end{align*}
 Hence the largest eigenvalue the hessian, and therefore the Lipschitz constant,
 can scale with the dimension of $A^{T}A$, i.e exponentially with the size of the
 training data, rendering the bound above very loose, and thus of little
 practical use. \\
 
-\textit{Solution.}\quad Taking $p=1$ and therefore $q=\infty$, we get $L\textit{diam}^{2}(C)\approx \frac{4}{\lambda}R^{2}$.\\
-\\
+\textit{Solution.}\quad Taking $p=1$ and therefore $q=\infty$, we get
+$L\textit{diam}^{2}(C)\approx \frac{4}{\lambda}R^{2}$.\\ \\
 Combined with the the convergence results above, we get a sublinear convergence
 rate for BCFW. And although subgradient methods converge at the same rate, BCFW
 presents an adaptive stepsize and an indication as to when to terminate, making

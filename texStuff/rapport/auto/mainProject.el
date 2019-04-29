@@ -2,27 +2,32 @@
  "mainProject"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("biblatex" "backend=biber" "citestyle=authoryear-ibid" "natbib=true")))
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
-   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+                     '(("biblatex" "backend=biber" "citestyle=authoryear-ibid" "natbib=true") ("appendix" "toc" "page")))
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
-   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperbaseurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "nolinkurl")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-braces-local "path")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
+   (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (TeX-run-style-hooks
     "premath"
     "intro"
     "structSVM"
-    "cvxanalysis"
     "extraGradMain"
     "bcfwMain"
     "exp"
-    "appendix"
+    "discussion"
+    "conclusion"
+    "cvxanalysis"
+    "app_extra"
+    "app_fw"
     "biblatex"
     "csquotes"
-    "fancyhdr")
+    "comment"
+    "fancyhdr"
+    "appendix")
    (LaTeX-add-bibliographies
     "tocite.bib"
     "tocite"))

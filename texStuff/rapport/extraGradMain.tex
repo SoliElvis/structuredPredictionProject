@@ -1,4 +1,4 @@
-\subsection{Saddle Point Intuition}
+\subsection{Saddle Point Formualtion and Intuition}
 \begin{equation}
   \min_{\vec w \in {W}} \max_{\vec z \in {Z}} \sum_i \left( \vec
 w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)
@@ -33,8 +33,7 @@ updates for both players at the same time.
 
 \begin{equation}
   \begin{pmatrix}
-    \begin{array}{c}
-      \nabla_{\vec w} {L}(\vec w,\vec z)\\
+    \begin{array}{c} \nabla_{\vec w} {L}(\vec w,\vec z)\\
       -\nabla_{\vec z_1} {L}(\vec w,\vec z)\\
       \vdots\\
       -\nabla_{\vec z_m} {L}(\vec w,\vec z)
@@ -69,6 +68,8 @@ updates for both players at the same time.
     \end{pmatrix}}_{\vec a} = \vec F \vec u - \vec a
 \end{equation}
 
+\clearpage
+\subsection{Duality and Gap function}
 We can measure the ``goodness'' of the parameters using the gap function
 ${G}$:
 \begin{equation}
@@ -99,7 +100,8 @@ This can be seen in the convergence analysis of the method.
 
 
 
-We mainly follow the intuition and proofs of \cite{taskarStructuredPredictionExtragradient}.\\
+We mainly follow the intuition and proofs of
+\cite{taskarStructuredPredictionDual2006}.\\
 The dual extragradient algorithm from Nesterov gives a convergence guarantee for
 the objective ${L}$.\\
 We present a simple formulation of the algorithm:

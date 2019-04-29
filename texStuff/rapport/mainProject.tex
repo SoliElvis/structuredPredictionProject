@@ -10,7 +10,7 @@
   natbib=true
   ]{biblatex}
 \usepackage{csquotes}
-% \usepackage{comments}
+\usepackage{comment}
 \usepackage{fancyhdr}
 \pagestyle{fancyplain}
 \fancyhf{}
@@ -20,8 +20,10 @@
 
 \renewcommand\nameyeardelim{, }
 \bibliography{tocite.bib}
-
 \addbibresource{tocite.bib}
+
+\usepackage[toc,page]{appendix}
+
 \title{Scalable optimization algorithms for the Structured SVM -- unfinished
   version on \today  -- A new version will be uploaded before the end of the day}
 \date{\today}
@@ -29,6 +31,7 @@
 \begin{document}
 \maketitle
 
+\tableofcontents
 \clearpage
 \section{Introduction}
 \input{intro}
@@ -40,9 +43,6 @@
 % \clearpage
 % \input{prelim_large_margin}
 
-\clearpage
-\subsection{Convex Analysis etc}
-\input{cvxanalysis}
 
 \clearpage
 \section{Extra Gradient Algorithm}
@@ -56,19 +56,28 @@
 \section{Empirical}
 \input{exp}
 
-% \clearpage
-% \section{Discussion}
-% \input{discussion}
+\clearpage
+\section{Discussion}
+\input{discussion}
 
-% \clearpage
-% \section{Conclusion and Further Work}
-% \input{conclusion}
+\clearpage
+\section{Conclusion and Further Work}
+\input{conclusion}
 
 \clearpage
 \section{Citations and References}
 \printbibliography
 
 \clearpage
-\section{Appendix}
-\input{appendix}
+\begin{appendices}
+\input{cvxanalysis}
+\clearpage
+
+\input{app_extra.tex}
+\clearpage
+
+\input{app_fw.tex}
+\clearpage
+\end{appendices}
+
 \end{document}

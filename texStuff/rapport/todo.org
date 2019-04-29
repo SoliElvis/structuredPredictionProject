@@ -2,9 +2,13 @@
 #+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
 * Rapport
 ** NEXT discussion -> intuition combinatorial vs saddle point approach
+   DEADLINE: <2019-04-29 Mon 13:30> SCHEDULED: <2019-04-29 Mon 13:00>
 ** NEXT conclusion
+   DEADLINE: <2019-04-29 Mon 14:00>
 ** TODO extragradient basic : put it away
-** TODO intro convex analysis
+   DEADLINE: <2019-04-29 Mon 15:30>
+
+** MAYBE intro convex analysis
 ** To quote for discussion
 *** FW improvements 
     - [ ] [[zotero://select/items/1_DT6RXR4I][Gidel, Gauthier, Tony Jebara, and Simon Lacoste-Julien. “Frank-Wolfe Algorithms for Saddle Point Problems.” ArXiv:1610.07797 {Cs, Math, Stat}, October 25, 2016. http://arxiv.org/abs/1610.07797.]]
