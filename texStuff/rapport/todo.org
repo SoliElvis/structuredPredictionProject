@@ -1,0 +1,11 @@
+#+SEQ_TODO: URGENT(u) STARTED(s)  NEXT(n) TODO(t)  MIDWAY(m) WAITING(w) MAYBE(m) | DONE(d) DEFERRED(l) CANCELLED(c)
+#+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
+* Logistics
+** requirements file/ clean up imports
+
+* Rapport
+** DONE Bib file update and cleanup, switch to zotero
+** TODO  intro
+** TODO conclusion
+** TODO extragradient basic
+** TODO [#B] intro convex analysis
