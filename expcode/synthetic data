@@ -1,0 +1,15 @@
+import numpy as np
+
+def softmax(x): return np.exp(x)/sum(np.exp(x))
+
+n_data=5
+n_labels=4
+n_classes=3
+
+x= np.zeros((n_data, n_labels, n_classes))
+y = np.empty((n_data, n_labels), dtype=object)
+
+for i in range(n_data):
+    for j in range(n_labels):
+        x[i,j,:] = softmax(np.random.uniform(0, 1, n_classes))
+        y[i,j] = np.argmax(x[i,j,:])
