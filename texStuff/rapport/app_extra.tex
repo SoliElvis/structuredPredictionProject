@@ -1,0 +1,105 @@
+\subsection*{ExtraGradient}
+\subsubsection*{Convergence analysis}
+The restricted gap function
+$\mathcal{G}_{D_{\vec v}, D_{\vec z}}$ is upper bounded by:
+\begin{equation}
+  \mathcal{G}_{D_{\vec w}, D_{\vec z}}(\overline{\vec w^{\tau}},
+\overline{\vec z^{\tau}}) \leq \frac{\left( D_{\vec w} + D_{\vec z} \right)
+L}{\tau + 1}
+\label{eq:ub}
+\end{equation}
+
+In his proof on the convergence of the extragradient algorithm, Nesterov
+(TOCITE) uses a function $f_D$ instead of $\mathcal{G}_{D_{\vec w}, D_{\vec
+z}}$, where $f_D$ is defined as:
+\begin{equation}
+f_D(\vec x) = \max_{\vec y \in \mathcal{Q}} \left \{ \langle g(\vec y), \vec x -
+\vec y \rangle : d(\vec x, \vec y) \right \}
+\end{equation}
+where the set $\mathcal{Q}$ is the set of parameters and $g$ is a monotone
+operator. We can already see a link between the function $f_D$ and the gap
+$\mathcal{G}_{D_{\vec w}, D_{\vec z}}$.
+
+
+\begin{align*}
+    \mathcal{G}_{D_{\vec w},D_{\vec z}}(\vec w, \vec z) &= \sum_i \vec w^T \vec
+F_i \vec z_i^* - (\vec w^*)^T \vec F_i \vec z_i - \sum_i (\vec w^T - (\vec
+w^*)^T ) \vec f_i (\vec y_i) - \sum_i \vec c_i^T (\vec z_i - \vec z_i^*)\\ &=
+\sum_i (\vec z_i^*)^T \vec F_i^T \vec w - (\vec w^*)^T \vec F_i \vec z_i -
+\sum_i \vec (\vec f_i (\vec y_i))^T (\vec w - \vec w^*) - \sum_i \vec c_i^T
+(\vec z_i - \vec z_i^*)\\ &= \sum_i (\vec z_i^*)^T \vec F_i^T (\vec w - \vec
+w^*) - (\vec w^*)^T \vec F_i (\vec z_i - \vec z_i^*) - \sum_i (\vec f_i(\vec
+y_i))^T (\vec w - \vec w^*) - \sum_i \vec c_i^T (\vec z_i - \vec z_i^*)\\
+    &=
+    \begin{pmatrix}
+      \begin{array}{c}
+        \sum_i \vec F_i \vec z_i^*\\
+	-\vec F_1^T \vec w^*\\
+	\vdots\\
+	-\vec F_m^T \vec w^*
+      \end{array}
+    \end{pmatrix}^T
+    \begin{pmatrix}
+      \begin{array}{c}
+	\vec w - \vec w^*\\
+	\vec z_1 - \vec z_1^*\\
+	\vdots\\
+	\vec z_m - \vec z_m^*
+      \end{array}
+    \end{pmatrix} -
+    \begin{pmatrix}
+      \begin{array}{c}
+	\sum_i \vec f_i(\vec y_i)\\
+	\vec c_1\\
+	\vdots\\
+	\vec c_m
+      \end{array}
+    \end{pmatrix}^T
+    \begin{pmatrix}
+      \begin{array}{c}
+	\vec w - \vec w^*\\
+	\vec z_1 - \vec z_1^*\\
+	\vdots\\
+	\vec z_m - \vec z_m^*
+      \end{array}
+    \end{pmatrix}
+\end{align*}
+From this, we deduce that the function $g$ from the definition of $f_D$ corresponds to:
+\begin{equation}
+  g(\vec w, \vec z) =
+  \begin{pmatrix}
+    \begin{array}{c}
+      \sum_i \vec F_i \vec z_i^*\\
+      - \vec F_i^T \vec w^*\\
+      \vdots\\
+      - \vec F_m^T \vec w^*
+    \end{array}
+  \end{pmatrix} -
+  \begin{pmatrix}
+    \begin{array}{c}
+      \sum_i \vec f_i (\vec y_i)\\
+      \vec c_1\\
+      \vdots\\
+      \vec c_m
+    \end{array}
+  \end{pmatrix} = \vec F \vec u^* - \vec a
+\end{equation}
+
+
+It is constant and thus monotone as required by Nesterov's proof of the
+convergence of the algorithm. Its Lipschitz constant $L$ is equal to $\max_{\vec
+u \in \mathcal{U}} \lVert \vec F (\vec u - \vec u') \rVert_2 / \lVert \vec u -
+\vec u' \rVert_2 \leq \lVert \vec F \rVert_2$. Of course, a point $\vec w, \vec
+z$ that satisifies $\lVert \vec w \rVert_2 \leq D_{\vec w}$ and $\lVert \vec z
+\rVert_2 \leq D_{\vec z}$ also satisifies $\lVert (\vec w, \vec z) \rVert_2 \leq
+D$ when $D = \sqrt{D_{\vec w}^2 + D_{\vec z}^2}$ since $(\vec w, 0) \perp (0,
+\vec z)$. It is then easy to see that $f_D \geq \mathcal{G}_{D_{\vec w}, D_{\vec
+z}}$. Thus, the function $\mathcal{G}_{D_{\vec w}, D_{\vec z}}$ is upper bounded
+by the right-hand side of equation \ref{eq:ub}. We can also observe that the
+function $g(\vec w, \vec z)$ is exactly the gradient of the objective
+$\mathcal{L}(\vec w, \vec z)$ at the point $\vec w, \vec z$.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mainProject"
+%%% End:
