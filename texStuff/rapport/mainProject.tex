@@ -2,16 +2,64 @@
 %%% mode: latex
 %%% TeX-master: t
 %%% End:
+
 \input{premath}
+\usepackage[
+  backend=biber,
+  citestyle=authoryear-ibid,
+  natbib=true
+  ]{biblatex}
+\usepackage{csquotes}
+\renewcommand\nameyeardelim{, }
+\bibliography{tocite.bib}
+
+\addbibresource{tocite.bib}
 \title{Scalable optimization algorithms for the Structured SVM}
 \date{\today}
 \author{Frederic Boileau Elyes Lamouchi William St-Arnaud}
 \begin{document}
 \maketitle
 
+\clearpage
+\section{Introduction}
+\input{intro}
+
+
+\clearpage
+\section{Preliminaries}
+\input{structSVM}
+% \clearpage
+% \input{prelim_large_margin}
+
+\clearpage
+\subsection{Convex Analysis etc}
+\input{cvxanalysis}
+
+\clearpage
 \section{Extra Gradient Algorithm}
 \input{extraGradMain}
-\section{Frank Wolfe and Variants}
-\input{rapport_edited_main}
 
+\clearpage
+\section{Frank Wolfe and Variants}
+\input{bcfwMain}
+
+\clearpage
+\section{Empirical}
+\input{exp}
+
+\clearpage
+\section{Discussion}
+\input{discussion}
+
+\clearpage
+\section{Conclusion and Further Work}
+\input{conclusion}
+
+\clearpage
+\section{Citations and References}
+\printbibliography
+
+\clearpage
+\section{Appendix}
+\input{appendix}
 \end{document}

@@ -1,0 +1,48 @@
+\subsection{Structured SVM N-slack formulation}
+Let us recall the basic goal; to construct an accurate linear
+classifier\footnote{clearly we can easily extend to non-linear cases, with kernel maps for example}
+\begin{equation}
+  h_{w}(x)= \arg\max_{y\in \mathcal Y} \, \langle w, \phi(x,y)\rangle
+\end{equation}
+
+In general finding the optimal seperating hyperplane is an ill-defined problem.
+In the support vector machine (SVM) setting we want to find the seperating
+hyperplane with the \emph{largest margin}. The support vectors are the
+datapoints which lie on the the defined margins. It is not obvious
+that we should strive to completely seperate the sets so we can include some
+slack variables. Indeed, some set of points might not be linearly separable but
+adding slack variables might allow one to misclassify some point but get 
+a higher proportion of correctly classified points.\\
+
+We call the following way to pose problem the $n$-slack formulation
+\footnote{see \citet{moguerzaSupportVectorMachines2006} for example} of the problem :
+\begin{align}
+    &\max_{\omega, \xi}\quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\varepsilon_{i}\\
+    &\textit{s.t.}\quad \langle w, \psi_{i}(y)\rangle \geq L(y_{i},y)-
+\varepsilon_{i},\quad\forall i ,\forall y \in\mathcal{Y}(x)=\mathcal{Y}_{i}
+\end{align}
+
+\subsection{Loss-Augmented Decoding}
+Define $\psi(y) := \phi(\xiii,\yiii) - \phi(\xiii,y)$ and $L_i(y) = L(\yiii, y)$
+\begin{align}
+H_i &= \max_{y\in\mathcal{Y}_{i}} \quad \{L_{i}(y)- \langle w, \psi_{i}(y)\rangle\} \\
+\mathcal H_i &= \argmax_{y\in\mathcal{Y}_{i}} \quad \{ L_{i}(y)- \langle w, \psi_{i}(y)\rangle \}
+\end{align}
+
+\textbf{Proposition.} The max oracle is a convex upper bound to the task loss.\\
+\textit{Proof sketch:} The maximum of two convex (linear) functions is convex, and
+\begin{align} L(y_{i},h_{w}(x_{i})) &\leq L(y_{i},h_{w}(x_{i})) +
+        \underbrace{\langle w, \psi_{i}(y)\rangle}_{\geq 0 \textit{ by definition}} \\
+    \quad\quad &\leq \max_{y\in\mathcal{Y}_{i}} L_{i}(y)- \langle w, \psi_{i}(y)\rangle
+\end{align}
+
+It is not hard to see thus that learning $w$ amounts to the unconstrained problem,
+\begin{equation}
+  \max_{w} \quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\Tilde{H}_{i}(w)
+  \label{eq:svm-non-smooth}
+\end{equation}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mainProject"
+%%% End:

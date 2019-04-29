@@ -1,0 +1,581 @@
+
+@article{stratosFrankWolfeAlgorithmBasics,
+  langid = {english},
+  title = {The {{Frank}}-{{Wolfe}} Algorithm Basics},
+  pages = {3},
+  author = {Stratos, Karl}
+}
+
+@article{tibshiraniConditionalGradientFrankWolfe,
+  langid = {english},
+  title = {Conditional {{Gradient}} ({{Frank}}-{{Wolfe}}) {{Method}}},
+  pages = {25},
+  author = {Tibshirani, Ryan}
+}
+
+@article{macedoFrankWolfeAlgorithmAlternating,
+  langid = {english},
+  title = {Frank-{{Wolfe Algorithm}} \& {{Alternating Direction Method}} of {{Multipliers}}},
+  pages = {62},
+  author = {Macedo, Ives}
+}
+
+@article{yurtseverConditionalGradientFramework,
+  langid = {english},
+  title = {A {{Conditional Gradient Framework}} for {{Composite Convex Minimization}}  with {{Applications}} to {{Semidefinite Programming}}},
+  abstract = {We propose a conditional gradient framework for a composite convex minimization template with broad applications. Our approach combines smoothing and homotopy techniques under the CGM fram√ework, and provably achieves the optimal O(1/ k) convergence rate. We demonstrate that the same rate holds if the linear subproblems are solved approximately with additive or multiplicative error. In contrast with the relevant work, we are able to characterize the convergence when the non-smooth term is an indicator function. Speciﬁc applications of our framework include the non-smooth minimization, semideﬁnite programming, and minimization with linear inclusion constraints over a compact domain. Numerical evidence demonstrates the beneﬁts of our framework.},
+  pages = {10},
+  author = {Yurtsever, Alp and Fercoq, Olivier and Locatello, Francesco and Cevher, Volkan}
+}
+
+@article{bachDualitySubgradientConditional2012,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1211.6302},
+  primaryClass = {cs, math, stat},
+  title = {Duality between Subgradient and Conditional Gradient Methods},
+  url = {http://arxiv.org/abs/1211.6302},
+  abstract = {Given a convex optimization problem and its dual, there are many possible first-order algorithms. In this paper, we show the equivalence between mirror descent algorithms and algorithms generalizing the conditional gradient method. This is done through convex duality, and implies notably that for certain problems, such as for supervised machine learning problems with non-smooth losses or problems regularized by non-smooth regularizers, the primal subgradient method and the dual conditional gradient method are formally equivalent. The dual interpretation leads to a form of line search for mirror descent, as well as guarantees of convergence for primal-dual certificates.},
+  urldate = {2019-04-09},
+  date = {2012-11-27},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Bach, Francis}
+}
+
+@article{taskarStructuredPredictionExtragradient,
+  langid = {english},
+  title = {Structured {{Prediction}} via the {{Extragradient Method}}},
+  abstract = {We present a simple and scalable algorithm for large-margin estimation of structured models, including an important class of Markov networks and combinatorial models. We formulate the estimation problem as a convex-concave saddle-point problem and apply the extragradient method, yielding an algorithm with linear convergence using simple gradient and projection calculations. The projection step can be solved using combinatorial algorithms for min-cost quadratic ﬂow. This makes the approach an efﬁcient alternative to formulations based on reductions to a quadratic program (QP). We present experiments on two very different structured prediction tasks: 3D image segmentation and word alignment, illustrating the favorable scaling properties of our algorithm.},
+  pages = {12},
+  author = {Taskar, Ben and Lacoste-Julien, Simon and Jordan, Michael I}
+}
+
+@article{leiExtragradientMethodSolving,
+  langid = {english},
+  title = {An Extragradient Method for Solving Variational Inequalities without Monotonicity},
+  abstract = {A new extragradient projection method is devised in this paper, which does not obviously require generalized monotonicity and assumes only that the so-called dual variational inequality has a solution in order to ensure its global convergence. In particular, it applies to quasimonotone variational inequality having a nontrivial solution.},
+  pages = {10},
+  author = {Lei, Ming and He, Yiran}
+}
+
+@article{hieuModifiedExtragradientAlgorithms2018a,
+  langid = {english},
+  title = {Modified Extragradient Algorithms for Solving Equilibrium Problems},
+  volume = {67},
+  issn = {0233-1934, 1029-4945},
+  url = {https://www.tandfonline.com/doi/full/10.1080/02331934.2018.1505886},
+  doi = {10.1080/02331934.2018.1505886},
+  abstract = {In this paper, we introduce some new algorithms for solving the equilibrium problem in a Hilbert space which are constructed around the proximal-like mapping and inertial effect. Also, some convergence theorems of the algorithms are established under mild conditions. Finally, several experiments are performed to show the computational efficiency and the advantage of the proposed algorithm over other well-known algorithms.},
+  number = {11},
+  journaltitle = {Optimization},
+  urldate = {2019-04-09},
+  date = {2018-11-02},
+  pages = {2003-2029},
+  author = {Hieu, Dang Van and Cho, Yeol Je and Xiao, Yi-bin}
+}
+
+@article{bartlettConvexityClassificationRisk2006,
+  langid = {english},
+  title = {Convexity, {{Classification}}, and {{Risk Bounds}}},
+  volume = {101},
+  issn = {0162-1459, 1537-274X},
+  url = {http://www.tandfonline.com/doi/abs/10.1198/016214505000000907},
+  doi = {10.1198/016214505000000907},
+  number = {473},
+  journaltitle = {Journal of the American Statistical Association},
+  urldate = {2019-03-12},
+  date = {2006-03},
+  pages = {138-156},
+  author = {Bartlett, Peter L and Jordan, Michael I and McAuliffe, Jon D}
+}
+
+@article{steinwartHowCompareDifferent2007,
+  langid = {english},
+  title = {How to {{Compare Different Loss Functions}} and {{Their Risks}}},
+  volume = {26},
+  issn = {1432-0940},
+  url = {https://doi.org/10.1007/s00365-006-0662-3},
+  doi = {10.1007/s00365-006-0662-3},
+  abstract = {Many learning problems are described by a risk functional which in turn is defined by a loss function, and a straightforward and widely known approach to learn such problems is to minimize a (modified) empirical version of this risk functional. However, in many cases this approach suffers from substantial problems such as computational requirements in classification or robustness concerns in regression. In order to resolve these issues many successful learning algorithms try to minimize a (modified) empirical risk of a surrogate loss function, instead. Of course, such a surrogate loss must be "reasonably related" to the original loss function since otherwise this approach cannot work well. For classification good surrogate loss functions have been recently identified, and the relationship between the excess classification risk and the excess risk of these surrogate loss functions has been exactly described. However, beyond the classification problem little is known on good surrogate loss functions up to now. In this work we establish a general theory that provides powerful tools for comparing excess risks of different loss functions. We then apply this theory to several learning problems including (cost-sensitive) classification, regression, density estimation, and density level detection.},
+  number = {2},
+  journaltitle = {Constr Approx},
+  urldate = {2019-03-12},
+  date = {2007-08-01},
+  pages = {225-287},
+  keywords = {Cost Function,Excess Risk,Learning Problem,Loss Function,Support Vector Machine},
+  author = {Steinwart, Ingo}
+}
+
+@article{leeMulticategorySupportVector2004,
+  title = {Multicategory {{Support Vector Machines}}},
+  volume = {99},
+  issn = {0162-1459},
+  url = {https://amstat.tandfonline.com/doi/abs/10.1198/016214504000000098},
+  doi = {10.1198/016214504000000098},
+  abstract = {Two-category support vector machines (SVM) have been very popular in the machine learning community for classification problems. Solving multicategory problems by a series of binary classifiers is quite common in the SVM paradigm; however, this approach may fail under various circumstances. We propose the multicategory support vector machine (MSVM), which extends the binary SVM to the multicategory case and has good theoretical properties. The proposed method provides a unifying framework when there are either equal or unequal misclassification costs. As a tuning criterion for the MSVM, an approximate leave-one-out cross-validation function, called Generalized Approximate Cross Validation, is derived, analogous to the binary case. The effectiveness of the MSVM is demonstrated through the applications to cancer classification using microarray data and cloud classification with satellite radiance profiles.},
+  number = {465},
+  journaltitle = {Journal of the American Statistical Association},
+  urldate = {2019-03-12},
+  date = {2004-03-01},
+  pages = {67-81},
+  author = {Lee, Yoonkyung and Lin, Yi and Wahba, Grace}
+}
+
+@article{taskarLearningStructuredPrediction,
+  langid = {english},
+  title = {Learning {{Structured Prediction Models}}: {{A Large Margin Approach}}},
+  abstract = {We consider large margin estimation in a broad range of prediction models where inference involves solving combinatorial optimization problems, for example, weighted graphcuts or matchings. Our goal is to learn parameters such that inference using the model reproduces correct answers on the training data. Our method relies on the expressive power of convex optimization problems to compactly capture inference or solution optimality in structured prediction models. Directly embedding this structure within the learning formulation produces concise convex problems for eﬃcient estimation of very complex and diverse models. We describe experimental results on a matching task, disulﬁde connectivity prediction, showing signiﬁcant improvements over state-of-the-art methods.},
+  pages = {8},
+  author = {Taskar, Ben and Chatalbashev, Vassil and Koller, Daphne and Guestrin, Carlos}
+}
+
+@article{nowozinStructuredLearningPrediction2010,
+  langid = {english},
+  title = {Structured {{Learning}} and {{Prediction}} in {{Computer Vision}}},
+  volume = {6},
+  issn = {1572-2740, 1572-2759},
+  url = {http://www.nowpublishers.com/article/Details/CGV-033},
+  doi = {10.1561/0600000033},
+  abstract = {Powerful statistical models that can be learned eﬃciently from large amounts of data are currently revolutionizing computer vision. These models possess a rich internal structure reﬂecting task-speciﬁc relations and constraints. This tutorial introduces the reader to the most popular classes of structured models in computer vision. Our focus is discrete undirected graphical models which we cover in detail together with a description of algorithms for both probabilistic inference and maximum a posteriori inference. We discuss separately recently successful techniques for prediction in general structured models. In the second part of this tutorial we describe methods for parameter learning where we distinguish the classic maximum likelihood based methods from the more recent prediction-based parameter learning methods. We highlight developments to enhance current models and discuss kernelized models and latent variable models. To make the tutorial practical and to provide links to further study we provide examples of successful application of many methods in the computer vision literature.},
+  number = {3-4},
+  journaltitle = {Foundations and Trends® in Computer Graphics and Vision},
+  urldate = {2019-04-06},
+  date = {2010},
+  pages = {185-365},
+  author = {Nowozin, Sebastian}
+}
+
+@article{taskarLearningStructuredPredictiona,
+  langid = {english},
+  title = {Learning {{Structured Prediction Models}}: {{A Large Margin Approach}}},
+  abstract = {We consider large margin estimation in a broad range of prediction models where inference involves solving combinatorial optimization problems, for example, weighted graphcuts or matchings. Our goal is to learn parameters such that inference using the model reproduces correct answers on the training data. Our method relies on the expressive power of convex optimization problems to compactly capture inference or solution optimality in structured prediction models. Directly embedding this structure within the learning formulation produces concise convex problems for eﬃcient estimation of very complex and diverse models. We describe experimental results on a matching task, disulﬁde connectivity prediction, showing signiﬁcant improvements over state-of-the-art methods.},
+  pages = {8},
+  author = {Taskar, Ben and Chatalbashev, Vassil and Koller, Daphne and Guestrin, Carlos}
+}
+
+@book{papadimitriouCombinatorialOptimizationAlgorithms1998,
+  langid = {english},
+  title = {Combinatorial {{Optimization}}: {{Algorithms}} and {{Complexity}}},
+  isbn = {978-0-486-40258-1},
+  shorttitle = {Combinatorial {{Optimization}}},
+  abstract = {This clearly written, mathematically rigorous text includes a novel algorithmic exposition of the simplex method and also discusses the Soviet ellipsoid algorithm for linear programming; efficient algorithms for network flow, matching, spanning trees, and matroids; the theory of NP-complete problems; approximation algorithms, local search heuristics for NP-complete problems, more. All chapters are supplemented by thought-provoking problems. A useful work for graduate-level students with backgrounds in computer science, operations research, and electrical engineering. "Mathematicians wishing a self-contained introduction need look no further." — American Mathematical Monthly.},
+  pagetotal = {530},
+  publisher = {{Courier Corporation}},
+  date = {1998},
+  keywords = {Mathematics / Combinatorics},
+  author = {Papadimitriou, Christos H. and Steiglitz, Kenneth},
+  annotation = {Read for definition totally unimodular matrices}
+}
+
+@incollection{taskarMaxMarginMarkovNetworks2004,
+  title = {Max-{{Margin Markov Networks}}},
+  url = {http://papers.nips.cc/paper/2397-max-margin-markov-networks.pdf},
+  booktitle = {Advances in {{Neural Information Processing Systems}} 16},
+  publisher = {{MIT Press}},
+  urldate = {2019-03-12},
+  date = {2004},
+  pages = {25--32},
+  author = {Taskar, Ben and Guestrin, Carlos and Koller, Daphne},
+  editor = {Thrun, S. and Saul, L. K. and Schölkopf, B.}
+}
+
+@article{jaggiRevisitingFrankWolfeProjectionFree,
+  langid = {english},
+  title = {Revisiting {{Frank}}-{{Wolfe}}: {{Projection}}-{{Free Sparse Convex Optimization}}},
+  abstract = {We provide stronger and more general primal-dual convergence results for FrankWolfe-type algorithms (a.k.a. conditional gradient) for constrained convex optimization, enabled by a simple framework of duality gap certiﬁcates. Our analysis also holds if the linear subproblems are only solved approximately (as well as if the gradients are inexact), and is proven to be worst-case optimal in the sparsity of the obtained solutions. On the application side, this allows us to unify a large variety of existing sparse greedy methods, in particular for optimization over convex hulls of an atomic set, even if those sets can only be approximated, including sparse (or structured sparse) vectors or matrices, low-rank matrices, permutation matrices, or max-norm bounded matrices.},
+  pages = {12},
+  author = {Jaggi, Martin}
+}
+
+@article{joachimsCuttingplaneTrainingStructural2009,
+  langid = {english},
+  title = {Cutting-Plane Training of Structural {{SVMs}}},
+  volume = {77},
+  issn = {0885-6125, 1573-0565},
+  url = {http://link.springer.com/10.1007/s10994-009-5108-8},
+  doi = {10.1007/s10994-009-5108-8},
+  abstract = {Discriminative training approaches like structural SVMs have shown much promise for building highly complex and accurate models in areas like natural language processing, protein structure prediction, and information retrieval. However, current training algorithms are computationally expensive or intractable on large datasets. To overcome this bottleneck, this paper explores how cutting-plane methods can provide fast training not only for classiﬁcation SVMs, but also for structural SVMs. We show that for an equivalent “1-slack” reformulation of the linear SVM training problem, our cutting-plane method has time complexity linear in the number of training examples. In particular, the number of iterations does not depend on the number of training examples, and it is linear in the desired precision and the regularization parameter. Furthermore, we present an extensive empirical evaluation of the method applied to binary classiﬁcation, multi-class classiﬁcation, HMM sequence tagging, and CFG parsing. The experiments show that the cuttingplane algorithm is broadly applicable and fast in practice. On large datasets, it is typically several orders of magnitude faster than conventional training methods derived from decomposition methods like SVM-light, or conventional cutting-plane methods. Implementations of our methods are available at www.joachims.org.},
+  number = {1},
+  journaltitle = {Machine Learning},
+  urldate = {2019-03-12},
+  date = {2009-10},
+  pages = {27-59},
+  author = {Joachims, Thorsten and Finley, Thomas and Yu, Chun-Nam John}
+}
+
+@incollection{joachimsLearningAlignSequences2006,
+  langid = {english},
+  location = {{Berlin/Heidelberg}},
+  title = {Learning to {{Align Sequences}}: {{A Maximum}}-{{Margin Approach}}},
+  volume = {49},
+  isbn = {978-3-540-25542-0},
+  url = {http://link.springer.com/10.1007/3-540-31618-3_4},
+  shorttitle = {Learning to {{Align Sequences}}},
+  abstract = {We propose a discriminative method for learning the parameters (e.g. cost of substitutions, deletions, insertions) of linear sequence alignment models from training examples. While the resulting training problem leads to an optimization problem with an exponential number of constraints, we present a simple algorithm that ﬁnds an arbitrarily close approximation after considering only a subset of the constraints that is linear in the number of training examples and polynomial in the length of the sequences. We also evaluate empirically that the method effectively learns good parameter values while being computationally feasible.},
+  booktitle = {New {{Algorithms}} for {{Macromolecular Simulation}}},
+  publisher = {{Springer-Verlag}},
+  urldate = {2019-03-12},
+  date = {2006},
+  pages = {57-69},
+  author = {Joachims, Thorsten and Galor, Tamara and Elber, Ron},
+  editor = {Leimkuhler, Benedict and Chipot, Christophe and Elber, Ron and Laaksonen, Aatto and Mark, Alan and Schlick, Tamar and Schütte, Christoph and Skeel, Robert},
+  doi = {10.1007/3-540-31618-3_4}
+}
+
+@article{tsochantaridisSupportVectorMachine,
+  langid = {english},
+  title = {Support {{Vector Machine Learning}} for {{Interdependent}} and {{Structured Output Spaces}}},
+  abstract = {Learning general functional dependencies is one of the main goals in machine learning. Recent progress in kernel-based methods has focused on designing ﬂexible and powerful input representations. This paper addresses the complementary issue of problems involving complex outputs such as multiple dependent output variables and structured output spaces. We propose to generalize multiclass Support Vector Machine learning in a formulation that involves features extracted jointly from inputs and outputs. The resulting optimization problem is solved eﬃciently by a cutting plane algorithm that exploits the sparseness and structural decomposition of the problem. We demonstrate the versatility and eﬀectiveness of our method on problems ranging from supervised grammar learning and named-entity recognition, to taxonomic text classiﬁcation and sequence alignment.},
+  pages = {8},
+  author = {Tsochantaridis, Ioannis and Hofmann, Thomas and Joachims, Thorsten and Altun, Yasemin}
+}
+
+@article{lacoste-julienGlobalLinearConvergence2015a,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1511.05932},
+  primaryClass = {cs, math, stat},
+  title = {On the {{Global Linear Convergence}} of {{Frank}}-{{Wolfe Optimization Variants}}},
+  url = {http://arxiv.org/abs/1511.05932},
+  abstract = {The Frank-Wolfe (FW) optimization algorithm has lately re-gained popularity thanks in particular to its ability to nicely handle the structured constraints appearing in machine learning applications. However, its convergence rate is known to be slow (sublinear) when the solution lies at the boundary. A simple less-known fix is to add the possibility to take 'away steps' during optimization, an operation that importantly does not require a feasibility oracle. In this paper, we highlight and clarify several variants of the Frank-Wolfe optimization algorithm that have been successfully applied in practice: away-steps FW, pairwise FW, fully-corrective FW and Wolfe's minimum norm point algorithm, and prove for the first time that they all enjoy global linear convergence, under a weaker condition than strong convexity of the objective. The constant in the convergence rate has an elegant interpretation as the product of the (classical) condition number of the function with a novel geometric quantity that plays the role of a 'condition number' of the constraint set. We provide pointers to where these algorithms have made a difference in practice, in particular with the flow polytope, the marginal polytope and the base polytope for submodular optimization.},
+  urldate = {2019-03-19},
+  date = {2015-11-18},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C52; 90C90; 68T05},
+  author = {Lacoste-Julien, Simon and Jaggi, Martin},
+  annotation = {Comment: Appears in: Advances in Neural Information Processing Systems 28 (NIPS 2015). 26 pages}
+}
+
+@article{krishnanBarrierFrankWolfeMarginal2015,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1511.02124},
+  primaryClass = {cs, math, stat},
+  title = {Barrier {{Frank}}-{{Wolfe}} for {{Marginal Inference}}},
+  url = {http://arxiv.org/abs/1511.02124},
+  abstract = {We introduce a globally-convergent algorithm for optimizing the tree-reweighted (TRW) variational objective over the marginal polytope. The algorithm is based on the conditional gradient method (Frank-Wolfe) and moves pseudomarginals within the marginal polytope through repeated maximum a posteriori (MAP) calls. This modular structure enables us to leverage black-box MAP solvers (both exact and approximate) for variational inference, and obtains more accurate results than tree-reweighted algorithms that optimize over the local consistency relaxation. Theoretically, we bound the sub-optimality for the proposed algorithm despite the TRW objective having unbounded gradients at the boundary of the marginal polytope. Empirically, we demonstrate the increased quality of results found by tightening the relaxation over the marginal polytope as well as the spanning tree polytope on synthetic and real-world instances.},
+  urldate = {2019-03-19},
+  date = {2015-11-06},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Krishnan, Rahul G. and Lacoste-Julien, Simon and Sontag, David},
+  file = {/home/sole/Zotero/storage/6PNRV2M6/Krishnan et al. - 2015 - Barrier Frank-Wolfe for Marginal Inference.pdf},
+  annotation = {Comment: 25 pages, 12 figures, To appear in Neural Information Processing Systems (NIPS) 2015, Corrected reference and cleaned up bibliography}
+}
+
+@article{nesterovEfficiencyCoordinateDescent2012,
+  title = {Efficiency of {{Coordinate Descent Methods}} on {{Huge}}-{{Scale Optimization Problems}}},
+  volume = {22},
+  issn = {1052-6234},
+  url = {https://epubs.siam.org/doi/abs/10.1137/100802001},
+  doi = {10.1137/100802001},
+  abstract = {In this paper we propose new methods for solving huge-scale optimization problems. For problems of this size, even the simplest full-dimensional vector operations are very expensive. Hence, we propose to apply an optimization technique based on random partial update of decision variables. For these methods, we prove the global estimates for the rate of convergence. Surprisingly, for certain classes of objective functions, our results are better than the standard worst-case bounds for deterministic algorithms. We present constrained and unconstrained versions of the method and its accelerated variant. Our numerical test confirms a high efficiency of this technique on problems of very big size.},
+  number = {2},
+  journaltitle = {SIAM J. Optim.},
+  urldate = {2019-03-19},
+  date = {2012-01-01},
+  pages = {341-362},
+  author = {Nesterov, Y.}
+}
+
+@article{osokinMindingGapsBlock2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1605.09346},
+  primaryClass = {cs, math, stat},
+  title = {Minding the {{Gaps}} for {{Block Frank}}-{{Wolfe Optimization}} of {{Structured SVMs}}},
+  url = {http://arxiv.org/abs/1605.09346},
+  abstract = {In this paper, we propose several improvements on the block-coordinate Frank-Wolfe (BCFW) algorithm from Lacoste-Julien et al. (2013) recently used to optimize the structured support vector machine (SSVM) objective in the context of structured prediction, though it has wider applications. The key intuition behind our improvements is that the estimates of block gaps maintained by BCFW reveal the block suboptimality that can be used as an adaptive criterion. First, we sample objects at each iteration of BCFW in an adaptive non-uniform way via gapbased sampling. Second, we incorporate pairwise and away-step variants of Frank-Wolfe into the block-coordinate setting. Third, we cache oracle calls with a cache-hit criterion based on the block gaps. Fourth, we provide the first method to compute an approximate regularization path for SSVM. Finally, we provide an exhaustive empirical evaluation of all our methods on four structured prediction datasets.},
+  urldate = {2019-03-19},
+  date = {2016-05-30},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C52; 90C90; 90C06; 68T05},
+  author = {Osokin, Anton and Alayrac, Jean-Baptiste and Lukasewitz, Isabella and Dokania, Puneet K. and Lacoste-Julien, Simon},
+  file = {/home/sole/Zotero/storage/VLLYZJEH/Osokin et al. - 2016 - Minding the Gaps for Block Frank-Wolfe Optimizatio.pdf},
+  annotation = {Comment: Appears in Proceedings of the 33rd International Conference on Machine Learning (ICML 2016). 31 pages}
+}
+
+@book{botConjugateDualityConvex2010,
+  langid = {english},
+  location = {{Berlin ; New York}},
+  title = {Conjugate Duality in Convex Optimization},
+  isbn = {978-3-642-04900-2},
+  pagetotal = {164},
+  number = {637},
+  series = {Lecture Notes in Economics and Mathematical Systems},
+  publisher = {{Springer}},
+  date = {2010},
+  keywords = {Convex functions,Mathematical optimization,Duality theory (Mathematics)},
+  author = {Boţ, Radu Ioan},
+  file = {/home/sole/Zotero/storage/UD6ZNAUU/Boţ - 2010 - Conjugate duality in convex optimization.pdf},
+  note = {OCLC: ocn647845796}
+}
+
+@book{mordukhovichEasyPathConvex2014,
+  langid = {english},
+  location = {{San Rafael, Calif.}},
+  title = {An Easy Path to Convex Analysis and Applications},
+  isbn = {978-1-62705-237-5 978-1-62705-238-2},
+  pagetotal = {202},
+  number = {14},
+  series = {Synthesis Lectures on Mathematics and Statistics},
+  publisher = {{Morgan \& Claypool}},
+  date = {2014},
+  author = {Mordukhovich, Boris S. and Nam, Nguyen Mau},
+  file = {/home/sole/Zotero/storage/HISVKFVH/Mordukhovich and Nam - 2014 - An easy path to convex analysis and applications.pdf}
+}
+
+@article{selesnickSparseRegularizationConvex2017,
+  langid = {english},
+  title = {Sparse {{Regularization}} via {{Convex Analysis}}},
+  volume = {65},
+  issn = {1053-587X, 1941-0476},
+  url = {http://ieeexplore.ieee.org/document/7938377/},
+  doi = {10.1109/TSP.2017.2711501},
+  abstract = {Sparse approximate solutions to linear equations are classically obtained via L1 norm regularized least squares, but this method often underestimates the true solution. As an alternative to the L1 norm, this paper proposes a class of nonconvex penalty functions that maintain the convexity of the least squares cost function to be minimized, and avoids the systematic underestimation characteristic of L1 norm regularization. The proposed penalty function is a multivariate generalization of the minimax-concave (MC) penalty. It is deﬁned in terms of a new multivariate generalization of the Huber function, which in turn is deﬁned via inﬁmal convolution. The proposed sparseregularized least squares cost function can be minimized by proximal algorithms comprising simple computations.},
+  number = {17},
+  journaltitle = {IEEE Transactions on Signal Processing},
+  urldate = {2019-04-15},
+  date = {2017-09-01},
+  pages = {4481-4494},
+  author = {Selesnick, Ivan},
+  file = {/home/sole/Zotero/storage/5PH77JH4/Selesnick - 2017 - Sparse Regularization via Convex Analysis.pdf}
+}
+
+@article{hamedaniPrimalDualAlgorithmGeneral2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1803.01401},
+  primaryClass = {math},
+  title = {A {{Primal}}-{{Dual Algorithm}} for {{General Convex}}-{{Concave Saddle Point Problems}}},
+  url = {http://arxiv.org/abs/1803.01401},
+  abstract = {In this paper we propose a primal-dual algorithm with a novel momentum term using the partial gradients of the coupling function that can be viewed as a generalization of the method proposed by Chambolle and Pock in 2016 to solve saddle point problems defined by a convex-concave function \$\textbackslash{}mathcal\{L\}(x,y)=f(x)+\textbackslash{}Phi(x,y)-h(y)\$ with a general coupling term \$\textbackslash{}Phi(x,y)\$ that is \textbackslash{}emph\{not\} assumed to be bilinear. Given a saddle point \$(x\^*,y\^*)\$, assuming \$\textbackslash{}nabla\_x\textbackslash{}Phi(\textbackslash{}cdot,y)\$ is Lipschitz in \$x\$ for any fixed \$y\$, and \$\textbackslash{}nabla\_y\textbackslash{}Phi(\textbackslash{}cdot,\textbackslash{}cdot)\$ is Lipschitz, we derive error bounds in terms of \$\textbackslash{}mathcal\{L\}(\textbackslash{}bar\{x\}\_k,y\^*)-\textbackslash{}mathcal\{L\}(x\^*,\textbackslash{}bar\{y\}\_k)\$ for the ergodic sequence \$\textbackslash\{\textbackslash{}bar\{x\}\_k,\textbackslash{}bar\{y\}\_k\textbackslash\}\$; in particular, we show \$\textbackslash{}mathcal\{O\}(1/k)\$ rate when the problem is merely convex in \$x\$. Furthermore, assuming \$\textbackslash{}Phi(x,\textbackslash{}cdot)\$ is linear in \$y\$ for each fixed \$x\$ and \$f\$ is strongly convex, we obtain the ergodic convergence rate of \$\textbackslash{}mathcal\{O\}(1/k\^2)\$ -- we are not aware of another single-loop method in the related literature achieving the same rate when \$\textbackslash{}Phi\$ is not bilinear. We tested our method for solving kernel matrix learning problem, and compare it against the Mirror-prox algorithm and interior point methods.},
+  urldate = {2019-04-16},
+  date = {2018-03-04},
+  keywords = {Mathematics - Optimization and Control},
+  author = {Hamedani, Erfan Yazdandoost and Aybat, Necdet Serhat},
+  file = {/home/sole/Zotero/storage/8XCTK5RE/Hamedani and Aybat - 2018 - A Primal-Dual Algorithm for General Convex-Concave.pdf;/home/sole/Zotero/storage/G4D9SYH6/1803.html},
+  annotation = {Comment: Typos are corrected; new references, results and important remarks are added in this version}
+}
+
+@article{parikhProximalAlgorithms2014,
+  langid = {english},
+  title = {Proximal {{Algorithms}}},
+  volume = {1},
+  issn = {2167-3888, 2167-3918},
+  url = {http://www.nowpublishers.com/articles/foundations-and-trends-in-optimization/OPT-003},
+  doi = {10.1561/2400000003},
+  number = {3},
+  journaltitle = {Foundations and Trends® in Optimization},
+  urldate = {2019-03-27},
+  date = {2014},
+  pages = {127-239},
+  author = {Parikh, Neal},
+  file = {/home/sole/Zotero/storage/E37R4QNN/Parikh - 2014 - Proximal Algorithms.pdf;/home/sole/Zotero/storage/XRPRXRYV/parikh2014.pdf}
+}
+
+@book{nesterovLecturesConvexOptimization2018,
+  langid = {english},
+  location = {{Cham}},
+  title = {Lectures on {{Convex Optimization}}},
+  volume = {137},
+  isbn = {978-3-319-91577-7 978-3-319-91578-4},
+  url = {http://link.springer.com/10.1007/978-3-319-91578-4},
+  series = {Springer {{Optimization}} and {{Its Applications}}},
+  publisher = {{Springer International Publishing}},
+  urldate = {2019-03-27},
+  date = {2018},
+  author = {Nesterov, Yurii},
+  file = {/home/sole/Zotero/storage/2YULHJW2/Nesterov - 2018 - Lectures on Convex Optimization.pdf},
+  doi = {10.1007/978-3-319-91578-4}
+}
+
+@article{clasonPrimaldualExtragradientMethods2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1606.06219},
+  primaryClass = {math},
+  title = {Primal-Dual Extragradient Methods for Nonlinear Nonsmooth {{PDE}}-Constrained Optimization},
+  url = {http://arxiv.org/abs/1606.06219},
+  doi = {10.1137/16M1080859},
+  abstract = {We study the extension of the Chambolle--Pock primal-dual algorithm to nonsmooth optimization problems involving nonlinear operators between function spaces. Local convergence is shown under technical conditions including metric regularity of the corresponding primal-dual optimality conditions. We also show convergence for a Nesterov-type accelerated variant provided one part of the functional is strongly convex. We show the applicability of the accelerated algorithm to examples of inverse problems with \$L\^1\$- and \$L\^\textbackslash{}infty\$-fitting terms as well as of state-constrained optimal control problems, where convergence can be guaranteed after introducing an (arbitrary small, still nonsmooth) Moreau--Yosida regularization. This is verified in numerical examples.},
+  urldate = {2019-04-10},
+  date = {2016-06-20},
+  keywords = {Mathematics - Optimization and Control},
+  author = {Clason, Christian and Valkonen, Tuomo},
+  file = {/home/sole/Zotero/storage/TH44DBHI/Clason and Valkonen - 2016 - Primal-dual extragradient methods for nonlinear no.pdf;/home/sole/Zotero/storage/2RB5NY6L/1606.html}
+}
+
+@article{nguyenExtragradientMethodOptimization2016,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1609.08177},
+  primaryClass = {math},
+  title = {Extragradient {{Method}} in {{Optimization}}: {{Convergence}} and {{Complexity}}},
+  url = {http://arxiv.org/abs/1609.08177},
+  shorttitle = {Extragradient {{Method}} in {{Optimization}}},
+  abstract = {We consider the extragradient method to minimize the sum of two functions, the first one being smooth and the second being convex. Under the Kurdyka-Lojasiewicz assumption, we prove that the sequence produced by the extragradient method converges to a critical point of the problem and has finite length. The analysis is extended to the case when both functions are convex. We provide, in this case, a sublinear convergence rate, as for gradient-based methods. Furthermore, we show that the recent small-prox complexity result can be applied to this method. Considering the extragradient method is an occasion to describe an exact line search scheme for proximal decomposition methods. We provide details for the implementation of this scheme for the one norm regularized least squares problem and demonstrate numerical results which suggest that combining nonaccelerated methods with exact line search can be a competitive choice.},
+  urldate = {2019-04-21},
+  date = {2016-09-26},
+  keywords = {Mathematics - Optimization and Control},
+  author = {Nguyen, Trong Phong and Pauwels, Edouard and Richard, Emile and Suter, Bruce W.},
+  file = {/home/sole/Zotero/storage/R4FMS7UK/Nguyen et al. - 2016 - Extragradient Method in Optimization Convergence .pdf;/home/sole/Zotero/storage/I63ZJ2MC/1609.html}
+}
+
+@article{dongModifiedSubgradientExtragradient2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1801.00561},
+  primaryClass = {math},
+  title = {A Modified Subgradient Extragradient Method for Solving the Variational Inequality Problem},
+  url = {http://arxiv.org/abs/1801.00561},
+  abstract = {The subgradient extragradient method for solving the variational inequality (VI) problem, which is introduced by Censor et al. \textbackslash{}cite\{CGR\}, replaces the second projection onto the feasible set of the VI, in the extragradient method, with a subgradient projection onto some constructible half-space. Since the method has been introduced, many authors proposed extensions and modifications with applications to various problems. In this paper, we introduce a modified subgradient extragradient method by improving the stepsize of its second step. Convergence of the proposed method is proved under standard and mild conditions and primary numerical experiments illustrate the performance and advantage of this new subgradient extragradient variant.},
+  urldate = {2019-04-21},
+  date = {2018-01-02},
+  keywords = {Mathematics - Optimization and Control},
+  author = {Dong, Qiao-Li and Jiang, Dan and Gibali, Aviv},
+  file = {/home/sole/Zotero/storage/NGS5CNIC/Dong et al. - 2018 - A modified subgradient extragradient method for so.pdf;/home/sole/Zotero/storage/WWZDBZTN/1801.html}
+}
+
+@article{linStochasticPrimalDualProximal2017a,
+  title = {Stochastic {{Primal}}-{{Dual Proximal ExtraGradient Descent}} for {{Compositely Regularized Optimization}}},
+  volume = {273},
+  doi = {10.1016/j.neucom.2017.07.066},
+  abstract = {We consider a wide range of regularized stochastic minimization problems with two regularization terms, one of which is composed with a linear function. This optimization model abstracts a number of important applications in artificial intelligence and machine learning, such as fused Lasso, fused logistic regression, and a class of graph-guided regularized minimization. The computational challenges of this model are in two folds. On one hand, the closed-form solution of the proximal mapping associated with the composed regularization term or the expected objective function is not available. On the other hand, the calculation of the full gradient of the expectation in the objective is very expensive when the number of input data samples is considerably large. To address these issues, we propose a stochastic variant of extra-gradient type methods, namely Stochastic Primal-Dual Proximal ExtraGradient descent (SPDPEG), and analyze its convergence property for both convex and strongly convex objectives. For general convex objectives, the uniformly average iterates generated by SPDPEG converge in expectation with O(1/t) rate. While for strongly convex objectives, the uniformly and non-uniformly average iterates generated by SPDPEG converge with O(log (t)/. t) and O(1/. t) rates, respectively. The order of the rate of the proposed algorithm is known to match the best convergence rate for first-order stochastic algorithms. Experiments on fused logistic regression and graph-guided regularized logistic regression problems show that the proposed algorithm performs very efficiently and consistently outperforms other competing algorithms.},
+  journaltitle = {Neurocomputing},
+  date = {2017-08-01},
+  author = {Lin, Tianyi and Qiao, Linbo and Zhang, Teng and Feng, Jiashi and Zhang, Bofeng},
+  file = {/home/sole/Zotero/storage/5WW53DMJ/Lin et al. - 2017 - Stochastic Primal-Dual Proximal ExtraGradient Desc.pdf}
+}
+
+@article{taskarMaxMarginMarkovNetworks,
+  langid = {english},
+  title = {Max-{{Margin Markov Networks}}},
+  abstract = {In typical classiﬁcation tasks, we seek a function which assigns a label to a single object. Kernel-based approaches, such as support vector machines (SVMs), which maximize the margin of conﬁdence of the classiﬁer, are the method of choice for many such tasks. Their popularity stems both from the ability to use high-dimensional feature spaces, and from their strong theoretical guarantees. However, many real-world tasks involve sequential, spatial, or structured data, where multiple labels must be assigned. Existing kernel-based methods ignore structure in the problem, assigning labels independently to each object, losing much useful information. Conversely, probabilistic graphical models, such as Markov networks, can represent correlations between labels, by exploiting problem structure, but cannot handle high-dimensional feature spaces, and lack strong theoretical generalization guarantees. In this paper, we present a new framework that combines the advantages of both approaches: Maximum margin Markov (M3) networks incorporate both kernels, which efﬁciently deal with high-dimensional features, and the ability to capture correlations in structured data. We present an efﬁcient algorithm for learning M3 networks based on a compact quadratic program formulation. We provide a new theoretical bound for generalization in structured domains. Experiments on the task of handwritten character recognition and collective hypertext classiﬁcation demonstrate very signiﬁcant gains over previous approaches.},
+  pages = {12},
+  author = {Taskar, Ben and Guestrin, Carlos and Koller, Daphne},
+  file = {/home/sole/Zotero/storage/QVXTQMN4/Taskar et al. - Max-Margin Markov Networks.pdf}
+}
+
+@article{tsochantaridisLargeMarginMethods,
+  langid = {english},
+  title = {Large {{Margin Methods}} for {{Structured}} and {{Interdependent Output Variables}}},
+  abstract = {Learning general functional dependencies between arbitrary input and output spaces is one of the key challenges in computational intelligence. While recent progress in machine learning has mainly focused on designing ﬂexible and powerful input representations, this paper addresses the complementary issue of designing classiﬁcation algorithms that can deal with more complex outputs, such as trees, sequences, or sets. More generally, we consider problems involving multiple dependent output variables, structured output spaces, and classiﬁcation problems with class attributes. In order to accomplish this, we propose to appropriately generalize the well-known notion of a separation margin and derive a corresponding maximum-margin formulation. While this leads to a quadratic program with a potentially prohibitive, i.e. exponential, number of constraints, we present a cutting plane algorithm that solves the optimization problem in polynomial time for a large class of problems. The proposed method has important applications in areas such as computational biology, natural language processing, information retrieval/extraction, and optical character recognition. Experiments from various domains involving different types of output spaces emphasize the breadth and generality of our approach.},
+  pages = {32},
+  author = {Tsochantaridis, Ioannis and Joachims, Thorsten and Hofmann, Thomas and Altun, Yasemin},
+  file = {/home/sole/Zotero/storage/NVPNP8G7/Tsochantaridis et al. - Large Margin Methods for Structured and Interdepen.pdf}
+}
+
+@article{taskarLearningStructuredPredictionb,
+  langid = {english},
+  title = {Learning {{Structured Prediction Models}}: {{A Large Margin Approach}}},
+  abstract = {We consider large margin estimation in a broad range of prediction models where inference involves solving combinatorial optimization problems, for example, weighted graphcuts or matchings. Our goal is to learn parameters such that inference using the model reproduces correct answers on the training data. Our method relies on the expressive power of convex optimization problems to compactly capture inference or solution optimality in structured prediction models. Directly embedding this structure within the learning formulation produces concise convex problems for eﬃcient estimation of very complex and diverse models. We describe experimental results on a matching task, disulﬁde connectivity prediction, showing signiﬁcant improvements over state-of-the-art methods.},
+  pages = {8},
+  author = {Taskar, Ben and Chatalbashev, Vassil and Koller, Daphne and Guestrin, Carlos},
+  file = {/home/sole/Zotero/storage/2NXVYU7A/Taskar et al. - Learning Structured Prediction Models A Large Mar.pdf}
+}
+
+@article{taskarStructuredPredictionDual2006,
+  langid = {english},
+  title = {Structured {{Prediction}}, {{Dual Extragradient}} and {{Bregman Projections}}},
+  date = {2006},
+  pages = {27},
+  author = {Taskar, Ben and Lacoste-Julien, Simon and Jordan, Michael I},
+  file = {/home/sole/Zotero/storage/5HJG5GLN/Taskar et al. - Structured Prediction, Dual Extragradient and Breg.pdf}
+}
+
+@article{moguerzaSupportVectorMachines2006,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {math/0612817},
+  title = {Support {{Vector Machines}} with {{Applications}}},
+  volume = {21},
+  issn = {0883-4237},
+  url = {http://arxiv.org/abs/math/0612817},
+  doi = {10.1214/088342306000000493},
+  abstract = {Support vector machines (SVMs) appeared in the early nineties as optimal margin classifiers in the context of Vapnik's statistical learning theory. Since then SVMs have been successfully applied to real-world data analysis problems, often providing improved results compared with other techniques. The SVMs operate within the framework of regularization theory by minimizing an empirical risk in a well-posed and consistent way. A clear advantage of the support vector approach is that sparse solutions to classification and regression problems are usually obtained: only a few samples are involved in the determination of the classification or regression functions. This fact facilitates the application of SVMs to problems that involve a large amount of data, such as text processing and bioinformatics tasks. This paper is intended as an introduction to SVMs and their applications, emphasizing their key features. In addition, some algorithmic extensions and illustrative real-world applications of SVMs are shown.},
+  number = {3},
+  journaltitle = {Statist. Sci.},
+  urldate = {2019-04-29},
+  date = {2006-08},
+  pages = {322-336},
+  keywords = {Mathematics - Statistics Theory},
+  author = {Moguerza, Javier M. and Muñoz, Alberto},
+  file = {/home/sole/Zotero/storage/QQ4NE5XC/moguerza2006.pdf;/home/sole/Zotero/storage/RDDXZQZM/Moguerza and Muñoz - 2006 - Support Vector Machines with Applications.pdf;/home/sole/Zotero/storage/RHHGAZXU/0612817.html},
+  annotation = {Comment: This paper commented in: [math/0612820], [math/0612821], [math/0612822], [math/0612824]. Rejoinder in [math.ST/0612825]. Published at http://dx.doi.org/10.1214/088342306000000493 in the Statistical Science (http://www.imstat.org/sts/) by the Institute of Mathematical Statistics (http://www.imstat.org)}
+}
+
+@article{lacoste-julienBlockCoordinateFrankWolfeOptimization2013,
+  langid = {english},
+  title = {Block-{{Coordinate Frank}}-{{Wolfe Optimization}} for {{Structural SVMs}}},
+  abstract = {We propose a randomized block-coordinate variant of the classic Frank-Wolfe algorithm for convex optimization with block-separable constraints. Despite its lower iteration cost, we show that it achieves a similar convergence rate in duality gap as the full FrankWolfe algorithm. We also show that, when applied to the dual structural support vector machine (SVM) objective, this yields an online algorithm that has the same low iteration complexity as primal stochastic subgradient methods. However, unlike stochastic subgradient methods, the block-coordinate FrankWolfe algorithm allows us to compute the optimal step-size and yields a computable duality gap guarantee. Our experiments indicate that this simple algorithm outperforms competing structural SVM solvers.},
+  date = {2013},
+  pages = {31},
+  author = {Lacoste-Julien, Simon and Jaggi, Martin and Schmidt, Mark and Pletscher, Patrick},
+  file = {/home/sole/Zotero/storage/4QYKGLMV/Lacoste-Julien et al. - Block-Coordinate Frank-Wolfe Optimization for Stru.pdf}
+}
+
+@article{berwickIdiotGuideSupporta,
+  langid = {english},
+  title = {An {{Idiot}}’s Guide to {{Support}} Vector Machines ({{SVMs}})},
+  pages = {28},
+  author = {Berwick, R},
+  file = {/home/sole/Zotero/storage/GVNTUJJW/Berwick - An Idiot’s guide to Support vector machines (SVMs).pdf}
+}
+
+@article{gidelFrankWolfeAlgorithmsSaddle2016a,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1610.07797},
+  primaryClass = {cs, math, stat},
+  title = {Frank-{{Wolfe Algorithms}} for {{Saddle Point Problems}}},
+  url = {http://arxiv.org/abs/1610.07797},
+  abstract = {We extend the Frank-Wolfe (FW) optimization algorithm to solve constrained smooth convex-concave saddle point (SP) problems. Remarkably, the method only requires access to linear minimization oracles. Leveraging recent advances in FW optimization, we provide the first proof of convergence of a FW-type saddle point solver over polytopes, thereby partially answering a 30 year-old conjecture. We also survey other convergence results and highlight gaps in the theoretical underpinnings of FW-style algorithms. Motivating applications without known efficient alternatives are explored through structured prediction with combinatorial penalties as well as games over matching polytopes involving an exponential number of constraints.},
+  urldate = {2019-04-29},
+  date = {2016-10-25},
+  keywords = {90C52; 90C90; 68T05,Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  author = {Gidel, Gauthier and Jebara, Tony and Lacoste-Julien, Simon},
+  file = {/home/sole/Zotero/storage/UD6GTUFP/Gidel et al. - 2016 - Frank-Wolfe Algorithms for Saddle Point Problems.pdf;/home/sole/Zotero/storage/V59IPSXB/1610.html},
+  annotation = {Comment: Appears in: Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS 2017). 39 pages}
+}
+
+@online{AligningVectorRepresentations2017,
+  langid = {american},
+  title = {Aligning Vector Representations},
+  url = {https://www.samtalksml.net/aligning-vector-representations/},
+  abstract = {I introduced vector representations in an earlier post. These are machine learning’s way of extracting prior knowledge from unlabelled data. For instance, when we run “word2vec” on English Wikipedi…},
+  journaltitle = {Sam's ML Blog},
+  urldate = {2019-04-29},
+  date = {2017-05-27T17:40:23+00:00},
+  file = {/home/sole/Zotero/storage/JNM3P263/aligning-vector-representations.html}
+}
+
+@online{FastText,
+  title = {{{fastText}}},
+  url = {https://fasttext.cc/index.html},
+  abstract = {Library for efficient text classification and representation learning},
+  urldate = {2019-04-29},
+  file = {/home/sole/Zotero/storage/8GIQQZ2M/fasttext.cc.html}
+}
+
+@article{smithOfflineBilingualWord2017,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1702.03859},
+  primaryClass = {cs},
+  title = {Offline Bilingual Word Vectors, Orthogonal Transformations and the Inverted Softmax},
+  url = {http://arxiv.org/abs/1702.03859},
+  abstract = {Usually bilingual word vectors are trained "online". Mikolov et al. showed they can also be found "offline", whereby two pre-trained embeddings are aligned with a linear transformation, using dictionaries compiled from expert knowledge. In this work, we prove that the linear transformation between two spaces should be orthogonal. This transformation can be obtained using the singular value decomposition. We introduce a novel "inverted softmax" for identifying translation pairs, with which we improve the precision @1 of Mikolov's original mapping from 34\% to 43\%, when translating a test set composed of both common and rare English words into Italian. Orthogonal transformations are more robust to noise, enabling us to learn the transformation without expert bilingual signal by constructing a "pseudo-dictionary" from the identical character strings which appear in both languages, achieving 40\% precision on the same test set. Finally, we extend our method to retrieve the true translations of English sentences from a corpus of 200k Italian sentences with a precision @1 of 68\%.},
+  urldate = {2019-04-29},
+  date = {2017-02-13},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Information Retrieval},
+  author = {Smith, Samuel L. and Turban, David H. P. and Hamblin, Steven and Hammerla, Nils Y.},
+  file = {/home/sole/Zotero/storage/4ATKABRA/Smith et al. - 2017 - Offline bilingual word vectors, orthogonal transfo.pdf;/home/sole/Zotero/storage/T4WQVUQA/1702.html},
+  annotation = {Comment: Accepted to conference track at ICLR 2017}
+}
+
+@online{EuroparlParallelCorpus,
+  title = {Europarl {{Parallel Corpus}}},
+  url = {http://www.statmt.org/europarl/},
+  urldate = {2019-04-29},
+  file = {/home/sole/Zotero/storage/S8XDX2W3/europarl.html}
+}
+
+

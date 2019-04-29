@@ -1,0 +1,5 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is 'tocite.blg'
+[57] biber:315> INFO - === Sun Apr 28, 2019, 16:08:52
+[267] Utils.pm:209> ERROR - Cannot find control file 'tocite.bcf'! - Did latex run successfully on your .tex file before you ran biber?
+[267] Biber.pm:114> INFO - ERRORS: 1

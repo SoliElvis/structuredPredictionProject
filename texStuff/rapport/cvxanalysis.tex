@@ -1,0 +1,50 @@
+\subsubsection{Proximal step operator}
+We define the proximal step operator as follows:
+\begin{equation}
+  {T}_{\eta}(\vec u, \vec s) = \max_{\vec u \in {U}} \left \{
+\langle \vec s, \vec u' - \vec u \rangle - \frac{1}{\eta} d(\vec u, \vec u')
+\leq D \right \}
+\end{equation}
+
+The operator is useful to compute projections since when we have a strongly
+convex function $h(\vec u)$, we can find its convex conjugate $h^*(\vec u) =
+\max_{\vec u \in {U}} \left [ \langle \vec s, \vec u \rangle - h(\vec u)
+\right ]$. From the definition of a strongly convex function, we have that:
+\begin{equation}
+  h(\vec u') \geq h(\vec u) + \langle \nabla h(\vec u), \vec u' - \vec u \rangle
++ \frac{\sigma}{2} \lVert \vec u' - \vec u \rVert^2
+\end{equation}
+where $\sigma$ is the strong convexity parameter. Rearranging, we can define an
+upper bound on the squared norm of $\vec u' - \vec u$. This comes out as:
+\begin{equation}
+  d(\vec u', \vec u) \triangleq h(\vec u') - h(\vec u) - \langle \nabla h(\vec u), \vec u' - \vec u \rangle \geq \frac{\sigma}{2} \lVert \vec u' - \vec u \rVert^2
+\end{equation}
+
+The distance metric $d$ is called the Bregman divergence. The link between the
+Bregman diverence and the proximal step operator is that if we are given the
+function $h$ inside the definition of the proximal step update, this induces the
+Bregman divergence, which in turn induces the update that is performed at each
+iteration of the extragradient algorithm. For example, if we have $h(\vec u) =
+\frac{1}{2} \lVert \vec u \rVert_2^2 $, the Bregman divergence becomes $d(\vec
+u', \vec u) = \frac{1}{2} \lVert \vec u' - \vec u' \rVert_2^2$. We might wonder
+why we care about the Bregman divergence when the definition still includes the
+usual norm. After all, we still optimize the term $\langle \vec s, \vec u' -
+\vec u \rangle - \frac{1}{\eta} d(\vec u', \vec u)$. This is because $h*$ is
+differentiable at every point of its domain by the strong convexity of $h$.
+Thus, it is easy to compute a projection in the usual fashion: we can compute
+the derivative of the termn inside the projection operator and set it to 0. It
+is impossible to do for matchings for example as the distance is not even
+differentiable. We provide the steps to compute a projection:
+\begin{equation}
+  \vec s - \nabla_{\vec u'} d(\vec u', \vec u) = \vec s - \frac{1}{\eta}
+\nabla_{\vec u'} d(\vec u, \vec u') = \vec s - \frac{1}{\eta} \left [\nabla
+h(\vec u') - \nabla h(\vec u) \right]
+\end{equation}
+
+By setting this equation to 0, it is possible to recover the optimal $\vec y'$
+when, let's say, $h(\vec u) = \frac{1}{2} \lVert \vec u' \rVert^2$.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mainProject"
+%%% End:

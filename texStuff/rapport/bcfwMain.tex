@@ -1,0 +1,80 @@
+\subsection{Frank-Wolfe, the conditional gradient algorithm}
+%WILL blabla
+\subsection{Block Coordinate Frank Wolfe}
+\subsubsection{BCFW variant in the structured SVM setting}
+Due to the exponential number of dual variables in the structured SVM setting,
+classical algorithms, like projected gradient are intractable. \\
+Stochastic subgradient methods, on the other hand, achieve a sublinear
+convergence rate while only requiring a single call to the maximization oracle
+every step. They are nonetheless very sensitive to the sequence of stepsizes and
+it is unclear when to terminate the iterations. \\
+
+Frank-Wolfe methods address these problems by giving an adaptive stepsize
+$\gamma= \frac{2}{k+2}$ and a computable duality gap while still retaining a
+sublinear convergence rate. Moreover, despite the exponential number of
+constraints, the algorithm has sparse iterates alleviating the memory issues
+which come with the exponential number of dual variables.\\
+\textbf{Note.} The main idea here, is that the linear subproblem in Frank-Wolfe
+and the loss augmented decoding of the structured SVM are equivalent. \\
+
+\textit{Proof of the equivalence.} The objective function being differentiable
+and convex, if we are at a point $\alpha$ such that $f(\alpha)$ is minimized
+along each coordinate axis, then $\alpha$ is
+a global minimizer. Therefore,
+
+\begin{equation*}
+\begin{aligned}
+    &\underset{s\in\mathcal{M}}{\textit{min}}\langle s, \nabla f(\alpha)\rangle
+= \sum_{i}\underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle
+s_{i}, \nabla_{i} f(\alpha)\rangle
+\end{aligned}
+\end{equation*}
+Moreover, with
+\begin{equation*}
+\begin{aligned}
+   &w=A\alpha, A=\Big[\frac{1}{n\lambda}\psi_{1}(y)...\frac{1}{n\lambda}\psi_{\sum_{i}|\mathcal{Y}_{i}|}(y)\Big]\\
+   &\textit{and}\quad b=\Big(\frac{1}{n}L_{i}(y)\Big)_{i\in\big[n\big],y\in\mathcal{Y}_{i}}
+\end{aligned}
+\end{equation*}
+The gradient of the dual would be,
+\begin{equation*}
+\begin{aligned}
+    &\nabla f(\alpha)= \nabla\Big[\frac{\lambda}{2}||A\alpha||^{2}- b^{T}\alpha\Big] = \lambda A^{T}A\alpha- b\\
+    &= \lambda A^{T}w- b= \frac{1}{n}H_{i}(y,w)\\
+    &\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad\tilde{H}_{i}=
+  -\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad\tilde{H}_{i} =
+  \underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad L_{i}- \langle w,
+  \psi_{i}\rangle\\ &=
+  \underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle s_{i},
+  \nabla_{i} f(\alpha)\rangle\\
+\end{aligned}
+\end{equation*}
+Thus we can see that, if $n=$ size of the training data, one Frank-Wolfe step is equivalent to $n$ calls to the maximization oracle.
+\begin{algorithmic}
+   \STATE Let $\alpha\in\mathcal{M}$
+    \STATE {Let $w^{0}= 0$, $l^{0}= 0$}\\
+    \FOR{$k=0, \dots, K$}
+      \FOR{$i=1, \dots, n$}
+        \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\max} H_{i}(y,w^{k})$//
+        \STATE {Let $w_{s}=
+\sum_{i=1}^{n}\frac{1}{n\lambda}\psi_{i}(y_{i}^{*})$, and $l_{s}=
+\frac{1}{n}\sum_{i=1}^{n}L_{i}(y_{i}^{*})$}\\ \STATE {Let $\gamma=
+\frac{\lambda(w^{k}-w_{s})^{T}w^{k}- l^{k}+ l_{s}}{\lambda||w^{k}-w_{s}||^{2}}$,
+and clip to $[0,1]$}\\ \STATE {Update $w^{k+1}= (1-\gamma)w^{k}+ \gamma w_{s}$,
+and $l^{k+1}= (1-\gamma)l^{k}+ \gamma l_{s}$}
+    }
+   \ENDFOR
+   \ENDFOR
+\end{algorithmic}
+
+Unlike stochastic subgradient and stochastic methods in general, classical
+Frank-Wolfe requires one call for each training example at each iteration. For
+large datasets, this can get unpractical.\\ Hence the stochastic variant of
+Frank Wolfe, \textbf{Block Coordinate Frank Wolfe (BCFW)}.\\
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mainProject"
+%%% End:
