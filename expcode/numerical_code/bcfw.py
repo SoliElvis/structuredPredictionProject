@@ -175,7 +175,7 @@ def train(en_data, fr_data, dim, lamb, nb_epochs):
 
     # initialize the parameter w and the loss
     w = w_i = np.zeros(dim, dtype=np.float32)
-    l = l_i = np.zeros(dim, dtype=np.float32)
+    l = l_i = 0.
 
     n = len(en_data)
 
@@ -208,7 +208,8 @@ def train(en_data, fr_data, dim, lamb, nb_epochs):
         w_s = 1. / (lamb * n) * psi(feature_matrix, y_star, truth)
         l_s = 1. / n * L(truth.reshape(-1), y_star)
 
-        gamma = 2 * n / (k + 2 * n)
+        gap = lamb * ((w - w_s) @ w) - l + l_s
+        gamma = gap / (lamb * np.linalg.norm(w - w_s) ** 2.)
 
         # update the parameters and the loss
         w_i_new = (1. - gamma) * w_i + gamma * w_s
@@ -223,9 +224,6 @@ def train(en_data, fr_data, dim, lamb, nb_epochs):
         # save the w vector every 100 iterations
         np.save(os.getcwd() + 'svm_params', w)
 
-        # add the loss to a list to plot
-        losses.append(l)
-
         # get example sentence pair and word alignment
         if k > 0 and k % 10 == 0:
             print(en_data[i])
@@ -237,7 +235,7 @@ def train(en_data, fr_data, dim, lamb, nb_epochs):
             print("This is the ground truth:")
             print(get_matching(en_data[i], fr_data[i], truth))
 
-            losses.append(lamb * ((w - w_s) @ w) - l + l_s)
+        losses.append(gap)
 
     return w, l, losses
 
