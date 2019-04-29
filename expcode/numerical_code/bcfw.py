@@ -237,6 +237,8 @@ def train(en_data, fr_data, dim, lamb, nb_epochs):
             print("This is the ground truth:")
             print(get_matching(en_data[i], fr_data[i], truth))
 
+            losses.append(lamb * ((w - w_s) @ w) - l + l_s)
+
     return w, l, losses
 
 
