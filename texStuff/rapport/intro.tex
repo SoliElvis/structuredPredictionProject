@@ -28,12 +28,12 @@ function:
   h_w \quad & : \quad  \mathcal{X} \rightarrow \mathcal Y\\
   &: \quad \hat x \mapsto y \qquad y\in \mathcal{Y} (\hat x)
 \end{align*}
-where $\hat x$ is just some arbitrary sampled $x$ and we abuse notation and mean
-the set valued mapping which outputs the feasible label set for a given x by
-$\mathcal Y(\hat x)$
+where $\hat x$ is just some arbitrary sampled $\hat x$ and we abuse notation and mean
+the set valued mapping which outputs the feasible label set for a given $x$ by
+$\mathcal Y(x)$
 
 The traditional probabilistic approach is to compute $h$ or its parameter by
-computing the most likely parameter given conditionned on the observed data.
+calculating the most likely parameter given conditionned on the observed data.
 However this is more often than not untractable in the structured prediction
 context as summed up in \citet{taskarStructuredPredictionDual2006}
 
@@ -64,9 +64,11 @@ from two main computational draw-backs:
   through first-order sampled method, i.e. first order method which
   use a probabilistic approximation of the gradient through sampling instead
   of computing the actual gradient (which might be unfeasible).
+  TODO : cite mr simon
 
 \item  The algorithm requires a projection step which can be expensive depending
   on the structure of $\mathcal Y$.
+  TODO : cite explain why proj is expensive
 \end{enumerate} 
  
 This leads us to consider the Block Seperable Frank Wolfe algorithm
