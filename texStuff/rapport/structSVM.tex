@@ -4,18 +4,19 @@ Let us recall the basic goal; to construct an accurate linear classifyer
   h_{w}(x)= \arg\max_{y\in \mathcal Y} \, \langle w, \phi(x,y)\rangle
 \end{equation}.
 
-
-We call the $n$-slack formulation from (TODO) of the problem :
+We call the following way to pose problem the $n$-slack formulation
+\footnote{see \citet{moguerzaSupportVectorMachines2006} for example} of the problem :
 \begin{align}
     &\max_{\omega, \xi}\quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\varepsilon_{i}\\
     &\textit{s.t.}\quad \langle w, \psi_{i}(y)\rangle \geq L(y_{i},y)-
 \varepsilon_{i},\quad\forall i ,\forall y\in\mathcal{Y}(x)=\mathcal{Y}_{i}
 \end{align}
 
-Consider the \textbf{max oracle}, $\Tilde{H}=
-\underset{y\in\mathcal{Y}_{i}}{\textit{max}}$ $\underbrace{L_{i}(y)- \langle w,
-\psi_{i}(y)\rangle}_{= H_{i}(y,w)\quad\textit{the hinge loss}}$.\\ (2) The
-exponential number of constraints are replaced by $n$ piecewise linear ones. \\
+Consider the \textbf{max oracle},
+\begin{align}
+H_i &= \max_{y\in\mathcal{Y}_{i}} \quad \{L_{i}(y)- \langle w, \psi_{i}(y)\rangle\} \\
+\mathcal H_i &= \argmax_{y\in\mathcal{Y}_{i}} \quad \{ L_{i}(y)- \langle w, \psi_{i}(y)\rangle \}
+\end{align}
 
 \textbf{Proposition.} The max oracle is a convex upper bound to the task loss.\\
 \textit{Proof.} The maximum of two convex (linear) functions is convex, and

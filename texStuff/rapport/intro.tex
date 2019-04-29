@@ -18,18 +18,64 @@ translates into a support-vector machine - like problem formulation.
 Let us introduce some notation which we will use throughout the paper.
 Define the dataset to be
 \begin{equation}
-  S = \{ (x^{(i)}, y^{(i)}) \}_{i=1}^{m}  \label{intro:eq:dataset}
+  S = \{ \xiii, \yiii) \}_{i=1}^{n} \in (\mathcal X \times \mathcal Y)^{n} \label{intro:eq:dataset}
 \end{equation}
 
 If one were to frame the machine learning goal in the concisest and simplest way
-possible we could say that the goal is to \emph{learn} a \emph{predictor}
+possible we could say that the goal is to \emph{learn} a (parametrized) \emph{predictor}
 function:
-\begin{gather}
-h \. : \. \mathcal X
-\end{gather}
+\begin{align*}
+  h_w \quad & : \quad  \mathcal{X} \rightarrow \mathcal Y\\
+  &: \quad \hat x \mapsto y \qquad y\in \mathcal{Y} (\hat x)
+\end{align*}
+where $\hat x$ is just some arbitrary sampled $x$ and we abuse notation and mean
+the set valued mapping which outputs the feasible label set for a given x by
+$\mathcal Y(\hat x)$
+
+The traditional probabilistic approach is to compute $h$ or its parameter by
+computing the most likely parameter given conditionned on the observed data.
+However this is more often than not untractable in the structured prediction
+context as summed up in \citet{taskarStructuredPredictionDual2006}
+
+In a large margin approach we wish to compute the predictor
+function the following way :
+\begin{equation}
+  h_{w}(x)= \arg\max_{y\in \mathcal Y} \, \langle w, \phi(x,y)\rangle
+\end{equation}
+where $\phi$ is just the feature map for the dataset.
+
+This is a constrained optimization problem and the structure of $\mathcal Y$
+clearly has a big influence on how well we can solve the problem as
+well as which method should work well. 
+
+The dual extragradient approach presented in
+\citet{taskarStructuredPredictionDual2006} leverages
+a saddle-point approach to the problem to tackle the problem
+with a first order method and moreover ``this approach
+allows us to exploit the structure of W and Z separately, allowing for efficient solutions for a wider
+range of parameterizations and structures.''\citep{taskarStructuredPredictionDual2006}
+
+\clearpage
+Despite its improvements at the time the dual extragradient approach suffers
+from two main computational draw-backs:
+\begin{enumerate}
+\item It is not seperable/'stochasizable' which is a severe problem as
+  machine learning has seen much of its success in recent years by optimizing
+  through first-order sampled method, i.e. first order method which
+  use a probabilistic approximation of the gradient through sampling instead
+  of computing the actual gradient (which might be unfeasible).
+
+\item  The algorithm requires a projection step which can be expensive depending
+  on the structure of $\mathcal Y$.
+\end{enumerate} 
+ 
+This leads us to consider the Block Seperable Frank Wolfe algorithm
+presented in \citet{lacoste-julienBlockCoordinateFrankWolfeOptimizationd}
+
+
 
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "texStuff/rapport/mainProject"
+%%% TeX-master: "mainProject.tex"
 %%% End:

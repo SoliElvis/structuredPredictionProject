@@ -6,10 +6,13 @@
 \input{premath}
 \usepackage[
   backend=biber,
-  style=numeric,
-  citestyle=numeric
+  citestyle=authoryear-ibid,
+  natbib=true
   ]{biblatex}
-\usepackage[mathcal]{eucal}
+\usepackage{csquotes}
+\renewcommand\nameyeardelim{, }
+\bibliography{tocite.bib}
+
 \addbibresource{tocite.bib}
 \title{Scalable optimization algorithms for the Structured SVM}
 \date{\today}
@@ -18,7 +21,7 @@
 \maketitle
 
 \clearpage
-\section{introduction}
+\section{Introduction}
 \input{intro}
 
 
