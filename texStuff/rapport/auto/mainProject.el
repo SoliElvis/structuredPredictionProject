@@ -15,7 +15,6 @@
     "premath"
     "intro"
     "structSVM"
-    "prelim_large_margin"
     "cvxanalysis"
     "extraGradMain"
     "bcfwMain"
