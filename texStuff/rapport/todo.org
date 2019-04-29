@@ -3,9 +3,11 @@
 * Logistics
 ** requirements file/ clean up imports
 
+
 * Rapport
-** DONE Bib file update and cleanup, switch to zotero
-** TODO  intro
-** TODO conclusion
-** TODO extragradient basic
+** URGENT extragradient basic
+** NEXT conclusion
 ** TODO [#B] intro convex analysis
+** DONE Bib file update and cleanup, switch to zotero
+** DONE intro
+   CLOSED: [2019-04-28 Sun 22:31]
