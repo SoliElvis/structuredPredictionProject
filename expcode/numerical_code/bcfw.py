@@ -1,13 +1,41 @@
 import numpy as np
-import gensim
 import pickle
 import random
-import itertools
+from fasttext import FastVector
 import scipy.optimize as opt
 import time
 from scipy.spatial.distance import hamming
 import os
 from matplotlib import pyplot as plt
+import copy
+
+
+def ground_truth(en_sent, fr_sent):
+    """
+    Function that extracts the ground truth for a pair of sentences in english and french
+    :param en_sent: The the sentence in english
+    :param fr_sent: The sentence in french
+    :return:
+    """
+    # keys = set(fr_sent)
+
+    # score matrix
+    score = np.empty([len(en_sent), len(fr_sent)], dtype=np.float32)
+
+    # label
+    truth = np.zeros([len(en_sent), len(fr_sent)], dtype=np.float32)
+
+    # we find the ground truth. We randomize access to break ties randomly
+    for j in range(len(en_sent)):
+        for k in range(len(fr_sent)):
+            score[j, k] = FastVector.cosine_similarity(en_dict[en_sent[j]], fr_dict[fr_sent[k]])
+
+    # we find the ground truth. We randomize access to break ties randomly
+    for j in range(len(en_sent)):
+        argmax = int(score[j].argmax())
+        truth[j, argmax] = 1.
+
+    return truth.reshape(-1)
 
 
 def phi_table(en_sent, fr_sent, dim):
@@ -21,23 +49,13 @@ def phi_table(en_sent, fr_sent, dim):
     table = np.empty([len(en_sent), len(fr_sent), dim])
     for j, en in enumerate(en_sent):
         for k, fr in enumerate(fr_sent):
-            # extract the dice coefficient between the two words
-            dice = (2 * co_count[(en, fr)]) / (en_count[en] + fr_count[fr])  # MODIFY THIS LINE WHEN WE HAVE DB
-
-            # find the words relative position distance (abs, sqrt, square)
-            dist = np.abs((j+1) / len(en_sent) - (k + 1) / len(fr_sent))
-            sqrt_dist = np.sqrt(dist)
-            sq_dist = np.square(dist)
-
-            # compute the hamming distance between the strings
-            str_len = min(len(en_sent), len(fr_sent))
-            len_diff = max(len(en_sent), len(fr_sent)) - str_len
-            str_dist = hamming(en[:str_len], fr[:str_len]) + len_diff
+            # get the feature for a pair of words
+            features = np.concatenate((en_dict[en_sent[j]], fr_dict[fr_sent[k]]))
 
             # put it all together to get feature for en/fr words
-            table[j, k] = np.array([dice, dist, sqrt_dist, sq_dist, str_dist])
+            table[j, k] = features
 
-    return table.reshape(-1, 5).T
+    return table.reshape(-1, dim).T
 
 
 def phi(feature_matrix, label):
@@ -142,7 +160,7 @@ def plot_losses(losses):
     plt.plot(np.arange(1, len(losses) + 1), losses)
 
 
-def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
+def train(en_data, fr_data, dim, lamb, nb_epochs):
     """
     Function that trains a SVM using Block-Coordinate Frank-Wolfe method
     :param en_data: The english corpus
@@ -166,11 +184,19 @@ def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
         if len(en_data[i]) + len(fr_data[i]) > 60:  # REMOVE THIS LINE WHEN WE HAVE SPLIT THE SENTENCES
             continue
 
+        # check if all word are in dictionary
+        end = False
+        for word in en_data[i]:
+            if not word in en_dict:
+                end = True
+        for word in fr_data[i]:
+            if not word in fr_dict:
+                end=True
+        if end:
+            continue
+
         # find the ground truth. Must be a vector of dimension len(en_data[i]) * len(fr_data[i])
-        truth = np.zeros([len(en_data[i]), len(fr_data[i])])
-        diag_align = min(len(en_data[i]), len(fr_data[i]))
-        truth[:diag_align, :diag_align] = np.eye(diag_align)
-        truth = truth.reshape(-1)
+        truth = ground_truth(en_data[i], fr_data[i])
 
         # find the feature matrix for the pair of sentences
         feature_matrix = phi_table(en_data[i], fr_data[i], dim)
@@ -201,7 +227,10 @@ def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
         losses.append(l)
 
         # get example sentence pair and word alignment
-        if k > 0 and k % 100 == 0:
+        if k > 0 and k % 10 == 0:
+            print(en_data[i])
+            print(fr_data[i])
+
             print("This is the machine translation:")
             print(get_matching(en_data[i], fr_data[i], y_star))
 
@@ -214,16 +243,21 @@ def bcfw_svm(en_data, fr_data, dim, lamb, nb_epochs):
 if __name__ == "__main__":
     # load the datasets and perform split into training and test set
     dir = os.path.join(os.getcwd(), "expcode", "numerical_code")
-    en_corpus = pickle.load(open(os.path.join(dir, 'english_vocab.pkl'), 'rb'))[:5000]   # CHANGE THIS WHEN WE HAVE DB
-    fr_corpus = pickle.load(open(os.path.join(dir, 'french_vocab.pkl'), 'rb'))[:5000]  # CHANGE THIS WHEN WE HAVE DB
+    en_corpus = pickle.load(open(os.path.join(dir, 'english_vocab.pkl'), 'rb'))[:100]   # CHANGE THIS WHEN WE HAVE DB
+    fr_corpus = pickle.load(open(os.path.join(dir, 'french_vocab.pkl'), 'rb'))[:100]  # CHANGE THIS WHEN WE HAVE DB
 
     # load the counts and co-occurences
-    en_count = pickle.load(open(os.path.join(dir, 'count_en_5000.pkl'), 'rb'))  # CHANGE THIS WHEN WE HAVE DB
-    fr_count = pickle.load(open(os.path.join(dir, 'count_fr_5000.pkl'), 'rb'))  # CHANGE THIS WHEN WE HAvE DB
-    co_count = pickle.load(open(os.path.join(dir, 'co_count_5000.pkl'), 'rb'))  # CHANGE THIS WHEN WE HAVE DB
+    en_dict = FastVector(vector_file='/Users/williamst-arnaud/Downloads/cc.en.300.vec')
+    fr_dict = FastVector(vector_file='/Users/williamst-arnaud/Downloads/cc.fr.300.vec')
+
+    en_dict.apply_transform('/Users/williamst-arnaud/Downloads/fastText_multilingual-master/alignment_matrices/en.txt')
+    fr_dict.apply_transform('/Users/williamst-arnaud/Downloads/fastText_multilingual-master/alignment_matrices/fr.txt')
+
+    # number of items in dataset
+    n = len(en_corpus)
 
     start = time.time()
-    w, l, losses = bcfw_svm(en_corpus, fr_corpus, 5, lamb=1./5000., nb_epochs=5000)
+    w, l, losses = train(en_corpus, fr_corpus, 2 * 300, lamb=1. / n, nb_epochs=5 * n)
     print(time.time() - start)
 
     # get graph of losses

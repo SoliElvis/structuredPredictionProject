@@ -6,7 +6,6 @@ import time
 import matplotlib
 
 
-
 def data_iter(dataset, label_type="hard"):
     """
     Iterator over a dataset that returns the structured object with its label
@@ -103,7 +102,7 @@ def feat_vec(obj, label):
         raise ValueError("Wrong number of dimensions for the label vector")
 
 
-def breg_proj(u : float, s : float, eta : float, norm="l1"):
+def breg_proj(u, s, eta, norm="l1"):
     """
     Function that computes the Bregman projection of a structured object on a set
     :param u: Structured objection on which we apply the projection
