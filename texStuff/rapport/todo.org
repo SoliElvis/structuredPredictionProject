@@ -1,6 +1,7 @@
 #+SEQ_TODO: URGENT(u) STARTED(s)  NEXT(n) TODO(t)  MIDWAY(m) WAITING(w) MAYBE(m) | DONE(d) DEFERRED(l) CANCELLED(c)
 #+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
 * Rapport
+** NEXT github link
 ** NEXT discussion -> intuition combinatorial vs saddle point approach
    DEADLINE: <2019-04-29 Mon 13:30> SCHEDULED: <2019-04-29 Mon 13:00>
 ** NEXT conclusion

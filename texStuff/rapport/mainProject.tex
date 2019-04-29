@@ -4,6 +4,7 @@
 %%% End:
 
 \input{premath}
+
 \usepackage[
   backend=biber,
   citestyle=authoryear-ibid,
@@ -11,18 +12,18 @@
   ]{biblatex}
 \usepackage{csquotes}
 \usepackage{comment}
+
 \usepackage{fancyhdr}
 \pagestyle{fancyplain}
 \fancyhf{}
 \lhead{ \fancyplain{}{--DRAFT VERSION--} }
 \rhead{ \fancyplain{}{\today} }
 \rfoot{ \fancyplain{}{\thepage} }
-
 \renewcommand\nameyeardelim{, }
-\bibliography{tocite.bib}
-\addbibresource{tocite.bib}
 
 \usepackage[toc,page]{appendix}
+\bibliography{tocite.bib}
+\addbibresource{tocite.bib}
 
 \title{Scalable optimization algorithms for the Structured SVM -- unfinished
   version on \today  -- A new version will be uploaded before the end of the day}
@@ -46,7 +47,6 @@
 \clearpage
 \section{Extra Gradient Algorithm}
 \input{extraGradMain}
-
 \clearpage
 \section{Frank Wolfe and Variants}
 \input{bcfwMain}
@@ -57,12 +57,10 @@
 \input{exp}
 % \input{exp_elyes}
 
-
 %Jasete
 \clearpage
 \section{Discussion}
 \input{discussion}
-
 \clearpage
 \section{Conclusion and Further Work}
 \input{conclusion}
@@ -72,7 +70,7 @@
 \section{Citations and References}
 \printbibliography
 
-%%%%%%%%%%APENDIX%%%%%%%%%%
+%APPP
 \clearpage
 \begin{appendices}
 \input{cvxanalysis}
