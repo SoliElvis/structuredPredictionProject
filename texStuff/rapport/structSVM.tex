@@ -8,9 +8,11 @@ classifier\footnote{clearly we can easily extend to non-linear cases, with kerne
 In general finding the optimal seperating hyperplane is an ill-defined problem.
 In the support vector machine (SVM) setting we want to find the seperating
 hyperplane with the \emph{largest margin}. The support vectors are the
-datapoints which lie on the thus defined margins (TODO). It is not obvious
+datapoints which lie on the the defined margins. It is not obvious
 that we should strive to completely seperate the sets so we can include some
-slack variables.\\
+slack variables. Indeed, some set of points might not be linearly separable but
+adding slack variables might allow one to misclassify some point but get 
+a higher proportion of correctly classified points.\\
 
 We call the following way to pose problem the $n$-slack formulation
 \footnote{see \citet{moguerzaSupportVectorMachines2006} for example} of the problem :
