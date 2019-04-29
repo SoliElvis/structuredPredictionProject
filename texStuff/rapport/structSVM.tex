@@ -31,19 +31,16 @@ H_i &= \max_{y\in\mathcal{Y}_{i}} \quad \{L_{i}(y)- \langle w, \psi_{i}(y)\rangl
 
 \textbf{Proposition.} The max oracle is a convex upper bound to the task loss.\\
 \textit{Proof sketch:} The maximum of two convex (linear) functions is convex, and
-\begin{equation*}
 \begin{align} L(y_{i},h_{w}(x_{i})) &\leq L(y_{i},h_{w}(x_{i})) +
         \underbrace{\langle w, \psi_{i}(y)\rangle}_{\geq 0 \textit{ by definition}} \\
     \quad\quad &\leq \max_{y\in\mathcal{Y}_{i}} L_{i}(y)- \langle w, \psi_{i}(y)\rangle
 \end{align}
-\end{equation*}
 
 It is not hard to see thus that learning $w$ amounts to the unconstrained problem,
-\begin{equation*}
-\begin{aligned}
-    \max_{w} \quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\Tilde{H}_{i}(w)
-\end{aligned}
-\end{equation*}
+\begin{equation}
+  \max_{w} \quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\Tilde{H}_{i}(w)
+  \label{eq:svm-non-smooth}
+\end{equation}
 
 %%% Local Variables:
 %%% mode: latex
