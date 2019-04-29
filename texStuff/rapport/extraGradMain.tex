@@ -10,21 +10,7 @@ where the $\vec z_i$'s can be identified with the edge and node potentials of a
 markov network and satisfy the constraints of the structured problem. The terms
 $\vec F_i$ correspond to the feature mapping for over all labels $\vec y_i$ when
 multiplied by $\vec z_i$'s. The $\vec c_i$'s correspond to the costs of a $\vec z_i$ and can be
-identified with the loss $l$ for a label $\vec y_i'$. Taking the dual, we end up with
-the following:
-
-\begin{equation}
-  \begin{aligned}
-    &\min_{\vec w \in {W}, (\vec \lambda,\vec \mu) \geq \vec 0} &\sum_i
-\left( \vec b_i^T \lambda_i + \mathbf{1}^T \vec \mu_i - \vec w^T \vec f_i(\vec
-y_i) \right)\\ &\text{s.t.} &\vec F_i^T \vec w + \vec c_i \leq \vec A_i^T \vec
-\lambda_i + \vec \mu_i \quad i=1,\dots,m
-  \end{aligned}
-\end{equation}
-The number of variables and constraints is linear in the number of paramters and
-training data. We already see that this formulation is much more efficient. We
-do have a set of constraints that is tractable, as is the number of parameters
-to update.
+identified with the loss $l$ for a label $\vec y_i'$.
 
 In equation \ref{saddle_point}, the term that is opitmized is defined
 as:
