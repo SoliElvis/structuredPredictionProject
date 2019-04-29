@@ -11,6 +11,11 @@
 \usepackage{bbm}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
+% \usepackage{unicode-math}
+
+
+
 \usepackage[bookmarks=true]{hyperref}
 \usepackage{bookmark}
 \usepackage{pdfpages} %\includepdf[pages={1}]{myfile.pdf}
@@ -19,7 +24,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{mdsymbol}%for perp with two bars
+% \usepackage{mdsymbol}%for perp with two bars
 \usepackage{mathtools,xparse}
 \newtheorem{theorem}{Theorem}
 
@@ -34,6 +39,10 @@
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Cov}{\mathrm{Cov}}
 \newcommand\given[1][]{\:#1\vert\:}
+
+
+\newcommand{\xiii}{x^{(i)}}
+\newcommand{\yiii}{y^{(i)}}
 
 
 \sisetup{output-decimal-marker = {,}}
@@ -54,3 +63,8 @@
 \setlength{\tindent}{\parindent}
 \setlength{\parindent}{0pt}
 \renewcommand{\indent}{\hspace*{\tindent}}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mainProject"
+%%% End:
