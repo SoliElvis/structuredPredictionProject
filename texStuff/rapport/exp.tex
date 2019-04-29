@@ -5,41 +5,36 @@ Block-coordinate Frank-Wolfe algorithm. The task on which we performed the
 evaluation was word alignment in machine translation. We extracted the dataset
 from the Europarl dataset \textbf{CITE THIS SHIT}. The data consisted of
 approximately 2 million sentence pairs in both english and french. Each the
-sentences in each pair were translations of one another. The data had been
-aigned using the GIZA++ algorithm \textbf{CITE THIS SHIT}. We extracted all
+sentences in each pair were translations of one another. We extracted all
 sentences and performed a clean by splitting longer sentences into shorter ones.
 The goal of this step was to reduce the eventual number of matchings in
-training, which could take long to solve using a LP solver.
+training, which could take long to solve using a LP solver. Of course, each
+sentence was tokenized beforehand.
 
 We then proceeded to implement the Dual Extragradient and BCFW algorithms using
-a SVM. We had to define a feature mapping for an input sentence pair. As in
-Taskar \cite{taskarStructuredPredictionExtragradient}, the features were composed of the following
-statistics of the corpora:
-\begin{itemize}
-  \item Dice coefficient between pairs of words:
-    \begin{equation*}
-      \frac{2*C_{ef}}{C_e + C_f}
-    \end{equation*}
-    where $C_ef$ is the number of co-occurrences of the pair of words $e,f$ in
-sentences and $C_e, C_f$ are the number of occurrences of the words in english
-and french respectively.
-
-  \item Absolute value of the difference of the relative positions of each words in each sentence
-
-  \item The square root of that value
-
-  \item The square of the same value
-
-  \item The hamming distance between the two words in a pair (padded with zeros when the lenght is not the same)
-
-\end{itemize}
-We combined these statistics by summing them for all word tuples in each sentence pairs. As an example, consider the following two sentences:
+a SVM. We had to define a feature mapping for an input sentence pair. The features
+were extracted using the fastText library \textbf{CITE THIS}. This library included
+a model that was previously trained to learn embeddings of words in both english
+and french. We later combined the embeddings in the two languages by applying a
+transformation found in \textbf{CITE THIS}. This transformation consisted in applying
+a matrix to each vector in each language (matrix $W$ for english and $Q$ for french). 
+These matrices are in fact orthogonal (i.e. $Q^T W = I$). The idea behind such a transformation
+is that we sort of ``put" or ``align" both languages in the same vector space, a sort of ``middle ground". 
+This way we can better compare the words ``cat" and ``chat" by getting their cosine similarity measure. 
+We combined the cosine measure of each pair of words in the alignment by summing. The following blog post
+\textbf{CITE THIS SHIT} provides a good intuition using maps that are aligned.
+As an example, consider the following two sentences:
 \begin{itemize}
   \item This assignment was hard
   \item Ce travail etait ardu
 \end{itemize}
-We would compute the statistics for each word tuple (e.g. this/ce, this/travail,
-\dots, hard/ardu). Thus, we end up with a vector of statistics for each tuple.
+We would compute the cosine distance for each word tuple (e.g. this/ce, this/travail,
+\dots, hard/ardu). We were then able to get the highest match of each english word for
+for french translation. This was how we extracted the ``labels". As the dataset was
+not annotated with alignments, we had to compute those according to the procedure mentioned.
+
+For the features, we used the concatenated
+embeddings of each word pairs in the alignment. This gave us our edge score.
 Then, we simply performed a weighted combination of these vectors using the edge
 labels as weights. To clarify what we mean by edge labels, suppose that the edge
 linking ``assignment'' and ``travail'' has a value of 1. Then, we weight the
@@ -57,6 +52,18 @@ this fact and indeed use the LP solver. The loss that we used was the $L_1$
 distance between the two labels, the proposal and the ground truth.
 
 \subsubsection{Results}
+Since running the experiments was computationally intensive and we did not dispose of a
+lot of computing power, we had to restrict the training set to a number a relatively small
+number of sentence pairs (100). This sanity check was simply a hint to the general applicability 
+of the method as we scale up the number of training examples. We used the default $\lambda$ value
+of $0.01$ as our regularizer since, we did not want to train for too many iterations before
+getting decent results as per Theorem 3 \textbf{CITE THIS SHIT}. We were able to get the following
+results for the BCFW algorithm:
+
+
+
+For the dual extragradient, we obtained instead the following:
+
 
 %%% Local Variables:
 %%% mode: latex
