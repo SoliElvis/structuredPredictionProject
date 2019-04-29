@@ -3,7 +3,7 @@ In this section, we describe the implementation we performed for this project.
 The goal was to see how the Dual Extragradient algrithm compared to the
 Block-coordinate Frank-Wolfe algorithm. The task on which we performed the
 evaluation was word alignment in machine translation. We extracted the dataset
-from the Europarl dataset \textbf{CITE THIS SHIT}. The data consisted of
+from the Europarl dataset \textbf{TODO CITE}. The data consisted of
 approximately 2 million sentence pairs in both english and french. Each the
 sentences in each pair were translations of one another. We extracted all
 sentences and performed a clean by splitting longer sentences into shorter ones.
@@ -13,16 +13,16 @@ sentence was tokenized beforehand.
 
 We then proceeded to implement the Dual Extragradient and BCFW algorithms using
 a SVM. We had to define a feature mapping for an input sentence pair. The features
-were extracted using the fastText library \textbf{CITE THIS}. This library included
+were extracted using the fastText library \textbf{TODO CITE}. This library included
 a model that was previously trained to learn embeddings of words in both english
 and french. We later combined the embeddings in the two languages by applying a
-transformation found in \textbf{CITE THIS}. This transformation consisted in applying
+transformation found in \textbf{TODO CITE}. This transformation consisted in applying
 a matrix to each vector in each language (matrix $W$ for english and $Q$ for french). 
 These matrices are in fact orthogonal (i.e. $Q^T W = I$). The idea behind such a transformation
 is that we sort of ``put" or ``align" both languages in the same vector space, a sort of ``middle ground". 
 This way we can better compare the words ``cat" and ``chat" by getting their cosine similarity measure. 
 We combined the cosine measure of each pair of words in the alignment by summing. The following blog post
-\textbf{CITE THIS SHIT} provides a good intuition using maps that are aligned.
+\textbf{CITE THIS} provides a good intuition using maps that are aligned.
 As an example, consider the following two sentences:
 \begin{itemize}
   \item This assignment was hard
@@ -41,7 +41,7 @@ linking ``assignment'' and ``travail'' has a value of 1. Then, we weight the
 vector extracted from these two words with 1. As another example, if the edge
 between ``ce'' and ``ardu'' has a value of 0 (i.e. no link between the words),
 we do not include the vector computed from the statistics of this word pair.
-This is exactly what was done in Taskar \textbf{CITE THIS SHIT} modulo some
+This is exactly what was done in Taskar \textbf{CITE THIS} modulo some
 other features.
 
 In the implementation of BCFW, we used the solver from scipy \textbf{CITE THIS
@@ -57,7 +57,7 @@ lot of computing power, we had to restrict the training set to a number a relati
 number of sentence pairs (100). This sanity check was simply a hint to the general applicability 
 of the method as we scale up the number of training examples. We used the default $\lambda$ value
 of $0.01$ as our regularizer since, we did not want to train for too many iterations before
-getting decent results as per Theorem 3 \textbf{CITE THIS SHIT}. We were able to get the following
+getting decent results as per Theorem 3 \textbf{CITE THIS}. We were able to get the following
 results for the BCFW algorithm:
 
 
