@@ -1,9 +1,10 @@
 \subsection{Experiments}
+
 In this section, we describe the implementation we performed for this project.
 The goal was to see how the Dual Extragradient algrithm compared to the
 Block-coordinate Frank-Wolfe algorithm. The task on which we performed the
 evaluation was word alignment in machine translation. We extracted the dataset
-from the Europarl dataset \cite{. The data consisted of
+from the Europarl dataset \cite{EuroparlParallelCorpus}. The data consisted of
 approximately 2 million sentence pairs in both english and french. Each the
 sentences in each pair were translations of one another. We extracted all
 sentences and performed a clean by splitting longer sentences into shorter ones.
@@ -16,13 +17,13 @@ a SVM. We had to define a feature mapping for an input sentence pair. The featur
 were extracted using the fastText library \cite{fastText}. This library included
 a model that was previously trained to learn embeddings of words in both english
 and french. We later combined the embeddings in the two languages by applying a
-transformation found in \textbf{TODO CITE}. This transformation consisted in applying
+transformation found in \citet{chojnackiRandomGraphGenerator2010}. This transformation consisted in applying
 a matrix to each vector in each language (matrix $W$ for english and $Q$ for french). 
 These matrices are in fact orthogonal (i.e. $Q^T W = I$). The idea behind such a transformation
 is that we sort of ``put" or ``align" both languages in the same vector space, a sort of ``middle ground". 
 This way we can better compare the words ``cat" and ``chat" by getting their cosine similarity measure. 
 We combined the cosine measure of each pair of words in the alignment by summing. The following blog post
-\textbf{CITE THIS} provides a good intuition using maps that are aligned.
+\citet{AligningVectorRepresentations2017} provides a good intuition using maps that are aligned.
 As an example, consider the following two sentences:
 \begin{itemize}
   \item This assignment was hard
@@ -44,12 +45,12 @@ we do not include the vector computed from the statistics of this word pair.
 This is exactly what was done in Taskar \textbf{CITE THIS} modulo some
 other features.
 
-In the implementation of BCFW, we used the solver from scipy \textbf{CITE THIS
-SHIT} with the simplex method. Since the constraint matrix given by the
-optimization of $H_i$ in the algorithm is unimodular, when we relax the LP, we
-still get a solution to the ILP without relaxation. Thus, we take advantage of
-this fact and indeed use the LP solver. The loss that we used was the $L_1$
-distance between the two labels, the proposal and the ground truth.
+In the implementation of BCFW, we used the solver from scipy with the simplex
+method. Since the constraint matrix given by the optimization of $H_i$ in the
+algorithm is unimodular, when we relax the LP, we still get a solution to the
+ILP without relaxation. Thus, we take advantage of this fact and indeed use the
+LP solver. The loss that we used was the $L_1$ distance between the two labels,
+the proposal and the ground truth.
 
 \subsubsection{Results}
 Since running the experiments was computationally intensive and we did not dispose of a
@@ -57,8 +58,9 @@ lot of computing power, we had to restrict the training set to a number a relati
 number of sentence pairs (100). This sanity check was simply a hint to the general applicability 
 of the method as we scale up the number of training examples. We used the default $\lambda$ value
 of $0.01$ as our regularizer since, we did not want to train for too many iterations before
-getting decent results as per Theorem 3 \textbf{CITE THIS}. We were able to get the following
-results for the BCFW algorithm:
+getting decent results as per Theorem 3 found in
+\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}. We were able to
+get the following results for the BCFW algorithm:
 
 
 
@@ -67,5 +69,5 @@ For the dual extragradient, we obtained instead the following:
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: t
+%%% TeX-master: "mainProject"
 %%% End:
