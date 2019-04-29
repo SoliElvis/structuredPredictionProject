@@ -46,6 +46,7 @@
     "gidelFrankWolfeAlgorithmsSaddle2016a"
     "AligningVectorRepresentations2017"
     "FastText"
-    "smithOfflineBilingualWord2017"))
+    "smithOfflineBilingualWord2017"
+    "hazanProjectionfreeOnlineLearning2012"))
  :bibtex)
 
