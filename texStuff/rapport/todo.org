@@ -1,13 +1,22 @@
 #+SEQ_TODO: URGENT(u) STARTED(s)  NEXT(n) TODO(t)  MIDWAY(m) WAITING(w) MAYBE(m) | DONE(d) DEFERRED(l) CANCELLED(c)
 #+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
-* Logistics
-** requirements file/ clean up imports
-
-
 * Rapport
-** URGENT extragradient basic
+** NEXT discussion -> intuition combinatorial vs saddle point approach
 ** NEXT conclusion
-** TODO [#B] intro convex analysis
+** TODO extragradient basic : put it away
+** TODO intro convex analysis
+** To quote for discussion
+*** FW improvements 
+    - [ ] [[zotero://select/items/1_DT6RXR4I][Gidel, Gauthier, Tony Jebara, and Simon Lacoste-Julien. “Frank-Wolfe Algorithms for Saddle Point Problems.” ArXiv:1610.07797 {Cs, Math, Stat}, October 25, 2016. http://arxiv.org/abs/1610.07797.]]
+    - [ ] [[zotero://select/items/1_82VLC3FS][Osokin, Anton, Jean-Baptiste Alayrac, Isabella Lukasewitz, Puneet K. Dokania, and Simon Lacoste-Julien. “Minding the Gaps for Block Frank-Wolfe Optimization of Structured SVMs.” ArXiv:1605.09346 {Cs, Math, Stat}, May 30, 2016. http://arxiv.org/abs/1605.09346.]]
+*** eXGrad improvements
+    - [ ] [[zotero://select/items/1_FTBPRWGS][Lin, Tianyi, Linbo Qiao, Teng Zhang, Jiashi Feng, and Bofeng Zhang. “Stochastic Primal-Dual Proximal ExtraGradient Descent for Compositely Regularized Optimization.” ArXiv:1708.05978 {Cs, Math, Stat}, August 20, 2017. https://doi.org/10.1016/j.neucom.2017.07.066.]]
+    - [ ] [[zotero://select/items/3_ECCPXQW8][Zhu, Zhanxing, and Amos J. Storkey. “Adaptive Stochastic Primal-Dual Coordinate Descent for Separable Saddle Point Problems,” June 12, 2015.]]
+    - [ ] [[zotero://select/items/1_NZWZAEWI][Hieu, Dang Van, Yeol Je Cho, and Yi-bin Xiao. “Modified Extragradient Algorithms for Solving Equilibrium Problems.” Optimization 67, no. 11 (November 2, 2018): 2003–29. https://doi.org/10.1080/02331934.2018.1505886.]]
 ** DONE Bib file update and cleanup, switch to zotero
 ** DONE intro
+
    CLOSED: [2019-04-28 Sun 22:31]
+
+* Logistics
+** requirements file/ clean up imports
