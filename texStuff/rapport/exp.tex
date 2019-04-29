@@ -64,8 +64,31 @@ get the following results for the BCFW algorithm:
 
 
 
-For the dual extragradient, we obtained instead the following:
 
+To further motivate our intuition and to make sure the algorith ran properly, we used
+the local scene dataset \textbf{CITE PYSTRUCT} from PyStruct to train a SVM using BCFW. It consisted of vectors
+of size 294 for the features of each training example (images). Each image was labeld according
+to the type of objects that were present in the scene. These were:
+\begin{itemize}
+  \item beach
+  \item sunset
+  \item fall foilage
+  \item field
+  \item mountain
+  \item urban
+\end{itemize}
+These 6 classes were not mutually exclusive so we had a total of $2^6=64$ possible labels. Training using
+all possible edges allowed to fully capture the complex relationships between them. The duality gap on the 
+training data is given by the figure \textbf{PUT PYSTRUCT_SCENE.PNG FIGURE AND REF IN TEXT}.
+
+For the dual extragradient, we were only able to run the algorithm on a dataset
+of images \textbf{CITE THE FEC DATASET}. These were tuples of 3 images and a person
+hand-picked two images in each 3-tuple that resembled each other the most. Using the
+extragradient algorithm, we were able to get convergence but the results were not 
+satisfying. We only obtained 46\% accuracy on the prediction, which would compare 
+with 17\% if we had a random predictor (3 choose 2 gives 6 possibilites hence 17\%).
+Thus, it motivated our change of dataset to obtain better results. We also moved on to
+the BCFW algorithm as we had not implemented it yet.
 
 %%% Local Variables:
 %%% mode: latex
