@@ -42,15 +42,15 @@ linking ``assignment'' and ``travail'' has a value of 1. Then, we weight the
 vector extracted from these two words with 1. As another example, if the edge
 between ``ce'' and ``ardu'' has a value of 0 (i.e. no link between the words),
 we do not include the vector computed from the statistics of this word pair.
-This is exactly what was done in Taskar \textbf{CITE THIS} modulo some
-other features.
+This is exactly what was done in Taskar
+\cite{taskarStructuredPredictionExtragradient} modulo some other features.
 
 In the implementation of BCFW, we used the solver from scipy with the simplex
 method. Since the constraint matrix given by the optimization of $H_i$ in the
 algorithm is unimodular, when we relax the LP, we still get a solution to the
 ILP without relaxation. Thus, we take advantage of this fact and indeed use the
-LP solver. The loss that we used was the $L_1$ distance between the two labels,
-the proposal and the ground truth.
+LP solver. The loss that we used was the $L_1$
+distance between the two labels, the proposal and the ground truth.
 
 \subsubsection{Results}
 Since running the experiments was computationally intensive and we did not dispose of a

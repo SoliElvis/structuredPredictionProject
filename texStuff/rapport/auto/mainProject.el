@@ -19,11 +19,10 @@
     "extraGradMain"
     "bcfwMain"
     "exp"
-    "discussion"
-    "conclusion"
     "appendix"
     "biblatex"
-    "csquotes")
+    "csquotes"
+    "fancyhdr")
    (LaTeX-add-bibliographies
     "tocite.bib"
     "tocite"))

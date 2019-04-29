@@ -10,11 +10,20 @@
   natbib=true
   ]{biblatex}
 \usepackage{csquotes}
+% \usepackage{comments}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{--DRAFT VERSION--} }
+\rhead{ \fancyplain{}{\today} }
+\rfoot{ \fancyplain{}{\thepage} }
+
 \renewcommand\nameyeardelim{, }
 \bibliography{tocite.bib}
 
 \addbibresource{tocite.bib}
-\title{Scalable optimization algorithms for the Structured SVM}
+\title{Scalable optimization algorithms for the Structured SVM -- unfinished
+  version on \today  -- A new version will be uploaded before the end of the day}
 \date{\today}
 \author{Frederic Boileau Elyes Lamouchi William St-Arnaud}
 \begin{document}
@@ -47,13 +56,13 @@
 \section{Empirical}
 \input{exp}
 
-\clearpage
-\section{Discussion}
-\input{discussion}
+% \clearpage
+% \section{Discussion}
+% \input{discussion}
 
-\clearpage
-\section{Conclusion and Further Work}
-\input{conclusion}
+% \clearpage
+% \section{Conclusion and Further Work}
+% \input{conclusion}
 
 \clearpage
 \section{Citations and References}

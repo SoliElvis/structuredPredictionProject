@@ -1,4 +1,4 @@
-\subsection{Saddle-Point}
+\subsection{Saddle Point Intuition}
 \begin{equation}
   \min_{\vec w \in {W}} \max_{\vec z \in {Z}} \sum_i \left( \vec
 w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)
@@ -151,8 +151,10 @@ better when $|{Z}| \gg |{W}|$ since $\bar{u^t} = \{
 \bar{u^t}_w,\bar{u^t}_z \}$ and we only care about the part that corresponds to
 $w$. $\bar{u^t}_z$ is maintained implicitly by storing a vector of size
 $|{W}|$ (although we now need to store $s_w^t$). It can be reconstructed
-using $\bar{u^t}_w$. The following figure (\textbf{ADD FIGURE 5 FROM PAPER})
-illustrates the various dependencies.
+using $\bar{u^t}_w$.
+% The following figure (\textbf{ADD FIGURE 5 FROM PAPER})
+% illustrates the various dependencies.
+%TODO
 
 %%% Local Variables:
 %%% mode: latex
