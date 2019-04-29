@@ -1,0 +1,46 @@
+Before running both algorithms, you need to do the following:
+
+################################
+
+1. Download fastText from:
+   $ wget https://github.com/facebookresearch/fastText/archive/v0.2.0.zip
+2. $ unzip v0.2.0.zip
+3. $ cd fastText-0.2.0
+4. $ make
+5. $ python3 setup.py install
+
+#################################
+
+1. Download fastText_multilingual from (clone the repo):
+   $ https://github.com/Babylonpartners/fastText_multilingual
+2. Make sur to add the folder containing the module to PYTHONPATH (otherwise cannot be imported)
+TODO 3. Put the subfolder "aligned_matrices" inside the folder expcode/fastText
+
+
+#################################
+Download nltk:
+1. $ pip3 install nltk
+2. $ sudo python -m nltk.downloader all (MIGHT HAVE TO RUN 2.1 on Mac OSX)
+2.1 $ /Applications/Python\ 3.6/Install\ Certificates.command
+
+#################################
+
+Other dependencies:
+- scipy
+- numpy
+- pickle
+- matplotlib
+
+#################################
+
+Must also do the following:
+
+1. Download the europarl.fr-en dataset at:
+   http://www.statmt.org/europarl/
+2. Tokenize using the script tokenize.py
+TODO 3. Add the tokenized files to a subfolder "dataset" inside the folder "expcode"
+
+
+
+
+
