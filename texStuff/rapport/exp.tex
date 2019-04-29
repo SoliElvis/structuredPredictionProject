@@ -62,7 +62,14 @@ results for the BCFW algorithm:
 
 
 
-For the dual extragradient, we obtained instead the following:
+For the dual extragradient, we were only able to run the algorithm on a dataset
+of images \textbf{CITE THE FEC DATASET}. These were tuples of 3 images and a person
+hand-picked two images in each 3-tuple that resembled each other the most. Using the
+extragradient algorithm, we were able to get convergence but the results were not 
+satisfying. We only obtained 46\% accuracy on the prediction, which would compare 
+with 17\% if we had a random predictor (3 choose 2 gives 6 possibilites hence 17\%).
+Thus, it motivated our change of dataset to obtain better results. We also moved on to
+the BCFW algorithm as we had not implemented it yet.
 
 
 %%% Local Variables:
