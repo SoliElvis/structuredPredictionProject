@@ -1,0 +1,35 @@
+Structured prediction in machine learning is tasked with learning
+predictors where the labels on the datapoints are more than simple
+tags but have inherent structure which implies the following:
+\begin{itemize}
+\item The number of potential labels for a given feature vector
+  can grow exponentially with the input which makes traditional
+  classification procedures intractable
+\item A certain intelligibility of the structure; hence a hope to
+  leverage it to improve tractability
+\end{itemize}
+It is often quite hard to know in advance wether we can tackle a structured
+prediction problem with known approaches.
+
+In this paper we discuss two different approaches to solving structured
+prediction problems, both focusing on a \emph{large-margin approach} which
+translates into a support-vector machine - like problem formulation.
+
+Let us introduce some notation which we will use throughout the paper.
+Define the dataset to be
+\begin{equation}
+  S = \{ (x^{(i)}, y^{(i)}) \}_{i=1}^{m}  \label{intro:eq:dataset}
+\end{equation}
+
+If one were to frame the machine learning goal in the concisest and simplest way
+possible we could say that the goal is to \emph{learn} a \emph{predictor}
+function:
+\begin{gather}
+h \. : \. \mathcal X
+\end{gather}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "texStuff/rapport/mainProject"
+%%% End:

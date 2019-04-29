@@ -5,6 +5,7 @@
                      '(("biblatex" "backend=biber" "style=numeric" "citestyle=numeric") ("eucal" "mathcal")))
    (TeX-run-style-hooks
     "premath"
+    "intro"
     "structSVM"
     "prelim_large_margin"
     "cvxanalysis"
