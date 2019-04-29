@@ -12,11 +12,19 @@
 *** eXGrad improvements
     - [ ] [[zotero://select/items/1_FTBPRWGS][Lin, Tianyi, Linbo Qiao, Teng Zhang, Jiashi Feng, and Bofeng Zhang. “Stochastic Primal-Dual Proximal ExtraGradient Descent for Compositely Regularized Optimization.” ArXiv:1708.05978 {Cs, Math, Stat}, August 20, 2017. https://doi.org/10.1016/j.neucom.2017.07.066.]]
     - [ ] [[zotero://select/items/3_ECCPXQW8][Zhu, Zhanxing, and Amos J. Storkey. “Adaptive Stochastic Primal-Dual Coordinate Descent for Separable Saddle Point Problems,” June 12, 2015.]]
+<<<<<<< HEAD
     - [ ] [[zotero://select/items/1_NZWZAEWI][Hieu, Dang Van, Yeol Je Cho, and Yi-bin Xiao. “Modified Extragradient Algorithms for Solving Equilibrium Problems.” Optimization 67, no. 11 (November 2, 2018): 2003–29. https://doi.org/10.1080/02331934.2018.1505886.]]
 ** DONE Bib file update and cleanup, switch to zotero
 ** DONE intro
 
    CLOSED: [2019-04-28 Sun 22:31]
+=======
+    - [ ] [[zotero://select/items/1_4VDFIBL3][Hazan, Elad, and Satyen Kale. “Projection-Free Online Learning.” ArXiv:1206.4657 {Cs}, June 18, 2012. http://arxiv.org/abs/1206.4657.]]
+    - [ ] [[zotero://select/items/1_NZWZAEWI][Hieu, Dang Van, Yeol Je Cho, and Yi-bin Xiao. “Modified Extragradient Algorithms for Solving Equilibrium Problems.” Optimization 67, no. 11 (November 2, 2018): 2003–29. https://doi.org/10.1080/02331934.2018.1505886.]]
+** DONE Bib file update and cleanup, switch to zotero
+** DONE intro
+   CLOSED: [2019-04-29 Mon 00:01]
+>>>>>>> b4896b0e1ef113555cb3ff9ea4614c187729ef4b
 
 * Logistics
 ** requirements file/ clean up imports

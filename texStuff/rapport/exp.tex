@@ -3,7 +3,11 @@ In this section, we describe the implementation we performed for this project.
 The goal was to see how the Dual Extragradient algrithm compared to the
 Block-coordinate Frank-Wolfe algorithm. The task on which we performed the
 evaluation was word alignment in machine translation. We extracted the dataset
+<<<<<<< HEAD
 from the Europarl dataset \textbf{TODO CITE}. The data consisted of
+=======
+from the Europarl dataset \cite{. The data consisted of
+>>>>>>> b4896b0e1ef113555cb3ff9ea4614c187729ef4b
 approximately 2 million sentence pairs in both english and french. Each the
 sentences in each pair were translations of one another. We extracted all
 sentences and performed a clean by splitting longer sentences into shorter ones.
@@ -13,7 +17,11 @@ sentence was tokenized beforehand.
 
 We then proceeded to implement the Dual Extragradient and BCFW algorithms using
 a SVM. We had to define a feature mapping for an input sentence pair. The features
+<<<<<<< HEAD
 were extracted using the fastText library \textbf{TODO CITE}. This library included
+=======
+were extracted using the fastText library \cite{fastText}. This library included
+>>>>>>> b4896b0e1ef113555cb3ff9ea4614c187729ef4b
 a model that was previously trained to learn embeddings of words in both english
 and french. We later combined the embeddings in the two languages by applying a
 transformation found in \textbf{TODO CITE}. This transformation consisted in applying
