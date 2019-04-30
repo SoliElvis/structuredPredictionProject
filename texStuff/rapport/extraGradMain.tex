@@ -1,4 +1,11 @@
 \subsection{Saddle Point Formualtion and Intuition}
+Contrary to the typical approach to solving a problem that is in
+the minimax formulation, which consists in dualizing
+and then solving the resulting convex minimization problem, we keep
+the original form. This enables us to consider a richer class
+of problems that we can tackle, especially for problems where
+dualizing yield a QP that is not efficiently solvable. We first
+take a stab at the saddle-point formulation:
 \begin{equation}
   \min_{\vec w \in {W}} \max_{\vec z \in {Z}} \sum_i \left( \vec
 w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)
@@ -66,7 +73,8 @@ updates for both players at the same time.
         \vec c_m
       \end{array}
     \end{pmatrix}}_{\vec a} = \vec F \vec u - \vec a
-\end{equation}
+  \end{equation}
+
 
 \clearpage
 \subsection{Duality and Gap function}
