@@ -16,6 +16,7 @@
     "intro"
     "structSVM"
     "extraGradMain"
+    "classical_fw"
     "bcfwMain"
     "exp"
     "cvxanalysis"

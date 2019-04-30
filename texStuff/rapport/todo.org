@@ -1,12 +1,16 @@
 #+SEQ_TODO: URGENT(u) STARTED(s)  NEXT(n) TODO(t)  MIDWAY(m) WAITING(w) MAYBE(m) | DONE(d) DEFERRED(l) CANCELLED(c)
 #+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
 * Rapport
+** URGENT BCFW  
+   - [X] classical FW intuition and solidness
+   - [X] bcfw and fw formating algos
+   - [X] mention struct svm
+   - [ ] dual struct-svm form
+   - [ ] citations 
 ** NEXT discussion -> intuition combinatorial vs saddle point approach
    DEADLINE: <2019-04-29 Mon 13:30> SCHEDULED: <2019-04-29 Mon 13:00>
 ** NEXT conclusion
    DEADLINE: <2019-04-29 Mon 14:00>
-
-
 ** To quote for discussion
 *** FW improvements 
     - [ ] [[zotero://select/items/1_DT6RXR4I][Gidel, Gauthier, Tony Jebara, and Simon Lacoste-Julien. “Frank-Wolfe Algorithms for Saddle Point Problems.” ArXiv:1610.07797 {Cs, Math, Stat}, October 25, 2016. http://arxiv.org/abs/1610.07797.]]
@@ -22,11 +26,6 @@
    CLOSED: [2019-04-29 Mon 23:14]
 
 
-** DONE BCFW  
-   CLOSED: [2019-04-29 Mon 23:13]
-   - [X] classical FW intuition and solidness
-   - [X] bcfw and fw formating algos
-   - [X] mention struct svm
 ** DONE theorem env for cross ref
    CLOSED: [2019-04-29 Mon 23:14]
 
