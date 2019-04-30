@@ -2,10 +2,9 @@
 #+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
 * Rapport
 ** MIDWAY BCFW  
-   - [ ] classical FW intuition and solidness
-   - [ ] bcfw and fw formating algos
-   - [ ] struct svm formulation
-   - [ ] max oracle as ilp generalizes other techniques
+   - [X] classical FW intuition and solidness
+   - [X] bcfw and fw formating algos
+   - [ ] mention struct svm
 ** MIDWAY 
 ** URGENT theorem env for cross ref
 

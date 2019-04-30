@@ -11,6 +11,8 @@
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (LaTeX-add-labels
     "saddle_point"
-    "saddle_obj"))
+    "saddle_obj"
+    "alg:extra"
+    "memtweak"))
  :latex)
 
