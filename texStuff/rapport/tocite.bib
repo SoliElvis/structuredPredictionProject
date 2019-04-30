@@ -530,7 +530,7 @@
   abstract = {We extend the Frank-Wolfe (FW) optimization algorithm to solve constrained smooth convex-concave saddle point (SP) problems. Remarkably, the method only requires access to linear minimization oracles. Leveraging recent advances in FW optimization, we provide the first proof of convergence of a FW-type saddle point solver over polytopes, thereby partially answering a 30 year-old conjecture. We also survey other convergence results and highlight gaps in the theoretical underpinnings of FW-style algorithms. Motivating applications without known efficient alternatives are explored through structured prediction with combinatorial penalties as well as games over matching polytopes involving an exponential number of constraints.},
   urldate = {2019-04-29},
   date = {2016-10-25},
-  keywords = {90C52; 90C90; 68T05,Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning},
+  keywords = {Computer Science - Machine Learning,G.1.6,I.2.6,Mathematics - Optimization and Control,Statistics - Machine Learning,90C52; 90C90; 68T05},
   author = {Gidel, Gauthier and Jebara, Tony and Lacoste-Julien, Simon},
   file = {/home/sole/Zotero/storage/UD6GTUFP/Gidel et al. - 2016 - Frank-Wolfe Algorithms for Saddle Point Problems.pdf;/home/sole/Zotero/storage/V59IPSXB/1610.html},
   annotation = {Comment: Appears in: Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS 2017). 39 pages}
@@ -547,14 +547,6 @@
   file = {/home/sole/Zotero/storage/JNM3P263/aligning-vector-representations.html}
 }
 
-@online{FastText,
-  title = {{{fastText}}},
-  url = {https://fasttext.cc/index.html},
-  abstract = {Library for efficient text classification and representation learning},
-  urldate = {2019-04-29},
-  file = {/home/sole/Zotero/storage/8GIQQZ2M/fasttext.cc.html}
-}
-
 @article{smithOfflineBilingualWord2017,
   archivePrefix = {arXiv},
   eprinttype = {arxiv},
@@ -565,7 +557,7 @@
   abstract = {Usually bilingual word vectors are trained "online". Mikolov et al. showed they can also be found "offline", whereby two pre-trained embeddings are aligned with a linear transformation, using dictionaries compiled from expert knowledge. In this work, we prove that the linear transformation between two spaces should be orthogonal. This transformation can be obtained using the singular value decomposition. We introduce a novel "inverted softmax" for identifying translation pairs, with which we improve the precision @1 of Mikolov's original mapping from 34\% to 43\%, when translating a test set composed of both common and rare English words into Italian. Orthogonal transformations are more robust to noise, enabling us to learn the transformation without expert bilingual signal by constructing a "pseudo-dictionary" from the identical character strings which appear in both languages, achieving 40\% precision on the same test set. Finally, we extend our method to retrieve the true translations of English sentences from a corpus of 200k Italian sentences with a precision @1 of 68\%.},
   urldate = {2019-04-29},
   date = {2017-02-13},
-  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Information Retrieval},
+  keywords = {Computer Science - Computation and Language,Computer Science - Artificial Intelligence,Computer Science - Information Retrieval},
   author = {Smith, Samuel L. and Turban, David H. P. and Hamblin, Steven and Hammerla, Nils Y.},
   file = {/home/sole/Zotero/storage/4ATKABRA/Smith et al. - 2017 - Offline bilingual word vectors, orthogonal transfo.pdf;/home/sole/Zotero/storage/T4WQVUQA/1702.html},
   annotation = {Comment: Accepted to conference track at ICLR 2017}
@@ -635,6 +627,59 @@
   pages = {214-221},
   author = {Li, Quannan and Wang, Jingdong and Wipf, David and Tu, Zhuowen},
   file = {/home/sole/Zotero/storage/4LT3QTAM/Li et al. - 2013 - Fixed-Point Model For Structured Labeling.pdf;/home/sole/Zotero/storage/R5K7II7M/li13b.html}
+}
+
+@article{mikolovAdvancesPreTrainingDistributed2017,
+  langid = {english},
+  title = {Advances in {{Pre}}-{{Training Distributed Word Representations}}},
+  url = {https://arxiv.org/abs/1712.09405v1},
+  abstract = {Many Natural Language Processing applications nowadays rely on pre-trained
+word representations estimated from large text corpora such as news
+collections, Wikipedia and Web Crawl. In this paper, we show how to train
+high-quality word vector representations by using a combination of known tricks
+that are however rarely used together. The main result of our work is the new
+set of publicly available pre-trained models that outperform the current state
+of the art by a large margin on a number of tasks.},
+  urldate = {2019-04-30},
+  date = {2017-12-26},
+  author = {Mikolov, Tomas and Grave, Edouard and Bojanowski, Piotr and Puhrsch, Christian and Joulin, Armand},
+  file = {/home/sole/Zotero/storage/JXT3TJCQ/Mikolov et al. - 2017 - Advances in Pre-Training Distributed Word Represen.pdf;/home/sole/Zotero/storage/QBWKYMLZ/1712.html}
+}
+
+@article{vemulapalliCompactEmbeddingFacial2018,
+  langid = {english},
+  title = {A {{Compact Embedding}} for {{Facial Expression Similarity}}},
+  url = {https://arxiv.org/abs/1811.11283v2},
+  abstract = {Most of the existing work on automatic facial expression analysis focuses on
+discrete emotion recognition, or facial action unit detection. However, facial
+expressions do not always fall neatly into pre-defined semantic categories.
+Also, the similarity between expressions measured in the action unit space need
+not correspond to how humans perceive expression similarity. Different from
+previous work, our goal is to describe facial expressions in a continuous
+fashion using a compact embedding space that mimics human visual preferences.
+To achieve this goal, we collect a large-scale faces-in-the-wild dataset with
+human annotations in the form: Expressions A and B are visually more similar
+when compared to expression C, and use this dataset to train a neural network
+that produces a compact (16-dimensional) expression embedding. We
+experimentally demonstrate that the learned embedding can be successfully used
+for various applications such as expression retrieval, photo album
+summarization, and emotion recognition. We also show that the embedding learned
+using the proposed dataset performs better than several other embeddings
+learned using existing emotion or action unit datasets.},
+  urldate = {2019-04-30},
+  date = {2018-11-27},
+  author = {Vemulapalli, Raviteja and Agarwala, Aseem},
+  file = {/home/sole/Zotero/storage/DDQDWEE2/Vemulapalli and Agarwala - 2018 - A Compact Embedding for Facial Expression Similari.pdf;/home/sole/Zotero/storage/7Q4KM3DI/1811.html}
+}
+
+@article{JMLR:v15:mueller14a,
+  title = {Pystruct - {{Learning Structured Prediction}} in {{Python}}},
+  volume = {15},
+  url = {http://jmlr.org/papers/v15/mueller14a.html},
+  journaltitle = {Journal of Machine Learning Research},
+  date = {2014},
+  pages = {2055-2060},
+  author = {Müller, Andreas C. and Behnke, Sven}
 }
 
 
