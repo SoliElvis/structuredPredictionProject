@@ -1,60 +1,60 @@
 \subsection*{ExtraGradient}
 \subsubsection*{Convergence analysis}
 The restricted gap function
-$\mathcal{G}_{D_{\vec v}, D_{\vec z}}$ is upper bounded by:
+$\mathcal{G}_{D_{ v}, D_{ z}}$ is upper bounded by:
 \begin{equation}
-  \mathcal{G}_{D_{\vec w}, D_{\vec z}}(\overline{\vec w^{\tau}},
-\overline{\vec z^{\tau}}) \leq \frac{\left( D_{\vec w} + D_{\vec z} \right)
+  \mathcal{G}_{D_{ w}, D_{ z}}(\overline{ w^{\tau}},
+\overline{ z^{\tau}}) \leq \frac{\left( D_{ w} + D_{ z} \right)
 L}{\tau + 1}
 \label{eq:ub}
 \end{equation}
 
 \begin{equation*}
-    \mathcal{G}_{D_{\vec w},D_{\vec z}}(\vec w, \vec z)
+    \mathcal{G}_{D_{ w},D_{ z}}( w,  z)
     =
     \begin{pmatrix}
       \begin{array}{c}
-        \sum_i \vec F_i \vec z_i^*\\
-	-\vec F_1^T \vec w^*\\
+        \sum_i  F_i  z_i^*\\
+	- F_1^T  w^*\\
 	\vdots\\
-	-\vec F_m^T \vec w^*
+	- F_m^T  w^*
       \end{array}
     \end{pmatrix}^T
     \begin{pmatrix}
       \begin{array}{c}
-	\vec w - \vec w^*\\
-	\vec z_1 - \vec z_1^*\\
+	 w -  w^*\\
+	 z_1 -  z_1^*\\
 	\vdots\\
-	\vec z_m - \vec z_m^*
+	 z_m -  z_m^*
       \end{array}
     \end{pmatrix} -
     \begin{pmatrix}
       \begin{array}{c}
-	\sum_i \vec f_i(\vec y_i)\\
-	\vec c_1\\
+	\sum_i  f_i( y_i)\\
+	 c_1\\
 	\vdots\\
-	\vec c_m
+	 c_m
       \end{array}
     \end{pmatrix}^T
     \begin{pmatrix}
       \begin{array}{c}
-	\vec w - \vec w^*\\
-	\vec z_1 - \vec z_1^*\\
+	 w -  w^*\\
+	 z_1 -  z_1^*\\
 	\vdots\\
-	\vec z_m - \vec z_m^*
+	 z_m -  z_m^*
       \end{array}
     \end{pmatrix}
 \end{equation*}
 
 We have the righ tools for convergence of the algorithm. The Lipschitz constant 
-of the operator $F \vec u - \vec$ is given by$L$ is equal to $\max_{\vec
-u \in \mathcal{U}} \lVert \vec F (\vec u - \vec u') \rVert_2 / \lVert \vec u -
-\vec u' \rVert_2 \leq \lVert \vec F \rVert_2$. Of course, a point $\vec w, \vec
-z$ that satisifies $\lVert \vec w \rVert_2 \leq D_{\vec w}$ and $\lVert \vec z
-\rVert_2 \leq D_{\vec z}$ also satisifies $\lVert (\vec w, \vec z) \rVert_2 \leq
-D$ when $D = \sqrt{D_{\vec w}^2 + D_{\vec z}^2}$ since $(\vec w, 0) \perp (0,
-\vec z)$. It is then easy to see that $f_D \geq \mathcal{G}_{D_{\vec w}, D_{\vec
-z}}$. Thus, the function $\mathcal{G}_{D_{\vec w}, D_{\vec z}}$ is upper bounded
+of the operator $F  u - $ is given by $L$ is equal to $\max_{
+u \in \mathcal{U}} \lVert  F ( u -  u') \rVert_2 / \lVert  u -
+ u' \rVert_2 \leq \lVert  F \rVert_2$. Of course, a point $ w, 
+z$ that satisifies $\lVert  w \rVert_2 \leq D_{ w}$ and $\lVert  z
+\rVert_2 \leq D_{ z}$ also satisifies $\lVert ( w,  z) \rVert_2 \leq
+D$ when $D = \sqrt{D_{ w}^2 + D_{ z}^2}$ since $( w, 0) \perp (0,
+ z)$. It is then easy to see that $f_D \geq \mathcal{G}_{D_{ w}, D_{
+z}}$. Thus, the function $\mathcal{G}_{D_{ w}, D_{ z}}$ is upper bounded
 by the right-hand side of equation \ref{eq:ub}.
 
 %%% Local Variables:
