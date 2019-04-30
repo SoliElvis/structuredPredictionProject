@@ -23,6 +23,7 @@
     "cvxanalysis"
     "app_extra"
     "app_fw"
+    "graphicx"
     "biblatex"
     "csquotes"
     "comment"
