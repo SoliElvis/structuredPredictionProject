@@ -6,7 +6,11 @@ In \citet{taskarStructuredPredictionDual2006} it is proposed to use
 first-order algorithms designed for saddle point problems. 
 This enables us to consider a richer class of problems that we can tackle,
 especially for problems where dualizing yield a QP that is not efficiently
-solvable. We first take a stab at the saddle-point formulation:
+solvable.
+
+We first take a stab at the saddle-point formulation. It is not hard
+to see that the objective function of the non-smooth formulation of
+struct-svm is equivalent to the following:
 \begin{equation}
   \min_{\vec w \in {W}} \max_{\vec z \in {Z}} \sum_i \left( \vec
 w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)

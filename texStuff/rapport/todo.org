@@ -1,20 +1,11 @@
 #+SEQ_TODO: URGENT(u) STARTED(s)  NEXT(n) TODO(t)  MIDWAY(m) WAITING(w) MAYBE(m) | DONE(d) DEFERRED(l) CANCELLED(c)
 #+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
 * Rapport
-** MIDWAY BCFW  
-   - [X] classical FW intuition and solidness
-   - [X] bcfw and fw formating algos
-   - [ ] mention struct svm
-** MIDWAY 
-** URGENT theorem env for cross ref
-
-** WAITING extragrad 
 ** NEXT discussion -> intuition combinatorial vs saddle point approach
    DEADLINE: <2019-04-29 Mon 13:30> SCHEDULED: <2019-04-29 Mon 13:00>
 ** NEXT conclusion
    DEADLINE: <2019-04-29 Mon 14:00>
-** MAYBE put some more cvx analysis
-** MAYBE recheck prelim large_margin
+
 
 ** To quote for discussion
 *** FW improvements 
@@ -25,6 +16,22 @@
     - [ ] [[zotero://select/items/3_ECCPXQW8][Zhu, Zhanxing, and Amos J. Storkey. “Adaptive Stochastic Primal-Dual Coordinate Descent for Separable Saddle Point Problems,” June 12, 2015.]]
     - [ ] [[zotero://select/items/1_4VDFIBL3][Hazan, Elad, and Satyen Kale. “Projection-Free Online Learning.” ArXiv:1206.4657 {Cs}, June 18, 2012. http://arxiv.org/abs/1206.4657.]]
     - [ ] [[zotero://select/items/1_NZWZAEWI][Hieu, Dang Van, Yeol Je Cho, and Yi-bin Xiao. “Modified Extragradient Algorithms for Solving Equilibrium Problems.” Optimization 67, no. 11 (November 2, 2018): 2003–29. https://doi.org/10.1080/02331934.2018.1505886.]]
+** CANCELLED put some more cvx analysis
+   CLOSED: [2019-04-29 Mon 23:14]
+** CANCELLED recheck prelim large_margin
+   CLOSED: [2019-04-29 Mon 23:14]
+
+
+** DONE BCFW  
+   CLOSED: [2019-04-29 Mon 23:13]
+   - [X] classical FW intuition and solidness
+   - [X] bcfw and fw formating algos
+   - [X] mention struct svm
+** DONE theorem env for cross ref
+   CLOSED: [2019-04-29 Mon 23:14]
+
+** DONE extragrad 
+   CLOSED: [2019-04-29 Mon 23:14]
 ** DONE put figures in exp
    CLOSED: [2019-04-29 Mon 21:28]
 ** DONE github link
