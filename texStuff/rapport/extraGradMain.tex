@@ -8,8 +8,8 @@ w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)
 
 where the $\vec z_i$'s can be identified with the edge and node potentials of a
 markov network and satisfy the constraints of the structured problem. The terms
-$\vec F_i$ correspond to the feature mapping for over all labels $\vec y_i$ when
-multiplied by $\vec z_i$'s. The $\vec c_i$'s correspond to the costs of a $\vec z_i$ and can be
+$\vec F_i$ correspond to the matrix with columns $f(\vec x_i, \vec y)$ over labels $\vec y$i.  
+The $\vec c_i$'s correspond to the costs of a $\vec z_i$ and can be
 identified with the loss $l$ for a label $\vec y_i'$.
 
 In equation \ref{saddle_point}, the term that is opitmized is defined
@@ -106,7 +106,7 @@ The dual extragradient algorithm from Nesterov gives a convergence guarantee for
 the objective ${L}$.\\
 We present a simple formulation of the algorithm:
 \begin{algorithmic}
-  \STATE Initialize: Choose $\hat{\vec u} \in {U}$, set $\vec s^{-1} = 0$.
+  \STATE \textbf{Initialize}: Choose $\hat{\vec u} \in {U}$, set $\vec s^{-1} = 0$.
   \FOR{$t=0$ to $t=\tau$}
   \STATE $\vec v = \mathbf{\Pi}_{{U}}(\hat{\vec u} + \eta \vec s^{t-1})$\\
   \STATE $\vec u^t = \mathbf{\Pi}_{{U}}(\vec v - \eta (\vec F \vec v - \vec a))$\\
@@ -118,14 +118,13 @@ We present a simple formulation of the algorithm:
 This algorithm has a lookahead step (i.e. $v$) that serves the peform the actual
 gradient update $u^t$. The intuition behind the lookahead step is that given a
 function to optimize that is Lipschitz, Nesterov was able to show that we can
-upper bound $f_{D}(\bar{u^n}) = \max_y \left \{ \langle g(y),\bar{u^n} - y
-\rangle : d(\hat{u},y) \leq D \right \}$, where $\bar{u^n}$ is the weighted
+upper bound $f_{D}(\bar{u}^n) = \max_y \left \{ \langle g(y),\bar{u}^n - y
+\rangle : d(\hat{u},y) \leq D \right \}$, where $\bar{u}^n is the weighted
 average over all the updates $u^t$ up to iteration n. The function g corresponds
-to the objective ${L}$ in our setting. When value of $f_D(\bar{u^n})$
+to the objective ${L}$ in our setting. When value of $f_D(\bar{u}^n)$
 gets close to 0, we have that the value $g(y^*)$ for an optimal $y^*$ is close
 to 0, which signifies that we have reached saddle point (i.e. what we wanted).
-Nesterov goes on to show that this upper bound indeed goes to 0. We then get
-convergence to a saddle point. Note that in the definition of $f_D$, we used a
+Note that in the definition of $f_D$, we used a
 distance metric d. This corresponds to the Euclidean distance (or Bregman
 distance in non-Euclidean setting). The rojection operator $\Pi_{{U}}$
 in the algorithm simply projects a point back to the set ${U}$ by
@@ -140,23 +139,28 @@ of the paper introduced the Bregman operator, which computes the projection
 using the Bregmand divergence. Using this operator has the great advantage of
 being easier to compute. We can see this for $L1$ regularization. Computing a
 projection using $L1$ distance is hard since it is not differentiable. Using the
-negative entropy, we get that the Bregman divergence is the KL divergence. This
+negative entropy as our function h (see \ref{proxstep}), we get that the Bregman divergence is the KL divergence. This
 implies that we can differentiate the divergence to get the parameter that
-minimizes it.
+minimizes it. It is worth mentioning that for some problems, projections can
+still be hard to compute. This is why it may be wise to move to the FW algorithm
+especially if solving a linear problem over constraints the constraints is easy (or ``easier'').
 
 \subsubsection{Memory-efficient tweak}
 In the dual extragradient algorithm, both a vector $s^t$ and a vector
-$\bar{u^t}$ are maintained. However, we can observe that the $s_t$'s can be
+$\bar{u}^t$ are maintained. However, we can observe that the $s_t$'s can be
 found using the running average $\bar{u^t}$ since $s^t = -(t + 1 ) \sum_{i=0}^t
-(F \bar{u^t} - a)$. We only have to store the vector $\bar{u^t}$. We can even do
-better when $|{Z}| \gg |{W}|$ since $\bar{u^t} = \{
-\bar{u^t}_w,\bar{u^t}_z \}$ and we only care about the part that corresponds to
-$w$. $\bar{u^t}_z$ is maintained implicitly by storing a vector of size
+(F \bar{u}^t - a)$. We only have to store the vector $\bar{u}^t$. We can even do
+better when $|{Z}| \gg |{W}|$ since $\bar{u}^t = \{
+\bar{u}_w^t,\bar{u}_z^t \}$ and we only care about the part that corresponds to
+$w$. $\bar{u}_z^t$ is maintained implicitly by storing a vector of size
 $|{W}|$ (although we now need to store $s_w^t$). It can be reconstructed
-using $\bar{u^t}_w$.
-% The following figure (\textbf{ADD FIGURE 5 FROM PAPER})
+using $\bar{u}_w^t$.
+% The following figure:
 % illustrates the various dependencies.
-%TODO
+\begin{figure}
+  \includegraphics{figures/mem_tweak.png}
+  \label{memtweak}
+  \caption{Memory efficient algorithm}
 
 %%% Local Variables:
 %%% mode: latex
