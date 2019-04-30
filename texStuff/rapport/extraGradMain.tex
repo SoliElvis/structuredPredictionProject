@@ -8,9 +8,9 @@ w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)
 
 where the $\vec z_i$'s can be identified with the edge and node potentials of a
 markov network and satisfy the constraints of the structured problem. The terms
-$\vec F_i$ correspond to the matrix with columns $f(\vec x_i, \vec y)$ over labels $\vec y$i.  
-The $\vec c_i$'s correspond to the costs of a $\vec z_i$ and can be
-identified with the loss $l$ for a label $\vec y_i'$.
+$\vec F_i$ correspond to the matrix with columns $f(\vec x_i, \vec y)$ over
+labels $\vec y$i. The $\vec c_i$'s correspond to the costs of a $\vec z_i$ and
+can be identified with the loss $l$ for a label $\vec y_i'$.
 
 In equation \ref{saddle_point}, the term that is opitmized is defined
 as:
@@ -143,28 +143,29 @@ of the paper introduced the Bregman operator, which computes the projection
 using the Bregmand divergence. Using this operator has the great advantage of
 being easier to compute. We can see this for $L1$ regularization. Computing a
 projection using $L1$ distance is hard since it is not differentiable. Using the
-negative entropy as our function h (see \ref{proxstep}), we get that the Bregman divergence is the KL divergence. This
-implies that we can differentiate the divergence to get the parameter that
-minimizes it. It is worth mentioning that for some problems, projections can
-still be hard to compute. This is why it may be wise to move to the FW algorithm
-especially if solving a linear problem over constraints the constraints is easy (or ``easier'').
+negative entropy as our function h (see \ref{proxstep}), we get that the Bregman
+divergence is the KL divergence. This implies that we can differentiate the
+divergence to get the parameter that minimizes it. It is worth mentioning that
+for some problems, projections can still be hard to compute. This is why it may
+be wise to move to the FW algorithm especially if solving a linear problem over
+constraints the constraints is easy (or ``easier'').
 
 \subsubsection{Memory-efficient tweak}
 In the dual extragradient algorithm, both a vector $s^t$ and a vector
 $\bar{u}^t$ are maintained. However, we can observe that the $s_t$'s can be
 found using the running average $\bar{u^t}$ since $s^t = -(t + 1 ) \sum_{i=0}^t
 (F \bar{u}^t - a)$. We only have to store the vector $\bar{u}^t$. We can even do
-better when $|{Z}| \gg |{W}|$ since $\bar{u}^t = \{
-\bar{u}_w^t,\bar{u}_z^t \}$ and we only care about the part that corresponds to
-$w$. $\bar{u}_z^t$ is maintained implicitly by storing a vector of size
-$|{W}|$ (although we now need to store $s_w^t$). It can be reconstructed
-using $\bar{u}_w^t$.
+better when $|{Z}| \gg |{W}|$ since $\bar{u}^t = \{ \bar{u}_w^t,\bar{u}_z^t \}$
+and we only care about the part that corresponds to $w$. $\bar{u}_z^t$ is
+maintained implicitly by storing a vector of size $|{W}|$ (although we now need
+to store $s_w^t$). It can be reconstructed using $\bar{u}_w^t$.
 % The following figure:
 % illustrates the various dependencies.
 \begin{figure}
-  \includegraphics{figures/mem_tweak.png}
+  \includegraphics[width=0.8\textwidth]{figures/mem_tweak.png}
   \label{memtweak}
   \caption{Memory efficient algorithm}
+\end{figure}
 
 %%% Local Variables:
 %%% mode: latex
