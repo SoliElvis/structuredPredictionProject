@@ -276,3 +276,58 @@
 %%% mode: latex
 %%% TeX-master: "mainProject"
 %%% End:
+
+% \clearpage
+% In \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} 
+% We define the \emph{linearize duality gap} for the k'th iterate as:
+% \begin{equation}
+%   g(\alpha^{k}) \triangleq \max_{s\in\mathcal{M}}\langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle
+%   \label{eq:dualityGapDef}
+% \end{equation}
+% We
+% \begin{align}
+%     &f(s)\geq f(\alpha^{k})+ \langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle\\
+%     &\Longrightarrow g(\alpha^{k})=
+%       \min_{s\in\mathcal{M}}\langle \alpha^{k}-s, \nabla
+%       f(\alpha^{k})\rangle \geq f(\alpha^{k})- f^{*}
+% \end{align}
+% We can thus see that the duality gap gives us a computable optimality guarantee. \\
+
+% % \begin{definition}
+% %   The curvature constant $C_{f}$ is given by the maximum relative deviation of
+% %   the objective function f from its linear aaporximations, over the domain
+% %   $\mathcal{M}$,
+% % \end{definition}
+
+
+% % \begin{align}
+% %     &C_{f}= \underset{\underset{ \gamma\in[0,1],
+% % y=x+\gamma(s-x)}{x,s\in\mathcal{M}}}{sup}\frac{2}{\gamma^{2}}\Big(f(y)- f(x)-
+% % \langle y-x, \nabla f(x)\rangle\Big)
+% % \end{align}
+% % Intuitively, the curvature constant can be seen as a measure of how flat the
+% % objective function is. For example, if the objective is linear, say $f(x)= ax+
+% % b$ and $x\in[e,f]$ then $\nabla f(x)= a$ and the curvature constant is zero:
+% % \begin{align}
+% %     &C_{f}= \frac{2}{\gamma^{2}}\Big(ay+ b- ax- b +(-ay +ax)\Big)= 0
+% % \end{align}
+% % Moreover $s=\textit{argmin}_{s\in[e,f]}\langle s, a\rangle= \frac{e}{a}$. Hence
+% % we reach the minimum in one F-W step. Thus, we can observe that for flatter
+% % functions, that is with smaller curvature constants, Frank-Wolfe should converge
+% % faster. 
+
+% % \begin{theorem}
+% %   The duality gap obtained in the $t^{th}$ iteraton of the Frank-Wolfe algorithm
+% % satisfies
+% % \begin{align}
+% %     &g(x_{t})\leq 2\beta\frac{C_{f}}{t+2}(1+\delta)
+% % \end{align}
+% % Where $\beta= \frac{27}{8}$ and $\delta$ is the approximation error tolerated in
+% % the $LMO$.
+% % \end{theorem}
+
+
+% %%% Local Variables:
+% %%% mode: latex
+% %%% TeX-master: "mainProject"
+% %%% End:

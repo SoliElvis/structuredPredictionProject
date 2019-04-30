@@ -19,70 +19,48 @@ Intuitively the classical FW starts with an active set consisting of only an ini
 point $S^{0}= \{x_{0}\}$, and then adds an element $s_{t}=
 LMO_{\mathcal{M}}(\nabla f(x_{t}))$ to the active set by taking its
 convex combination with the previous iterate which allows for a sparse
-representation.
-\begin{algorithm}
+representation. The convex combination ``weight'', usually denoted $\gamma$,
+can be computed exactly analytically. This is a key feature of the algorithm
+as many other require to compute the gradient's lipschitz constant and/or the
+strong-convexity parameter, usually denoted $\mu$.
+
+\begin{algorithm}[htbp!]
   \caption{Classical Frank-Wolf}
   \label{alg:fw}
 \begin{algorithmic}
    \STATE Let $\alpha\in\mathcal{M}$
    \FOR{$k=0$ {\bfseries to} $K$}
    \STATE {Compute $s={\textit{argmin}}_{s\in\mathcal{M}}\langle s, \nabla f(\alpha^{k})\rangle$}
-   \STATE Let $\gamma = \frac{2}{k+2}$, or optimize $\gamma$ by line search
+   \STATE Let $\gamma = \frac{2}{k+2}$ (simple version) or optimize for line-search
    \STATE Update $\alpha^{k+1}= (1-\gamma)\alpha^{k}+ \gamma s$
    \ENDFOR
 \end{algorithmic}
 \end{algorithm}
 
-In \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} 
-We define the \emph{linearize duality gap} for the k'th iterate as:
-\begin{equation}
-  g(\alpha^{k}) \triangleq \max_{s\in\mathcal{M}}\langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle
-  \label{eq:dualityGapDef}
-\end{equation}
-We
-\begin{align}
-    &f(s)\geq f(\alpha^{k})+ \langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle\\
-    &\Longrightarrow g(\alpha^{k})=
-      \min_{s\in\mathcal{M}}\langle \alpha^{k}-s, \nabla
-      f(\alpha^{k})\rangle \geq f(\alpha^{k})- f^{*}
-\end{align}
-We can thus see that the duality gap gives us a computable optimality guarantee. \\
+There has recently been a resugence of interest into FW in the machine learning
+literature which can be explained by the following table from a tutorial on FW
+by Martin Jaggi \citet{jaggiFrankWolfeOptimizationAlgorithms2014}
+\begin{table}[htbp!]
+  \center
+  \begin{tabular}{|l|l|l|}
+  \hline
+  & Frank-Wolfe & Gradient Descent and Proximal Methods\\
+  \hline
+  Iteration cost & solve linear problem & Projection or prox operation more generally\\
+  \hline
+  Iterates & sparse & \textbf{dense}\\
+  \hline
+  \end{tabular}
+\end{table}
 
-% \begin{definition}
-%   The curvature constant $C_{f}$ is given by the maximum relative deviation of
-%   the objective function f from its linear aaporximations, over the domain
-%   $\mathcal{M}$,
-% \end{definition}
+Sparsity is obviously a key feature for preventing the memory required to
+explode. Moreover projection and proximal operations can be very expensive in
+certain contexts. %TODO
 
+Many variants and extensions of the basic classical FW algorithm
+but Jaggi lists the main ones and the active research areas
+at the time of writing his paper in 2014. %TODO what changed since then
 
-% \begin{align}
-%     &C_{f}= \underset{\underset{ \gamma\in[0,1],
-% y=x+\gamma(s-x)}{x,s\in\mathcal{M}}}{sup}\frac{2}{\gamma^{2}}\Big(f(y)- f(x)-
-% \langle y-x, \nabla f(x)\rangle\Big)
-% \end{align}
-% Intuitively, the curvature constant can be seen as a measure of how flat the
-% objective function is. For example, if the objective is linear, say $f(x)= ax+
-% b$ and $x\in[e,f]$ then $\nabla f(x)= a$ and the curvature constant is zero:
-% \begin{align}
-%     &C_{f}= \frac{2}{\gamma^{2}}\Big(ay+ b- ax- b +(-ay +ax)\Big)= 0
-% \end{align}
-% Moreover $s=\textit{argmin}_{s\in[e,f]}\langle s, a\rangle= \frac{e}{a}$. Hence
-% we reach the minimum in one F-W step. Thus, we can observe that for flatter
-% functions, that is with smaller curvature constants, Frank-Wolfe should converge
-% faster. 
-
-% \begin{theorem}
-%   The duality gap obtained in the $t^{th}$ iteraton of the Frank-Wolfe algorithm
-% satisfies
-% \begin{align}
-%     &g(x_{t})\leq 2\beta\frac{C_{f}}{t+2}(1+\delta)
-% \end{align}
-% Where $\beta= \frac{27}{8}$ and $\delta$ is the approximation error tolerated in
-% the $LMO$.
-% \end{theorem}
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "mainProject"
-%%% End:
+In this paper we mainly focus on the Block-Seperable variant
+applied to struct-svm problems as presented in 
+\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}

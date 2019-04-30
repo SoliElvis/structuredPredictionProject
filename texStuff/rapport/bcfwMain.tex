@@ -12,41 +12,17 @@ retaining a sublinear convergence rate. Moreover, despite the exponential number
 of constraints, the algorithm has sparse iterates alleviating the memory issues
 which come with the exponential number of dual variables.
 
-\begin{theorem} Given a convex, differentiable objective
+We are considering seperability of an algorithm hence the following
+well known result is essential:
+\begin{theorem}
+  Given a convex, differentiable objective
 $f:\mathcal{M}^{1}\times...\times\mathcal{M}^{n}\to\mathbb{R}$, where $\forall
 i\in\{1..n\}$, each factor\quad $\mathcal{M}^{i}\subseteq\mathbb{R}^{n}$ is
 convex and compact, if we are at a point $x$ such that $f(x)$ is minimized along
 each coordinate axis, then $x$ is a global minimum.
-\begin{proof}
-The objective function being differentiable and convex, if we are at a point
-$\alpha$ such that $f(\alpha)$ is minimized along each coordinate axis, then
-$\alpha$ is a global minimizer. Therefore,
-\begin{align}
-    &\underset{s\in\mathcal{M}}{\textit{min}}\langle s, \nabla f(\alpha)\rangle
-= \sum_{i}\underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle
-s_{i}, \nabla_{i} f(\alpha)\rangle
-\end{align}
-
-Moreover, with
-\begin{align*}
-   &w=A\alpha, A=\Big[\frac{1}{n\lambda}\psi_{1}(y)...\frac{1}{n\lambda}\psi_{\sum_{i}|\mathcal{Y}_{i}|}(y)\Big]\\
-   &\textit{and}\quad b=\Big(\frac{1}{n}L_{i}(y)\Big)_{i\in\big[n\big],y\in\mathcal{Y}_{i}}
-\end{align*}
-The gradient of the dual would be,
-\begin{align*}
-    &\nabla f(\alpha)= \nabla\Big[\frac{\lambda}{2}||A\alpha||^{2}- b^{T}\alpha\Big] = \lambda A^{T}A\alpha- b\\
-    &= \lambda A^{T}w- b= \frac{1}{n}H_{i}(y,w)\\
-    &\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad\tilde{H}_{i}=
-  -\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad\tilde{H}_{i} =
-  \underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad L_{i}- \langle w,
-  \psi_{i}\rangle\\ &=
-  \underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle s_{i},
-  \nabla_{i} f(\alpha)\rangle\\
-\end{align*}
-Thus we can see that, if $n=$ size of the training data, one Frank-Wolfe step is
-equivalent to $n$ calls to the maximization oracle.
-\end{proof}
 \end{theorem}
+
+The BCFW algorithm as presented in \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}
 
 \begin{algorithm}
   \caption{Block Seperable Frank-Wolf}
@@ -67,6 +43,36 @@ equivalent to $n$ calls to the maximization oracle.
    \ENDFOR
 \end{algorithmic}
 \end{algorithm}
+
+% \begin{proof}
+% The objective function being differentiable and convex, if we are at a point
+% $\alpha$ such that $f(\alpha)$ is minimized along each coordinate axis, then
+% $\alpha$ is a global minimizer. Therefore,
+% \begin{align}
+%     &\underset{s\in\mathcal{M}}{\textit{min}}\langle s, \nabla f(\alpha)\rangle
+% = \sum_{i}\underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle
+% s_{i}, \nabla_{i} f(\alpha)\rangle
+% \end{align}
+
+% Moreover, with
+% \begin{align*}
+%    &w=A\alpha, A=\Big[\frac{1}{n\lambda}\psi_{1}(y)...\frac{1}{n\lambda}\psi_{\sum_{i}|\mathcal{Y}_{i}|}(y)\Big]\\
+%    &\textit{and}\quad b=\Big(\frac{1}{n}L_{i}(y)\Big)_{i\in\big[n\big],y\in\mathcal{Y}_{i}}
+% \end{align*}
+% The gradient of the dual would be,
+% \begin{align*}
+%     &\nabla f(\alpha)= \nabla\Big[\frac{\lambda}{2}||A\alpha||^{2}- b^{T}\alpha\Big] = \lambda A^{T}A\alpha- b\\
+%     &= \lambda A^{T}w- b= \frac{1}{n}H_{i}(y,w)\\
+%     &\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad\tilde{H}_{i}=
+%   -\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad\tilde{H}_{i} =
+%   \underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad L_{i}- \langle w,
+%   \psi_{i}\rangle\\ &=
+%   \underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle s_{i},
+%   \nabla_{i} f(\alpha)\rangle\\
+% \end{align*}
+% Thus we can see that, if $n=$ size of the training data, one Frank-Wolfe step is
+% equivalent to $n$ calls to the maximization oracle.
+% \end{proof}
 
 %%% Local Variables:
 %%% mode: latex

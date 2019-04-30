@@ -2,13 +2,34 @@
 #+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
 * Rapport
 ** URGENT BCFW  
-   - [-] classical FW intuition and solidness
-     - [X] lmo
-     - [ ] conditional gradient name intuition
-   - [ ] dual struct-svm form
-   - [ ] citations 
+
+*** MAYBE classical FW intuition and solidness [2/4]
+      - [X] lmo
+      - [X] description and advantages
+        :drawer:
+          |----------------+----------------------+---------------------------------------------|
+          |                | Frank-Wolfe          | Gradient Descent and Proximal Methods       |
+          |----------------+----------------------+---------------------------------------------|
+          | Iteration cost | solve linear problem | Projection or prox operation more generally |
+          | Iterates       | sparse               | \textbf{dense}                              |
+          |----------------+----------------------+---------------------------------------------|
+         :end:
+      - [ ] list extensions and active research:
+        :drawer:
+        #+CAPTION: Extensions and areas of active research
+        [[./figures/extensionsFW.png]]
+        :end:
+      - [ ] intuition (conditional part, independence ?
+     
+*** NEXT dual struct-svm form
+*** URGENT citations
+
+** URGENT extragradient:
+   - WHY ARE PROJECTIONS EXPENSIVE
+
 ** NEXT discussion -> intuition combinatorial vs saddle point approach
 ** NEXT conclusion
+** MAYBE complexity Nesterov 2018
 ** MAYBE put some more cvx analysis
 ** MAYBE recheck prelim large_margin
 ** MAYBE abstract
