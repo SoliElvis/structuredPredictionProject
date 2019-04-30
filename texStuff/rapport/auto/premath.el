@@ -16,6 +16,7 @@
     "article"
     "art10"
     "algorithmic"
+    "algorithm"
     "comment"
     "isodate"
     "graphicx"
@@ -51,7 +52,9 @@
    (LaTeX-add-lengths
     "tindent")
    (LaTeX-add-amsthm-newtheorems
-    "theorem")
+    "theorem"
+    "lemma"
+    "definition")
    (LaTeX-add-mathtools-DeclarePairedDelimiters
     '("abs" "")
     '("norm" "")))
