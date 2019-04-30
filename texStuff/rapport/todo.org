@@ -1,7 +1,6 @@
 #+SEQ_TODO: URGENT(u) STARTED(s)  NEXT(n) TODO(t)  MIDWAY(m) WAITING(w) MAYBE(m) | DONE(d) DEFERRED(l) CANCELLED(c)
 #+TAGS: data(d) numerical(n) rapport(r) logisitics(l)
 * Rapport
-** MIDWAY put figures in exp
 ** NEXT BCFW  
 ** NEXT extragrad 
 ** NEXT discussion -> intuition combinatorial vs saddle point approach
@@ -21,6 +20,8 @@
     - [ ] [[zotero://select/items/3_ECCPXQW8][Zhu, Zhanxing, and Amos J. Storkey. “Adaptive Stochastic Primal-Dual Coordinate Descent for Separable Saddle Point Problems,” June 12, 2015.]]
     - [ ] [[zotero://select/items/1_4VDFIBL3][Hazan, Elad, and Satyen Kale. “Projection-Free Online Learning.” ArXiv:1206.4657 {Cs}, June 18, 2012. http://arxiv.org/abs/1206.4657.]]
     - [ ] [[zotero://select/items/1_NZWZAEWI][Hieu, Dang Van, Yeol Je Cho, and Yi-bin Xiao. “Modified Extragradient Algorithms for Solving Equilibrium Problems.” Optimization 67, no. 11 (November 2, 2018): 2003–29. https://doi.org/10.1080/02331934.2018.1505886.]]
+** DONE put figures in exp
+   CLOSED: [2019-04-29 Mon 21:28]
 ** DONE github link
    CLOSED: [2019-04-29 Mon 20:11]
 ** DONE extragradient basic : put it away
