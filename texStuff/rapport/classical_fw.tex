@@ -15,11 +15,10 @@ $\mathcal M$.
 \end{definition}
 
 
-Intuitively the classical FW starts with an active set consisting of only an initial feasible
-point $S^{0}= \{x_{0}\}$, and then adds an element $s_{t}=
-LMO_{\mathcal{M}}(\nabla f(x_{t}))$ to the active set by taking its
-convex combination with the previous iterate which allows for a sparse
-representation. The convex combination ``weight'', usually denoted $\gamma$,
+Intuitively the classical FW is a descent method where starting from some
+arbitrary feasible point we repeatdly take convex combinations with outputs of
+the oracle $s_{t}= LMO_{\mathcal{M}}(\nabla f(x_{t}))$. 
+The convex combination ``weight'', usually denoted $\gamma$,
 can be computed exactly analytically. This is a key feature of the algorithm
 as many other require to compute the gradient's lipschitz constant and/or the
 strong-convexity parameter, usually denoted $\mu$.

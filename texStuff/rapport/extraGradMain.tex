@@ -1,12 +1,26 @@
 \subsection{Saddle Point Formualtion and Intuition}
-It used to be the typical approach to solving a problem that is in
-the minimax formulation to dualize and then solve the resulting convex
-minimization problem through a generic non linear solver.
-In \citet{taskarStructuredPredictionDual2006} it is proposed to use
-first-order algorithms designed for saddle point problems. 
-This enables us to consider a richer class of problems that we can tackle,
-especially for problems where dualizing yield a QP that is not efficiently
-solvable.
+Let us focus on the loss-augmented formulation
+\begin{equation}
+  \min_{w} \quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\Tilde{H}_{i}(w)
+\end{equation}
+which is an unconstrained convex (strongly ? TODO) problem, however it is
+non-smooth. What is important to note is that\emph{objective functions is
+defined through the solution of another smaller optimization (maximization) problem.} Clearly
+it would be naive to just solve one after the other in batch. There are multiple
+approaches to this. A decade or so ago one formulation one could find was a  QP
+formulation (TODO cite other than taskar).
+
+In
+\citet{taskarStructuredPredictionDual2006} it is proposed to use first-order
+algorithms designed for saddle point problems in order to leverage the saddle
+point structure intrisc to the problem eventhough it is talked of as a
+minimization problem.  Intuitively one could say that the harder the
+inference/decoding problem is, the closer we are to a true s
+
+This enables us to consider a
+richer class of problems that we can tackle, especially for problems where
+dualizing yields a quadratic program (QP) that is not necessarily efficiently
+solvable; mainly because we are not leveraging the structure of the problem.
 
 We first take a stab at the saddle-point formulation. It is not hard
 to see that the objective function of the non-smooth formulation of

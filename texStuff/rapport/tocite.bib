@@ -179,14 +179,6 @@
   editor = {Thrun, S. and Saul, L. K. and Schölkopf, B.}
 }
 
-@article{jaggiRevisitingFrankWolfeProjectionFree,
-  langid = {english},
-  title = {Revisiting {{Frank}}-{{Wolfe}}: {{Projection}}-{{Free Sparse Convex Optimization}}},
-  abstract = {We provide stronger and more general primal-dual convergence results for FrankWolfe-type algorithms (a.k.a. conditional gradient) for constrained convex optimization, enabled by a simple framework of duality gap certiﬁcates. Our analysis also holds if the linear subproblems are only solved approximately (as well as if the gradients are inexact), and is proven to be worst-case optimal in the sparsity of the obtained solutions. On the application side, this allows us to unify a large variety of existing sparse greedy methods, in particular for optimization over convex hulls of an atomic set, even if those sets can only be approximated, including sparse (or structured sparse) vectors or matrices, low-rank matrices, permutation matrices, or max-norm bounded matrices.},
-  pages = {12},
-  author = {Jaggi, Martin}
-}
-
 @article{joachimsCuttingplaneTrainingStructural2009,
   langid = {english},
   title = {Cutting-Plane Training of Structural {{SVMs}}},
@@ -707,13 +699,39 @@ learned using existing emotion or action unit datasets.},
   file = {/home/sole/Zotero/storage/GEYZV5JM/Jaggi - 2014 - Frank-Wolfe Optimization Algorithms.pdf}
 }
 
-@article{jaggiFrankWolfeOptimizationAlgorithms2014a,
+@article{braunBlendedConditionalGradients2018,
+  archivePrefix = {arXiv},
+  eprinttype = {arxiv},
+  eprint = {1805.07311},
+  primaryClass = {cs, math},
+  title = {Blended {{Conditional Gradients}}: The Unconditioning of Conditional Gradients},
+  url = {http://arxiv.org/abs/1805.07311},
+  shorttitle = {Blended {{Conditional Gradients}}},
+  abstract = {We present a blended conditional gradient approach for minimizing a smooth convex function over a polytope P, combining the Frank--Wolfe algorithm (also called conditional gradient) with gradient-based steps, different from away steps and pairwise steps, but still achieving linear convergence for strongly convex functions, along with good practical performance. Our approach retains all favorable properties of conditional gradient algorithms, notably avoidance of projections onto P and maintenance of iterates as sparse convex combinations of a limited number of extreme points of P. The algorithm is lazy, making use of inexpensive inexact solutions of the linear programming subproblem that characterizes the conditional gradient approach. It decreases measures of optimality (primal and dual gaps) rapidly, both in the number of iterations and in wall-clock time, outperforming even the lazy conditional gradient algorithms of [arXiv:1410.8816]. We also present a streamlined version of the algorithm for the probability simplex.},
+  urldate = {2019-04-30},
+  date = {2018-05-18},
+  keywords = {68Q32; 90C52,Computer Science - Computational Complexity,Computer Science - Machine Learning,Mathematics - Optimization and Control},
+  author = {Braun, Gábor and Pokutta, Sebastian and Tu, Dan and Wright, Stephen},
+  file = {/home/sole/Zotero/storage/8QY8RYAN/Braun et al. - 2018 - Blended Conditional Gradients the unconditioning .pdf;/home/sole/Zotero/storage/UKYEZWBQ/1805.html},
+  annotation = {Comment: 32 pages + 12 figures}
+}
+
+@article{liuApproximateConditionalGradient,
   langid = {english},
-  title = {Frank-{{Wolfe Optimization Algorithms}}},
-  date = {2014},
-  pages = {33},
-  author = {Jaggi, Martin},
-  file = {/home/sole/Zotero/storage/9FNVIW4N/Jaggi.pdf}
+  title = {Approximate {{Conditional Gradient Descent}} on {{Multi}}-{{Class Classification}}},
+  abstract = {Conditional gradient descent, aka the Frank-Wolfe algorithm, regains popularity in recent years. The key advantage of Frank-Wolfe is that at each step the expensive projection is replaced with a much more efﬁcient linear optimization step. Similar to gradient descent, the loss function of FrankWolfe scales with the data size. Training on big data poses a challenge for researchers. Recently, stochastic Frank-Wolfe methods have been proposed to solve the problem, but they do not perform well in practice. In this work, we study the problem of approximating the Frank-Wolfe algorithm on the large-scale multi-class classiﬁcation problem which is a typical application of the Frank-Wolfe algorithm. We present a simple but effective method employing internal structure of data to approximate Frank-Wolfe on the large-scale multiclass classiﬁcation problem. Empirical results verify that our method outperforms the state-of-the-art stochastic projectionfree methods.},
+  pages = {7},
+  author = {Liu, Zhuanghua and Tsang, Ivor W},
+  file = {/home/sole/Zotero/storage/3PEARP8S/Liu and Tsang - Approximate Conditional Gradient Descent on Multi-.pdf}
+}
+
+@article{liuApproximateConditionalGradienta,
+  langid = {english},
+  title = {Approximate {{Conditional Gradient Descent}} on {{Multi}}-{{Class Classification}}},
+  abstract = {Conditional gradient descent, aka the Frank-Wolfe algorithm, regains popularity in recent years. The key advantage of Frank-Wolfe is that at each step the expensive projection is replaced with a much more efﬁcient linear optimization step. Similar to gradient descent, the loss function of FrankWolfe scales with the data size. Training on big data poses a challenge for researchers. Recently, stochastic Frank-Wolfe methods have been proposed to solve the problem, but they do not perform well in practice. In this work, we study the problem of approximating the Frank-Wolfe algorithm on the large-scale multi-class classiﬁcation problem which is a typical application of the Frank-Wolfe algorithm. We present a simple but effective method employing internal structure of data to approximate Frank-Wolfe on the large-scale multiclass classiﬁcation problem. Empirical results verify that our method outperforms the state-of-the-art stochastic projectionfree methods.},
+  pages = {7},
+  author = {Liu, Zhuanghua and Tsang, Ivor W},
+  file = {/home/sole/Zotero/storage/CTFNDNG4/Liu and Tsang - Approximate Conditional Gradient Descent on Multi-.pdf}
 }
 
 @preamble{ "\ifdefined\DeclarePrefChars\DeclarePrefChars{'’-}\else\fi " }

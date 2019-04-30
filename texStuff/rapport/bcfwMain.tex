@@ -6,23 +6,34 @@ while only requiring a single call to the maximization oracle every step. They
 are nonetheless very sensitive to the sequence of stepsizes and it is unclear
 when to terminate the iterations. \\
 
-Frank-Wolfe methods address these problems by giving a stepsize which
-can be computed exactly analytically and a computable duality gap while still
-retaining a sublinear convergence rate. Moreover, despite the exponential number
-of constraints, the algorithm has sparse iterates alleviating the memory issues
-which come with the exponential number of dual variables.
+In fact many algorithms with good theoretical garantees introduce a dependency
+between the stepsize to be chosen and some constants which caracterize the
+function, e.g. the lipschitz constant of the gradient ($L$) and the
+strong-convexity constant ($\mu$), they are however not necessarily computable.
+One of the main interests in FW approaches is that we get an optimality
+certficate \textit{for free} which ties in elegantly with convex analysis
+results. Moreover we have many good options for the choice of step-size with
+theoretical guarantees.
 
-We are considering seperability of an algorithm hence the following
-well known result is essential:
-\begin{theorem}
-  Given a convex, differentiable objective
+Leveraging those aspects the Block-Separable Frank Wolfe algorithm proposed by
+\cite{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} has a stepsize
+which can be computed exactly analytically and a computable duality gap while
+still retaining a sublinear convergence rate. Moreover, despite the exponential
+number of constraints, the algorithm has sparse iterates alleviating the memory
+issues which come with the exponential number of dual variables.
+
+We are considering seperability of an algorithm hence the following well known
+result is essential:
+\begin{theorem} Given a convex, differentiable objective
 $f:\mathcal{M}^{1}\times...\times\mathcal{M}^{n}\to\mathbb{R}$, where $\forall
 i\in\{1..n\}$, each factor\quad $\mathcal{M}^{i}\subseteq\mathbb{R}^{n}$ is
 convex and compact, if we are at a point $x$ such that $f(x)$ is minimized along
 each coordinate axis, then $x$ is a global minimum.
 \end{theorem}
 
-The BCFW algorithm as presented in \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}
+
+The BCFW algorithm as presented in
+\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}
 
 \begin{algorithm}
   \caption{Block Seperable Frank-Wolf}
@@ -43,6 +54,7 @@ The BCFW algorithm as presented in \citet{lacoste-julienBlockCoordinateFrankWolf
    \ENDFOR
 \end{algorithmic}
 \end{algorithm}
+
 
 % \begin{proof}
 % The objective function being differentiable and convex, if we are at a point
