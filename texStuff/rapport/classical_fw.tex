@@ -1,26 +1,25 @@
-\subsection{Frank-Wolfe, the conditional gradient algorithm}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: mainProject.tex
+%%% End:
+\subsection{Frank\-Wolfe, the conditional gradient algorithm}
 Throughout this section we consider the problem of minimizing a
 a continusouly differentiable convex function - say $f$ - over some convex set
 $\mathcal M$.
 \begin{definition}
-  A linear minimization oracle over a set $\mathcal M$ is a (possibly set
-valued) mapping defined the following way:
+  A linear minimization oracle over a set $\mathcal M$ is a map defined the following way:
   \begin{equation}
-    LMO_{\mathcal{A}}(\nabla f(x_{t})) \triangleq
-    \argmin_{s \in\mathcal{A}}\langle s, \nabla f(x_{t})\rangle
+    LMO_{\mathcal{M}}(d) \triangleq \argmin_{s \in\mathcal{M}}\langle d, s \rangle
     \label{eq:lmo}
   \end{equation}
 \end{definition}
 
-Intuitively starting with an active set consisting of only an initial feasible
-point $S^{0}= \{x_{0}\}$, the Frank-Wolfe algorithm adds an element $s_{t}=
-LMO_{\mathcal{A}}(\nabla f(x_{t}))$, to the active set by taking its
-convex combination with the previous iterate which allows for a sparse
-representation. Sparsity is a key feature of the BCFW variant of Frank Wolfe as
-it optimizes over the dual of struct-SVM which has a very large number of
-variables (since the primal has a very large number of constraints defined
-through the hinge loss)
 
+Intuitively the classical FW starts with an active set consisting of only an initial feasible
+point $S^{0}= \{x_{0}\}$, and then adds an element $s_{t}=
+LMO_{\mathcal{M}}(\nabla f(x_{t}))$ to the active set by taking its
+convex combination with the previous iterate which allows for a sparse
+representation.
 \begin{algorithm}
   \caption{Classical Frank-Wolf}
   \label{alg:fw}
@@ -82,7 +81,8 @@ We can thus see that the duality gap gives us a computable optimality guarantee.
 % the $LMO$.
 % \end{theorem}
 
+
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: mainProject
+%%% TeX-master: "mainProject"
 %%% End:
