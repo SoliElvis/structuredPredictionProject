@@ -33,7 +33,6 @@ structural thinking pattern when trying to improve tractability of certain
 problems.
 
 
-\clearpage
 In terms of structure the saddle-point formulation of
 \citet{taskarStructuredPredictionDual2006} to solve structured prediction
 problem feels very natural because saddle points are at the very heart of
@@ -44,9 +43,9 @@ to the first by taking the Fenchel conjugate of a given \emph{perturbation
 function} which acts a link between the two topological spaces $\mathcal X$ and
 $\mathcal Y$.
 
-One should therefore expect their ubiquity and importance in optmization More
+One should therefore expect their ubiquity and importance in optmization. More
 recently \citet{gidelFrankWolfeAlgorithmsSaddle2016a} attacked convex-concave
-saddle point problems, i.e. with the following structure:
+saddle point problems, i.e. models with the following structure:
 \begin{equation}
   \min_{x\in \mathcal X} \max_{y\in\mathcal Y} \mathcal L(x,y)
 \end{equation} with a FW angle, i.e. by resctricting themselves to only have
@@ -58,18 +57,40 @@ as with the dual of struct-svm where the optimal step size ends up being
 computable analytically would not be too surpising. In the aforementionned
 paper problems considered challenging in optimization such as the
 \emph{sparse struct-svm}, i.e. the minimization of the sum of loss-augmented
-decoding subproblems with an added $l1$ regularization term, and 
+decoding subproblems with an added $l1$ regularization term. In their
+experiments it fares well when compared to state of the art stochastic
+subgradient methods. 
 
+All in all the LMO black box approach allow us to build optimization strategies
+around pieces of optimization problems which have become solid ``technology'' in
+the words of Boyd, i.e. optimization procedures which have been battle tested
+and extensively tuned with efficient code. The other key advantage of FW
+approaches s the sparsity of iterates can again often be the difference between
+impossible and tractable.
 
-As for the experiments we made to compare the two algorithms discussed The
-numerical experiments provided with this paper clearly did not provide reliable
-benchmarks for other students of teh field. Structured optimization often
-involves structuring the data in the first place (in a physical sence.) However
-going through the process of trying to reproduce results underscored the danger
-of neglecting the importance of a framework for consistent, solid, and accurate
-benchmarks. We found ourselves biasing towards solutions that are easier to
-preprocess and load into memory and this might be a harder bias to estimate than
-the common statistical one. %%% Local Variables:
+Finally seperable approaches are more and more relevant as datasets grow bigger
+and we want convergence in less expensive iteration steps. On a higher level,
+a fully stochastic treatment of optimization in machine learning contexts, meaning by
+treating quantities such as the gradient as random variables to be sampled from,
+seems to be a logical step and the seperability of an optimization algorithm
+would be hard to neglect as an important factor, even given comparable overall
+convergence rates. For instance in \citet{linStochasticPrimalDualProximal2017a}
+a stochastic primal dual extragradient method is proposed. Using proximal
+mappings instead of projections the author's proposed algorithm, called
+Stochastic Primal-Dual Proximal ExtraGradient descent (SPDEG) was shown to
+converge in expectation with $\mathcal O (1/\sqrt t)$ rate.
+
+As for the numerical experiments we entertained in order to compare the two
+algorithms discussed the results provided with this paper clearly did not
+provide reliable benchmarks for other students of the field. However it was a
+good reminder that Structured optimization often involves structuring the data
+in the first place (in a physical and/or software sence.) Going through the
+process of trying to reproduce results underscored the danger of neglecting the
+importance of a framework for consistent, solid, and accurate benchmarks. We
+found ourselves biasing towards solutions that are easier to preprocess and load
+into memory
+ -and this might be a harder bias to estimate than the common
+statistical one. %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "mainProject"
 %%% End:
