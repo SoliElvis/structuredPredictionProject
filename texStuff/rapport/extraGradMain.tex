@@ -1,100 +1,104 @@
 \subsection{Saddle Point Formualtion and Intuition}
 Let us focus on the loss-augmented formulation
 \begin{equation}
-  \min_{w} \quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}\Tilde{H}_{i}(w)
+  \min_{w} \quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}{H}_{i}(w)
 \end{equation}
 which is an unconstrained convex (strongly ? TODO) problem, however it is
 non-smooth. What is important to note is that\emph{objective functions is
-defined through the solution of another smaller optimization (maximization) problem.} Clearly
-it would be naive to just solve one after the other in batch. There are multiple
-approaches to this. A decade or so ago one formulation one could find was a QP
-formulation (TODO cite other than taskar) where the loss augmented decoding is
-dualized to obtain a more standard quadratic problem which can be plugged into
-commercial solvers \citep{taskarStructuredPredictionDual2006}.
+defined through the solution of another smaller optimization (maximization)
+problem.} Clearly it would be naive to just solve one after the other in batch.
+There are multiple approaches to this. A decade or so ago one formulation one
+could find was a QP formulation (TODO cite other than taskar) where the loss
+augmented decoding is dualized to obtain a more standard quadratic problem which
+can be plugged into commercial solvers
+\citep{taskarStructuredPredictionDual2006}.\\
 
 In \citet{taskarStructuredPredictionDual2006} it is proposed to use first-order
 algorithms designed for saddle point problems in order to leverage the saddle
-point structure intrisc to the problem eventhough it is talked of as a
-minimization problem. Intuitively one could say that the harder the
+point structure intrisc to it. Intuitively one could say that the harder the
 inference/decoding problem is, the closer we are to a saddle-point problem,
 whereas if the decoding problem is trivial we are back to straight minimization
 hence standard classification.
 
-This enables us to consider a richer class of problems that we can tackle,
-especially for problems where dualizing yields a quadratic program (QP) that is
-not necessarily efficiently solvable; mainly because we are not leveraging the
-structure of the problem.
+This enables us to consider a richer class of problems to tackle, especially for
+problems where dualizing yields a quadratic program (QP) that is not necessarily
+efficiently solvable; mainly because we are not leveraging the structure of the
+problem.
 
 We first take a stab at the saddle-point formulation. It is not hard
 to see that the objective function of the non-smooth formulation of
 struct-svm is equivalent to the following:
 \begin{equation}
-  \min_{\vec w \in {W}} \max_{\vec z \in {Z}} \sum_i \left( \vec
-w^T \vec F_i \vec z_i + \vec c_i^T \vec z_i - \vec w^T \vec f_i(\vec y_i)
+  \min_{ w \in {W}} \max_{ z \in {Z}} \sum_i \left( 
+w^T  F_i  z_i +  c_i^T  z_i -  w^T  \phi _i( y_i)
 \right)
   \label{saddle_point}
 \end{equation}
 
-where the $\vec z_i$'s can be identified with the edge and node potentials of a
+where the $ z_i$'s can be identified with the edge and node potentials of a
 markov network and satisfy the constraints of the structured problem. The terms
-$\vec F_i$ correspond to the matrix with columns $f(\vec x_i, \vec y)$ over
-labels $\vec y$i. The $\vec c_i$'s correspond to the costs of a $\vec z_i$ and
-can be identified with the loss $l$ for a label $\vec y_i'$.
+$ F_i$ correspond to the matrix with columns $f( x_i,  y)$ over
+labels $ y$i. The $ c_i$'s correspond to the costs of a $ z_i$ and
+can be identified with the loss $l$ for a label $ y_i'$.
 
-In equation \ref{saddle_point}, the term that is opitmized is defined
+In equation \ref{saddle_point}, the term that is optimized is defined
 as:
 
 \begin{equation}
-  {L}(\vec w,\vec z) \triangleq \sum_i \vec w^T \vec F_i \vec z_i + \vec
-c_i^T - \vec w^T \vec f_i(\vec y_i)
+  {L}( w, z) \triangleq \sum_i  w^T  F_i  z_i + 
+c_i^T -  w^T  \phi_i( y_i)
   \label{saddle_obj}
 \end{equation}
 
-It is bilinear in $w$ and $z$. We can then imagine two players represented by
-$\vec w$ and $\vec z$ that play a zero-sum game. They perform updates using gradients of
-the objective w.r.t. their parameters. They then project the result to the set
-of feasible points given by the constraints imposed on the structure. We usually
-consider Euclidean projections, as there are well-known problems where they are
-efficient to compute. However, as seen later, this is not the case for all
-problem. This is why Bregman projections will be introduced. Going back to the
-zero-sum game, we have the following operator that is used to perform the
-updates for both players at the same time.
+
+\clearpage
+
+The latter function is bilinear in both $w$ and $z$. Once can summon the idea of
+a duel between two maters named $w$ and $ z$ respectively who play a zero-sum
+game. They perform updates using gradients of the objective w.r.t. their
+parameters. They then project the result to the set of feasible points given by
+the constraints imposed on the structure. We usually consider Euclidean
+projections, as there are well-known problems where they are efficient to
+compute. However, as seen later, this is not the case for all problem. This is
+why Bregman projections will be introduced. Going back to the zero-sum game, we
+have the following operator that is used to perform the updates for both players
+at the same time.
 
 \begin{equation}
   \begin{pmatrix}
-    \begin{array}{c} \nabla_{\vec w} {L}(\vec w,\vec z)\\
-      -\nabla_{\vec z_1} {L}(\vec w,\vec z)\\
+    \begin{array}{c} \nabla_{ w} {L}( w, z)\\
+      -\nabla_{ z_1} {L}( w, z)\\
       \vdots\\
-      -\nabla_{\vec z_m} {L}(\vec w,\vec z)
+      -\nabla_{ z_m} {L}( w, z)
     \end{array}
   \end{pmatrix} =
   \underbrace{
     \begin{pmatrix}
       \begin{array}{cccc}
-        0 & \vec F_1 & \dots & \vec F_m\\
-        -\vec F_1^T & & &\\
-        \vdots & & \vec 0 &\\
-        -\vec F_m^T & & &
+        0 &  F_1 & \dots &  F_m\\
+        - F_1^T & & &\\
+        \vdots & &  0 &\\
+        - F_m^T & & &
       \end{array}
-    \end{pmatrix}}_{\vec F}
+    \end{pmatrix}}_{ F}
   \underbrace{
     \begin{pmatrix}
       \begin{array}{c}
-        \vec w\\
-        \vec z_1\\
+         w\\
+         z_1\\
         \vdots\\
-        \vec z_m
+         z_m
       \end{array}
-    \end{pmatrix}}_{\vec u}-
+    \end{pmatrix}}_{ u}-
   \underbrace{
     \begin{pmatrix}
       \begin{array}{c}
-        \sum_i \vec f_i(\vec y_i)\\
-        \vec c_1\\
+        \sum_i  f_i( y_i)\\
+         c_1\\
         \vdots\\
-        \vec c_m
+         c_m
       \end{array}
-    \end{pmatrix}}_{\vec a} = \vec F \vec u - \vec a
+    \end{pmatrix}}_{ a} =  F  u -  a
   \end{equation}
 
 
@@ -103,9 +107,9 @@ updates for both players at the same time.
 We can measure the ``goodness'' of the parameters using the gap function
 ${G}$:
 \begin{equation}
-  {G}(\vec w, \vec z) \triangleq \left[ \max_{\vec z' \in {Z}}
-{L}(\vec w,\vec z') - {L}^* \right] + \left[ {L}^* -
-\min_{\vec w' \in {W}} {L}(\vec w', \vec z) \right]
+  {G}( w,  z) \triangleq \left[ \max_{ z' \in {Z}}
+{L}( w, z') - {L}^* \right] + \left[ {L}^* -
+\min_{ w' \in {W}} {L}( w',  z) \right]
 \end{equation}
 
 where ${L}^*$ gives the result of the min-max of the objective
@@ -113,12 +117,12 @@ ${L}$. When we have a non-optimal point (i.e. not a saddle point), the
 gap is strictly positive. At at an optimal point, the gap is exaclty equal to 0.
 Now the restricted gap is exactly the same but the min and max are computed over
 a set of parameters that are within a certain distance of the start point
-$(\hat{\vec u}_{\vec w},\hat{\vec u}_{\vec z}) \in {U}$:
+$(\hat{ u}_{ w},\hat{ u}_{ z}) \in {U}$:
 \begin{equation}
-  {G}_{D_{\vec w}, D_{\vec z}}(\vec w, \vec z) = \max_{\vec z' \in
-{Z}} \left[ {L}(\vec w', \vec z') : d(\vec z, \vec z') \leq
-D_{\vec z} \right] - \left [ \min_{\vec w' \in {W}} {L}(\vec w',
-\vec z) : d(\vec w, \vec w') \leq D_{\vec w'} \right ]
+  {G}_{D_{ w}, D_{ z}}( w,  z) = \max_{ z' \in
+{Z}} \left[ {L}( w',  z') : d( z,  z') \leq
+D_{ z} \right] - \left [ \min_{ w' \in {W}} {L}( w',
+ z) : d( w,  w') \leq D_{ w'} \right ]
 \end{equation}
 
 The motivation for using this restricted gap function is that if we start
@@ -139,13 +143,13 @@ We present a simple formulation of the algorithm:
   \caption{Dual ExtraGradient}
   \label{alg:extra}
 \begin{algorithmic}
-  \STATE \textbf{Initialize}: Choose $\hat{\vec u} \in {U}$, set $\vec s^{-1} = 0$.
+  \STATE \textbf{Initialize}: Choose $\hat{ u} \in {U}$, set $ s^{-1} = 0$.
   \FOR{$t=0$ to $t=\tau$}
-  \STATE $\vec v = \mathbf{\Pi}_{{U}}(\hat{\vec u} + \eta \vec s^{t-1})$\\
-  \STATE $\vec u^t = \mathbf{\Pi}_{{U}}(\vec v - \eta (\vec F \vec v - \vec a))$\\
-  \STATE $\vec s^t =  \vec s^{t-1} - (\vec F \vec u^t - \vec a)$
+  \STATE $ v = \mathbf{\Pi}_{{U}}(\hat{ u} + \eta  s^{t-1})$\\
+  \STATE $ u^t = \mathbf{\Pi}_{{U}}( v - \eta ( F  v -  a))$\\
+  \STATE $ s^t =   s^{t-1} - ( F  u^t -  a)$
   \ENDFOR
-  \RETURN $\overline{\vec u^{\tau}} = \frac{1}{1 + \tau} \sum_{t=0}^{\tau} \vec u^t$
+  \RETURN $\overline{ u^{\tau}} = \frac{1}{1 + \tau} \sum_{t=0}^{\tau}  u^t$
 \end{algorithmic}
 \end{algorithm}
 
