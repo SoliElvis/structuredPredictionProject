@@ -1,18 +1,18 @@
 \subsection{Saddle Point Formualtion and Intuition}
 Let us focus on the loss-augmented formulation
 \begin{equation}
-  \min_{w} \quad\frac{\lambda}{2}\norm w^{2}+ \frac{1}{n}\sum_{i=1}^{n}H_{i}(w)
+  \min_{w} \quad \frac{\lambda}{2} \norm w^2+ \frac{1}{n}\sum_{i=1}^nH_i(w)
 \end{equation}
 which is an unconstrained non-smooth (strongly) convex problem
-\footnote{It is the sum of a strongly convex function, $\norm_2^2$, and the
-  average of the $H_i$ s which are convex by construction}
-What is important to note is that the
-\emph{objective function is defined through solutions of another smaller optimization
-(maximization) problem.} Clearly it would be naive to just solve one after the
-other in batch. There are multiple approaches to this. A decade or so ago one
-formulation one could find was a small QP formulation where the loss augmented
-decoding is dualized to obtain a more standard quadratic problem which can be
-plugged into commercial solvers \citep{taskarStructuredPredictionDual2006}.\\
+as it is the sum of a strongly convex function, $\norm_2^2$, and the average of
+the $H_i$ s which are convex by construction)
+What is important to note is that the \emph{objective function is defined
+through solutions of another smaller optimization (maximization) problem.}
+Clearly it would be naive to just solve one after the other in batch. There are
+multiple approaches to this. A decade or so ago one formulation one could find
+was a small QP formulation where the loss augmented decoding is dualized to
+obtain a more standard quadratic problem which can be plugged into commercial
+solvers \citep{taskarStructuredPredictionDual2006}.\\
 
 In \citet{taskarStructuredPredictionDual2006} it is proposed to instead use
 first-order algorithms designed specifically for saddle point problems in order

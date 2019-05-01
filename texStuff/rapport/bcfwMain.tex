@@ -28,72 +28,45 @@ search like methods. We also get, \textit{for free} an easily computable duality
 gap estimate while still retaining a sublinear convergence rate. Moreover,
 despite the exponential number of constraints, the algorithm has sparse iterates
 alleviating the memory issues which come with the exponential number of dual
-variables. \\
-TODO cite 
+variables. 
 
-\clearpage
-We are considering seperability of an algorithm hence the following well known
-result is essential:
-\begin{theorem} Given a convex, differentiable objective
-$f:\mathcal{M}^{1}\times...\times\mathcal{M}^{n}\to\mathbb{R}$, where $\forall
-i\in\{1..n\}$, each factor\quad $\mathcal{M}^{i}\subseteq\mathbb{R}^{n}$ is
-convex and compact, if we are at a point $x$ such that $f(x)$ is minimized along
-each coordinate axis, then $x$ is a global minimum.
-\end{theorem}
-TODO cite
-
-The BCFW algorithm as presented in 
-\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} is presented below:
-\begin{algorithm}
-  \caption{Block Seperable Frank-Wolf}
-  \label{alg:bcgfw}
+ \begin{algorithm}[htbp!]
+    \caption{Block-Coordinate Frank-Wolfe -- 
+\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}}
+    \label{alg:bcfw}
 \begin{algorithmic}
-   \STATE Let $\alpha\in\mathcal{M}$
-    \STATE {Let $w^{0}= 0$, $l^{0}= 0$}\\
-    \FOR{$k=0, \dots, K$}
-      \FOR{$i=1, \dots, n$}
-        \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\max} H_{i}(y,w^{k})$}\\[1ex]
-        \STATE {Let $w_{s}= \sum_{i=1}^{n}\frac{1}{n\lambda}\psi_{i}(y_{i}^{*})$,
-                and $l_{s}= \frac{1}{n}\sum_{i=1}^{n}L_{i}(y_{i}^{*})$}\\[1ex]
-        \STATE {Let $\gamma= \frac{\lambda(w^{k}-w_{s})^{T}w^{k}- l^{k}+ l_{s}}{\lambda||w^{k}-w_{s}||^{2}}$,
-                and clip to $[0,1]$}\\[1ex]
-        \STATE {Update $w^{k+1}= (1-\gamma)w^{k}+ \gamma w_{s}$,
-                and $l^{k+1}= (1-\gamma)l^{k}+ \gamma l_{s}$}\\[1ex]
-      \ENDFOR
-   \ENDFOR
+\STATE {Let $w^{0}= w_{i}^{0}= \overline{w}^{0}= 0$, $l^{0}= l_{i}^{0}= 0$}\\
+  \FOR {$k=0...K$}{
+      \STATE{Pick $i$ at random in $\{1,...,n\}$}\\[1ex]
+      \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad H_{i}(y,w^{k})$}\\[1ex]
+      \STATE {Let $w_{s}= \frac{1}{n\lambda}\psi_{i}(y_{i}^{*})$, and $l_{s}= \frac{1}{n}L_{i}(y_{i}^{*})$}\\[1ex]
+      \STATE {Let $\gamma= \frac{\lambda(w_{i}^{k}-w_{s})^{T}w^{k}- l_{i}^{k}+
+              l_{s}}{\lambda||w_{i}^{k}-w_{s}||^{2}}$, and clip to $[0,1]$}\\[1ex]
+      \STATE {Update $w_{i}^{k+1}= (1-\gamma)w_{i}^{k}+ \gamma w_{s}$, and
+              $l_{i}^{k+1}= (1-\gamma)l_{i}^{k}+ \gamma l_{s}$}\\[1ex]
+      \STATE {Update $w^{k+1}= w^{k}+ w_{i}^{k+1}- w_{i}^{k}$, and
+              $l_{i}^{k+1}= (1-\gamma)l_{i}^{k}+ \gamma l_{s}$}\\[1ex] }
+    \ENDFOR
 \end{algorithmic}
 \end{algorithm}
+\clearpage
+
+The version of BCFW presented above \ref{alg:bcfw} is the result of applying
+FW to the (Lagrange) dual of the struct-svm. Let $f$ be the objective function
+of the dual problem of svm-truct. Then, as sensibly emphasized in the paper,
+the key insight is to notice that pluggin $\nabla f(\hat x)$ in the linear
+minimization oracle $LMO_{\mathcal M_i}$ is equivalent to solving the
+loss-augmented decoding problem. \\
+
+This equivalency means we can leverage the clean theoretical results from
+classical FW provided the usually ``moderate'' requirements are satisfied. Hence
+this algorithm is a theoretically sound solution to the main impediments of
+comparable cutting plane and subgradient methods with respect to their
+application in modern machine learning applications: cutting plane is no a
+separableh method and subgradient methods have some step-size issues as
+mentionned previously.
 
 
-% \begin{proof}
-% The objective function being differentiable and convex, if we are at a point
-% $\alpha$ such that $f(\alpha)$ is minimized along each coordinate axis, then
-% $\alpha$ is a global minimizer. Therefore,
-% \begin{align}
-%     &\underset{s\in\mathcal{M}}{\textit{min}}\langle s, \nabla f(\alpha)\rangle
-% = \sum_{i}\underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle
-% s_{i}, \nabla_{i} f(\alpha)\rangle
-% \end{align}
-
-% Moreover, with
-% \begin{align*}
-%    &w=A\alpha, A=\Big[\frac{1}{n\lambda}\psi_{1}(y)...\frac{1}{n\lambda}\psi_{\sum_{i}|\mathcal{Y}_{i}|}(y)\Big]\\
-%    &\textit{and}\quad b=\Big(\frac{1}{n}L_{i}(y)\Big)_{i\in\big[n\big],y\in\mathcal{Y}_{i}}
-% \end{align*}
-% The gradient of the dual would be,
-% \begin{align*}
-%     &\nabla f(\alpha)= \nabla\Big[\frac{\lambda}{2}||A\alpha||^{2}- b^{T}\alpha\Big] = \lambda A^{T}A\alpha- b\\
-%     &= \lambda A^{T}w- b= \frac{1}{n}H_{i}(y,w)\\
-%     &\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad\tilde{H}_{i}=
-%   -\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad\tilde{H}_{i} =
-%   \underset{y_{i}\in\mathcal{Y}_{i}}{\textit{min}}\quad L_{i}- \langle w,
-%   \psi_{i}\rangle\\ &=
-%   \underset{s_{i}\in\Delta_{|\mathcal{Y}_{i}|}}{\textit{min}}\langle s_{i},
-%   \nabla_{i} f(\alpha)\rangle\\
-% \end{align*}
-% Thus we can see that, if $n=$ size of the training data, one Frank-Wolfe step is
-% equivalent to $n$ calls to the maximization oracle.
-% \end{proof}
 
 %%% Local Variables:
 %%% mode: latex

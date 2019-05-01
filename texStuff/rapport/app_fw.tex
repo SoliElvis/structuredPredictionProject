@@ -43,27 +43,11 @@
 % Thus, combining the upper and lower bound, we have that the sparsity (number of used atoms) by the Frank-Wolfe algorithm is worst case optimal.
 
 
-% As in coordinate descent, we minimize the objective function one coordinate
-% (block) at a time. At each iteration, BCFW picks the $i^{th}$ block (from $n$)
-% uniformly at random and updates the $i^{th}$ coordinate of the corresponding
-% weight, by calling the maximization oracle on the chosen block.
-% % \begin{algorithm}[tb]
-% %    \caption{Block-Coordinate Frank-Wolfe}
-% %    \label{alg:example}
-% \begin{algorithmic}
-%     \STATE {Let $w^{0}= w_{i}^{0}= \overline{w}^{0}= 0$, $l^{0}= l_{i}^{0}= 0$}\\
-%     \FOR {$k=0...K$}{
-%         \STATE{Pick $i$ at random in $\{1,...,n\}$}\\
-%         \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad H_{i}(y,w^{k})$}\\
-%         \STATE {Let $w_{s}= \frac{1}{n\lambda}\psi_{i}(y_{i}^{*})$, and $l_{s}= \frac{1}{n}L_{i}(y_{i}^{*})$}\\
-%         \STATE {Let $\gamma= \frac{\lambda(w_{i}^{k}-w_{s})^{T}w^{k}- l_{i}^{k}+ l_{s}}{\lambda||w_{i}^{k}-w_{s}||^{2}}$, and clip to $[0,1]$}\\
-%         \STATE {Update $w_{i}^{k+1}= (1-\gamma)w_{i}^{k}+ \gamma w_{s}$, and $l_{i}^{k+1}= (1-\gamma)l_{i}^{k}+ \gamma l_{s}$}\\
-%         \STATE {Update $w^{k+1}= w^{k}+ w_{i}^{k+1}- w_{i}^{k}$, and $l_{i}^{k+1}= (1-\gamma)l_{i}^{k}+ \gamma l_{s}$}\\
-%     }
-%     \ENDFOR
-% \end{algorithmic}
-% %\end{algorithm}
-% \subsubsection*{Convergence Results}
+As in coordinate descent, we minimize the objective function one coordinate
+(block) at a time. At each iteration, BCFW picks the $i^{th}$ block (from $n$)
+uniformly at random and updates the $i^{th}$ coordinate of the corresponding
+weight, by calling the maximization oracle on the chosen block.
+\subsubsection*{Convergence Results}
 % \textbf{Definition.} Over each coordinate block $\mathcal{M}^{i}$, let the curvature be given by,
 
 % \begin{align}
