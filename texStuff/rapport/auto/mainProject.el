@@ -20,7 +20,6 @@
     "bcfwMain"
     "exp"
     "discussion"
-    "conclusion"
     "cvxanalysis"
     "app_extra"
     "app_fw"

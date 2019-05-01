@@ -12,31 +12,64 @@ ExtraGradient paper a key observation is that the tractability depends on the
 very interaction between the task loss, or its scoring scheme, on one hand and
 it's structured surrogate loss on the other. As it turns out the combination of
 a structured hinge loss as a convex surrogate and a a simple hamming distance
-results in a formulation of the \emph{loss-augmented inference} problem as a
-tractable ILP. In other words if we have a tractable scoring scheme or task
-loss, we can map out how the interaction with specific loss surrogates
-affects the ``transitivity'' of tractability in the original problem.
-These kind of constructive frameworks allow us to build algorithms in a
-principled and elegant manner. 
+results in a formulation of the \emph{loss-augmented inference} problem for
+bipartite matchings as a tractable ILP. In other words if we have a tractable
+scoring scheme or task loss, we can map out how the interaction with specific
+loss surrogates affects the ``transitivity'' of tractability in the original
+problem. These kind of constructive frameworks allow us to build algorithms in a
+principled and elegant manner.
 
 The dual extra gradient algorithm presented in
-\cite{taskarStructuredPredictionDual2006} casts some of the most common max
+\citet{taskarStructuredPredictionDual2006} casts some of the most common max
 margin estimation problems for structured output as a bilinear saddle point
 which opened the door for first order already known techniques and using
 different generalizations of the concept of projection could provide a new angle
 to attack those problems. All those approaches have in common that they leverage
 structures through specific black-boxable oracles to assemble algorithms with
 strong guarantees or tractability. It is obvious by how he opens his latest
-monograph on convex optimization \citeet
+monograph on convex optimization that
+\citet{nesterovLecturesConvexOptimization2018} wants to emphasize the need for a
+structural thinking pattern when trying to improve tractability of certain
+problems.
 
 
-The numerical experiments provided with this paper are clearly not reliable
-benchmarks. However going through the process of trying to reproduce results
-underscored the danger of neglecting a framework for consistent, solid, and
-accurate benchmarks. We found ourselves biasing towards solutions that are
-easier to preprocess and load into memory and this might be a harder bias to
-estimate than the common statistical one.
-%%% Local Variables:
+\clearpage
+In terms of structure the saddle-point formulation of
+\citet{taskarStructuredPredictionDual2006} to solve structured prediction
+problem feels very natural because saddle points are at the very heart of
+duality theory which is the main modern tool of convex analysis. As succintly
+shown in \cite{botConjugateDualityConvex2010}, the dualization of optimization
+problems, in its most general idea, is the creation of a related second problem
+to the first by taking the Fenchel conjugate of a given \emph{perturbation
+function} which acts a link between the two topological spaces $\mathcal X$ and
+$\mathcal Y$.
+
+One should therefore expect their ubiquity and importance in optmization More
+recently \citet{gidelFrankWolfeAlgorithmsSaddle2016a} attacked convex-concave
+saddle point problems, i.e. with the following structure:
+\begin{equation}
+  \min_{x\in \mathcal X} \max_{y\in\mathcal Y} \mathcal L(x,y)
+\end{equation} with a FW angle, i.e. by resctricting themselves to only have
+acces to a LMO black box. Instead of alternating projected gradient steps with
+some averaging scheme alternating FW steps are performed through convex
+combinations once again staying feasible and sparse. Moreover we still get
+decent step sizes in the general case, but other situations where we get lucky
+as with the dual of struct-svm where the optimal step size ends up being
+computable analytically would not be too surpising. In the aforementionned
+paper problems considered challenging in optimization such as the
+\emph{sparse struct-svm}, i.e. the minimization of the sum of loss-augmented
+decoding subproblems with an added $l1$ regularization term, and 
+
+
+As for the experiments we made to compare the two algorithms discussed The
+numerical experiments provided with this paper clearly did not provide reliable
+benchmarks for other students of teh field. Structured optimization often
+involves structuring the data in the first place (in a physical sence.) However
+going through the process of trying to reproduce results underscored the danger
+of neglecting the importance of a framework for consistent, solid, and accurate
+benchmarks. We found ourselves biasing towards solutions that are easier to
+preprocess and load into memory and this might be a harder bias to estimate than
+the common statistical one. %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "mainProject"
 %%% End:
