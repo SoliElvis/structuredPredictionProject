@@ -26,6 +26,7 @@
 
 ** URGENT extragradient:
    - WHY ARE PROJECTIONS EXPENSIVE
+   - [ ] L needed 
 
 ** NEXT discussion -> intuition combinatorial vs saddle point approach
 ** NEXT conclusion
