@@ -1,12 +1,13 @@
 \subsection{Saddle Point Formualtion and Intuition}
 Let us focus on the loss-augmented formulation
 \begin{equation}
-  \min_{w} \quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}{H}_{i}(w)
+  \min_{w} \quad\frac{\lambda}{2}\norm w^{2}+ \frac{1}{n}\sum_{i=1}^{n}H_{i}(w)
 \end{equation}
-which is an unconstrained non-smooth (strongly) convex problem \footnote{It is the sum of a
-strongly convex function, $\norm_2^2$, and the average of the $H_i$'s which are
-convex by construction.}. What is important to note is that the \emph{objective
-function is defined through solutions of another smaller optimization
+which is an unconstrained non-smooth (strongly) convex problem
+\footnote{It is the sum of a strongly convex function, $\norm_2^2$, and the
+  average of the $H_i$ s which are convex by construction}
+What is important to note is that the
+\emph{objective function is defined through solutions of another smaller optimization
 (maximization) problem.} Clearly it would be naive to just solve one after the
 other in batch. There are multiple approaches to this. A decade or so ago one
 formulation one could find was a small QP formulation where the loss augmented
@@ -18,13 +19,13 @@ first-order algorithms designed specifically for saddle point problems in order
 to leverage the saddle point structure intrisc to it. Intuitively one could say
 that the harder the inference/decoding problem is, the closer we are to a
 saddle-point problem, whereas if the decoding problem is trivial we are back to
-straight minimization hence standard classification.
+straight minimization hence standard classification.\\
 
 This enables us to consider a richer class of problems to tackle, especially for
 problems where dualizing yields a quadratic program (QP) that is not necessarily
 efficiently solvable (even though it scales linearly
 \cite{taskarStructuredPredictionDual2006});
-mainly because we are not leveraging the structure of the problem.
+mainly because we are not leveraging the structure of the problem. TODO\\
 
 We first take a stab at the saddle-point formulation. It is not hard
 to see that the objective function of the non-smooth formulation of
@@ -36,17 +37,15 @@ w^T  F_i  z_i +  c_i^T  z_i -  w^T  \phi _i( y_i)
   \label{saddle_point}
 \end{equation}
 
-where the $ z_i$'s correspond to the relaxation of the binary labels $y_i$ 
-and satisfy the constraints of the structured problem. The terms
-$ F_i$ correspond to the matrix with columns $\phi( x_i,  y)$ over
-labels $ y$i. The $ c_i$'s correspond to the costs of a $ z_i$ and
-can be identified with the loss $l$ for a label $ y_i'$.
+where the $ z_i$'s correspond to the relaxation of the binary labels $y_i$ and
+satisfy the constraints of the structured problem. The terms $ F_i$ correspond
+to the matrix with columns $\phi( x_i, y)$ over labels $ y$i. The $ c_i$'s
+correspond to the costs of a $ z_i$ and can be identified with the loss $l$ for
+a label $ y_i'$.
 
-In equation \ref{saddle_point}, the term that is optimized is defined
-as:
+In equation \ref{saddle_point}, the term that is optimized is defined as:
 \begin{equation}
-  {L}( w, z) \triangleq \sum_i  w^T  F_i  z_i + 
-c_i^T -  w^T  \phi_i( y_i)
+  {L}( w, z) \triangleq \sum_i w^T F_i z_i + c_i^T - w^T \phi_i( y_i)
   \label{saddle_obj}
 \end{equation}
 
@@ -126,14 +125,11 @@ We present a simple formulation of the algorithm:
 \subsection{Duality and Gap function}
 We can measure the ``goodness'' of the parameters using the gap function
 ${G}$:
-
 \begin{equation}
   {G}( w,  z) \triangleq \left[ \max_{ z' \in {Z}}
 {L}( w, z') - {L}^* \right] + \left[ {L}^* -
 \min_{ w' \in {W}} {L}( w',  z) \right]
-
 \end{equation}
-
 where ${L}^*$ gives the result of the min-max of the objective
 ${L}$. When we have a non-optimal point (i.e. not a saddle point), the
 gap is strictly positive. At at an optimal point, the gap is exaclty equal to 0.

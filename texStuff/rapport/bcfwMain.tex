@@ -8,20 +8,30 @@ when to terminate the iterations. \\
 
 In fact many algorithms with good theoretical garantees introduce a dependency
 between the stepsize to be chosen and some constants which caracterize the
-function, e.g. the lipschitz constant of the gradient ($L$) and the
-strong-convexity constant ($\mu$), they are however not necessarily computable.
-One of the main interests in FW approaches is that we get an optimality
-certficate \textit{for free} which ties in elegantly with convex analysis
-results. Moreover we have many good options for the choice of step-size with
-theoretical guarantees.
+function, e.g. the lipschitz constant of the gradient ($L$) and/or the
+strong-convexity constant ($\mu$). For example Nesterov (2003) in his analysis
+of dual extragradient the step size is bounded above by the gradient's Lipschitz
+constant which happens to correspond to the norm of the $F$ matrix as defined in
+the previous sextion.\\
 
-Leveraging those aspects the Block-Separable Frank Wolfe algorithm proposed by
-\cite{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} has a stepsize
-which can be computed exactly analytically and a computable duality gap while
-still retaining a sublinear convergence rate. Moreover, despite the exponential
-number of constraints, the algorithm has sparse iterates alleviating the memory
-issues which come with the exponential number of dual variables.
+Those projection-like operators are, however ingenious in their design, not
+necessarily computable. One of the main interests in FW approaches is that we
+get an optimality certficate \textit{for free} at each iteration. The estimate
+used ties in elegantly with convex analysis results. Moreover we have many good
+options for the choice of step-size with theoretical guarantees.\\
 
+Leveraging those aspects the Block-Separable Frank Wolfe algorithm proposed in
+\cite{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} can be used with
+a very simple analytic for the step-size while ensuring theoretical convergence.
+That being said there are many variants which have been tried which use line
+search like methods. We also get, \textit{for free} an easily computable duality
+gap estimate while still retaining a sublinear convergence rate. Moreover,
+despite the exponential number of constraints, the algorithm has sparse iterates
+alleviating the memory issues which come with the exponential number of dual
+variables. \\
+TODO cite 
+
+\clearpage
 We are considering seperability of an algorithm hence the following well known
 result is essential:
 \begin{theorem} Given a convex, differentiable objective
@@ -30,11 +40,10 @@ i\in\{1..n\}$, each factor\quad $\mathcal{M}^{i}\subseteq\mathbb{R}^{n}$ is
 convex and compact, if we are at a point $x$ such that $f(x)$ is minimized along
 each coordinate axis, then $x$ is a global minimum.
 \end{theorem}
+TODO cite
 
-
-The BCFW algorithm as presented in
-\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}
-
+The BCFW algorithm as presented in 
+\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} is presented below:
 \begin{algorithm}
   \caption{Block Seperable Frank-Wolf}
   \label{alg:bcgfw}
@@ -43,13 +52,13 @@ The BCFW algorithm as presented in
     \STATE {Let $w^{0}= 0$, $l^{0}= 0$}\\
     \FOR{$k=0, \dots, K$}
       \FOR{$i=1, \dots, n$}
-        \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\max} H_{i}(y,w^{k})$}\\
+        \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\max} H_{i}(y,w^{k})$}\\[1ex]
         \STATE {Let $w_{s}= \sum_{i=1}^{n}\frac{1}{n\lambda}\psi_{i}(y_{i}^{*})$,
-                and $l_{s}= \frac{1}{n}\sum_{i=1}^{n}L_{i}(y_{i}^{*})$}\\
+                and $l_{s}= \frac{1}{n}\sum_{i=1}^{n}L_{i}(y_{i}^{*})$}\\[1ex]
         \STATE {Let $\gamma= \frac{\lambda(w^{k}-w_{s})^{T}w^{k}- l^{k}+ l_{s}}{\lambda||w^{k}-w_{s}||^{2}}$,
-                and clip to $[0,1]$}\\
+                and clip to $[0,1]$}\\[1ex]
         \STATE {Update $w^{k+1}= (1-\gamma)w^{k}+ \gamma w_{s}$,
-                and $l^{k+1}= (1-\gamma)l^{k}+ \gamma l_{s}$}\\
+                and $l^{k+1}= (1-\gamma)l^{k}+ \gamma l_{s}$}\\[1ex]
       \ENDFOR
    \ENDFOR
 \end{algorithmic}
