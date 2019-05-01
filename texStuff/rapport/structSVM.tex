@@ -22,19 +22,18 @@ We call the following way to pose problem the $n$-slack formulation
 \varepsilon_{i},\quad\forall i ,\forall y \in\mathcal{Y}(x)=\mathcal{Y}_{i}
 \end{equation}
 
-Define $\psi(y) := \phi(\xiii,\yiii) - \phi(\xiii,y)$ and $L_i(y) = L(\yiii, y)$\\
+Define $\psi(y) \triangleq \phi(\xiii,\yiii) - \phi(\xiii,y)$ and
+$L_i(y) \triangleq L(\yiii, y)$\\
 
 Then the following problem is called the \emph{loss-augmented decoding problem}.
 \begin{equation}
 H_i = \max_{y\in\mathcal{Y}_{i}} \{L_{i}(y)- \langle w, \psi_{i}(y)\rangle\} 
 \end{equation}
 
-We assume it can be solved efficiently (usually through ILPs that have a natural
-convex relaxation with integral optimal solutions TODO cite) and black box it
-into an oracle which can be sampled from in a transparent way.
-
-Note that the structured hinge-loss is a convex upper bound to the task loss.\\
-Hence it is quite natural to see that  learning $w$ amounts to the unconstrained problem,
+We assume it can be solved efficiently; usually through ILPs that have a natural
+convex relaxation with integral optimal solutions which will be discussed later. 
+Note that the structured hinge-loss is a convex upper bound to the task loss;
+hence it is quite natural to see that  learning $w$ amounts to the unconstrained problem,
 \begin{equation}
   \min_{w} \quad\frac{\lambda}{2}||w||^{2}+ \frac{1}{n}\sum_{i=1}^{n}H_{i}(w)
   \label{eq:svm-non-smooth}

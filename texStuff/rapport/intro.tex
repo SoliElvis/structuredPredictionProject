@@ -64,11 +64,10 @@ from two main computational draw-backs:
   through first-order sampled method, i.e. first order method which
   use a probabilistic approximation of the gradient through sampling instead
   of computing the actual gradient (which might be unfeasible).
-  % TODO : cite mr simon
 
 \item  The algorithm requires a projection step which can be expensive depending
-  on the structure of $\mathcal Y$.
-  % TODO : cite explain why proj is expensive
+  on the structure of $\mathcal Y$ and often involves a quadratic problem which
+  doesn't scale too well.
 \end{enumerate} 
  
 This leads us to consider the Block Seperable Frank Wolfe algorithm

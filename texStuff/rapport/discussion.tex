@@ -1,0 +1,42 @@
+In this paper we have discussed mainly two methods which were first proposed in
+the papers by \citet{taskarStructuredPredictionDual2006} and
+\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}. Both of these
+papers contain insights that go beyond technicalities but try to cast problems
+in some new way and leverage strong guarantees with what seem to be, at the end
+of the day, quite strinkingly simple solutions.
+
+The essence of BCFW lies in the simplicity and elegance of convex structures but
+also shows how structure can be modular, in the abstraction of the LMO for
+computational costs and its equivalence to max oracles for example. In the
+ExtraGradient paper a key observation is that the tractability depends on the
+very interaction between the task loss, or its scoring scheme, on one hand and
+it's structured surrogate loss on the other. As it turns out the combination of
+a structured hinge loss as a convex surrogate and a a simple hamming distance
+results in a formulation of the \emph{loss-augmented inference} problem as a
+tractable ILP. In other words if we have a tractable scoring scheme or task
+loss, we can map out how the interaction with specific loss surrogates
+affects the ``transitivity'' of tractability in the original problem.
+These kind of constructive frameworks allow us to build algorithms in a
+principled and elegant manner. 
+
+The dual extra gradient algorithm presented in
+\cite{taskarStructuredPredictionDual2006} casts some of the most common max
+margin estimation problems for structured output as a bilinear saddle point
+which opened the door for first order already known techniques and using
+different generalizations of the concept of projection could provide a new angle
+to attack those problems. All those approaches have in common that they leverage
+structures through specific black-boxable oracles to assemble algorithms with
+strong guarantees or tractability. It is obvious by how he opens his latest
+monograph on convex optimization \citeet
+
+
+The numerical experiments provided with this paper are clearly not reliable
+benchmarks. However going through the process of trying to reproduce results
+underscored the danger of neglecting a framework for consistent, solid, and
+accurate benchmarks. We found ourselves biasing towards solutions that are
+easier to preprocess and load into memory and this might be a harder bias to
+estimate than the common statistical one.
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mainProject"
+%%% End:

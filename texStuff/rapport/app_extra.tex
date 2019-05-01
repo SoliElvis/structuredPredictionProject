@@ -1,4 +1,18 @@
 \subsection*{ExtraGradient}
+We present a simple formulation of the algorithm:
+\begin{algorithm}
+  \caption{Dual ExtraGradient}
+  \label{alg:extra}
+\begin{algorithmic}
+  \STATE \textbf{Initialize}: Choose $\hat{ u} \in {U}$, set $ s^{-1} = 0$.
+  \FOR{$t=0$ to $t=\tau$}
+  \STATE $ v = \mathbf{\Pi}_{{U}}(\hat{ u} + \eta  s^{t-1})$\\
+  \STATE $ u^t = \mathbf{\Pi}_{{U}}( v - \eta ( F  v -  a))$\\
+  \STATE $ s^t =   s^{t-1} - ( F  u^t -  a)$
+  \ENDFOR
+  \RETURN $\overline{ u^{\tau}} = \frac{1}{1 + \tau} \sum_{t=0}^{\tau}  u^t$
+\end{algorithmic}
+\end{algorithm}
 \subsubsection*{Convergence analysis}
 The restricted gap function
 $\mathcal{G}_{D_{ v}, D_{ z}}$ is upper bounded by:

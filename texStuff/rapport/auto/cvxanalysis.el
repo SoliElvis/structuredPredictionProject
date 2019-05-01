@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "app_extra"
+ "cvxanalysis"
  (lambda ()
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperref")
    (add-to-list 'LaTeX-verbatim-macros-with-braces-local "hyperimage")
@@ -10,7 +10,6 @@
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "url")
    (add-to-list 'LaTeX-verbatim-macros-with-delims-local "path")
    (LaTeX-add-labels
-    "alg:extra"
-    "eq:ub"))
+    "proxstep"))
  :latex)
 

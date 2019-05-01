@@ -9,27 +9,25 @@ the $H_i$ s which are convex by construction.
 What is important to note is that the \emph{objective function is defined
 through solutions of another smaller optimization (maximization) problem.}
 Clearly it would be naive to just solve one after the other in batch. There are
-multiple approaches to this. A decade or so ago one formulation one could find
+multiple approaches to this problem. A decade or so ago one formulation one could find
 was a small QP formulation where the loss augmented decoding is dualized to
 obtain a more standard quadratic problem which can be plugged into commercial
 solvers \citep{taskarStructuredPredictionDual2006}.\\
 
 In \citet{taskarStructuredPredictionDual2006} it is proposed to instead use
-first-order algorithms designed specifically for saddle point problems in order
-to leverage the saddle point structure intrisc to it. Intuitively one could say
-that the harder the inference/decoding problem is, the closer we are to a
-saddle-point problem, whereas if the decoding problem is trivial we are back to
-straight minimization hence standard classification.\\
+first-order algorithms designed specifically for (continuous) saddle point
+problems in order to leverage the intrinsic min max structure. Intuitively one
+could say that the harder the inference/decoding problem is, the closer we are
+to a saddle-point problem, whereas if the decoding problem is trivial we are
+back to straight minimization hence standard classification.
 
 This enables us to consider a richer class of problems to tackle, especially for
 problems where dualizing yields a quadratic program (QP) that is not necessarily
 efficiently solvable (even though it scales linearly
-\cite{taskarStructuredPredictionDual2006});
-mainly because we are not leveraging the structure of the problem. TODO\\
+\cite{taskarStructuredPredictionDual2006}).
 
-We first take a stab at the saddle-point formulation. It is not hard
-to see that the objective function of the non-smooth formulation of
-struct-svm is equivalent to the following:
+It is not hard to see that the objective function of the non-smooth formulation
+of struct-svm is equivalent to the following:
 \begin{equation}
   \min_{ w \in {W}} \max_{ z \in {Z}} \sum_i \left( 
 w^T  F_i  z_i +  c_i^T  z_i -  w^T  \phi _i( y_i)
@@ -38,10 +36,10 @@ w^T  F_i  z_i +  c_i^T  z_i -  w^T  \phi _i( y_i)
 \end{equation}
 
 where the $ z_i$'s correspond to the relaxation of the binary labels $y_i$ and
-satisfy the constraints of the structured problem. The terms $ F_i$ correspond
-to the matrix with columns $\phi( x_i, y)$ over labels $ y$i. The $ c_i$'s
-correspond to the costs of a $ z_i$ and can be identified with the loss $l$ for
-a label $ y_i'$.
+satisfy the constraints of the structured problem through their restriction
+to some feasible set $Z$. The terms $ F_i$ correspond to the matrix with columns
+$\phi( x_i, y)$ over labels $ y$i. The $ c_i$'s correspond to the costs of a $
+z_i$ and can be identified with the loss $l$ for a label $ y_i'$.
 
 In equation \ref{saddle_point}, the term that is optimized is defined as:
 \begin{equation}
@@ -63,7 +61,7 @@ ones which are well studied and have fast implementations. However some problems
 call for other types of projections, i.e. based on other distance functions, or
 other divergence functions which are a weaker notion. The most important class
 for us are Bregman divergences which are Bregman divergences or distances which
-are \emph{based on strictly convex functions}. TODO why strict etc
+are \emph{based on strictly convex functions}. 
 
 We have the following operator that is used to perform the updates for
 both players at the same time.
@@ -96,7 +94,7 @@ both players at the same time.
   \underbrace{
     \begin{pmatrix}
       \begin{array}{c}
-        \sum_i  f_i( y_i)\\
+        \sum_i  \phi_i( y_i)\\
          c_1\\
         \vdots\\
          c_m
@@ -106,20 +104,6 @@ both players at the same time.
 
 TODO averaging to prevent oscillations and $eta<||F||^2$
 
-We present a simple formulation of the algorithm:
-\begin{algorithm}
-  \caption{Dual ExtraGradient}
-  \label{alg:extra}
-\begin{algorithmic}
-  \STATE \textbf{Initialize}: Choose $\hat{ u} \in {U}$, set $ s^{-1} = 0$.
-  \FOR{$t=0$ to $t=\tau$}
-  \STATE $ v = \mathbf{\Pi}_{{U}}(\hat{ u} + \eta  s^{t-1})$\\
-  \STATE $ u^t = \mathbf{\Pi}_{{U}}( v - \eta ( F  v -  a))$\\
-  \STATE $ s^t =   s^{t-1} - ( F  u^t -  a)$
-  \ENDFOR
-  \RETURN $\overline{ u^{\tau}} = \frac{1}{1 + \tau} \sum_{t=0}^{\tau}  u^t$
-\end{algorithmic}
-\end{algorithm}
 
 \clearpage
 \subsection{Duality and Gap function}

@@ -15,16 +15,16 @@ Intuitively the classical FW is a descent method where starting from some
 arbitrary feasible point we repeatdly take convex combinations with outputs of
 the oracle $s_{t}= LMO_{\mathcal{M}}(\nabla f(x_{t}))$. A reasonable step size
 can be chosen easily without having to do a line search as we are parametrizing
-the update by the convex combination \textit{weight}(denoted $\gamma$ below --
-as per convention.) Under convexity assumptions on the set and the function we
-can tune this parameter between zero and one and be guaranteed to output a
-feasible iterate. This is a key feature of the algorithm as many other require
+the update by the convex combination ``weight" (denoted $\gamma$ below -- as per
+convention.) Under convexity assumptions on and the function and the feasible
+set we can tune this parameter between zero and one and be guaranteed to output
+a feasible iterate. This is a key feature of the algorithm as many other require
 to compute the gradient's lipschitz constant and/or the strong-convexity
 parameter, usually denoted $\mu$. All in all parametrizing iterations through
 convex combinations is a strikingly simple and elegant to the feasibility
-problem. Moreover we also get sparsity for free, which is key in the
-application of its block-seperable version to the lagrangian dual of the
-loss augmented struct-svm.
+problem. Moreover we also get sparsity for free, which is key in the application
+of its block-seperable version to the lagrangian dual of the loss augmented
+struct-svm.
 
 \begin{algorithm}[htbp!]
   \caption{Classical Frank-Wolf}

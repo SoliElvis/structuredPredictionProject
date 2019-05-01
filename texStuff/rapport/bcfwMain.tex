@@ -37,41 +37,6 @@ interaction of task loss and its convexification through the hinge loss
 ``operator'' are thus related in a very natural way to diverse combinatorial
 problems and the BCFW provides a theoretical pivot between those two problems.
 
-\clearpage
- \begin{algorithm}[htbp!]
-    \caption{Block-Coordinate Frank-Wolfe -- 
-\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}}
-    \label{alg:bcfw}
-\begin{algorithmic}
-\STATE {Let $w^{0}= w_{i}^{0}= \overline{w}^{0}= 0$, $l^{0}= l_{i}^{0}= 0$}\\
-  \FOR {$k=0...K$}{
-      \STATE{Pick $i$ at random in $\{1,...,n\}$}\\[1ex]
-      \STATE {Solve $y_{i}^{*}=\underset{y_{i}\in\mathcal{Y}_{i}}{\textit{max}}\quad H_{i}(y,w^{k})$}\\[1ex]
-      \STATE {Let $w_{s}= \frac{1}{n\lambda}\psi_{i}(y_{i}^{*})$, and $l_{s}= \frac{1}{n}L_{i}(y_{i}^{*})$}\\[1ex]
-      \STATE {Let $\gamma= \frac{\lambda(w_{i}^{k}-w_{s})^{T}w^{k}- l_{i}^{k}+
-              l_{s}}{\lambda||w_{i}^{k}-w_{s}||^{2}}$, and clip to $[0,1]$}\\[1ex]
-      \STATE {Update $w_{i}^{k+1}= (1-\gamma)w_{i}^{k}+ \gamma w_{s}$, and
-              $l_{i}^{k+1}= (1-\gamma)l_{i}^{k}+ \gamma l_{s}$}\\[1ex]
-      \STATE {Update $w^{k+1}= w^{k}+ w_{i}^{k+1}- w_{i}^{k}$, and
-              $l_{i}^{k+1}= (1-\gamma)l_{i}^{k}+ \gamma l_{s}$}\\[1ex] }
-    \ENDFOR
-\end{algorithmic}
-\end{algorithm}
-
-The version of BCFW presented above \ref{alg:bcfw} is the result of applying
-FW to the (Lagrange) dual of the struct-svm. Let $f$ be the objective function
-of the dual problem of svm-truct. Then, as sensibly emphasized in the paper,
-the key insight is to notice that pluggin $\nabla f(\hat x)$ in the linear
-minimization oracle $LMO_{\mathcal M_i}$ is equivalent to solving the
-loss-augmented decoding problem. \\
-
-This equivalency means we can leverage the clean theoretical results from
-classical FW provided the usually ``moderate'' requirements are satisfied. Hence
-this algorithm is a theoretically sound solution to the main impediments of
-comparable cutting plane and subgradient methods with respect to their
-application in modern machine learning applications: cutting plane is no a
-separableh method and subgradient methods have some step-size issues as
-mentionned previously.
 
 
 
