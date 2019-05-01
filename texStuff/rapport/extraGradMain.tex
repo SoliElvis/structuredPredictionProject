@@ -54,15 +54,20 @@ c_i^T -  w^T  \phi_i( y_i)
 \clearpage
 
 The latter function is bilinear in both $w$ and $z$. Once can summon the idea of
-a duel between two maters named $w$ and $ z$ respectively who play a zero-sum
-game. They perform updates using gradients of the objective w.r.t. their
-parameters. They then project the result to the set of feasible points given by
-the constraints imposed on the structure. We usually consider Euclidean
-projections, as there are well-known problems where they are efficient to
-compute. However, as seen later, this is not the case for all problem. This is
-why Bregman projections will be introduced. Going back to the zero-sum game, we
-have the following operator that is used to perform the updates for both players
-at the same time.
+a duel between two masters of a zero-sum game who are playing agasint one
+another. The players, named $w$ and $z$ 
+respectively (i.e. the parameters and the labels) play a zero-sum game. They
+perform updates using gradients of the objective w.r.t. their parameters. They
+then project the result to the set of feasible points given by the constraints
+imposed on the structure. The most common projections are obviously euclidean
+ones which are well studied and have fast implementations. However some problems
+call for other types of projections, i.e. based on other distance functions, or
+other divergence functions which are a weaker notion. The most important class
+for us are Bregman divergences which are Bregman divergences or distances which
+are \emph{based on strictly convex functions}. TODO why strict etc
+
+We have the following operator that is used to perform the updates for
+both players at the same time.
 
 \begin{equation}
   \begin{pmatrix}
