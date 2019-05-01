@@ -4,32 +4,40 @@ classical algorithms like projected gradient are intractable. Stochastic
 subgradient methods, on the other hand, achieve a sublinear convergence rate
 while only requiring a single call to the maximization oracle every step. They
 are nonetheless very sensitive to the sequence of stepsizes and it is unclear
-when to terminate the iterations. \\
+when to terminate the iterations. 
 
 In fact many algorithms with good theoretical garantees introduce a dependency
 between the stepsize to be chosen and some constants which caracterize the
 function, e.g. the lipschitz constant of the gradient ($L$) and/or the
-strong-convexity constant ($\mu$). For example Nesterov (2003) in his analysis
-of dual extragradient the step size is bounded above by the gradient's Lipschitz
-constant which happens to correspond to the norm of the $F$ matrix as defined in
-the previous sextion.\\
+strong-convexity constant ($\mu$) in order to provide some convergence
+garantees. For example Nesterov (2003) in his analysis of dual extragradient the
+step size is bounded above by the gradient's Lipschitz constant which happens to
+correspond to the norm of the $F$ matrix as defined in the previous sextion.
+Projections and proximal operators can involve quadratic programs but the
+natural convex combination approach ensures feasibility at no cost. Since the
+dual objective function for structured-svm is a quadratic problem we can compute
+analytically exactly the optimal line-search step size. The BCFW algorithm
+presented in \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}
+also shows a couple equivalencies, the most important being that solving the
+loss-augmented problem is equivalent to a call to the linear minimization oracle
+in the dual.
 
-Those projection-like operators are, however ingenious in their design, not
-necessarily computable. One of the main interests in FW approaches is that we
-get an optimality certficate \textit{for free} at each iteration. The estimate
-used ties in elegantly with convex analysis results. Moreover we have many good
-options for the choice of step-size with theoretical guarantees.\\
+Essentially BCFW can be seen as generalizing some subgradient and cutting plane
+methods. Tractability in the end, in the current literature, depends on how the
+inference problem (usually cast as an ILP since we are mostly dealing we
+underlying structures of combinatorial nature) and the task loss interact. It is
+shown in \cite{taskarStructuredPredictionDual2006} that in many interesting
+cases such as when the weighted hamming distance is used as task loss for
+bipartite matching; the inference augmented loss inherits tractability and we
+have an LP with optimal integral solutions. It is a well known fact in
+combinatorial optimization that the incidence matrix of a bipartite graph is
+awlays totally unimodular which is a sufficient condition for optimal integral
+solution in its convex relaxation LP. The loss-augmented problems defined by the
+interaction of task loss and its convexification through the hinge loss
+``operator'' are thus related in a very natural way to diverse combinatorial
+problems and the BCFW provides a theoretical pivot between those two problems.
 
-Leveraging those aspects the Block-Separable Frank Wolfe algorithm proposed in
-\cite{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} can be used with
-a very simple analytic for the step-size while ensuring theoretical convergence.
-That being said there are many variants which have been tried which use line
-search like methods. We also get, \textit{for free} an easily computable duality
-gap estimate while still retaining a sublinear convergence rate. Moreover,
-despite the exponential number of constraints, the algorithm has sparse iterates
-alleviating the memory issues which come with the exponential number of dual
-variables. 
-
+\clearpage
  \begin{algorithm}[htbp!]
     \caption{Block-Coordinate Frank-Wolfe -- 
 \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}}
@@ -49,7 +57,6 @@ variables.
     \ENDFOR
 \end{algorithmic}
 \end{algorithm}
-\clearpage
 
 The version of BCFW presented above \ref{alg:bcfw} is the result of applying
 FW to the (Lagrange) dual of the struct-svm. Let $f$ be the objective function

@@ -1,11 +1,11 @@
 \subsection{Saddle Point Formualtion and Intuition}
 Let us focus on the loss-augmented formulation
 \begin{equation}
-  \min_{w} \quad \frac{\lambda}{2} \norm w^2+ \frac{1}{n}\sum_{i=1}^nH_i(w)
+  \min_{w} \quad \frac{\lambda .}{2} \norm w^2+ \frac{1}{n}\sum_{i=1}^nH_i(w)
 \end{equation}
 which is an unconstrained non-smooth (strongly) convex problem
-as it is the sum of a strongly convex function, $\norm_2^2$, and the average of
-the $H_i$ s which are convex by construction)
+as it is the sum of a strongly convex function, and the average of
+the $H_i$ s which are convex by construction.
 What is important to note is that the \emph{objective function is defined
 through solutions of another smaller optimization (maximization) problem.}
 Clearly it would be naive to just solve one after the other in batch. There are
@@ -104,7 +104,7 @@ both players at the same time.
     \end{pmatrix}}_{ a} =  F  u -  a
   \end{equation}
 
-TODO averaging to prevent oscillations and eta<||F||^2
+TODO averaging to prevent oscillations and $eta<||F||^2$
 
 We present a simple formulation of the algorithm:
 \begin{algorithm}

@@ -1,11 +1,7 @@
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: mainProject.tex
-%%% End:
-\subsection{Frank\-Wolfe, the conditional gradient algorithm}
+\subsection{Frank-Wolfe, the conditional gradient algorithm}
 Throughout this section we consider the problem of minimizing a
 a continusouly differentiable convex function - say $f$ - over some convex set
-$\mathcal M$.
+and compact set $\mathcal M$.
 \begin{definition}
   A linear minimization oracle over a set $\mathcal M$ is a map defined the following way:
   \begin{equation}
@@ -17,15 +13,21 @@ $\mathcal M$.
 
 Intuitively the classical FW is a descent method where starting from some
 arbitrary feasible point we repeatdly take convex combinations with outputs of
-the oracle $s_{t}= LMO_{\mathcal{M}}(\nabla f(x_{t}))$. 
-The convex combination ``weight'', usually denoted $\gamma$,
-can be computed exactly analytically. This is a key feature of the algorithm
-as many other require to compute the gradient's lipschitz constant and/or the
-strong-convexity parameter, usually denoted $\mu$.
+the oracle $s_{t}= LMO_{\mathcal{M}}(\nabla f(x_{t}))$. A reasonable step size
+can be chosen easily without having to do a line search as we are parametrizing
+the update by the convex combination \textit{weight}(denoted $\gamma$ below --
+as per convention.) Under convexity assumptions on the set and the function we
+can tune this parameter between zero and one and be guaranteed to output a
+feasible iterate. This is a key feature of the algorithm as many other require
+to compute the gradient's lipschitz constant and/or the strong-convexity
+parameter, usually denoted $\mu$. All in all parametrizing iterations through
+convex combinations is a strikingly simple and elegant to the feasibility
+problem. Moreover we also get sparsity for free, which is key in the
+application of its block-seperable version to the lagrangian dual of the
+loss augmented struct-svm.
 
 \begin{algorithm}[htbp!]
   \caption{Classical Frank-Wolf}
-  \label{alg:fw}
 \begin{algorithmic}
    \STATE Let $\alpha\in\mathcal{M}$
    \FOR{$k=0$ {\bfseries to} $K$}
@@ -36,30 +38,42 @@ strong-convexity parameter, usually denoted $\mu$.
 \end{algorithmic}
 \end{algorithm}
 
-There has recently been a resugence of interest into FW in the machine learning
-literature which can be explained by the following table from a tutorial on FW
-by Martin Jaggi \citet{jaggiFrankWolfeOptimizationAlgorithms2014}
-\begin{table}[htbp!]
-  \center
-  \begin{tabular}{|l|l|l|}
-  \hline
-  & Frank-Wolfe & Gradient Descent and Proximal Methods\\
-  \hline
-  Iteration cost & solve linear problem & Projection or prox operation more generally\\
-  \hline
-  Iterates & sparse & \textbf{dense}\\
-  \hline
-  \end{tabular}
-\end{table}
+% There has recently been a resugence of interest into FW in the machine learning
+% literature which can be explained by the following table from a tutorial on FW
+% by Martin Jaggi \citet{jaggiFrankWolfeOptimizationAlgorithms2014}
+% \begin{table}[htbp!]
+%   \center
+%   \begin{tabular}{|l|l|l|}
+%   \hline
+%   & Frank-Wolfe & Gradient Descent and Proximal Methods\\
+%   \hline
+%   Iteration cost & solve linear problem & Projection or prox operation more generally\\
+%   \hline
+%   Iterates & sparse & \textbf{dense}\\
+%   \hline
+%   \end{tabular}
+% \end{table}
 
 Sparsity is obviously a key feature for preventing the memory required to
-explode. Moreover projection and proximal operations can be very expensive in
-certain contexts. %TODO
+explode with the number of training samples. Moreover projection and proximal
+operations can usually involve solving a quadratic problem which is clearly
+harder to keep tractable. Many variants and extensions of the basic classical FW
+algorithm but Jaggi lists the main ones and the active research areas at the
+time of writing his paper in 2014. %TODO what changed since then In this paper
+we mainly focus on the Block-Seperable variant applied to struct-svm problems as
+presented in \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}
 
-Many variants and extensions of the basic classical FW algorithm
-but Jaggi lists the main ones and the active research areas
-at the time of writing his paper in 2014. %TODO what changed since then
-
-In this paper we mainly focus on the Block-Seperable variant
-applied to struct-svm problems as presented in 
-\citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}
+While we can't necessarily compute the  actual duality gap
+a linear surrogate can be used and has become widely standard
+in the literature, see for example Jaggi's review
+\citep{jaggiRevisitingFrankWolfeProjectionFree2013},
+it is defined as follows:
+\begin{equation}
+  g(x) \triangleq \max_{s\in \mathcal D} \langle x-s,\nabla f(x)\rangle
+\end{equation} 
+By convexity we immediately have that $g(x) \geq f(x) - f(x^*)$ making
+exactly validating the tolerance of a solutionn very easy to compute.
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mainProject"
+%%% End:

@@ -14,12 +14,15 @@
           | Iterates       | sparse               | \textbf{dense}                              |
           |----------------+----------------------+---------------------------------------------|
          :end:
+        :links:
+        [[zotero://select/items/1_LCLQE8C2][Jaggi, Martin. “Revisiting Frank-Wolfe: Projection-Free Sparse Convex Optimization,” n.d., 12.]]
+
+        :end:
       - [ ] list extensions and active research:
         :drawer:
         #+CAPTION: Extensions and areas of active research
         [[./figures/extensionsFW.png]]
         :end:
-      - [ ] intuition (conditional part, independence ?
      
 *** NEXT dual struct-svm form
 *** URGENT citations
