@@ -54,7 +54,8 @@
    (LaTeX-add-amsthm-newtheorems
     "theorem"
     "lemma"
-    "definition")
+    "definition"
+    "proposition")
    (LaTeX-add-mathtools-DeclarePairedDelimiters
     '("abs" "")
     '("norm" "")))

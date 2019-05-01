@@ -37,13 +37,12 @@ w^T  F_i  z_i +  c_i^T  z_i -  w^T  \phi _i( y_i)
 
 where the $ z_i$'s can be identified with the edge and node potentials of a
 markov network and satisfy the constraints of the structured problem. The terms
-$ F_i$ correspond to the matrix with columns $f( x_i,  y)$ over
-labels $ y$i. The $ c_i$'s correspond to the costs of a $ z_i$ and
-can be identified with the loss $l$ for a label $ y_i'$.
+$ F_i$ correspond to the matrix with columns $f( x_i, y)$ over labels $ y$i. The
+$ c_i$'s correspond to the costs of a $ z_i$ and can be identified with the loss
+$l$ for a label $ y_i'$.
 
 In equation \ref{saddle_point}, the term that is optimized is defined
 as:
-
 \begin{equation}
   {L}( w, z) \triangleq \sum_i  w^T  F_i  z_i + 
 c_i^T -  w^T  \phi_i( y_i)
@@ -106,10 +105,12 @@ at the same time.
 \subsection{Duality and Gap function}
 We can measure the ``goodness'' of the parameters using the gap function
 ${G}$:
+
 \begin{equation}
   {G}( w,  z) \triangleq \left[ \max_{ z' \in {Z}}
 {L}( w, z') - {L}^* \right] + \left[ {L}^* -
 \min_{ w' \in {W}} {L}( w',  z) \right]
+
 \end{equation}
 
 where ${L}^*$ gives the result of the min-max of the objective
@@ -128,11 +129,6 @@ D_{ z} \right] - \left [ \min_{ w' \in {W}} {L}( w',
 The motivation for using this restricted gap function is that if we start
 ``close'' to an optimal point, of course we will converge more rapidly to it.
 This can be seen in the convergence analysis of the method.
-
-
-
-
-
 
 We mainly follow the intuition and proofs of
 \cite{taskarStructuredPredictionDual2006}.\\
