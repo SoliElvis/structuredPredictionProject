@@ -1,92 +1,84 @@
-\message{ !name(classical_fw.tex)}
-\message{ !name(classical_fw.tex) !offset(-2) }
-\subsection{Frank-Wolfe, the conditional gradient algorithm}
-Throughout this section we consider the problem of minimizing a
-a continusouly differentiable convex function - say $f$ - over some convex set
-$\mathcal M$.
-\begin{definition}
-  A linear minimization oracle over a set $\mathcal M$ is a (possibly set
-valued) mapping defined the following way:
-  \begin{equation}
-    LMO_{\mathcal{A}}(\nabla f(x_{t})) \triangleq
-    \argmin_{s \in\mathcal{A}}\langle s, \nabla f(x_{t})\rangle
-    \label{eq:lmo}
-  \end{equation}
-\end{definition}
+\message{ !name(mainProject.tex)}%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+\input{premath}
+\usepackage{graphicx} %Loading the package
+\graphicspath{{figures/}} %Setting the graphicspath
+\usepackage[
+  backend=biber,
+  citestyle=authoryear-ibid,
+  natbib=true
+  ]{biblatex}
+\usepackage{csquotes}
+\usepackage{comment}
 
-Intuitively starting with an active set consisting of only an initial feasible
-point $S^{0}= \{x_{0}\}$, the Frank-Wolfe algorithm adds an element $s_{t}=
-LMO_{\mathcal{A}}(\nabla f(x_{t}))$, to the active set by taking its
-convex combination with the previous iterate which allows for a sparse
-representation. Sparsity is a key feature of the BCFW variant of Frank Wolfe as
-it optimizes over the dual of struct-SVM which has a very large number of
-variables (since the primal has a very large number of constraints defined
-through the hinge loss)
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{Scalability of Struct SVM approaches} }
+\rhead{ \fancyplain{}{\today} }
+\rfoot{ \fancyplain{}{\thepage} }
+\renewcommand\nameyeardelim{, }
 
-\begin{algorithm}
-  \caption{Classical Frank-Wolf}
-  \label{alg:fw}
-\begin{algorithmic}
-   \STATE Let $\alpha\in\mathcal{M}$
-   \FOR{$k=0$ {\bfseries to} $K$}
-   \STATE {Compute $s={\textit{argmin}}_{s\in\mathcal{M}}\langle s, \nabla f(\alpha^{k})\rangle$}
-   \STATE Let $\gamma = \frac{2}{k+2}$, or optimize $\gamma$ by line search
-   \STATE Update $\alpha^{k+1}= (1-\gamma)\alpha^{k}+ \gamma s$
-   \ENDFOR
-\end{algorithmic}
-\end{algorithm}
+\usepackage[toc,page]{appendix}
+\bibliography{tocite.bib}
+\addbibresource{tocite.bib}
 
-In \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013} 
-We define the \emph{linearize duality gap} for the k'th iterate as:
-\begin{equation}
-  g(\alpha^{k}) \triangleq \max_{s\in\mathcal{M}}\langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle
-  \label{eq:dualityGapDef}
-\end{equation}
-We
-\begin{align}
-    &f(s)\geq f(\alpha^{k})+ \langle \alpha^{k}-s, \nabla f(\alpha^{k})\rangle\\
-    &\Longrightarrow g(\alpha^{k})=
-      \min_{s\in\mathcal{M}}\langle \alpha^{k}-s, \nabla
-      f(\alpha^{k})\rangle \geq f(\alpha^{k})- f^{*}
-\end{align}
-We can thus see that the duality gap gives us a computable optimality guarantee. \\
+\title{Scalability of Struct SVM approaches}
+\date{\today}
+\author{Frederic Boileau \and Elyes Lamouchi \and William St-Arnaud \\
+\url{https://github.com/SoliElvis/structuredPredictionProject}}
+\begin{document}
 
-% \begin{definition}
-%   The curvature constant $C_{f}$ is given by the maximum relative deviation of
-%   the objective function f from its linear aaporximations, over the domain
-%   $\mathcal{M}$,
-% \end{definition}
+\message{ !name(bcfwMain.tex) !offset(-34) }
+\subsection{Block Coordinate Frank Wolfe}
+Due to the exponential number of dual variables in the structured SVM setting,
+classical algorithms like projected gradient are intractable. Stochastic
+subgradient methods, on the other hand, achieve a sublinear convergence rate
+while only requiring a single call to the maximization oracle every step. They
+are nonetheless very sensitive to the sequence of stepsizes and it is unclear
+when to terminate the iterations. 
+
+In fact many algorithms with good theoretical garantees introduce a dependency
+between the stepsize to be chosen and some constants which caracterize the
+function, e.g. the lipschitz constant of the gradient ($L$) and/or the
+strong-convexity constant ($\mu$) in order to provide some convergence
+garantees. For example Nesterov (2003) in his analysis of dual extragradient the
+step size is bounded above by the gradient's Lipschitz constant which happens to
+correspond to the norm of the $F$ matrix as defined in the previous sextion.
+Projections and proximal operators can involve quadratic programs but the
+natural convex combination approach ensures feasibility at no cost. Since the
+dual objective function for structured-svm is a quadratic problem we can compute
+analytically exactly the optimal line-search step size. The BCFW algorithm
+presented in \citet{lacoste-julienBlockCoordinateFrankWolfeOptimization2013}
+also shows a couple equivalencies, the most important being that solving the
+loss-augmented problem is equivalent to a call to the linear minimization oracle
+in the dual.
+
+Essentially BCFW can be seen as generalizing some subgradient and cutting plane
+methods. Tractability in the end, in the current literature, depends on how the
+inference problem (usually cast as an ILP since we are mostly dealing we
+underlying structures of combinatorial nature) and the task loss interact. It is
+shown in \cite{taskarStructuredPredictionDual2006} that in many interesting
+cases such as when the weighted hamming distance is used as task loss for
+bipartite matching; the inference augmented loss inherits tractability and we
+have an LP with optimal integral solutions. It is a well known fact in
+combinatorial optimization that the incidence matrix of a bipartite graph is
+awlays totally unimodular which is a sufficient condition for optimal integral
+solution in its convex relaxation LP. The loss-augmented problems defined by the
+interaction of task loss and its convexification through the hinge loss
+``operator'' are thus related in a very natural way to diverse combinatorial
+problems and the BCFW provides a theoretical pivot between those two problems.
 
 
-% \begin{align}
-%     &C_{f}= \underset{\underset{ \gamma\in[0,1],
-% y=x+\gamma(s-x)}{x,s\in\mathcal{M}}}{sup}\frac{2}{\gamma^{2}}\Big(f(y)- f(x)-
-% \langle y-x, \nabla f(x)\rangle\Big)
-% \end{align}
-% Intuitively, the curvature constant can be seen as a measure of how flat the
-% objective function is. For example, if the objective is linear, say $f(x)= ax+
-% b$ and $x\in[e,f]$ then $\nabla f(x)= a$ and the curvature constant is zero:
-% \begin{align}
-%     &C_{f}= \frac{2}{\gamma^{2}}\Big(ay+ b- ax- b +(-ay +ax)\Big)= 0
-% \end{align}
-% Moreover $s=\textit{argmin}_{s\in[e,f]}\langle s, a\rangle= \frac{e}{a}$. Hence
-% we reach the minimum in one F-W step. Thus, we can observe that for flatter
-% functions, that is with smaller curvature constants, Frank-Wolfe should converge
-% faster. 
 
-% \begin{theorem}
-%   The duality gap obtained in the $t^{th}$ iteraton of the Frank-Wolfe algorithm
-% satisfies
-% \begin{align}
-%     &g(x_{t})\leq 2\beta\frac{C_{f}}{t+2}(1+\delta)
-% \end{align}
-% Where $\beta= \frac{27}{8}$ and $\delta$ is the approximation error tolerated in
-% the $LMO$.
-% \end{theorem}
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: mainProject
+%%% TeX-master: "mainProject"
 %%% End:
 
-\message{ !name(classical_fw.tex) !offset(-92) }
+\message{ !name(mainProject.tex) !offset(1) }
+
+\end{document}
